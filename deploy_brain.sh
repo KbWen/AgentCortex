@@ -1,18 +1,13 @@
 #!/bin/bash
 TARGET="$1"
-if [ -z "$TARGET" ]; then echo "❌ Usage: ./deploy_brain.sh <target_path>"; exit 1; fi
-
-# 建立目錄
-mkdir -p "$TARGET/.agent/rules"
-
-# 複製規則
-cp .agent/rules/*.md "$TARGET/.agent/rules/"
-
-# 複製 Cursor 設定 (如果有)
-if [ -f ".cursorrules" ]; then
-    cp .cursorrules "$TARGET/"
+if [ -z "$TARGET" ]; then
+  echo "Usage: ./deploy_brain.sh <target_path>"
+  exit 1
 fi
 
-echo "✅ AI Brain deployed to $TARGET"
-echo "⚠️  For Antigravity/Claude: Update your System Instructions from SYSTEM_INSTRUCTION.txt"
-echo "⚠️  For Cursor: .cursorrules has been auto-deployed."
+mkdir -p "$TARGET/.agent"
+cp -r .agent/* "$TARGET/.agent/"
+cp .cursorrules "$TARGET/" 2>/dev/null || true
+
+echo "✅ Personal AI OS v2.0 deployed to $TARGET"
+echo "⚠️  Ensure you update '99_memory.md' with your preferences."

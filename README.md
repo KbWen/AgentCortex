@@ -1,20 +1,23 @@
-# Personal AI OS Template v1.1
+# Personal AI OS v2.0 (Stable)
 
-這是一個跨平台 (Antigravity / Cursor / Claude) 的 AI 協作系統模板。
+Architecture:
+Router → Workflow → Role → Skill
 
-## 🚀 快速開始
+This system is designed to work across:
 
-1. **GitHub**: 點擊 "Use this template" 建立新專案。
-2. **本地部署**: 執行 `./deploy_brain.sh <你的舊專案路徑>`。
+- **Antigravity / Google IDX**: Paste `SYSTEM_INSTRUCTION.txt` into system prompt.
+- **Cursor**: `.cursorrules` is auto-loaded.
+- **Claude Projects**: Upload `.agent/` folder and paste `SYSTEM_INSTRUCTION.txt`.
+- **Codex-style**: Use system prompt to point to `.agent/00_meta_router.md`.
 
-## ⚙️ 設定方式
+## 🧠 Key Modules
 
-- **Antigravity / Google IDX**: 複製 `SYSTEM_INSTRUCTION.txt` 到設定。
-- **Claude Projects**: 上傳 `.agent` 資料夾並貼上 `SYSTEM_INSTRUCTION.txt`。
-- **Cursor**: 自動支援 (透過 `.cursorrules`)。
+- **Router**: `.agent/00_meta_router.md`
+- **Memory**: `.agent/99_memory.md` (Edit this!)
+- **Workflows**: `.agent/workflows/`
+- **Roles**: `.agent/roles/`
+- **Skills**: `.agent/skills/`
 
-## 🧠 大腦結構
+## 🚀 Deployment
 
-- **Router**: `00_meta_router.md` (意圖判斷)
-- **Engineering**: Architect (規劃) / Executor (執行) / Reviewer (檢查)
-- **Content**: IG (知識方塊) / Blog (SEO)
+Run `./deploy_brain.sh <target_project>` to install execution brain into any project.
