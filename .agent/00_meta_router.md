@@ -1,27 +1,34 @@
-# META ROUTER v2.2 (STABLE)
+# META ROUTER v2.4: TOKEN & PERFORMANCE OPTIMIZATION
 
-## ⚖️ MODEL STRATEGY (TOKEN SAVING)
+## ⚖️ MODEL SELECTION POLICY
 
-- **FLASH Mode**: (< 200 tokens / 1 file) Use for translations, unit tests, or small edits.
-- **PRO/CLAUDE Mode**: (> 200 tokens / multi-file) Use for refactoring, complex bugs, or deep research.
-- **Guideline**: If a task matches a **RULE**, evaluate the threshold defined in that rule before selecting Pro models.
+- **THRESHOLD**: `MAX_TOKEN_FLASH` (Default: 200). Check `.agent/99_memory.md`.
+- **FLASH Mode**:
+  - Input < Threshold.
+  - Standard tasks (Translation, Stats, single-file edits).
+- **PRO Mode**:
+  - Input > Threshold.
+  - Multi-file refactors, complex bug investigations, creative writing.
+- **MULTISTAGE**: Use Flash for preprocessing (extraction/audit) and Pro for final synthesis.
 
 ## 0) PRE-FLIGHT CHECK
 
-1. **Context Check**: READ `.agent/99_memory.md` to lock tech-stack context.
-2. **Path Identification**: Determine if the task requires a **RULE** (Standardized Task) or a **ROLE** (Open-ended Thinking).
+1. **Context Check**: READ `.agent/99_memory.md` to lock tech-stack and thresholds.
+2. **Identification**: Is this a **Workflow**, **Rule**, or **Role** task?
 
-## 1) ROUTING MATRIX
+## 1) ROUTING MATRIX (v2.4)
 
-| Task Type | Reference | Priority Mode |
+| Task Type | Reference | Default Model |
 | :--- | :--- | :--- |
-| Bug / Error | `workflows/bug_investigation.md` | Pro (for root cause) |
-| Code Change | `workflows/engineering_flow.md` | Flash (Implementation) |
+| Bug / Error | `workflows/bug_investigation.md` | Flash (Audit) -> Pro (Fix) |
+| Feature / Dev | `workflows/01_engineering_flow.md` | Pro (Plan) -> Flash (Execute) |
+| Summarization | `workflows/06_summarization.md` | Flash (Extract) -> Pro (Synthesize) |
+| Translation | `workflows/07_translation.md` | Flash (Standard) |
+| Refactoring | `workflows/08_refactoring.md` | Flash (Single) / Pro (Multi) |
+| Test Gen | `workflows/09_test_case_gen.md` | Flash |
 | Research | `rules/04_research.md` | Flash (<200t) / Pro (Deep) |
-| Data/Logs | `rules/05_data_analysis.md` | Flash (Stats) / Pro (Insight) |
-| Content | `workflows/content_flow.md` | Pro (Creative) |
+| Data Analysis | `rules/05_data_analysis.md` | Flash (Stats) / Pro (Insight) |
 
 ## 2) CONFIDENCE BRAKE (<70%)
 
-Ask: "❓ [Router] 我判斷這需要引導至【規則/角色】，要我先分析還是直接執行？"
-I suspect this is a [Task Type] task. Should I follow the [Workflow Name] or jump straight to execution?"
+Ask: "❓ [Router] 我建議使用【工作流】，第一步將由【模型】執行。是否開始？"

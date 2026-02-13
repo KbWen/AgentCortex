@@ -1,71 +1,42 @@
-# Personal AI OS v2.2 (Stability & Performance)
+# Personal AI OS v2.4 (極致節流與模型分級版)
 
-## 🎯 Value Proposition
+## 🎯 核心價值
 
-A highly modular, platform-agnostic AI agent framework. It forces the LLM to adopt specific **Workflows**, **Roles**, and **Skills**, significantly reducing cost and increasing output consistency.
+這是一個針對 **Google Antigravity / Claude** 優化的 AI Agent 框架。透過 **Workflow (工作流)**、**Role (角色)**、**Rule (規則)** 與 **Skill (技能)** 的解耦，實現自動化的「模型分級策略」，有效節省 Token 並提升輸出穩定性。
 
-## 🚀 Quick Start (3-Min Setup)
+## 🚀 3 分鐘快速上手
 
-1. **Clone & Explore**: Check out the `.agent/` directory.
-2. **Deploy**: Run `./deploy_brain.sh <your_project_path>` to install the brain.
-3. **Configure**: Update `.agent/99_memory.md` with your tech stack.
-4. **Agent Setup**:
-   - Paste `SYSTEM_INSTRUCTION.txt` into your AI's system prompt (IDX, Claude, etc.).
+1. **部署**: 執行 `./deploy_brain.sh <目標專案路徑>`。
+2. **記憶設定**: 編輯 `.agent/99_memory.md`，填入技術棧與 `MAX_TOKEN_FLASH` 閾值。
+3. **系統指令**: 將 `SYSTEM_INSTRUCTION.txt` 內容貼入 AI 的系統提示詞中。
 
-### 📖 Usage Scenario: Bug Hunting
->
-> **User**: "My login API is failing with a 500 error."
-> **AI OS Logic**:
->
-> 1. Router detects `error/fail`.
-> 2. Loads `workflows/bug_investigation.md`.
-> 3. Role: **Analyzer** parses your logs.
-> 4. Role: **Architect** proposes a fix.
-> 5. Role: **Executor** writes the code.
-
-## 🏗️ Structure Guide
-
-- **Rules (`.agent/rules/`)**: Behavioral instructions (How to search, how to analyze). *Use for standardized tasks.*
-- **Roles (`.agent/roles/`)**: Personality & thinking style (Critical, Creative, Precise). *Use for open-ended decision making.*
-- **Workflows (`.agent/workflows/`)**: Step-by-step processes for complex missions.
-
-### Directory Tree
+## 🏗️ 目錄結構與擴充指南
 
 ```text
 .agent/
-├── 00_meta_router.md       # Decision tree & Token/Model Strategy
-├── 99_memory.md            # Persistent User Context
-├── rules/                  # NEW: Task-specific "How-to" (Research, Analysis)
-├── workflows/              # Process Logic (Engineering, Bug, Content, Data)
-├── roles/                  # Task Personas (Architect, Executor, etc.)
-└── skills/                 # Capability Templates
+├── 00_meta_router.md       # 決策中心：判斷任務並選擇 Flash 或 Pro 模型
+├── 99_memory.md            # 個人化記憶：紀錄技術棧、偏好與 Token 閾值
+├── rules/                  # 行為規範 (如：翻譯標準、搜尋規範) -> 優先使用
+├── workflows/              # 複雜流程 (如：Bug 調查、長文摘要) -> 多階執行
+├── roles/                  # 思維人格 (如：建築師、審查官) -> 用於決策
+└── skills/                 # 能力資產 (如：SEO、格式化報表) -> 重複調用
 ```
 
-## ⚖️ Model Intelligence Strategy
+### 如何新增功能？
 
-To save costs on Google Antigravity / Claude:
+- **想規範行為？** -> 在 `rules/` 新增檔案。
+- **需要新思維？** -> 在 `roles/` 新增人格。
+- **複雜多步驟？** -> 在 `workflows/` 定義流程。
 
-- **Flash Logic**: Automatically triggered for simple code edits and unit tests.
-- **Pro Logic**: Triggered for multi-file refactors and root-cause analysis.
-- **Goal**: Minimize context overhead by only loading required role/skill files.
+## ⚖️ 模型智慧策略
 
-## 🗺️ Decision Routing Flow
+- **Flash 模式**: 處理單一檔案修改、翻譯、簡單查詢。
+- **Pro 模式**: 處理跨檔案重構、根因分析、創意寫作。
+- **多階執行**: 對於長篇任務，系統會先由 Flash 提取重點，再由 Pro 整合輸出，節省成本。
 
-```mermaid
-graph TD
-    A[User Request] --> B{Meta Router}
-    B -->|Code/Bug| C[Engineering Flow]
-    B -->|Data/Logs| D[Data Analysis]
-    B -->|Social/SEO| E[Content Flow]
-    B -->|Compare/Search| F[Researcher Role]
-    C --> G[Architect -> Executor -> Reviewer]
-    D --> H[Analyzer -> Researcher]
-    E --> I[IG/Blog Branches]
-```
+## 🛠️ 支援平台
 
-## 🛠️ Platform Support
-
-- **Google IDX / Antigravity**: Use `SYSTEM_INSTRUCTION.txt`.
-- **Cursor**: `.cursorrules` (Auto-loaded).
-- **Claude.ai**: Upload `.agent/` and use instructions.
-- **VS Code**: Install AI extensions and point to `.agent/00_meta_router.md`.
+- **Google IDX / Antigravity**
+- **Cursor** (.cursorrules)
+- **Claude Projects**
+- **VS Code Extension**
