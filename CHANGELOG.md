@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.0] - 2026-02-13
+
+### 🚀 Flash-First Strategy (重大策略轉變)
+
+- **架構反轉**: 核心邏輯改為以 Flash 為主體，處理 80% 低成本任務。
+- **升級請求 (Escalation)**: 當背景超出 Flash 負荷時，模型會主動停止並提示切換至 Pro，確保 100% 節省 Pro Token。
+- **新版 README**: 強調操作流程的改變，降低 Token 誤用風險。
+
 ## [2.5.1] - 2026-02-13
 
 ### 🛡️ Security & Language
