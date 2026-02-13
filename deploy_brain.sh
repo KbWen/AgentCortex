@@ -10,6 +10,7 @@ if [ -z "$TARGET" ]; then
   exit 1
 fi
 
+mkdir -p "$TARGET/.agent/rules"
 mkdir -p "$TARGET/.agent/workflows"
 mkdir -p "$TARGET/.agent/roles"
 mkdir -p "$TARGET/.agent/skills"
@@ -25,11 +26,10 @@ if [ "$MINIMAL" == "--minimal" ]; then
   cp .agent/roles/executor.md "$TARGET/.agent/roles/"
   cp .agent/workflows/engineering_flow.md "$TARGET/.agent/workflows/"
 else
-  echo "🚀 Deploying FULL Brain v2.2..."
-  cp -r .agent/workflows/* "$TARGET/.agent/workflows/"
-  cp -r .agent/roles/* "$TARGET/.agent/roles/"
-  cp -r .agent/skills/* "$TARGET/.agent/skills/"
+  echo "🚀 Deploying FULL Brain v2.3..."
+  cp -r .agent/* "$TARGET/.agent/"
 fi
+
 
 echo "✅ Personal AI OS v2.2 deployed to $TARGET"
 echo "⚠️  Action Required: Update $TARGET/.agent/99_memory.md"

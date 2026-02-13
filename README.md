@@ -23,15 +23,22 @@ A highly modular, platform-agnostic AI agent framework. It forces the LLM to ado
 > 4. Role: **Architect** proposes a fix.
 > 5. Role: **Executor** writes the code.
 
-## 🏗️ Directory Structure
+## 🏗️ Structure Guide
+
+- **Rules (`.agent/rules/`)**: Behavioral instructions (How to search, how to analyze). *Use for standardized tasks.*
+- **Roles (`.agent/roles/`)**: Personality & thinking style (Critical, Creative, Precise). *Use for open-ended decision making.*
+- **Workflows (`.agent/workflows/`)**: Step-by-step processes for complex missions.
+
+### Directory Tree
 
 ```text
 .agent/
-├── 00_meta_router.md       # Decision tree & Model Strategy
-├── 99_memory.md            # Persistent User Context (Modify this!)
+├── 00_meta_router.md       # Decision tree & Token/Model Strategy
+├── 99_memory.md            # Persistent User Context
+├── rules/                  # NEW: Task-specific "How-to" (Research, Analysis)
 ├── workflows/              # Process Logic (Engineering, Bug, Content, Data)
-├── roles/                  # Task Personas (Architect, Executor, Researcher, etc.)
-└── skills/                 # Capablities (SEO, Test, EDA, Visual Prompt)
+├── roles/                  # Task Personas (Architect, Executor, etc.)
+└── skills/                 # Capability Templates
 ```
 
 ## ⚖️ Model Intelligence Strategy
