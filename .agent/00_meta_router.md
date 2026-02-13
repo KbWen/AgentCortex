@@ -1,36 +1,29 @@
-# META ROUTER v2.0 (STABLE)
+# META ROUTER v2.1: TOKEN & OUTPUT OPTIMIZATION
 
-## STANDARD PROTOCOL
+## ⚖️ MODEL STRATEGY (TOKEN SAVING)
 
-1. **Pre-flight Check**: MUST READ `.agent/99_memory.md` for user context.
-2. Identify intent: ENGINEERING or CONTENT.
-3. Decide execution mode:
-   - Multi-step OR unknown risk -> use WORKFLOW.
-   - Single-step AND low-risk -> direct ROLE.
-4. Load SKILLS only when required by workflow or role.
+- **FLASH Mode**: Use for single-file edits, translation, unit tests, or simple queries (< 200 tokens input).
+- **PRO/CLAUDE Mode**: Use for structural changes, multi-file refactoring, bug root-cause analysis, or long-form content generation.
+- **Guideline**: If a task can be solved by an EXECUTOR in one step, default to FLASH-logic (minimal context).
 
-## ENGINEERING ROUTING
+## 0) PRE-FLIGHT CHECK
 
-Triggers: code, bug, fix, refactor, api, test, database, auth, deploy
+1. **Context Loading**: MUST check `.agent/99_memory.md` for user context.
+2. Intent Classification: ENGINEERING, CONTENT, or RESEARCH.
+3. **Complexity Check**: Decide WORKFLOW (Multi-step) vs ROLE (Task-specific).
 
-- If task involves planning, unknown bugs, or >1 step:
-  -> workflows/engineering_flow.md
-- If task is explicit and isolated:
-  -> roles/executor.md
-- If user asks to check or verify:
-  -> roles/reviewer.md
+## 1) ENGINEERING ROUTING
 
-## CONTENT ROUTING
+- **BUG INVESTIGATION**: -> workflows/bug_investigation.md (If logs/errors provided).
+- **DEVELOPMENT**: -> workflows/engineering_flow.md (General coding).
+- **REVIEW/QA**: -> roles/reviewer.md (Testing & safety check).
 
-Triggers: ig, blog, article, caption, seo, 知識方塊
+## 2) CONTENT & RESEARCH ROUTING
 
-- IG / short-form:
-  -> workflows/content_flow.md (IG branch)
-- Blog / long-form:
-  -> workflows/content_flow.md (Blog branch)
+- **CONTENT**: -> workflows/content_flow.md (Social media or Blog).
+- **DATA ANALYSIS**: -> workflows/data_analysis.md (Report & EDA).
+- **RESEARCH**: -> roles/researcher.md (Info gathering).
 
-## CONFIDENCE BRAKE (GLOBAL)
+## 3) CONFIDENCE BRAKE (<70%)
 
-If confidence < 70%, STOP and ask exactly this:
-
-"❓ 請確認：你希望我【先分析規劃】還是【直接執行】？"
+STOP and ask: "❓ [Router] 我判斷這是【任務類型】，建議使用【工作流】。要我先【分析原因(Architect)】還是【直接執行(Executor)】？"

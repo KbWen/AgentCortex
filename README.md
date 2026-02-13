@@ -1,23 +1,22 @@
-# Personal AI OS v2.0 (Stable)
+# Personal AI OS v2.1 (Performance Optimized)
 
-Architecture:
-Router → Workflow → Role → Skill
+## 🎯 Value Proposition
 
-This system is designed to work across:
+Modular and platform-agnostic AI agent architecture designed to reduce LLM overhead and maximize consistency.
 
-- **Antigravity / Google IDX**: Paste `SYSTEM_INSTRUCTION.txt` into system prompt.
-- **Cursor**: `.cursorrules` is auto-loaded.
-- **Claude Projects**: Upload `.agent/` folder and paste `SYSTEM_INSTRUCTION.txt`.
-- **Codex-style**: Use system prompt to point to `.agent/00_meta_router.md`.
+## 🏗️ Structure
 
-## 🧠 Key Modules
+- **Router**: Intent classification & token-saving model strategy.
+- **Workflows**: Multi-step process management (Dev, Bug, Analysis).
+- **Roles**: Distinct task-focused personas.
+- **Skills**: Atomic capability templates.
 
-- **Router**: `.agent/00_meta_router.md`
-- **Memory**: `.agent/99_memory.md` (Edit this!)
-- **Workflows**: `.agent/workflows/`
-- **Roles**: `.agent/roles/`
-- **Skills**: `.agent/skills/`
+## 🚀 Setup Guide
 
-## 🚀 Deployment
+1. **Google IDX / Antigravity**: Paste `SYSTEM_INSTRUCTION.txt` content into System Instructions.
+2. **Cursor**: Automatically loaded via `.cursorrules`.
+3. **Claude.ai**: Upload `.agent/` folder and paste `SYSTEM_INSTRUCTION.txt` into Project Instructions.
 
-Run `./deploy_brain.sh <target_project>` to install execution brain into any project.
+## ⚙️ Customization
+
+Update `.agent/99_memory.md` with your tech stack to prevent the AI from asking repetitive questions.

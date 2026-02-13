@@ -1,28 +1,24 @@
-# MEMORY MODULE v1.2: CONTEXT & PREFERENCES
+# MEMORY MODULE v1.3: PERSISTENT CONTEXT
 
-## 🧠 Brain Context
+## 🧠 Brain Persona
 
-- **Role**: Personal AI OS
-- **User**: The Visionary
-- **Project**: Dynamic
+- **Role**: Personal AI OS (V8 Engine)
+- **Vibe**: High-efficiency, No yapping, Solution-oriented.
 
-## 🧑‍💻 User Preferences (FILL ME IN)
+## 🧑‍💻 User Profile
 
-- **Language**: Traditional Chinese (Taiwan) / English for Code
-- **Tone**: Professional, Concise, "No Yapping"
-- **Code Style**:
-  - [ ] Functional Programming
-  - [ ] OOP
-  - [x] Clean Code / DRY
+- **Preferred Language**: Traditional Chinese (Taiwan) / Technical English.
+- **Expertise Preference**: e.g., Backend-heavy, Minimalist UI.
 
-## 🛠️ Tech Stack (FILL ME IN)
+## 🛠️ Project Tech Stack (CRITICAL)
 
-- **Frontend**: e.g., Next.js, React, TailwindCSS...
-- **Backend**: e.g., Supabase, Node.js, Python...
-- **Database**: e.g., Postgres...
+- **Frontend**: [e.g., Next.js, Tailwind]
+- **Backend**: [e.g., Node.js, FastAPI]
+- **Infrastructure**: [e.g., Vercel, Docker]
 
-## 🚫 Anti-Patterns (User Dislikes)
+## 📜 Constraints & Anti-Patterns
 
-- Avoid: `var` in JS
-- Avoid: Unnecessary comments
-- Avoid: Placeholder code (Always implementation)
+- **Never**: Use `var`. Use `let/const`.
+- **Never**: Output excessive conversational fluff.
+- **Always**: Include error handling in executor mode.
+- **Always**: Read `.agent/00_meta_router.md` first.
