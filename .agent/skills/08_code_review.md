@@ -1,15 +1,28 @@
 ---
 name: code_review
 type: skill
-token_threshold: 150
-default_model: flash
+token_threshold: 200
+default_model: pro
 ---
 
-# 技能：代碼質量與安全審查
+# 技能：專業代碼審查與漏洞掃描 (08)
 
-## 📋 檢查清單
+## 📋 審查重點 (OWASP Top 10)
 
-- **反模式**: 檢查是否使用了過時的語法或低效的循環。
-- **安全掃描**: 檢測 SQL 注入、硬編碼密鑰及不安全的依賴。
-- **效能優化**: 識別不必要的記憶體分配。
-- **風格一致性**: 確保與 `99_memory.md` 指派的風格一致。
+1. **注入攻擊 (Injection)**: 檢查 SQL, NoSQL, OS Command 注入。
+2. **無效的身分驗證**: 檢查 Session 管理與登入邏輯。
+3. **敏感資料外洩**: 搜尋硬編碼的 Secrets (Passwords, Keys)。
+4. **失效的存取控制**: 權限校驗是否嚴謹。
+5. **跨站腳本 (XSS)**: 檢查輸入過濾與輸出轉義。
+
+## 🔍 Secrets 掃描特徵
+
+- `apiKey`, `secret`, `password`, `token`
+- `AKIA...` (AWS), `AIza...` (Google), `sk-...` (OpenAI)
+- `.env` 檔案洩露檢查。
+
+## 🏗️ 重構建議
+
+- **安全性優化**: 提供參數化查詢範例。
+- **效能優化**: 識別重複計算或資源洩漏。
+- **可讀性**: 變數命名與邏輯簡化。

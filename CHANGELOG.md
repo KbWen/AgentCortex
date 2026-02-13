@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.1] - 2026-02-13
+
+### 🛡️ Security & Language
+
+- **強制語言**: 全局強制使用繁體中文 (台灣) 進行對話。
+- **隱私加固**: `08_compliance` 加入 PII 掩碼規則。
+- **漏洞掃描**: `08_code_review` 加入 OWASP Top 10 與 Secrets 掃描指南。
+
 ## [2.5.0] - 2026-02-13
 
 ### ✨ Added

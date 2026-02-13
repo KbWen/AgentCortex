@@ -1,4 +1,6 @@
-# META ROUTER v2.4: TOKEN & PERFORMANCE OPTIMIZATION
+# META ROUTER v2.5.1: 語言一致性與安全性強化
+>
+> **GLOBAL_INSTRUCTION**: 所有對話與輸出必須使用【繁體中文 (台灣)】。
 
 ## ⚖️ 模型智慧策略 (TOKEN-SAVE v2.5)
 
@@ -24,6 +26,7 @@
 | 本地化翻譯 | `workflows/07_translation.md` | Flash |
 | 內容創作 | `workflows/10_content_creation.md` | Pro |
 | 數據報表 | `workflows/11_data_report.md` | Flash (處理) -> Pro (洞察) |
+| 安全審閱 | `skills/08_code_review.md` | Pro |
 | 環境驗證 | `workflows/12_verify_installation.md` | Flash |
 
 ## 2) 信心限制器

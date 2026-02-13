@@ -35,12 +35,13 @@
 - **Pro 模式**: 處理高複雜度推理（設計、根因調查、創意寫作）。
 - **多階執行**: 先由 Flash 提取結構化結果，再由 Pro 合成高價值輸出。
 
-## 🛠️ 支援平台
+## 🛠️ 支援平台與安全建議
 
-- **Google IDX / Antigravity**
-- **Cursor**
-- **Claude Projects**
-- **VS Code**
+- **支援平台**: Google IDX, Cursor, Claude Projects, VS Code。
+- **安全建議**:
+  - 建議在專案中安裝 `git-secrets` 或 `TruffleHog` 以防止 Secrets 外洩。
+  - 定期執行 `workflow 12` 進行配置審核。
+  - 所有產出皆受 `.agent/rules/08_compliance.md` 規範。
 
 ---
 詳細變更見 [CHANGELOG.md](./CHANGELOG.md)
