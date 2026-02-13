@@ -1,22 +1,64 @@
-# Personal AI OS v2.1 (Performance Optimized)
+# Personal AI OS v2.2 (Stability & Performance)
 
 ## 🎯 Value Proposition
 
-Modular and platform-agnostic AI agent architecture designed to reduce LLM overhead and maximize consistency.
+A highly modular, platform-agnostic AI agent framework. It forces the LLM to adopt specific **Workflows**, **Roles**, and **Skills**, significantly reducing cost and increasing output consistency.
 
-## 🏗️ Structure
+## 🚀 Quick Start (3-Min Setup)
 
-- **Router**: Intent classification & token-saving model strategy.
-- **Workflows**: Multi-step process management (Dev, Bug, Analysis).
-- **Roles**: Distinct task-focused personas.
-- **Skills**: Atomic capability templates.
+1. **Clone & Explore**: Check out the `.agent/` directory.
+2. **Deploy**: Run `./deploy_brain.sh <your_project_path>` to install the brain.
+3. **Configure**: Update `.agent/99_memory.md` with your tech stack.
+4. **Agent Setup**:
+   - Paste `SYSTEM_INSTRUCTION.txt` into your AI's system prompt (IDX, Claude, etc.).
 
-## 🚀 Setup Guide
+### 📖 Usage Scenario: Bug Hunting
+>
+> **User**: "My login API is failing with a 500 error."
+> **AI OS Logic**:
+>
+> 1. Router detects `error/fail`.
+> 2. Loads `workflows/bug_investigation.md`.
+> 3. Role: **Analyzer** parses your logs.
+> 4. Role: **Architect** proposes a fix.
+> 5. Role: **Executor** writes the code.
 
-1. **Google IDX / Antigravity**: Paste `SYSTEM_INSTRUCTION.txt` content into System Instructions.
-2. **Cursor**: Automatically loaded via `.cursorrules`.
-3. **Claude.ai**: Upload `.agent/` folder and paste `SYSTEM_INSTRUCTION.txt` into Project Instructions.
+## 🏗️ Directory Structure
 
-## ⚙️ Customization
+```text
+.agent/
+├── 00_meta_router.md       # Decision tree & Model Strategy
+├── 99_memory.md            # Persistent User Context (Modify this!)
+├── workflows/              # Process Logic (Engineering, Bug, Content, Data)
+├── roles/                  # Task Personas (Architect, Executor, Researcher, etc.)
+└── skills/                 # Capablities (SEO, Test, EDA, Visual Prompt)
+```
 
-Update `.agent/99_memory.md` with your tech stack to prevent the AI from asking repetitive questions.
+## ⚖️ Model Intelligence Strategy
+
+To save costs on Google Antigravity / Claude:
+
+- **Flash Logic**: Automatically triggered for simple code edits and unit tests.
+- **Pro Logic**: Triggered for multi-file refactors and root-cause analysis.
+- **Goal**: Minimize context overhead by only loading required role/skill files.
+
+## 🗺️ Decision Routing Flow
+
+```mermaid
+graph TD
+    A[User Request] --> B{Meta Router}
+    B -->|Code/Bug| C[Engineering Flow]
+    B -->|Data/Logs| D[Data Analysis]
+    B -->|Social/SEO| E[Content Flow]
+    B -->|Compare/Search| F[Researcher Role]
+    C --> G[Architect -> Executor -> Reviewer]
+    D --> H[Analyzer -> Researcher]
+    E --> I[IG/Blog Branches]
+```
+
+## 🛠️ Platform Support
+
+- **Google IDX / Antigravity**: Use `SYSTEM_INSTRUCTION.txt`.
+- **Cursor**: `.cursorrules` (Auto-loaded).
+- **Claude.ai**: Upload `.agent/` and use instructions.
+- **VS Code**: Install AI extensions and point to `.agent/00_meta_router.md`.

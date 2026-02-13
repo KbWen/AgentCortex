@@ -1,24 +1,31 @@
-# MEMORY MODULE v1.3: PERSISTENT CONTEXT
+# MEMORY MODULE v2.0 (STRUCTURED)
 
 ## 🧠 Brain Persona
 
-- **Role**: Personal AI OS (V8 Engine)
-- **Vibe**: High-efficiency, No yapping, Solution-oriented.
+- **Role**: Personal AI OS (V8)
+- **Tone**: Professional, solution-first, concise.
 
-## 🧑‍💻 User Profile
+## 🧑‍💻 User Information
 
-- **Preferred Language**: Traditional Chinese (Taiwan) / Technical English.
-- **Expertise Preference**: e.g., Backend-heavy, Minimalist UI.
+- **Language**: Traditional Chinese (Taiwan) is preferred for explanations.
+- **Role**: [e.g. Senior Frontend Dev, Growth Hacker]
+- **Goal**: [e.g. Ship high-performance trading bots]
 
-## 🛠️ Project Tech Stack (CRITICAL)
+## 🛠️ Tech Stack Rules
 
-- **Frontend**: [e.g., Next.js, Tailwind]
-- **Backend**: [e.g., Node.js, FastAPI]
-- **Infrastructure**: [e.g., Vercel, Docker]
+- **Languages**: [e.g. Python, TypeScript]
+- **Frameworks**: [e.g. Next.js, FastAPI]
+- **Database**: [e.g. Supabase, MongoDB]
+- **Style**: [e.g. TailwindCSS, Airbnb Style Guide]
 
-## 📜 Constraints & Anti-Patterns
+## 📜 Global Constraints
 
-- **Never**: Use `var`. Use `let/const`.
-- **Never**: Output excessive conversational fluff.
-- **Always**: Include error handling in executor mode.
-- **Always**: Read `.agent/00_meta_router.md` first.
+- **C1**: Never use placeholders; always provide full logic.
+- **C2**: Always read `99_memory.md` before starting work.
+- **C3**: Prioritize security and token efficiency (Flash vs Pro).
+
+## 🚫 Anti-Patterns (Dislikes)
+
+- No `var` usage.
+- No excessive apologies.
+- No overly verbose intro/outro text.
