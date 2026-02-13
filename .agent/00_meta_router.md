@@ -1,34 +1,31 @@
 # META ROUTER v2.4: TOKEN & PERFORMANCE OPTIMIZATION
 
-## ⚖️ MODEL SELECTION POLICY
+## ⚖️ 模型智慧策略 (TOKEN-SAVE v2.5)
 
-- **THRESHOLD**: `MAX_TOKEN_FLASH` (Default: 200). Check `.agent/99_memory.md`.
-- **FLASH Mode**:
-  - Input < Threshold.
-  - Standard tasks (Translation, Stats, single-file edits).
-- **PRO Mode**:
-  - Input > Threshold.
-  - Multi-file refactors, complex bug investigations, creative writing.
-- **MULTISTAGE**: Use Flash for preprocessing (extraction/audit) and Pro for final synthesis.
+- **FLASH 閾值**: 優先讀取各檔案中的 `token_threshold`；若無，則採用 `99_memory.md` 中的 `MAX_TOKEN_FLASH`。
+- **動態切換**:
+  - 輸入 < 閾值：預設啟動 **Flash** 執行。
+  - 輸入 > 閾值 或 涉及多檔重構：啟動 **Pro** (Claude/GPT-4o)。
+- **多階執行 (Multistage)**:
+  - 任務若標註為 `multistage: true`，則先由 Flash 提取結構，再由 Pro 產出終稿。
 
-## 0) PRE-FLIGHT CHECK
+## 0) 啟動前檢查 (PRE-FLIGHT)
 
-1. **Context Check**: READ `.agent/99_memory.md` to lock tech-stack and thresholds.
-2. **Identification**: Is this a **Workflow**, **Rule**, or **Role** task?
+1. **讀取記憶**: 載入 `.agent/99_memory.md` 以鎖定技術棧與 `CONFIDENCE_BRAKE_THRESHOLD`。
+2. **解析元數據**: 識別目標 Workflow/Rule 中的 YAML 設定。
 
-## 1) ROUTING MATRIX (v2.4)
+## 1) 路由矩陣 (ROUTING MATRIX)
 
-| Task Type | Reference | Default Model |
+| 任務類型 | 對應目標 | 預設模型建議 |
 | :--- | :--- | :--- |
-| Bug / Error | `workflows/bug_investigation.md` | Flash (Audit) -> Pro (Fix) |
-| Feature / Dev | `workflows/01_engineering_flow.md` | Pro (Plan) -> Flash (Execute) |
-| Summarization | `workflows/06_summarization.md` | Flash (Extract) -> Pro (Synthesize) |
-| Translation | `workflows/07_translation.md` | Flash (Standard) |
-| Refactoring | `workflows/08_refactoring.md` | Flash (Single) / Pro (Multi) |
-| Test Gen | `workflows/09_test_case_gen.md` | Flash |
-| Research | `rules/04_research.md` | Flash (<200t) / Pro (Deep) |
-| Data Analysis | `rules/05_data_analysis.md` | Flash (Stats) / Pro (Insight) |
+| 開發與設計 | `workflows/01_engineering_flow.md` | Pro (設計) -> Flash (實作) |
+| Bug 調查 | `workflows/bug_investigation.md` | Flash (Log) -> Pro (根因) |
+| 文檔摘要 | `workflows/06_summarization.md` | Flash (提取) -> Pro (合成) |
+| 本地化翻譯 | `workflows/07_translation.md` | Flash |
+| 內容創作 | `workflows/10_content_creation.md` | Pro |
+| 數據報表 | `workflows/11_data_report.md` | Flash (處理) -> Pro (洞察) |
+| 環境驗證 | `workflows/12_verify_installation.md` | Flash |
 
-## 2) CONFIDENCE BRAKE (<70%)
+## 2) 信心限制器
 
-Ask: "❓ [Router] 我建議使用【工作流】，第一步將由【模型】執行。是否開始？"
+當執行信心低於 `CONFIDENCE_BRAKE_THRESHOLD` 時，必須先詢問使用者。
