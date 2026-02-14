@@ -1,35 +1,33 @@
 #!/bin/bash
-# AI Brain Deployer v2.2
+# AI Brain Deployer v3.0 (Pragmatic Lean Edition)
+# Optimized for Google Antigravity & Token Efficiency
 
-TARGET="$1"
-MINIMAL="$2"
+TARGET="${1:-.}"
 
-if [ -z "$TARGET" ]; then
-  echo "Usage: ./deploy_brain.sh <target_path> [--minimal]"
-  echo "  --minimal: Only deploy core Router, Architect, and Executor."
-  exit 1
+if [ "$TARGET" == "--help" ] || [ "$TARGET" == "-h" ]; then
+  echo "Usage: ./deploy_brain.sh <target_path>"
+  echo "Example: ./deploy_brain.sh ./my-new-project"
+  exit 0
 fi
 
-mkdir -p "$TARGET/.agent/rules"
-mkdir -p "$TARGET/.agent/workflows"
-mkdir -p "$TARGET/.agent/roles"
-mkdir -p "$TARGET/.agent/skills"
+echo "🚀 Deploying AI Brain v3.0 to $TARGET..."
 
-# Core Files
-cp .agent/00_meta_router.md "$TARGET/.agent/"
-cp .agent/99_memory.md "$TARGET/.agent/"
-cp .cursorrules "$TARGET/" 2>/dev/null || true
+# 1. Create Structure
+mkdir -p "$TARGET/.agent"
 
-if [ "$MINIMAL" == "--minimal" ]; then
-  echo "📦 Deploying MINIMAL Brain..."
-  cp .agent/roles/architect.md "$TARGET/.agent/roles/"
-  cp .agent/roles/executor.md "$TARGET/.agent/roles/"
-  cp .agent/workflows/engineering_flow.md "$TARGET/.agent/workflows/"
+# 2. Deploy Core Prompt
+if [ -f ".agent/AGENT.md" ]; then
+  cp .agent/AGENT.md "$TARGET/.agent/"
 else
-  echo "🚀 Deploying FULL Brain v2.3..."
-  cp -r .agent/* "$TARGET/.agent/"
+  # Fallback if running from a context where .agent isn't sibling
+  echo "⚠️  AGENT.md not found in current dir, skipping copy."
 fi
 
+# 3. Deploy Human Guide
+if [ -f "MODEL_GUIDE.md" ]; then
+  cp MODEL_GUIDE.md "$TARGET/"
+fi
 
-echo "✅ Personal AI OS v2.2 deployed to $TARGET"
-echo "⚠️  Action Required: Update $TARGET/.agent/99_memory.md"
+echo "✅ AI Brain v3.0 (Pragmatic Lean) deployed successfully!"
+echo "📝 Action Required: Edit $TARGET/.agent/AGENT.md to fill in your project Tech Stack."
+echo "💡 Tip: Always start your chat with Gemini 1.5 Flash for maximum efficiency."
