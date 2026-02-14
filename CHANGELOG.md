@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.1.0] - 2026-02-14
+
+### ⚖️ Agent-First Constitution (憲法級架構)
+
+- **憲法層級**: 新增 `.agent/rules/engineering_guardrails.md`，定義 Agent 不可違背的工程準則。
+- **協作介面**: 新增 `.github/ISSUE_TEMPLATE/agent_issue.md`，將任務描述結構化。
+- **角色 manifest**: 新增 `docs/AGENT_PHILOSOPHY.md`，定義 AI 與人類的協作邊界。
+- **腳本優化**: `deploy_brain.sh` 支援部署隱藏資料夾（.github）與文檔。
+
 ## [3.0.0] - 2026-02-14
 
 ### 🪶 Pragmatic Lean (務實精小版)
