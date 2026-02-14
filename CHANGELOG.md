@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.2.0] - 2026-02-14
+
+### 🧪 Zero-Token Enhancements (零成本工作流強化)
+
+- **品質閘門**: 新增 `.github/PULL_REQUEST_TEMPLATE.md`，標準化 AI 的產出總結與自檢項目。
+- **測試規範**: 新增 `docs/TESTING_PROTOCOL.md`，提供邊際情況與錯誤處理的測試標準，採 Opt-in (手動呼叫) 模式以節省 Token。
+- **部署擴充**: `deploy_brain.sh` 現在完整支援所有 v3.2 文檔與模板。
+
 ## [3.1.0] - 2026-02-14
 
 ### ⚖️ Agent-First Constitution (憲法級架構)
