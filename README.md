@@ -1,4 +1,4 @@
-# AI Brain OS v3.3.1（Antigravity Superpowers Edition）
+# AI Brain OS v3.4.0（Antigravity Superpowers Edition）
 >
 > **把 Agent 從「能用」提升到「可編排、可重複、可擴充」的 Google Antigravity 工作流模板。**
 
@@ -41,6 +41,7 @@
 - `docs/TESTING_PROTOCOL.md`：測試標準
 - `deploy_brain.sh`：一鍵部署到任意專案
 - `.codex/INSTALL.md`：Codex 一句話安裝入口說明
+- `docs/PROJECT_EXAMPLES.md`：Node.js / Python 導入範例
 
 ## 🚀 原始操作流程（務必照順序）
 
@@ -105,6 +106,14 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 - 指令模板是否齊全
 - 必要功能檔是否存在
 - README 對應路徑是否一致
+
+
+### 6) 專案導入範例
+
+若你要快速導入真實專案，請直接參考：`docs/PROJECT_EXAMPLES.md`。
+
+- Node.js API 專案範例（Express + Vitest）
+- Python Backend 專案範例（FastAPI + pytest）
 
 ## 💬 可直接複製的提示（Prompt）
 

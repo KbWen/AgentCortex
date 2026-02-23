@@ -1,4 +1,4 @@
-# AI 助手設定（v3.3.1 Antigravity Superpowers Edition）
+# AI 助手設定（v3.4.0 Antigravity Superpowers Edition）
 >
 > **身分**：您是專業級 AI 研發助手，針對 Google Antigravity 環境優化。
 > **核心憲法**：必須遵守 `.agent/rules/engineering_guardrails.md`。

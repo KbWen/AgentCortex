@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.4.0] - 2026-02-23
+
+### 🚀 Release v3.4.0 (Version Sync + Practical Examples)
+
+- **版本同步**: `README.md`、`.agent/AGENT.md`、`deploy_brain.sh` 全面升級為 v3.4.0。
+- **實戰範例**: 新增 `docs/PROJECT_EXAMPLES.md`，提供 Node.js（Express + Vitest）與 Python（FastAPI + pytest）導入流程。
+- **部署擴充**: `deploy_brain.sh` 現在會部署 `docs/PROJECT_EXAMPLES.md`。
+- **驗證強化**: `validate.sh` 新增 `PROJECT_EXAMPLES.md` 存在檢查，並驗證 README 已連結範例文件。
+
 ## [3.3.1] - 2026-02-23
 
 ### 🔧 Superpowers Features Completion & README Clarity
