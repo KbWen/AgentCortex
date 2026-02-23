@@ -9,6 +9,7 @@
 - **部署擴充**: `deploy_brain.sh` 現在會部署 `docs/PROJECT_EXAMPLES.md`。
 - **驗證強化**: `validate.sh` 新增 `PROJECT_EXAMPLES.md` 存在檢查，並驗證 README 已連結範例文件。
 
+
 ## [3.3.1] - 2026-02-23
 
 ### 🔧 Superpowers Features Completion & README Clarity

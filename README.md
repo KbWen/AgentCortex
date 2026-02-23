@@ -114,7 +114,6 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 
 - Node.js API 專案範例（Express + Vitest）
 - Python Backend 專案範例（FastAPI + pytest）
-
 ## 💬 可直接複製的提示（Prompt）
 
 ### 開場提示（Web / App 共用）

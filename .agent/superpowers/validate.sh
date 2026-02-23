@@ -33,6 +33,7 @@ done
 [[ -f "$CODEX_INSTALL" ]] || { echo "missing codex install doc: $CODEX_INSTALL"; exit 1; }
 
 required_cmds=("/bootstrap" "/brainstorm" "/research" "/spec" "/plan" "/write-plan" "/implement" "/execute-plan" "/review" "/test" "/retro" "/handoff" "/ship")
+
 for c in "${required_cmds[@]}"; do
   rg -q "^## ${c}$" "$SP/commands.md" || { echo "missing command section: $c"; exit 1; }
 done
@@ -47,6 +48,7 @@ rg -q "CODEX_PLATFORM_GUIDE\.md" "$AGENT_FILE" || { echo "AGENT.md does not refe
 if [[ -f "$ROOT/README.md" ]]; then
   rg -q "https://github.com/obra/superpowers" "$ROOT/README.md" || { echo "README missing superpowers reference URL"; exit 1; }
   rg -q "PROJECT_EXAMPLES\.md" "$ROOT/README.md" || { echo "README missing project examples link"; exit 1; }
+
 fi
 
 echo "superpowers validation passed"
