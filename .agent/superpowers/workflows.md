@@ -45,3 +45,18 @@
 1. `/handoff`：輸出 Done / In Progress / Blockers。
 2. 接手方先跑 `/bootstrap`：重建目標、限制、AC。
 3. 再跑 `/plan`：確認續作範圍，避免重工。
+
+
+## 7) 分支與工作目錄治理（Worktree-first）
+
+1. 建議以獨立 branch / worktree 進行需求開發。
+2. 開始前先跑 baseline tests，確認乾淨狀態。
+3. 完成後再 /ship 並決定 merge / PR / 保留分支。
+
+
+## 8) TDD Gate（邏輯變更必須）
+
+1. 先寫會失敗的測試（RED）。
+2. 撰寫最小實作讓測試通過（GREEN）。
+3. 重構且保持測試綠燈（REFACTOR）。
+

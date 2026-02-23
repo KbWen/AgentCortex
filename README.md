@@ -1,4 +1,4 @@
-# AI Brain OS v3.3.1（Antigravity Superpowers Edition）
+# AI Brain OS v3.4.0（Antigravity Superpowers Edition）
 >
 > **把 Agent 從「能用」提升到「可編排、可重複、可擴充」的 Google Antigravity 工作流模板。**
 
@@ -17,6 +17,20 @@
 
 - Superpowers 專案（理念參考）：https://github.com/obra/superpowers
 
+## 🧩 Superpowers 哲學對齊（這版新增）
+
+本模板新增「強制流程」而非 freestyle 寫碼：
+
+- Spec before code
+- Evidence over claims
+- Review as gate
+- TDD gate（邏輯變更）
+- 2–5 分鐘任務切分
+
+對應檔案：
+- `.agent/superpowers/policies/methodology.md`
+- `.agent/superpowers/policies/state_machine.md`
+
 ## 📦 目錄總覽
 
 - `.agent/AGENT.md`：Agent 基礎行為、語言、安全規範
@@ -26,6 +40,8 @@
 - `.agent/superpowers/features/`：各能力模組（bootstrap / brainstorm / research / spec / implement / review / retro / handoff）
 - `docs/TESTING_PROTOCOL.md`：測試標準
 - `deploy_brain.sh`：一鍵部署到任意專案
+- `.codex/INSTALL.md`：Codex 一句話安裝入口說明
+- `docs/PROJECT_EXAMPLES.md`：Node.js / Python 導入範例
 
 ## 🚀 原始操作流程（務必照順序）
 
@@ -43,6 +59,15 @@
 
 ### 2) 在 Antigravity 開場貼這段（建議）
 
+### Codex 一句話入口（Web / App）
+
+```text
+Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
+```
+
+> 若你使用本 repo 本機開發，可直接執行 `./deploy_brain.sh .`。
+
+
 ```text
 我正在做：[需求一句話]
 目標檔案：[路徑1, 路徑2]
@@ -54,8 +79,8 @@
 
 1. `/brainstorm`：先發想方案、比較取捨
 2. `/spec`：把需求整理成可驗收規格
-3. `/plan`：列檔案、步驟、風險、回退
-4. `/implement`：只改已同意範圍
+3. `/plan`（或 `/write-plan`）：列檔案、步驟、風險、回退
+4. `/implement`（或 `/execute-plan`）：只改已同意範圍
 5. `/review`：做嚴格自審
 6. `/test`：列並執行最小必要驗證
 7. `/ship`：整理 commit / 變更摘要 / 測試結果
@@ -82,6 +107,13 @@
 - 必要功能檔是否存在
 - README 對應路徑是否一致
 
+
+### 6) 專案導入範例
+
+若你要快速導入真實專案，請直接參考：`docs/PROJECT_EXAMPLES.md`。
+
+- Node.js API 專案範例（Express + Vitest）
+- Python Backend 專案範例（FastAPI + pytest）
 ## 💬 可直接複製的提示（Prompt）
 
 ### 開場提示（Web / App 共用）
@@ -138,7 +170,8 @@
 本模板目前透過 `./.agent/superpowers/validate.sh` 檢查以下規範：
 
 - Superpowers 必要檔案存在
-- 指令章節完整（含 `/bootstrap`、`/handoff`）
+- 指令章節完整（含 `/bootstrap`、`/handoff`、`/write-plan`、`/execute-plan`）
+- TDD Gate（邏輯變更）
 - README 與 `implement.md` 對應一致
 - 平台文件 `docs/CODEX_PLATFORM_GUIDE.md` 存在
 - Agent 設定已引用平台指南
