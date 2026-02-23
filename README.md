@@ -65,6 +65,28 @@
 Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 ```
 
+### 2.1) 其他安裝方式（不是只有 GitHub Template）
+
+除了「Use this template」之外，常見還有兩種：
+
+1. **直接 clone 此 repo，再部署到你的既有專案**
+
+```bash
+git clone <this-repo-url>
+cd ai-brain-template
+./deploy_brain.sh /path/to/your-project
+```
+
+2. **不 clone，直接用 raw 腳本安裝**
+
+```bash
+curl -fsSL <your-raw-url>/deploy_brain.sh -o deploy_brain.sh
+chmod +x deploy_brain.sh
+./deploy_brain.sh /path/to/your-project
+```
+
+> 補充：若你的專案已經存在，只要執行 `./deploy_brain.sh .` 就能把 `.agent/` 與 `.codex/INSTALL.md` 佈署進去。
+
 > 若你使用本 repo 本機開發，可直接執行 `./deploy_brain.sh .`。
 
 
@@ -162,6 +184,28 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 2. `/plan`：確認改動範圍。
 3. `/implement`：分段實作。
 4. `/handoff`：跨回合或跨人員交接。
+
+### Codex Web 實際操作（最短版）
+
+1. 在 Web 開一個新 thread，先貼：
+
+```text
+Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
+```
+
+2. 等它讀完後，再貼你的任務上下文：
+
+```text
+需求：[一句話]
+目標檔案：[path1, path2]
+限制：[不可改 API / 不可改 schema]
+驗收：[2-3 條]
+先 /bootstrap，再 /plan。
+```
+
+3. 實作時固定節奏：`/implement -> /review -> /test`。
+
+4. 需要隔天續做時，先請它輸出 `/handoff`，下次把 handoff 貼回同 thread 或新 thread 都可。
 
 完整平台建議請見 `docs/CODEX_PLATFORM_GUIDE.md`。
 
