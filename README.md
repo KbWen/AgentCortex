@@ -56,13 +56,17 @@
 ./deploy_brain.sh .
 ```
 
-### 2) 在 Antigravity 開場貼這段（建議）
+### 2) 在 Codex / Antigravity 開場貼這段（建議）
 
 ### Codex 一句話入口（Web / App）
 
 ```text
 Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 ```
+
+> 若你在 Google Antigravity 使用同一套模板，也可直接貼上這段入口指令。
+>
+> 若你在受限網路環境遇到 `CONNECT tunnel failed, response 403`（無法抓 GitHub raw），請改用備援做法：把 `.codex/INSTALL.md` 內容完整貼進對話，並加一句「請先逐條確認再執行」。
 
 ### 2.1) 其他安裝方式（不是只有 GitHub Template）
 
@@ -206,6 +210,19 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 
 4. 需要隔天續做時，先請它輸出 `/handoff`，下次把 handoff 貼回同 thread 或新 thread 都可。
 
+#### Codex Web 常見錯誤（403 / 無法 fetch）
+
+若你看到模型回覆類似「無法連到 GitHub / raw URL」，通常是執行環境封鎖外連，不是你的指令格式錯誤。可用以下備援：
+
+1. 直接貼上 `.codex/INSTALL.md` 全文。
+2. 在同一則訊息補上：
+
+```text
+以下是 INSTALL 內容，請先逐條確認你會遵循，接著再執行。
+```
+
+3. 再提供你的任務上下文（需求、目標檔案、限制、驗收）。
+
 完整平台建議請見 `docs/CODEX_PLATFORM_GUIDE.md`。
 
 ## ✅ 專案規範符合性（目前版本）
@@ -219,7 +236,7 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 - 平台文件 `docs/CODEX_PLATFORM_GUIDE.md` 存在
 - Agent 設定已引用平台指南
 
-## ⚙️ 建議節奏（Google Antigravity）
+## ⚙️ 建議節奏（Codex / Antigravity）
 
 - 小修補：`/plan → /implement → /review → /test`
 - 新功能：`/brainstorm → /spec → /plan → /implement → /review → /test`
