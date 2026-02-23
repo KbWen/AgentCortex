@@ -1,6 +1,6 @@
 # AI Brain OS v3.4.0（Antigravity Superpowers Edition）
 >
-> **把 Agent 從「能用」提升到「可編排、可重複、可擴充」的 Google Antigravity 工作流模板。**
+> **把 Agent 從「能用」提升到「可編排、可重複、可擴充」的工作流模板。**
 
 ## 🎯 專案定位
 
@@ -11,7 +11,6 @@
 - **Context hygiene**：預設最小上下文，降低噪音與成本。
 - **Idea → Execution**：從頭腦風暴到交付採一致節奏。
 
-> 註：目前執行環境無法直接連 GitHub（403），本版基於 superpowers 常見方法論做結構化落地。
 
 ## 🔗 參考來源
 
