@@ -1,5 +1,34 @@
 # Changelog
 
+## [3.3.1] - 2026-02-23
+
+### 🔧 Superpowers Features Completion & README Clarity
+
+- **功能補齊**: 新增 `.agent/superpowers/features/` 模組，包含 `brainstorm`, `research`, `spec`, `execute`, `review`, `retro` 六種能力檔案。
+- **指令擴充**: `.agent/superpowers/commands.md` 新增 `/brainstorm`, `/research`, `/spec`, `/retro` 指令模板。
+- **工作流深化**: `.agent/superpowers/workflows.md` 納入探索型開發節奏（Idea → Spec → Plan → Implement → Review/Test）。
+- **操作文件強化**: `README.md` 補上「原始操作流程」與「如何呼叫各功能檔案」的完整範例。
+- **部署修正**: `deploy_brain.sh` 支援部署 `.agent/superpowers/features/*.md`。
+- **可用性驗證**: 新增 `/.agent/superpowers/validate.sh`，可一鍵檢查指令、功能檔與 README 對應是否一致。
+- **命名一致性**: 新增 `features/implement.md` 並將 `execute.md` 改為相容別名，避免 `/implement` 指令對不上檔名。
+- **能力補齊**: 新增 `features/bootstrap.md`（任務啟動）與 `features/handoff.md`（跨回合交接）。
+- **Codex 平台相容**: 新增 `docs/CODEX_PLATFORM_GUIDE.md`，提供 Web 與 App 兩端一致操作建議。
+- **參考來源標註**: README 新增 Superpowers 原始專案連結，明確標示設計參考來源。
+- **規範稽核強化**: `validate.sh` 新增平台文件與 AGENT 引用檢查，並驗證 README 含參考來源。
+- **流程強制化**: 新增 `policies/methodology.md` 與 `policies/state_machine.md`，導入 workflow gate 與完成條件。
+- **Codex 入口**: 新增 `.codex/INSTALL.md`，支援一句話「Fetch and follow instructions ...」載入流程。
+- **指令別名**: 新增 `/write-plan`、`/execute-plan` 對齊 Superpowers 常見命名。
+
+## [3.3.0] - 2026-02-23
+
+### 🧩 Superpowers Alignment for Google Antigravity
+
+- **流程升級**: `README.md` 改版為 Antigravity Superpowers Edition，加入 Plan → Implement → Review → Test 的標準節奏。
+- **Agent 強化**: `.agent/AGENT.md` 新增 Superpowers 導向執行模式，明確化可重複操作流程。
+- **Prompt 工具箱**: 新增 `.agent/superpowers/commands.md`，提供可直接貼用的高訊噪比指令模板。
+- **工作流卡片**: 新增 `.agent/superpowers/workflows.md`，涵蓋小修補、中型功能、Hotfix 與文件治理場景。
+- **部署腳本更新**: `deploy_brain.sh` 支援部署 `.agent/superpowers/` 內容與 v3.3 版本訊息。
+
 ## [3.2.0] - 2026-02-14
 
 ### 🧪 Zero-Token Enhancements (零成本工作流強化)
