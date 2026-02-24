@@ -40,3 +40,11 @@
 
 - 完成前執行 `./.agent/superpowers/validate.sh`。
 - 回覆需包含：變更摘要、驗證命令與結果、已知限制。
+
+
+## 整合來源
+
+- `.agent/AGENT.md`
+- `.agent/rules/engineering_guardrails.md`
+- `.agent/superpowers/policies/methodology.md`
+- `.agent/superpowers/policies/state_machine.md`

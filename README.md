@@ -19,7 +19,7 @@
 
 ## ✨ 新增 Superpowers 技能
 
-本版新增 6 個繁體中文技能檔，對齊 [obra/superpowers](https://github.com/obra/superpowers) 的流程思維，讓 Agent 在除錯、驗證、並行協作與分支治理上更可重複執行：
+本版目前提供 11 個繁體中文技能檔，對齊 [obra/superpowers](https://github.com/obra/superpowers) 的流程思維，讓 Agent 在除錯、驗證、並行協作與分支治理上更可重複執行：
 
 - `systematic-debugging`：四階段根因分析，避免隨意修補。
 - `verification-before-completion`：完成宣告前必須通過證據閘門。
@@ -52,7 +52,7 @@
 - `.agent/superpowers/workflows.md`：舊版工作流總表
 - `.agent/workflows/`：新版單檔工作流程（hotfix / worktree-first）
 - `.agent/skills/`：新版技能目錄（每項技能使用 `SKILL.md`）
-- `.agents/skills`：指向 `.agent/skills` 的符號連結（Codex 相容）
+- `.agents/skills`：每個技能資料夾對應 `.agent/skills/<skill>` 的符號連結（Codex 相容）
 - `.agent/superpowers/features/`：各能力模組（bootstrap / brainstorm / research / spec / implement / review / retro / handoff）
 - `docs/TESTING_PROTOCOL.md`：測試標準
 - `deploy_brain.sh`：一鍵部署到任意專案
@@ -73,6 +73,24 @@
 ```
 
 確保技能、工作流程與 `AGENTS.md` 結構完整。
+
+
+## 🗂️ 單檔工作流程（Workflow Cards）
+
+`.agent/workflows/` 內每個 markdown 檔都可被 Antigravity 當作 workflow 卡片載入。
+
+- `/hotfix`：載入 `.agent/workflows/hotfix.md` 的緊急修復步驟
+- `/worktree-first`：載入 `.agent/workflows/worktree-first.md` 的 worktree 優先流程
+
+若你新增流程檔（例如 `.agent/workflows/release.md`），在聊天中使用同名命令（`/release`）即可套用該流程。
+
+## 🛡️ 規則檔與安全邊界
+
+- `.antigravity/rules.md`：Antigravity 優先讀取的規則總表（工程憲法 + 安全條款 + 命令限制）。
+- `.agent/rules/rules.md`：舊版相容副本，內容與 `.antigravity/rules.md` 同步。
+- `AGENTS.md`：跨平台長期指令入口，引用 `.agent/rules/engineering_guardrails.md`。
+
+每次調整上述檔案後，請執行 `./.agent/superpowers/validate.sh` 確認路徑與內容完整。
 
 ## 🚀 原始操作流程（務必照順序）
 

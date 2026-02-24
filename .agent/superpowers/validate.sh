@@ -27,6 +27,11 @@ required_files=(
   "$ROOT/.agent/skills/requesting-code-review/SKILL.md"
   "$ROOT/.agent/skills/using-git-worktrees/SKILL.md"
   "$ROOT/.agent/skills/finishing-a-development-branch/SKILL.md"
+  "$ROOT/.agent/skills/test-driven-development/SKILL.md"
+  "$ROOT/.agent/skills/writing-plans/SKILL.md"
+  "$ROOT/.agent/skills/executing-plans/SKILL.md"
+  "$ROOT/.agent/skills/subagent-driven-development/SKILL.md"
+  "$ROOT/.agent/skills/receiving-code-review/SKILL.md"
   "$SP/policies/methodology.md"
   "$SP/policies/state_machine.md"
 )
@@ -42,7 +47,13 @@ done
 [[ -d "$WORKFLOWS_DIR" ]] || { echo "missing workflows dir: $WORKFLOWS_DIR"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/hotfix.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/hotfix.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/worktree-first.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/worktree-first.md"; exit 1; }
-[[ -e "$ROOT/.agents/skills" ]] || { echo "missing codex skills link: $ROOT/.agents/skills"; exit 1; }
+[[ -d "$ROOT/.agents/skills" ]] || { echo "missing codex skills dir: $ROOT/.agents/skills"; exit 1; }
+for skill_dir in "$ROOT"/.agent/skills/*; do
+  skill_name="$(basename "$skill_dir")"
+  [[ -L "$ROOT/.agents/skills/$skill_name" ]] || { echo "missing codex skill symlink: $ROOT/.agents/skills/$skill_name"; exit 1; }
+done
+[[ -f "$ROOT/.antigravity/rules.md" ]] || { echo "missing antigravity rules: $ROOT/.antigravity/rules.md"; exit 1; }
+[[ -f "$ROOT/.agent/rules/rules.md" ]] || { echo "missing legacy rules copy: $ROOT/.agent/rules/rules.md"; exit 1; }
 [[ -f "$CODEX_INSTALL" ]] || { echo "missing codex install doc: $CODEX_INSTALL"; exit 1; }
 
 required_cmds=("/bootstrap" "/brainstorm" "/research" "/spec" "/plan" "/write-plan" "/implement" "/execute-plan" "/review" "/test" "/retro" "/handoff" "/ship")
