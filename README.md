@@ -28,7 +28,7 @@
 - `using-git-worktrees`：安全建立與管理 worktree。
 - `finishing-a-development-branch`：分支完工後的收尾決策。
 
-技能位置：`.agent/superpowers/skills/`。
+技能位置：`.agent/skills/<skill>/SKILL.md`（Codex 相容路徑：`.agents/skills`）。
 
 ## 🧩 Superpowers 哲學對齊（這版新增）
 
@@ -49,12 +49,30 @@
 - `.agent/AGENT.md`：Agent 基礎行為、語言、安全規範
 - `.agent/rules/engineering_guardrails.md`：工程憲法
 - `.agent/superpowers/commands.md`：可直接貼上的「指令速查」
-- `.agent/superpowers/workflows.md`：場景化工作流卡片
+- `.agent/superpowers/workflows.md`：舊版工作流總表
+- `.agent/workflows/`：新版單檔工作流程（hotfix / worktree-first）
+- `.agent/skills/`：新版技能目錄（每項技能使用 `SKILL.md`）
+- `.agents/skills`：指向 `.agent/skills` 的符號連結（Codex 相容）
 - `.agent/superpowers/features/`：各能力模組（bootstrap / brainstorm / research / spec / implement / review / retro / handoff）
 - `docs/TESTING_PROTOCOL.md`：測試標準
 - `deploy_brain.sh`：一鍵部署到任意專案
 - `.codex/INSTALL.md`：Codex 一句話安裝入口說明
 - `docs/PROJECT_EXAMPLES.md`：Node.js / Python 導入範例
+
+
+## 🔀 Antigravity / Codex 路徑差異
+
+- Antigravity 主要讀取：`.agent/skills`
+- Codex 主要掃描：`.agents/skills`
+- 本專案以符號連結讓兩者指向同一份技能來源，避免雙份維護。
+
+完成調整後請執行：
+
+```bash
+./.agent/superpowers/validate.sh
+```
+
+確保技能、工作流程與 `AGENTS.md` 結構完整。
 
 ## 🚀 原始操作流程（務必照順序）
 
