@@ -9,6 +9,7 @@ AGENT_FILE="$ROOT/.agent/AGENT.md"
 PROJECT_AGENTS_FILE="$ROOT/AGENTS.md"
 WORKFLOWS_DIR="$ROOT/.agent/workflows"
 CODEX_INSTALL="$ROOT/.codex/INSTALL.md"
+CODEX_RULES="$ROOT/.codex/rules/default.rules"
 
 required_files=(
   "$SP/commands.md"
@@ -47,14 +48,23 @@ done
 [[ -d "$WORKFLOWS_DIR" ]] || { echo "missing workflows dir: $WORKFLOWS_DIR"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/hotfix.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/hotfix.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/worktree-first.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/worktree-first.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/new-feature.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/new-feature.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/medium-feature.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/medium-feature.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/docs-update.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/docs-update.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/hand-off.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/hand-off.md"; exit 1; }
 [[ -d "$ROOT/.agents/skills" ]] || { echo "missing codex skills dir: $ROOT/.agents/skills"; exit 1; }
 for skill_dir in "$ROOT"/.agent/skills/*; do
   skill_name="$(basename "$skill_dir")"
   [[ -L "$ROOT/.agents/skills/$skill_name" ]] || { echo "missing codex skill symlink: $ROOT/.agents/skills/$skill_name"; exit 1; }
+  [[ -f "$skill_dir/agents/openai.yaml" ]] || { echo "missing skill metadata: $skill_dir/agents/openai.yaml"; exit 1; }
+  rg -q "^display_name:" "$skill_dir/agents/openai.yaml" || { echo "skill metadata missing display_name: $skill_dir/agents/openai.yaml"; exit 1; }
+  rg -q "^short_description:" "$skill_dir/agents/openai.yaml" || { echo "skill metadata missing short_description: $skill_dir/agents/openai.yaml"; exit 1; }
+  rg -q "^icon_small:" "$skill_dir/agents/openai.yaml" || { echo "skill metadata missing icon_small: $skill_dir/agents/openai.yaml"; exit 1; }
 done
 [[ -f "$ROOT/.antigravity/rules.md" ]] || { echo "missing antigravity rules: $ROOT/.antigravity/rules.md"; exit 1; }
 [[ -f "$ROOT/.agent/rules/rules.md" ]] || { echo "missing legacy rules copy: $ROOT/.agent/rules/rules.md"; exit 1; }
 [[ -f "$CODEX_INSTALL" ]] || { echo "missing codex install doc: $CODEX_INSTALL"; exit 1; }
+[[ -f "$CODEX_RULES" ]] || { echo "missing codex rules file: $CODEX_RULES"; exit 1; }
 
 required_cmds=("/bootstrap" "/brainstorm" "/research" "/spec" "/plan" "/write-plan" "/implement" "/execute-plan" "/review" "/test" "/retro" "/handoff" "/ship")
 

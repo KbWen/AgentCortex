@@ -1,3 +1,4 @@
+version: 1
 display_name: subagent-driven-development
 short_description: 透過子代理協作拆解任務，定義介面契約、同步節點與整合驗收。
-icon: 🧠
+icon_small: wrench
