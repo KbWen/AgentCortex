@@ -26,10 +26,11 @@
 ## 4) 緊急修復（Hotfix）
 
 1. `/research`：界定 root cause 與 blast radius。
-2. `/plan`：最小改動與回退點。
-3. `/implement`：快速修補。
-4. `/review`：補上替代方案取捨。
-5. `/test`：重現案例 + 回歸案例。
+2. 套用 `skills/systematic-debugging.md`：依四階段（觀察→假設→驗證→修復）收斂根因，禁止隨意修補。
+3. `/plan`：最小改動與回退點。
+4. `/implement`：快速修補。
+5. `/review`：補上替代方案取捨。
+6. `/test`：重現案例 + 回歸案例。
 
 ## 5) 文件與治理更新
 
@@ -49,9 +50,11 @@
 
 ## 7) 分支與工作目錄治理（Worktree-first）
 
-1. 建議以獨立 branch / worktree 進行需求開發。
-2. 開始前先跑 baseline tests，確認乾淨狀態。
-3. 完成後再 /ship 並決定 merge / PR / 保留分支。
+1. 先參照 `skills/using-git-worktrees.md` 建立安全 worktree（目錄命名、清潔檢查、建立流程）。
+2. 建議以獨立 branch / worktree 進行需求開發。
+3. 開始前先跑 baseline tests，確認乾淨狀態。
+4. 任務完成前，必須執行 `skills/verification-before-completion.md` Gate Function。
+5. 送出前依 `skills/finishing-a-development-branch.md` 決定分支收尾（Merge now / Open PR / Keep branch / Archive）。
 
 
 ## 8) TDD Gate（邏輯變更必須）

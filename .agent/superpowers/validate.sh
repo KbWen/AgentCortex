@@ -19,6 +19,12 @@ required_files=(
   "$SP/features/review.md"
   "$SP/features/retro.md"
   "$SP/features/handoff.md"
+  "$SP/skills/systematic-debugging.md"
+  "$SP/skills/verification-before-completion.md"
+  "$SP/skills/dispatching-parallel-agents.md"
+  "$SP/skills/requesting-code-review.md"
+  "$SP/skills/using-git-worktrees.md"
+  "$SP/skills/finishing-a-development-branch.md"
   "$SP/policies/methodology.md"
   "$SP/policies/state_machine.md"
 )
