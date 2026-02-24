@@ -85,9 +85,19 @@
 - `/new-feature`：載入 `.agent/workflows/new-feature.md` 的新功能探索流程
 - `/medium-feature`：載入 `.agent/workflows/medium-feature.md` 的中型功能流程
 - `/docs-update`：載入 `.agent/workflows/docs-update.md` 的文件治理流程
-- `/hand-off`：載入 `.agent/workflows/hand-off.md` 的跨 Agent / 人類交接流程
+- `/handoff`：載入 `.agent/workflows/handoff.md` 的跨 Agent / 人類交接流程
 
 若你新增流程檔（例如 `.agent/workflows/release.md`），在聊天中使用同名命令（`/release`）即可套用該流程。
+
+
+### 可直接使用的流程命令
+
+- 新功能探索：`/new-feature`
+- 中型功能：`/medium-feature`
+- 文件更新：`/docs-update`
+- 交接流程：`/handoff`
+- 緊急修復：`/hotfix`
+- Worktree-first：`/worktree-first`
 
 ## 🛡️ 規則檔與安全邊界
 
@@ -96,9 +106,22 @@
 - `.codex/rules/default.rules`：Codex 規則擴充入口，可用 `prefix_rule()` 加上執行前安全限制。
 - `AGENTS.md`：跨平台長期指令入口，引用 `.agent/rules/engineering_guardrails.md`。
 
-Antigravity 可直接用 `/flow-name` 呼叫 `.agent/workflows/<flow-name>.md`（例如 `/new-feature`）；Codex 則會依 `AGENTS.md` 與 `.codex/rules/default.rules` 套用安全限制。
+Antigravity 可直接用 `/flow-name` 呼叫 `.agent/workflows/<flow-name>.md`（例如 `/new-feature`、`/handoff`）；Codex 則會依 `AGENTS.md` 與 `.codex/rules/default.rules` 套用安全限制。
 
 每次調整上述檔案後，請執行 `./.agent/superpowers/validate.sh` 確認路徑與內容完整。
+
+
+### 高風險指令安全設定（Codex + Antigravity）
+
+以下命令預設禁止直接執行，需先提出風險與回退方案：
+
+- `rm -rf <path>`
+- `git reset --hard`
+- `git clean -fdx`
+- `curl ... | bash`
+- `chmod -R 777`
+
+建議替代：`trash <path>`、`git stash push`、`git restore --source=<commit> <file>`、先下載再審閱腳本。
 
 ## 🚀 原始操作流程（務必照順序）
 

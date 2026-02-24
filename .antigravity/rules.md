@@ -7,6 +7,13 @@
 3. 僅修改需求範圍，避免額外重構。
 4. 每次變更需可回退。
 
+## 工程憲法對齊（`.agent/rules/engineering_guardrails.md`）
+
+- Correctness First：任何輸出需可驗證，未知行為視為不安全。
+- Explicit Over Implicit：假設、限制、風險需明確寫出。
+- Small & Reversible：優先小步提交，避免一次性高風險改動。
+- Scope Discipline：僅解決當前 issue；延伸問題改提 follow-up。
+
 ## 安全指導
 
 - 禁止輸出 secrets（API keys、token、憑證、個資）。
@@ -26,6 +33,7 @@
 - 禁止 `git clean -fdx`（清空未追蹤檔）；改用 `git clean -fd` 並先 `git status --short` 確認。
 - 禁止 `curl ... | bash`（遠端腳本直接執行）；改用先下載再審閱：`curl -fsSL <url> -o script.sh && less script.sh && bash script.sh`。
 - 禁止 `chmod -R 777`（過度放寬權限）；改用最小權限如 `chmod 755 <dir>` / `chmod 644 <file>`。
+- 禁止 `sudo` 執行不明安裝腳本；改用鎖定版本與 checksum 驗證後再安裝。
 
 ## 驗證要求
 
