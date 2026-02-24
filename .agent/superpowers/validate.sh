@@ -50,8 +50,10 @@ done
 [[ -f "$WORKFLOWS_DIR/worktree-first.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/worktree-first.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/new-feature.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/new-feature.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/medium-feature.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/medium-feature.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/small-fix.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/small-fix.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/docs-update.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/docs-update.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/handoff.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/handoff.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/other-custom.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/other-custom.md"; exit 1; }
 [[ -d "$ROOT/.agents/skills" ]] || { echo "missing codex skills dir: $ROOT/.agents/skills"; exit 1; }
 for skill_dir in "$ROOT"/.agent/skills/*; do
   skill_name="$(basename "$skill_dir")"
@@ -70,12 +72,26 @@ if [[ ! -f "$CODEX_RULES" && ! -f "$ROOT/codex/rules/default.rules" ]]; then
 fi
 
 # Workflow card metadata sanity checks
-for wf in new-feature medium-feature docs-update handoff; do
+for wf in new-feature medium-feature small-fix docs-update handoff other-custom; do
   wf_file="$WORKFLOWS_DIR/$wf.md"
   rg -q "^name: ${wf}$" "$wf_file" || { echo "workflow metadata missing name: $wf_file"; exit 1; }
   rg -q "^description:" "$wf_file" || { echo "workflow metadata missing description: $wf_file"; exit 1; }
   rg -q "^tasks:" "$wf_file" || { echo "workflow metadata missing tasks: $wf_file"; exit 1; }
 done
+
+# Rules safety keyword checks
+for rules_file in "$ROOT/.agent/rules/rules.md" "$ROOT/.antigravity/rules.md"; do
+  rg -q "docker system prune -a" "$rules_file" || { echo "rules missing dangerous command: docker system prune -a in $rules_file"; exit 1; }
+  rg -q "chown -R" "$rules_file" || { echo "rules missing dangerous command: chown -R in $rules_file"; exit 1; }
+  rg -q "回退方案" "$rules_file" || { echo "rules missing rollback reminder in $rules_file"; exit 1; }
+done
+
+# Codex prefix_rule syntax and required high-risk command coverage
+ACTIVE_CODEX_RULES="$ROOT/codex/rules/default.rules"
+[[ -f "$ACTIVE_CODEX_RULES" ]] || ACTIVE_CODEX_RULES="$CODEX_RULES"
+rg -q '^prefix_rule\("' "$ACTIVE_CODEX_RULES" || { echo "codex rules missing prefix_rule(): $ACTIVE_CODEX_RULES"; exit 1; }
+rg -q "docker system prune -a" "$ACTIVE_CODEX_RULES" || { echo "codex rules missing dangerous command: docker system prune -a"; exit 1; }
+rg -q "chown -R" "$ACTIVE_CODEX_RULES" || { echo "codex rules missing dangerous command: chown -R"; exit 1; }
 
 required_cmds=("/bootstrap" "/brainstorm" "/research" "/spec" "/plan" "/write-plan" "/implement" "/execute-plan" "/review" "/test" "/retro" "/handoff" "/ship")
 
