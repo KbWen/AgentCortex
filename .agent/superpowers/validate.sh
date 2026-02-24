@@ -51,7 +51,7 @@ done
 [[ -f "$WORKFLOWS_DIR/new-feature.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/new-feature.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/medium-feature.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/medium-feature.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/docs-update.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/docs-update.md"; exit 1; }
-[[ -f "$WORKFLOWS_DIR/hand-off.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/hand-off.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/handoff.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/handoff.md"; exit 1; }
 [[ -d "$ROOT/.agents/skills" ]] || { echo "missing codex skills dir: $ROOT/.agents/skills"; exit 1; }
 for skill_dir in "$ROOT"/.agent/skills/*; do
   skill_name="$(basename "$skill_dir")"
@@ -64,7 +64,18 @@ done
 [[ -f "$ROOT/.antigravity/rules.md" ]] || { echo "missing antigravity rules: $ROOT/.antigravity/rules.md"; exit 1; }
 [[ -f "$ROOT/.agent/rules/rules.md" ]] || { echo "missing legacy rules copy: $ROOT/.agent/rules/rules.md"; exit 1; }
 [[ -f "$CODEX_INSTALL" ]] || { echo "missing codex install doc: $CODEX_INSTALL"; exit 1; }
-[[ -f "$CODEX_RULES" ]] || { echo "missing codex rules file: $CODEX_RULES"; exit 1; }
+if [[ ! -f "$CODEX_RULES" && ! -f "$ROOT/codex/rules/default.rules" ]]; then
+  echo "missing codex rules file: $CODEX_RULES or $ROOT/codex/rules/default.rules"
+  exit 1
+fi
+
+# Workflow card metadata sanity checks
+for wf in new-feature medium-feature docs-update handoff; do
+  wf_file="$WORKFLOWS_DIR/$wf.md"
+  rg -q "^name: ${wf}$" "$wf_file" || { echo "workflow metadata missing name: $wf_file"; exit 1; }
+  rg -q "^description:" "$wf_file" || { echo "workflow metadata missing description: $wf_file"; exit 1; }
+  rg -q "^tasks:" "$wf_file" || { echo "workflow metadata missing tasks: $wf_file"; exit 1; }
+done
 
 required_cmds=("/bootstrap" "/brainstorm" "/research" "/spec" "/plan" "/write-plan" "/implement" "/execute-plan" "/review" "/test" "/retro" "/handoff" "/ship")
 
