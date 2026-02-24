@@ -50,9 +50,10 @@
 - `.agent/rules/engineering_guardrails.md`：工程憲法
 - `.agent/superpowers/commands.md`：可直接貼上的「指令速查」
 - `.agent/superpowers/workflows.md`：舊版工作流總表
-- `.agent/workflows/`：新版單檔工作流程（hotfix / worktree-first）
+- `.agent/workflows/`：新版單檔工作流程（new-feature / medium-feature / docs-update / hand-off / hotfix / worktree-first）
 - `.agent/skills/`：新版技能目錄（每項技能使用 `SKILL.md`）
 - `.agents/skills`：每個技能資料夾對應 `.agent/skills/<skill>` 的符號連結（Codex 相容）
+- `.agent/skills/*/agents/openai.yaml`：Codex App UI metadata（display_name / short_description / icon_small）
 - `.agent/superpowers/features/`：各能力模組（bootstrap / brainstorm / research / spec / implement / review / retro / handoff）
 - `docs/TESTING_PROTOCOL.md`：測試標準
 - `deploy_brain.sh`：一鍵部署到任意專案
@@ -81,6 +82,10 @@
 
 - `/hotfix`：載入 `.agent/workflows/hotfix.md` 的緊急修復步驟
 - `/worktree-first`：載入 `.agent/workflows/worktree-first.md` 的 worktree 優先流程
+- `/new-feature`：載入 `.agent/workflows/new-feature.md` 的新功能探索流程
+- `/medium-feature`：載入 `.agent/workflows/medium-feature.md` 的中型功能流程
+- `/docs-update`：載入 `.agent/workflows/docs-update.md` 的文件治理流程
+- `/hand-off`：載入 `.agent/workflows/hand-off.md` 的跨 Agent / 人類交接流程
 
 若你新增流程檔（例如 `.agent/workflows/release.md`），在聊天中使用同名命令（`/release`）即可套用該流程。
 
@@ -88,7 +93,10 @@
 
 - `.antigravity/rules.md`：Antigravity 優先讀取的規則總表（工程憲法 + 安全條款 + 命令限制）。
 - `.agent/rules/rules.md`：舊版相容副本，內容與 `.antigravity/rules.md` 同步。
+- `.codex/rules/default.rules`：Codex 規則擴充入口，可用 `prefix_rule()` 加上執行前安全限制。
 - `AGENTS.md`：跨平台長期指令入口，引用 `.agent/rules/engineering_guardrails.md`。
+
+Antigravity 可直接用 `/flow-name` 呼叫 `.agent/workflows/<flow-name>.md`（例如 `/new-feature`）；Codex 則會依 `AGENTS.md` 與 `.codex/rules/default.rules` 套用安全限制。
 
 每次調整上述檔案後，請執行 `./.agent/superpowers/validate.sh` 確認路徑與內容完整。
 

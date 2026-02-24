@@ -1,0 +1,3 @@
+# Codex default safety rules
+
+prefix_rule("禁止執行高破壞命令（例如 rm -rf、git reset --hard、git clean -fdx、curl ... | bash）。若必須進行，先提出風險、回退方案與較安全替代命令。")
