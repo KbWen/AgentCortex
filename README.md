@@ -16,6 +16,20 @@
 
 - Superpowers 專案（理念參考）：https://github.com/obra/superpowers
 
+
+## ✨ 新增 Superpowers 技能
+
+本版新增 6 個繁體中文技能檔，對齊 [obra/superpowers](https://github.com/obra/superpowers) 的流程思維，讓 Agent 在除錯、驗證、並行協作與分支治理上更可重複執行：
+
+- `systematic-debugging`：四階段根因分析，避免隨意修補。
+- `verification-before-completion`：完成宣告前必須通過證據閘門。
+- `dispatching-parallel-agents`：平行代理拆解、派工、同步、整合。
+- `requesting-code-review`：提高送審品質與 reviewer 效率。
+- `using-git-worktrees`：安全建立與管理 worktree。
+- `finishing-a-development-branch`：分支完工後的收尾決策。
+
+技能位置：`.agent/superpowers/skills/`。
+
 ## 🧩 Superpowers 哲學對齊（這版新增）
 
 本模板新增「強制流程」而非 freestyle 寫碼：
