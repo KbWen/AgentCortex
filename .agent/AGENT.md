@@ -41,6 +41,11 @@
 - 請同時相容於 Codex Web 與 Codex App 工作流。
 - 平台差異與操作請參考 `docs/CODEX_PLATFORM_GUIDE.md`。
 
+## 🧩 技能目錄
+
+- Antigravity：`.agent/skills/<skill>/SKILL.md`
+- Codex：`.agents/skills`（指向 `.agent/skills`）
+
 ## ✅ 快速自我檢查
 
 - 可執行 `./.agent/superpowers/validate.sh` 確認模板可用性。

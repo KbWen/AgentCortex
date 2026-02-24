@@ -6,6 +6,8 @@ SP="$ROOT/.agent/superpowers"
 PLATFORM_DOC="$ROOT/docs/CODEX_PLATFORM_GUIDE.md"
 EXAMPLES_DOC="$ROOT/docs/PROJECT_EXAMPLES.md"
 AGENT_FILE="$ROOT/.agent/AGENT.md"
+PROJECT_AGENTS_FILE="$ROOT/AGENTS.md"
+WORKFLOWS_DIR="$ROOT/.agent/workflows"
 CODEX_INSTALL="$ROOT/.codex/INSTALL.md"
 
 required_files=(
@@ -19,12 +21,12 @@ required_files=(
   "$SP/features/review.md"
   "$SP/features/retro.md"
   "$SP/features/handoff.md"
-  "$SP/skills/systematic-debugging.md"
-  "$SP/skills/verification-before-completion.md"
-  "$SP/skills/dispatching-parallel-agents.md"
-  "$SP/skills/requesting-code-review.md"
-  "$SP/skills/using-git-worktrees.md"
-  "$SP/skills/finishing-a-development-branch.md"
+  "$ROOT/.agent/skills/systematic-debugging/SKILL.md"
+  "$ROOT/.agent/skills/verification-before-completion/SKILL.md"
+  "$ROOT/.agent/skills/dispatching-parallel-agents/SKILL.md"
+  "$ROOT/.agent/skills/requesting-code-review/SKILL.md"
+  "$ROOT/.agent/skills/using-git-worktrees/SKILL.md"
+  "$ROOT/.agent/skills/finishing-a-development-branch/SKILL.md"
   "$SP/policies/methodology.md"
   "$SP/policies/state_machine.md"
 )
@@ -36,6 +38,11 @@ done
 [[ -f "$PLATFORM_DOC" ]] || { echo "missing platform guide: $PLATFORM_DOC"; exit 1; }
 [[ -f "$EXAMPLES_DOC" ]] || { echo "missing examples doc: $EXAMPLES_DOC"; exit 1; }
 [[ -f "$AGENT_FILE" ]] || { echo "missing agent file: $AGENT_FILE"; exit 1; }
+[[ -f "$PROJECT_AGENTS_FILE" ]] || { echo "missing project AGENTS.md: $PROJECT_AGENTS_FILE"; exit 1; }
+[[ -d "$WORKFLOWS_DIR" ]] || { echo "missing workflows dir: $WORKFLOWS_DIR"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/hotfix.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/hotfix.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/worktree-first.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/worktree-first.md"; exit 1; }
+[[ -e "$ROOT/.agents/skills" ]] || { echo "missing codex skills link: $ROOT/.agents/skills"; exit 1; }
 [[ -f "$CODEX_INSTALL" ]] || { echo "missing codex install doc: $CODEX_INSTALL"; exit 1; }
 
 required_cmds=("/bootstrap" "/brainstorm" "/research" "/spec" "/plan" "/write-plan" "/implement" "/execute-plan" "/review" "/test" "/retro" "/handoff" "/ship")
@@ -50,6 +57,8 @@ if [[ -f "$ROOT/README.md" ]]; then
 fi
 
 rg -q "CODEX_PLATFORM_GUIDE\.md" "$AGENT_FILE" || { echo "AGENT.md does not reference CODEX_PLATFORM_GUIDE.md"; exit 1; }
+rg -q "\.agent/skills" "$PROJECT_AGENTS_FILE" || { echo "AGENTS.md missing .agent/skills reference"; exit 1; }
+rg -q "\.agents/skills" "$PROJECT_AGENTS_FILE" || { echo "AGENTS.md missing .agents/skills reference"; exit 1; }
 
 if [[ -f "$ROOT/README.md" ]]; then
   rg -q "https://github.com/obra/superpowers" "$ROOT/README.md" || { echo "README missing superpowers reference URL"; exit 1; }
