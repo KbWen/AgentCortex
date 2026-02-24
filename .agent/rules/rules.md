@@ -31,9 +31,12 @@
 - 禁止 `rm -rf <path>`（不可逆刪除）；改用 `trash <path>` 或 `mv <path> ./.backup/<timestamp>/`。
 - 禁止 `git reset --hard`（可能摧毀未備份變更）；改用 `git stash push` 或 `git restore --source=<commit> <file>`。
 - 禁止 `git clean -fdx`（清空未追蹤檔）；改用 `git clean -fd` 並先 `git status --short` 確認。
+- 禁止 `docker system prune -a`（可能移除執行中環境依賴與快取）；改用 `docker image prune` 或 `docker builder prune --filter until=24h`。
+- 禁止 `chown -R <user>:<group> <path>`（易造成整棵目錄權限破壞）；改用 `chown <user>:<group> <path>` 或先以 `find <path> -maxdepth 2` 精準限定範圍。
 - 禁止 `curl ... | bash`（遠端腳本直接執行）；改用先下載再審閱：`curl -fsSL <url> -o script.sh && less script.sh && bash script.sh`。
 - 禁止 `chmod -R 777`（過度放寬權限）；改用最小權限如 `chmod 755 <dir>` / `chmod 644 <file>`。
 - 禁止 `sudo` 執行不明安裝腳本；改用鎖定版本與 checksum 驗證後再安裝。
+- 進行任何高風險命令前，必須先準備回退方案（備份路徑、可還原 commit、復原指令）並在執行前明確記錄。
 
 ## 驗證要求
 
