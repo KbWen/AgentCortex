@@ -18,7 +18,7 @@ all_skill=$(find . -type f -name "SKILL.md" 2>/dev/null || true)
 if [ -z "$all_skill" ]; then
   echo "ℹ️ No SKILL.md found (ok if you don't use Codex skills yet)"
 else
-  bad_skill=$(echo "$all_skill" | grep -vE '(^|/)\.agents/skills/|(^|/)\.agents/skills$' || true)
+  bad_skill=$(echo "$all_skill" | grep -vE '(^|/)\.agents/skills/' || true)
   if [ -n "$bad_skill" ]; then
     echo "❌ SKILL.md found outside .agents/skills/:"
     echo "$bad_skill" | sed 's/^/  - /'
@@ -28,12 +28,36 @@ else
 fi
 echo
 
-echo "== [Codex] Suspicious: .agent/skills (likely wrong for Codex) =="
-if [ -d ".agent/skills" ]; then
-  echo "❌ Found .agent/skills/ (move to .agents/skills/)"
-  find .agent/skills -maxdepth 4 -type f | sed 's/^/  - /'
+echo "== [Codex+Antigravity] Check dual-path compatibility (.agent/skills <-> .agents/skills) =="
+if [ ! -d ".agents/skills" ]; then
+  echo "❌ Missing .agents/skills/"
+elif [ ! -d ".agent/skills" ]; then
+  echo "❌ Missing .agent/skills/"
 else
-  echo "✅ OK: no .agent/skills/"
+  missing_agent_link=0
+  missing_codex_entry=0
+
+  for codex_skill in .agents/skills/*; do
+    [ -e "$codex_skill" ] || continue
+    skill_name="$(basename "$codex_skill")"
+    if [ ! -e ".agent/skills/$skill_name" ]; then
+      echo "❌ Missing .agent/skills/$skill_name (for Antigravity compatibility)"
+      missing_agent_link=1
+    fi
+  done
+
+  for agent_skill in .agent/skills/*; do
+    [ -e "$agent_skill" ] || continue
+    skill_name="$(basename "$agent_skill")"
+    if [ ! -e ".agents/skills/$skill_name" ]; then
+      echo "❌ Missing .agents/skills/$skill_name (for Codex compatibility)"
+      missing_codex_entry=1
+    fi
+  done
+
+  if [ "$missing_agent_link" -eq 0 ] && [ "$missing_codex_entry" -eq 0 ]; then
+    echo "✅ OK: .agent/skills and .agents/skills entries are aligned"
+  fi
 fi
 echo
 
@@ -61,24 +85,26 @@ else
 fi
 echo
 
-echo "== [Antigravity] Check unrelated folders directly under .agent/ (only rules/ and workflows/ are allowed) =="
+echo "== [Antigravity] Check unrelated folders directly under .agent/ =="
+echo "   Allowed: rules/, workflows/, superpowers/, skills/"
 if [ -d ".agent" ]; then
   unrelated=$(find .agent -mindepth 1 -maxdepth 1 -type d \
-    ! -name "rules" ! -name "workflows" 2>/dev/null || true)
+    ! -name "rules" ! -name "workflows" ! -name "superpowers" ! -name "skills" 2>/dev/null || true)
   if [ -n "$unrelated" ]; then
-    echo "❌ Unrelated folders under .agent/ (should be moved out):"
+    echo "❌ Unrelated folders under .agent/ (should be reviewed):"
     echo "$unrelated" | sed 's/^/  - /'
   else
-    echo "✅ OK: .agent/ only contains rules/ and workflows/"
+    echo "✅ OK: .agent/ folders are within allowed set"
   fi
 else
   echo "ℹ️ .agent/ does not exist"
 fi
 echo
 
-echo "== Suggested git mv commands (dry suggestions) =="
+echo "== Suggested fixes (dry suggestions) =="
+[ ! -d ".agent/skills" ] && [ -d ".agents/skills" ] && echo "mkdir -p .agent && ln -s ../.agents/skills .agent/skills"
+[ ! -d ".agents/skills" ] && [ -d ".agent/skills" ] && echo "mkdir -p .agents && ln -s ../.agent/skills .agents/skills"
 [ -d ".agents/rules" ] && echo "git mv .agents/rules .agent/rules"
 [ -d ".agents/workflows" ] && echo "git mv .agents/workflows .agent/workflows"
-[ -d ".agent/skills" ] && echo "git mv .agent/skills .agents/skills"
 echo
 echo "Done."
