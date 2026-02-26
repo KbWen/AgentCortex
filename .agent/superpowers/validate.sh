@@ -57,7 +57,12 @@ done
 [[ -d "$ROOT/.agents/skills" ]] || { echo "missing codex skills dir: $ROOT/.agents/skills"; exit 1; }
 for skill_dir in "$ROOT"/.agent/skills/*; do
   skill_name="$(basename "$skill_dir")"
-  [[ -L "$ROOT/.agents/skills/$skill_name" ]] || { echo "missing codex skill symlink: $ROOT/.agents/skills/$skill_name"; exit 1; }
+  codex_skill_path="$ROOT/.agents/skills/$skill_name"
+  if [[ ! -L "$codex_skill_path" && ! -d "$codex_skill_path" ]]; then
+    echo "missing codex skill entry: $codex_skill_path"
+    exit 1
+  fi
+  [[ -f "$codex_skill_path/SKILL.md" ]] || { echo "missing codex skill file: $codex_skill_path/SKILL.md"; exit 1; }
   [[ -f "$skill_dir/agents/openai.yaml" ]] || { echo "missing skill metadata: $skill_dir/agents/openai.yaml"; exit 1; }
   rg -q "^display_name:" "$skill_dir/agents/openai.yaml" || { echo "skill metadata missing display_name: $skill_dir/agents/openai.yaml"; exit 1; }
   rg -q "^short_description:" "$skill_dir/agents/openai.yaml" || { echo "skill metadata missing short_description: $skill_dir/agents/openai.yaml"; exit 1; }

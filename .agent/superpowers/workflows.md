@@ -1,5 +1,8 @@
 # Superpowers Workflows for Google Antigravity
 
+> Canonical Antigravity workflow cards are in `.agent/workflows/*.md` (machine-readable frontmatter).
+> This file remains as a narrative guide for human reading and quick copy/paste.
+
 ## 1) 新功能探索（建議）
 
 1. `/brainstorm`：至少提出 3 案並評估取捨。
