@@ -1,3 +1,5 @@
+# Pull Request Template (PR 輸出模板)
+
 ## 📝 Pull Request Summary
 
 （說明此 PR 解決了什麼問題，以及核心的改動內容。對應 Issue #[ID]）

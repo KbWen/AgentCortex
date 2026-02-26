@@ -11,11 +11,9 @@
 - **Context hygiene**：預設最小上下文，降低噪音與成本。
 - **Idea → Execution**：從頭腦風暴到交付採一致節奏。
 
-
 ## 🔗 參考來源
 
-- Superpowers 專案（理念參考）：https://github.com/obra/superpowers
-
+- Superpowers 專案（理念參考）：<https://github.com/obra/superpowers>
 
 ## ✨ 新增 Superpowers 技能
 
@@ -41,25 +39,20 @@
 - 2–5 分鐘任務切分
 
 對應檔案：
+
 - `.agent/superpowers/policies/methodology.md`
 - `.agent/superpowers/policies/state_machine.md`
 
 ## 📦 目錄總覽
 
 - `.agent/AGENT.md`：Agent 基礎行為、語言、安全規範
-- `.agent/rules/engineering_guardrails.md`：工程憲法
-- `.agent/superpowers/commands.md`：可直接貼上的「指令速查」
-- `.agent/superpowers/workflows.md`：舊版工作流總表
-- `.agent/workflows/`：新版單檔工作流程與 slash command prompts（new-feature / medium-feature / small-fix / docs-update / handoff / other-custom / hotfix / worktree-first / bootstrap / plan / ...）
-- `.agent/skills/`：新版技能目錄（每項技能使用 `SKILL.md`）
-- `.agents/skills`：每個技能資料夾對應 `.agent/skills/<skill>` 的符號連結（Codex 相容）
-- `.agent/skills/*/agents/openai.yaml`：Codex App UI metadata（display_name / short_description / icon_small）
-- `.agent/superpowers/features/`：各能力模組（bootstrap / brainstorm / research / spec / implement / review / retro / handoff）
-- `docs/TESTING_PROTOCOL.md`：測試標準
-- `deploy_brain.sh`：一鍵部署到任意專案
+- .agent/rules/engineering_guardrails.md：工程憲法 (含文檔優先原則)
+- .agent/superpowers/commands.md：指令速查
+- .agent/workflows/：單檔工作流程 (新增 /adr, /update-docs)
+- docs/：文檔中心 (adr/, specs/, guides/)
+- deploy_brain.sh：一鍵部署腳本
 - `.codex/INSTALL.md`：Codex 一句話安裝入口說明
 - `docs/PROJECT_EXAMPLES.md`：Node.js / Python 導入範例
-
 
 ## 🔀 Antigravity / Codex 路徑差異
 
@@ -83,7 +76,6 @@ cat .agent/superpowers/commands.md
 
 確保技能、工作流程與 `AGENTS.md` 結構完整。
 
-
 ## 🗂️ 單檔工作流程（Workflow Cards）
 
 `.agent/workflows/` 內每個 markdown 檔都可被 Antigravity 當作 workflow 卡片載入。
@@ -98,7 +90,6 @@ cat .agent/superpowers/commands.md
 - `/other-custom`：載入 `.agent/workflows/other-custom.md` 的其他自訂流程（治理 / TDD Gate）
 
 若你新增流程檔（例如 `.agent/workflows/release.md`），在聊天中使用同名命令（`/release`）即可套用該流程。
-
 
 ### 可直接使用的流程命令
 
@@ -121,7 +112,6 @@ cat .agent/superpowers/commands.md
 Antigravity 可直接用 `/flow-name` 呼叫 `.agent/workflows/<flow-name>.md`（例如 `/new-feature`、`/handoff`）；Codex 則會依 `AGENTS.md` 與 `.codex/rules/default.rules` 套用安全限制。
 
 每次調整上述檔案後，請執行 `./.agent/superpowers/validate.sh` 確認路徑與內容完整。
-
 
 ### 高風險指令安全設定（Codex + Antigravity）
 
@@ -176,7 +166,7 @@ cd ai-brain-template
 ./deploy_brain.sh /path/to/your-project
 ```
 
-2. **不 clone，直接用 raw 腳本安裝**
+1. **不 clone，直接用 raw 腳本安裝**
 
 ```bash
 curl -fsSL <your-raw-url>/deploy_brain.sh -o deploy_brain.sh
@@ -185,14 +175,12 @@ chmod +x deploy_brain.sh
 ```
 
 > 補充：若你的專案已經存在，只要執行 `./deploy_brain.sh .` 就能把 `.agent/` 與 `.codex/INSTALL.md` 佈署進去。
-
+>
 > 若你使用本 repo 本機開發，可直接執行 `./deploy_brain.sh .`。
-
 
 ```text
 我正在做：[需求一句話]
 目標檔案：[路徑1, 路徑2]
-限制條件：[例如不能改 API 回傳格式]
 請先執行 /plan，不要直接寫碼
 ```
 
@@ -214,7 +202,6 @@ chmod +x deploy_brain.sh
 - 「請依 `.agent/superpowers/features/spec.md` 輸出 AC 與 Non-goals」
 - 「請依 `.agent/superpowers/features/review.md` 做風險分級審查」
 
-
 ### 5) 一鍵自我驗證（建議）
 
 在 repo 根目錄執行：
@@ -224,10 +211,10 @@ chmod +x deploy_brain.sh
 ```
 
 這會檢查：
+
 - 指令模板是否齊全
 - 必要功能檔是否存在
 - README 對應路徑是否一致
-
 
 ### 6) 專案導入範例
 
@@ -235,6 +222,7 @@ chmod +x deploy_brain.sh
 
 - Node.js API 專案範例（Express + Vitest）
 - Python Backend 專案範例（FastAPI + pytest）
+
 ## 💬 可直接複製的提示（Prompt）
 
 ### 開場提示（Web / App 共用）
@@ -272,8 +260,7 @@ chmod +x deploy_brain.sh
 | 實作執行 | `/implement` | `.agent/workflows/implement.md` | 安全實作、可回退 |
 | 代碼審查 | `/review` | `.agent/workflows/review.md` | 風險與品質檢查 |
 | 回顧精進 | `/retro` | `.agent/workflows/retro.md` | 形成可複用經驗 |
-| 交接摘要 | `/handoff` | `.agent/workflows/handoff.md` | 跨回合／跨人員無痛接手 |
-
+| 交接摘要 | `/handoff` | `.agent/workflows/handoff.md` | **跨回合核心**：保留決策脈絡並大幅節省新對話的 Token 消耗 |
 
 ## 🖥️ Codex Web / App 相容使用
 
@@ -284,6 +271,12 @@ chmod +x deploy_brain.sh
 3. `/implement`：分段實作。
 4. `/handoff`：跨回合或跨人員交接。
 
+> [!TIP]
+> **為什麼 `/handoff` 很重要？**
+>
+> - **節省 Token**：避免在新對話中重新餵入長篇大論的歷史紀錄，只需提供摘要即可由新 Agent 精準接手。
+> - **延續脈絡**：保留上一位 Agent 的隱性假設與未竟之志，降低重工與誤解的風險。
+
 ### Codex Web 實際操作（最短版）
 
 1. 在 Web 開一個新 thread，先貼：
@@ -292,7 +285,7 @@ chmod +x deploy_brain.sh
 Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 ```
 
-2. 等它讀完後，再貼你的任務上下文：
+1. 等它讀完後，再貼你的任務上下文：
 
 ```text
 需求：[一句話]
@@ -302,9 +295,9 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 先 /bootstrap，再 /plan。
 ```
 
-3. 實作時固定節奏：`/implement -> /review -> /test`。
+1. 實作時固定節奏：`/implement -> /review -> /test`。
 
-4. 需要隔天續做時，先請它輸出 `/handoff`，下次把 handoff 貼回同 thread 或新 thread 都可。
+2. 需要隔天續做時，先請它輸出 `/handoff`，下次把 handoff 貼回同 thread 或新 thread 都可。
 
 #### Codex Web 常見錯誤（403 / 無法 fetch）
 
@@ -317,7 +310,7 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 以下是 INSTALL 內容，請先逐條確認你會遵循，接著再執行。
 ```
 
-3. 再提供你的任務上下文（需求、目標檔案、限制、驗收）。
+1. 再提供你的任務上下文（需求、目標檔案、限制、驗收）。
 
 完整平台建議請見 `docs/CODEX_PLATFORM_GUIDE.md`。
 

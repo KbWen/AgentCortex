@@ -61,6 +61,12 @@ Non-negotiable principles for agent-driven development
 - 改邏輯 → 加測試。
 - 改介面 → 驗證相容性。
 - **Mandatory Sanity Check**: 輸出是否在合理範圍？是否引入 Side effects？
+- **Document-First Pilar**: 任何涉及架構設計或核心邏輯的變更，必須先在 `docs/` 下產出對應的 Spec 或 ADR。
+- **Naming & Location Standards**:
+  - **ADR**: `docs/adr/ADR-[ID]-[kebab-case-description].md`
+  - **Specs**: `docs/specs/[kebab-case-feature-name].md`
+  - **Guides**: `docs/guides/[kebab-case-topic].md`
+  - **AI Workspace**: 所有 AI 產出的臨時文件應放在 `.agent/scratch/`。
 
 ---
 
