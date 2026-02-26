@@ -2,6 +2,9 @@
 
 以下為可直接貼到對話的高訊噪比指令模板。
 
+> Canonical slash-command prompts are now stored at `.agent/workflows/<command>.md` for Antigravity auto-discovery.
+> This file is kept as a compatibility index for Codex and human copy/paste.
+
 ## /bootstrap
 
 請先做任務啟動，不寫程式。輸出：
@@ -79,6 +82,15 @@
 請依 `docs/TESTING_PROTOCOL.md` 設計最小必要測試。
 先列測試清單，再提供測試程式碼或測試命令。
 
+## /test-skeleton
+
+請先產出 Test Skeleton（不寫實作碼）。每個測試需包含：
+- 測試名稱
+- 目的（對應 AC 或風險）
+- 測試類型（unit / integration / e2e / doc-check）
+- 前置條件或測試資料（fixtures）
+- 驗證方式（assertions / commands）
+
 ## /retro
 
 請針對本次任務做回顧，輸出：
@@ -102,3 +114,18 @@
 - 變更摘要（條列）
 - 測試結果
 - 已知限制與後續建議
+
+## /help
+
+請輸出目前可用指令與用途（唯讀，不改變狀態）：
+1) Current State
+2) 任務類型（若已判定）
+3) 目前可用指令
+4) 全指令一覽與用途
+5) 下一步建議（不自動執行）
+
+## /commands
+
+請列出目前可用指令與用途（唯讀，不改變狀態）。
+建議格式：指令名稱、可用狀態、用途、下一步。
+

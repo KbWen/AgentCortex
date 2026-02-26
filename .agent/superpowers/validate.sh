@@ -54,6 +54,13 @@ done
 [[ -f "$WORKFLOWS_DIR/docs-update.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/docs-update.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/handoff.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/handoff.md"; exit 1; }
 [[ -f "$WORKFLOWS_DIR/other-custom.md" ]] || { echo "missing workflow: $WORKFLOWS_DIR/other-custom.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/bootstrap.md" ]] || { echo "missing slash workflow: $WORKFLOWS_DIR/bootstrap.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/plan.md" ]] || { echo "missing slash workflow: $WORKFLOWS_DIR/plan.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/implement.md" ]] || { echo "missing slash workflow: $WORKFLOWS_DIR/implement.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/review.md" ]] || { echo "missing slash workflow: $WORKFLOWS_DIR/review.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/help.md" ]] || { echo "missing slash workflow: $WORKFLOWS_DIR/help.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/test-skeleton.md" ]] || { echo "missing slash workflow: $WORKFLOWS_DIR/test-skeleton.md"; exit 1; }
+[[ -f "$WORKFLOWS_DIR/commands.md" ]] || { echo "missing slash workflow: $WORKFLOWS_DIR/commands.md"; exit 1; }
 [[ -d "$ROOT/.agents/skills" ]] || { echo "missing codex skills dir: $ROOT/.agents/skills"; exit 1; }
 for skill_dir in "$ROOT"/.agent/skills/*; do
   skill_name="$(basename "$skill_dir")"
@@ -98,7 +105,7 @@ rg -q '^prefix_rule\("' "$ACTIVE_CODEX_RULES" || { echo "codex rules missing pre
 rg -q "docker system prune -a" "$ACTIVE_CODEX_RULES" || { echo "codex rules missing dangerous command: docker system prune -a"; exit 1; }
 rg -q "chown -R" "$ACTIVE_CODEX_RULES" || { echo "codex rules missing dangerous command: chown -R"; exit 1; }
 
-required_cmds=("/bootstrap" "/brainstorm" "/research" "/spec" "/plan" "/write-plan" "/implement" "/execute-plan" "/review" "/test" "/retro" "/handoff" "/ship")
+required_cmds=("/bootstrap" "/brainstorm" "/research" "/spec" "/plan" "/write-plan" "/implement" "/execute-plan" "/review" "/test" "/test-skeleton" "/retro" "/handoff" "/ship" "/help" "/commands")
 
 for c in "${required_cmds[@]}"; do
   rg -q "^## ${c}$" "$SP/commands.md" || { echo "missing command section: $c"; exit 1; }
@@ -106,7 +113,9 @@ done
 
 # Ensure README references implement module (not only old execute mapping)
 if [[ -f "$ROOT/README.md" ]]; then
-  rg -q "features/implement\.md" "$ROOT/README.md" || { echo "README does not reference implement.md"; exit 1; }
+  if ! rg -q "(features/implement\.md|workflows/implement\.md)" "$ROOT/README.md"; then
+    echo "README does not reference implement.md"; exit 1;
+  fi
 fi
 
 rg -q "CODEX_PLATFORM_GUIDE\.md" "$AGENT_FILE" || { echo "AGENT.md does not reference CODEX_PLATFORM_GUIDE.md"; exit 1; }
