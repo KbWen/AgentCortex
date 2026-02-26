@@ -50,7 +50,7 @@
 - `.agent/rules/engineering_guardrails.md`：工程憲法
 - `.agent/superpowers/commands.md`：可直接貼上的「指令速查」
 - `.agent/superpowers/workflows.md`：舊版工作流總表
-- `.agent/workflows/`：新版單檔工作流程（new-feature / medium-feature / small-fix / docs-update / handoff / other-custom / hotfix / worktree-first）
+- `.agent/workflows/`：新版單檔工作流程與 slash command prompts（new-feature / medium-feature / small-fix / docs-update / handoff / other-custom / hotfix / worktree-first / bootstrap / plan / ...）
 - `.agent/skills/`：新版技能目錄（每項技能使用 `SKILL.md`）
 - `.agents/skills`：每個技能資料夾對應 `.agent/skills/<skill>` 的符號連結（Codex 相容）
 - `.agent/skills/*/agents/openai.yaml`：Codex App UI metadata（display_name / short_description / icon_small）
@@ -72,6 +72,14 @@
 ```bash
 ./.agent/superpowers/validate.sh
 ```
+
+可快速查看可用指令清單：
+
+```bash
+cat .agent/superpowers/commands.md
+```
+
+或在對話輸入 `/commands` 取得可用功能一覽（相容別名）。
 
 確保技能、工作流程與 `AGENTS.md` 結構完整。
 
@@ -256,15 +264,15 @@ chmod +x deploy_brain.sh
 
 | 功能 | 指令 | 對應檔案 | 目的 |
 | :--- | :--- | :--- | :--- |
-| 任務啟動 | `/bootstrap` | `.agent/superpowers/features/bootstrap.md` | 先固定目標、限制與 AC |
-| 頭腦風暴 | `/brainstorm` | `.agent/superpowers/features/brainstorm.md` | 快速發散方案並收斂 |
-| 探索研究 | `/research` | `.agent/superpowers/features/research.md` | 補齊未知與限制 |
-| 規格定義 | `/spec` | `.agent/superpowers/features/spec.md` | 產出可驗收規格 |
-| 任務規劃 | `/plan` | `.agent/superpowers/commands.md` | 先規劃再動手 |
-| 實作執行 | `/implement` | `.agent/superpowers/features/implement.md` | 安全實作、可回退 |
-| 代碼審查 | `/review` | `.agent/superpowers/features/review.md` | 風險與品質檢查 |
-| 回顧精進 | `/retro` | `.agent/superpowers/features/retro.md` | 形成可複用經驗 |
-| 交接摘要 | `/handoff` | `.agent/superpowers/features/handoff.md` | 跨回合／跨人員無痛接手 |
+| 任務啟動 | `/bootstrap` | `.agent/workflows/bootstrap.md` | 先固定目標、限制與 AC |
+| 頭腦風暴 | `/brainstorm` | `.agent/workflows/brainstorm.md` | 快速發散方案並收斂 |
+| 探索研究 | `/research` | `.agent/workflows/research.md` | 補齊未知與限制 |
+| 規格定義 | `/spec` | `.agent/workflows/spec.md` | 產出可驗收規格 |
+| 任務規劃 | `/plan` | `.agent/workflows/plan.md` | 先規劃再動手 |
+| 實作執行 | `/implement` | `.agent/workflows/implement.md` | 安全實作、可回退 |
+| 代碼審查 | `/review` | `.agent/workflows/review.md` | 風險與品質檢查 |
+| 回顧精進 | `/retro` | `.agent/workflows/retro.md` | 形成可複用經驗 |
+| 交接摘要 | `/handoff` | `.agent/workflows/handoff.md` | 跨回合／跨人員無痛接手 |
 
 
 ## 🖥️ Codex Web / App 相容使用

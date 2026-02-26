@@ -31,3 +31,9 @@
 - [ ] `/review` 已完成
 - [ ] `/test` 已執行
 - [ ] `validate.sh` 已通過
+
+## Slash Commands 對應
+
+- Antigravity 會以 `/<command>` 對應 `.agent/workflows/<command>.md`。
+- 例如：`/bootstrap` → `.agent/workflows/bootstrap.md`、`/plan` → `.agent/workflows/plan.md`。
+- `.agent/superpowers/commands.md` 作為相容索引，不作為 Antigravity 首要載入來源。

@@ -1,6 +1,8 @@
 # Superpowers Workflows for Google Antigravity
 
-> Canonical Antigravity workflow cards are in `.agent/workflows/*.md` (machine-readable frontmatter).
+> Canonical Antigravity workflow cards and slash-command prompts are in `.agent/workflows/*.md`.
+> - Workflow cards: `new-feature.md`, `small-fix.md`, `docs-update.md` 等。
+> - Slash commands: `bootstrap.md`, `plan.md`, `implement.md` 等（對應 `/bootstrap`, `/plan`, `/implement`）。
 > This file remains as a narrative guide for human reading and quick copy/paste.
 
 ## 1) 新功能探索（建議）
