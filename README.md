@@ -20,6 +20,7 @@
 
 - Superpowers 專案（理念參考）：<https://github.com/obra/superpowers>
 - 專案導入範例：`docs/PROJECT_EXAMPLES.md`
+- 遷移與整合指南：`docs/guides/migration.md`
 - Token 治理指南：`docs/guides/token-governance.md`
 
 ## 📦 目錄總覽
