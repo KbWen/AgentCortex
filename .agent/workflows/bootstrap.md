@@ -13,9 +13,14 @@ tasks:
 
 1. 先讀 `docs/context/current_state.md`（SSoT）。
 2. 讀取 `docs/context/work/<branch-name>.md`（若不存在則建立）。
-3. 依 `engineering_guardrails.md` 進行任務分類。
+3. **若使用者提供大量原始素材**（對話記錄、規格書、白皮書、技術文件等）：
+   - AI 自行從素材中提取：需求、限制、驗收標準。
+   - 將結構化內容整理存入 `docs/specs/<feature-name>.md`。
+   - 使用者**不需要**事先整理文件，整理是 AI 的責任。
+4. 依 `engineering_guardrails.md` 進行任務分類。
 
 分類：
+
 - `tiny-fix`
 - `behavior-change`
 - `feature`
@@ -25,6 +30,7 @@ tasks:
 ## 2. 建立/更新 Work Log
 
 在 `docs/context/work/<branch-name>.md` 寫入標頭：
+
 - `Classification`
 - `Classified by`
 - `Frozen: true`

@@ -84,7 +84,7 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 
 > 若遇到 403 錯誤，請直接貼上 `.codex/INSTALL.md` 全文。
 
-### 3) 任務開場提示
+### 3) 任務開場提示（從零開始）
 
 ```text
 請先執行 /bootstrap。
@@ -94,6 +94,21 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 驗收：[列 2-3 點可驗收條件]
 ```
 
+### 4) 帶入前期討論素材（已與其他 AI 討論過）
+
+若已與其他 AI 模型完成規格討論、白皮書、技術文件等，不需要先自行整理——直接貼入即可，AI 會自行提取與歸檔。
+
+```text
+請先執行 /bootstrap。
+需求：[一句話總結]
+以下是前期討論的完整內容，請先消化後再開始規劃：
+---
+[直接貼上所有素材：對話記錄、規格書、技術文件等]
+---
+```
+
+> AI 會在 bootstrap 過程中自動：提取需求與限制 → 整理存入 `docs/specs/` → 分類任務 → 輸出標準 bootstrap 結果。
+
 ### 5) 跨回合交接提示（續做任務時使用）
 
 ```text
@@ -102,7 +117,7 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 [貼上 handoff 內容]
 ```
 
-### 4) 用指令驅動開發
+### 6) 用指令驅動開發
 
 1. `/bootstrap`：初始化任務並凍結分類
 2. `/plan`（或 `/write-plan`）：列檔案、步驟、風險、回退
