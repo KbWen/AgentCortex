@@ -13,7 +13,8 @@
 - **Command-first**：用固定指令觸發能力，而不是每次重寫 Prompt。
 
 > [!CAUTION]
-> **DEPRECATION NOTICE**: `.agent/superpowers/` 目錄已正式棄用，相關邏輯已整合至 `.agent/workflows/` 與 `.agent/rules/`。
+> **MIGRATION NOTICE**: 流程定義已遷移至 `.agent/workflows/` 與 `.agent/rules/`；
+> `.agent/superpowers/` 仍保留相容工具（例如 `validate.sh`），請勿誤刪工具腳本。
 
 ## 🔗 參考來源
 
@@ -109,6 +110,13 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 - **一般修補**：`/plan → /implement → /review → /test`
 - **新功能**：`/brainstorm → /spec → /plan → /implement → /review → /test`
 - **緊急修復**：`/research → /plan → /implement → /review → /test`
+
+## 🧠 Token Hygiene（避免小任務放大成本）
+
+- 任務啟動只讀：`docs/context/current_state.md` 與 `docs/context/work/<branch>.md`。
+- 優先精準檢索（`rg <keyword> <path>`），避免全樹掃描。
+- 先用 `/plan` 收斂檔案範圍，再進入 `/implement`，降低來回修正。
+- 小型任務沿用 Fast Lane；若變更開始影響狀態/策略，立即升級流程，避免返工。
 
 ## ✅ 自我驗證
 
