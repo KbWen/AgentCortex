@@ -14,7 +14,7 @@
 
 > [!CAUTION]
 > **MIGRATION NOTICE**: 流程定義已遷移至 `.agent/workflows/` 與 `.agent/rules/`；
-> `.agent/superpowers/` 仍保留相容工具（例如 `validate.sh`），請勿誤刪工具腳本。
+> `.agent/superpowers/` 仍保留相容工具（如 `validate.sh`）與政策定義（如 `policies/state_machine.md`），請勿誤刪。
 
 ## 🔗 參考來源
 
@@ -92,6 +92,14 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 目標檔案：[path1, path2]
 限制：[不可改 API / 不可改 schema]
 驗收：[列 2-3 點可驗收條件]
+```
+
+### 5) 跨回合交接提示（續做任務時使用）
+
+```text
+以下是前一個模型留下的 handoff，請以此為「唯一真實狀態」繼續工作。
+你不得重新設計、不得調整 scope，只能依此 handoff 完成你的任務。
+[貼上 handoff 內容]
 ```
 
 ### 4) 用指令驅動開發
