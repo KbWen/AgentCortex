@@ -5,18 +5,21 @@
 ## 範例 A：Node.js API 專案
 
 ### 情境
+
 - 需求：新增 `POST /todos`，含輸入驗證與單元測試。
 - 技術：Express + Vitest。
 
 ### 操作流程
 
 1. 部署模板
+
 ```bash
 ./deploy_brain.sh .
 ./.agent/superpowers/validate.sh
 ```
 
-2. 開場提示（貼給 Agent）
+1. 開場提示（貼給 Agent）
+
 ```text
 請先執行 /bootstrap。
 需求：新增 POST /todos API。
@@ -28,7 +31,8 @@
 3) 所有測試通過
 ```
 
-3. 依序執行
+1. 依序執行
+
 - `/brainstorm`
 - `/write-plan`
 - `/execute-plan`
@@ -37,6 +41,7 @@
 - `/ship`
 
 ### 建議驗證命令
+
 ```bash
 npm test
 npm run lint
@@ -47,18 +52,21 @@ npm run lint
 ## 範例 B：Python Backend 專案
 
 ### 情境
+
 - 需求：新增 `calculate_discount` 邏輯，支援邊界條件。
 - 技術：FastAPI + pytest。
 
 ### 操作流程
 
 1. 部署模板
+
 ```bash
 ./deploy_brain.sh .
 ./.agent/superpowers/validate.sh
 ```
 
-2. 開場提示（貼給 Agent）
+1. 開場提示（貼給 Agent）
+
 ```text
 請先執行 /bootstrap。
 需求：新增 calculate_discount 邏輯。
@@ -70,7 +78,8 @@ npm run lint
 3) pytest 全數通過
 ```
 
-3. 依序執行
+1. 依序執行
+
 - `/research`
 - `/spec`
 - `/plan`
@@ -80,6 +89,7 @@ npm run lint
 - `/handoff`
 
 ### 建議驗證命令
+
 ```bash
 pytest -q
 ruff check .
@@ -92,3 +102,8 @@ ruff check .
 - Codex Web：每次新需求開新對話，先貼 `/bootstrap` 範本。
 - Codex App：每次提交前固定跑 `./.agent/superpowers/validate.sh`。
 - Google Antigravity：優先使用 `/write-plan` + `/execute-plan`，避免長 prompt 漂移。
+
+## 延伸閱讀
+
+- [開發策略手冊 (TDD / 舊專案接管)](./guides/development-strategies.md)
+- [遷移與整合指南](./guides/migration.md)
