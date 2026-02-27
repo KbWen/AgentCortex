@@ -1,10 +1,10 @@
 #!/bin/bash
-# AI Brain Deployer v3.5.0 (vNext Architecture Edition)
+# AI Brain Deployer v3.5.1 (Full Platform Support Edition)
 
 TARGET="${1:-.}"
 
 if [ "$TARGET" == "--help" ] || [ "$TARGET" == "-h" ]; then
-  echo "Usage: ./deploy_brain.sh <target_path>"
+  echo "Usage: ./deploy_brain.sh <target_path> [--force]"
   echo ""
   echo "Options:"
   echo "  --force    Overwrite existing files (default: skip existing)"
@@ -16,22 +16,30 @@ if [ "$2" == "--force" ]; then
   FORCE=true
 fi
 
-CP_FLAG="-n"  # no-clobber by default (don't overwrite existing)
+CP_FLAG="-n"  # no-clobber by default
 if [ "$FORCE" == true ]; then
   CP_FLAG=""
   echo "⚠️  Force mode: existing files will be overwritten."
 fi
 
-echo "🚀 Deploying AI Brain v3.5.0 (vNext Architecture Edition) to $TARGET..."
+echo "🚀 Deploying AI Brain v3.5.1 (Full Platform Support) to $TARGET..."
 
 # ============================================================
-# 1. Create vNext directory structure
+# 1. Create directory structure
 # ============================================================
+# Native Agent & vNext Structure
 mkdir -p "$TARGET/.agent/rules"
 mkdir -p "$TARGET/.agent/workflows"
 mkdir -p "$TARGET/.agent/skills"
 mkdir -p "$TARGET/.agent/superpowers/features"
 mkdir -p "$TARGET/.agent/superpowers/policies"
+
+# Platform Entry Points
+mkdir -p "$TARGET/.antigravity"          # Google Antigravity
+mkdir -p "$TARGET/codex/rules"           # Codex Web
+mkdir -p "$TARGET/.agents/skills"        # Codex App (usually matches .agent)
+
+# Git & Task Context
 mkdir -p "$TARGET/.github/ISSUE_TEMPLATE"
 mkdir -p "$TARGET/docs/context/work"
 mkdir -p "$TARGET/docs/context/archive"
@@ -41,17 +49,24 @@ mkdir -p "$TARGET/docs/guides"
 mkdir -p "$TARGET/.codex"
 
 # ============================================================
-# 2. Deploy core governance files (cp -n = skip if exists)
+# 2. Deploy core governance files
 # ============================================================
+# Entry points (plural AGENTS.md preferred for multi-platform)
 cp $CP_FLAG AGENTS.md "$TARGET/"
 cp $CP_FLAG README.md "$TARGET/"
 cp $CP_FLAG MODEL_GUIDE.md "$TARGET/"
+
+# Platform Rules
+[ -d .antigravity ] && cp $CP_FLAG .antigravity/rules.md "$TARGET/.antigravity/"
+[ -d codex ] && cp $CP_FLAG codex/rules/default.rules "$TARGET/codex/rules/"
 
 # .agent core
 cp $CP_FLAG .agent/rules/engineering_guardrails.md "$TARGET/.agent/rules/"
 [ -f .agent/AGENT.md ] && cp $CP_FLAG .agent/AGENT.md "$TARGET/.agent/"
 
-# vNext workflows (new)
+# ============================================================
+# 3. Deploy vNext workflows
+# ============================================================
 for f in .agent/workflows/*.md; do
   [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/.agent/workflows/"
 done
@@ -68,51 +83,31 @@ done
 [ -f .agent/superpowers/validate.sh ] && cp $CP_FLAG .agent/superpowers/validate.sh "$TARGET/.agent/superpowers/" && chmod +x "$TARGET/.agent/superpowers/validate.sh"
 
 # ============================================================
-# 3. Deploy documentation
+# 4. Deploy documentation
 # ============================================================
-# Context templates
 cp $CP_FLAG docs/context/current_state.md "$TARGET/docs/context/"
-
-# Guides
-for f in docs/guides/*.md; do
-  [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/guides/"
-done
-
-# ADR
-for f in docs/adr/*.md; do
-  [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/adr/"
-done
-
-# Reference docs
+for f in docs/guides/*.md; do [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/guides/"; done
+for f in docs/adr/*.md; do [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/adr/"; done
 for f in docs/AGENT_PHILOSOPHY.md docs/TESTING_PROTOCOL.md docs/CODEX_PLATFORM_GUIDE.md docs/PROJECT_EXAMPLES.md; do
   [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/"
 done
 
-# GitHub templates
-[ -f .github/ISSUE_TEMPLATE/agent_issue.md ] && cp $CP_FLAG .github/ISSUE_TEMPLATE/agent_issue.md "$TARGET/.github/ISSUE_TEMPLATE/"
-[ -f .github/PULL_REQUEST_TEMPLATE.md ] && cp $CP_FLAG .github/PULL_REQUEST_TEMPLATE.md "$TARGET/.github/"
-
-# Codex
-[ -f .codex/INSTALL.md ] && cp $CP_FLAG .codex/INSTALL.md "$TARGET/.codex/"
-
 # ============================================================
-# 4. Ensure .gitkeep for empty dirs
+# 5. Symbolic links / Cross-Platform Skills
 # ============================================================
-touch "$TARGET/docs/context/work/.gitkeep"
-touch "$TARGET/docs/context/archive/.gitkeep"
-touch "$TARGET/docs/specs/.gitkeep"
+# Ensure .agents/skills points to .agent/skills (if possible, or just copy)
+# In many environments (Windows/Codex), we just ensure both exist
+touch "$TARGET/.agent/skills/.gitkeep"
+touch "$TARGET/.agents/skills/.gitkeep"
 
 echo ""
-echo "✅ AI Brain v3.5.0 (vNext Architecture Edition) deployed successfully!"
+echo "✅ AI Brain v3.5.1 deployed successfully!"
 echo ""
-echo "📦 Structure created:"
-echo "   .agent/workflows/    ← vNext command workflows"
-echo "   .agent/rules/        ← Engineering guardrails"
-echo "   docs/context/        ← SSoT + work logs"
-echo "   docs/specs/          ← AI-generated specifications"
-echo "   docs/guides/         ← Token governance, migration guide"
+echo "📦 Platform Entry Points Ready:"
+echo "   .antigravity/rules.md  ← Google Antigravity"
+echo "   codex/rules/           ← Codex Web/App"
+echo "   AGENTS.md              ← Cross-platform entry"
 echo ""
 echo "💡 Next steps:"
-echo "   1. Tell your AI: '請執行 /bootstrap' to start"
-echo "   2. See docs/guides/migration.md for upgrade instructions"
-echo "   3. Existing files were NOT overwritten (use --force to override)"
+echo "   1. Tell AI: '請執行 /bootstrap' to start"
+echo "   2. Refer to docs/guides/migration.md for upgrades"
