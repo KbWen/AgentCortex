@@ -1,4 +1,4 @@
-# AI Brain OS v3.5.0（vNext Architecture Edition）
+# AI Brain OS v3.5.2（vNext Architecture Edition）
 
 > **從「流程驅動」進化到「自我管理」的 Agent 憲法架構。**
 
@@ -51,9 +51,9 @@
 
 ## 🔀 Antigravity / Codex 路徑差異
 
-- Antigravity 主要讀取：`.agent/skills`
-- Codex 主要掃描：`.agents/skills`
-- 本專案以符號連結讓兩者指向同一份技能來源，避免雙份維護。
+- Antigravity 主要讀取：`.agent/skills` (Native Agent 核心能力)
+- Codex 主要掃描：`.agents/skills` (Codex App 專屬能力)
+- **注意**：兩者目錄獨立存在以適應不同平台配置。若需共用，請根據需求手動鏡像或建立軟連結。
 
 ## 🛡️ 規則檔與安全邊界
 

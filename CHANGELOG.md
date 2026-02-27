@@ -1,5 +1,31 @@
 # Changelog
 
+## [3.5.2] - 2026-02-27
+
+### ⚖️ Governance Refinement & Directory Polish
+
+- **指令語義優化**: 修正 `/test-skeleton` 的啟動狀態門檻為 `IMPLEMENTABLE`；為 `/implement` 與 `/execute-plan` 加入硬性進入條件提示（state machine 對齊）。
+- **平台技能隔離**: 更新 `AGENTS.md` 與 `README.md`，明確區分 `.agent/skills` 與 `.agents/skills` 為平台獨立目錄，取消自動符號連結以增加配置彈性。
+- **Token 反思機制**: 在 `/handoff` 工作流加入 `Token & Efficiency Reflection` 區塊，落實自我管理哲學。
+- **清理修復**: 移除了已棄用的 `.agent/workflows/` 冗餘檔案（`update-docs.md`, `docs-update.md`）。
+
+## [3.5.1] - 2026-02-27
+
+### 🛠️ Directory Structure & Multi-Platform Support
+
+- **部署升級**: `deploy_brain.sh` 升級為 v3.5.1，全面支援 vNext 目錄結構。
+- **文件策略修復**: 修正 `AGENTS.md` 中的「盲目掃描」反模式，改為基於 `current_state.md` 的精準讀取。
+- **Token 極致壓縮**: `rules.md` 與 `AGENTS.md` 完成大幅度內縮優化，節省每回合啟動開銷。
+
+## [3.5.0] - 2026-02-27
+
+### 🚀 vNext Self-Managed Architecture Release
+
+- **SSoT 狀態模型**: 導入 `docs/context/current_state.md` 作為唯一真實來源，任務隔離於 `docs/context/work/` 目錄。
+- **工作流全面遷移**: 所有 superpowers 遷移至 `.agent/workflows/`，對齊 Google Antigravity 原生指令。
+- **任務分類凍結**: `/bootstrap` 現在強制執行任務分類並凍結，防止開發路徑偏離。
+- **遷移工具**: 新增 `docs/guides/migration.md`，支援從舊版 v3.0 無縫升級。
+
 ## [3.4.0] - 2026-02-23
 
 ### 🚀 Release v3.4.0 (Version Sync + Practical Examples)
@@ -8,7 +34,6 @@
 - **實戰範例**: 新增 `docs/PROJECT_EXAMPLES.md`，提供 Node.js（Express + Vitest）與 Python（FastAPI + pytest）導入流程。
 - **部署擴充**: `deploy_brain.sh` 現在會部署 `docs/PROJECT_EXAMPLES.md`。
 - **驗證強化**: `validate.sh` 新增 `PROJECT_EXAMPLES.md` 存在檢查，並驗證 README 已連結範例文件。
-
 
 ## [3.3.1] - 2026-02-23
 
