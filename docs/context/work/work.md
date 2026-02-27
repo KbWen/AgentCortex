@@ -16,6 +16,7 @@
 
 ## Done
 
+- 補充 `docs/CODEX_PLATFORM_GUIDE.md` 的三平台檔案放置規範（`.agent/skills` 與 `.agents/skills` 對齊）與最小檢查。
 - 完成 `current_state.md` 實體化，移除 placeholder。
 - 建立 canonical state machine（含唯讀指令、legacy mapping）。
 - 更新 `/plan`、`/test-skeleton`、`/help`、`/handoff`、`/ship` 工作流規範。

@@ -6,6 +6,18 @@
 - Codex Web 版
 - Codex App（桌面版）
 
+## 檔案放置規範（Codex Web／Codex App／Google Antigravity）
+
+為避免流程複雜化，三平台統一使用同一套技能來源與鏡像路徑：
+
+1. Canonical skills source：`.agent/skills/<skill>/SKILL.md`（Antigravity 主要讀取路徑）。
+2. Codex 相容路徑：`.agents/skills/<skill>/SKILL.md`（需與 `.agent/skills` 維持一對一對齊）。
+3. 平台流程文件：`.agent/workflows/*.md` 與 `.agent/rules/*.md`，避免在多處維護重複版本。
+
+最小檢查建議：
+- 執行 `./.agent/superpowers/validate.sh`。
+- 確認 `AGENTS.md` 仍同時宣告 `.agent/skills` 與 `.agents/skills`。
+
 ## 統一狀態機（兩平台共用）
 
 請以 canonical state machine 為準：
