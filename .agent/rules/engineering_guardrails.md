@@ -91,12 +91,42 @@ Non-negotiable principles for agent-driven development
 
 ---
 
-## 9. Output Expectations
+---
 
-每次執行至少包含：
+## 10. vNext Governance & Classification
 
-1. 問題理解摘要
-2. 設計或修正策略
-3. 實作步驟或 Patch
-4. 驗證方式
-5. 注意事項 / 已知限制
+### 10.1 Classification Escalation Rules
+
+| 觸發條件 | 最低分類 |
+|---|---|
+| 觸及 `exports` / public API / function signature | `behavior-change` |
+| 觸及 >1 module 的 import graph | `feature` |
+| 新增目錄 | `feature` |
+| 改變資料流 / 系統邊界 | `architecture-change` |
+| 改變 config 預設值影響使用者行為 | `behavior-change` |
+
+### 10.2 Gate Type & Evidence Standards
+
+| Category | Mandatory Gates | 最低 Evidence 標準 |
+|---|---|---|
+| **tiny-fix** | classify + inline plan + inline evidence | diff summary + one-line verification |
+| behavior-change | bootstrap + spec + plan + review + regression evidence + handoff | before/after behavior + test output |
+| feature | bootstrap + spec + plan + review + test + handoff | test output + 可驗證 demo 步驟 |
+| architecture-change | bootstrap + ADR + spec + plan + migration/rollback + handoff | migration plan + rollback verification |
+| hotfix | systematic debugging + evidence + retro + handoff | root cause + fix verification + retro |
+
+### 10.3 Tiny-Fix Fast-Path
+
+- 定義：修改檔案 < 3 且「無語義變更」（typo, docs, non-functional config）。
+- 流程：`classify → one-line scope → do → inline evidence → done`。
+- 豁免：完整 `/bootstrap`, `/handoff`, `/write-plan`, Work Log。
+
+### 10.4 Handoff/Ship Hard Gate
+
+- 非 `tiny-fix` 任務，未完成 `/handoff` 不得宣告完成。
+- `/ship` 前必須檢查 handoff references 最低要求：
+  1) 至少 1 個 `docs/` 文件
+  2) 至少 1 個 code path
+  3) 對應 work log 路徑
+- 若條件不足，必須拒絕 `/ship` 並列出缺失項目。
+
