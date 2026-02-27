@@ -8,11 +8,11 @@
 - 正確性優先，禁止未驗證行為直接宣稱完成。
 - 優先小步且可回退的變更，避免未要求的重構。
 - 每次變更需可回退。
-- 優先讀取文檔：在進行規劃與實作前，必須執行 `ls -R docs/` 或搜尋相關文檔以確保符合專案規範。
+- 優先讀取文檔：在進行規劃與實作前，優先查閱 `docs/context/current_state.md` 與任務對應的 Work Log，**禁止盲目執行目錄搜索**以節省 Token。
 
 ## 文檔探索協議 (Document Discovery Protocol)
 
-1. **強制檢索**：AI 在啟動新任務（/bootstrap 或 /plan）時，必須主動掃描 `docs/` 與 `.agent/` 目錄。
+1. **精準檢索**：AI 在啟動新任務（/bootstrap 或 /plan）時，不應掃描整棵 `docs/` 目錄樹，需依據 `current_state.md` 的指引精準查閱文檔。
 2. **優先級**：專案專屬文檔 (Project-Specific Docs) 優先權高於 AI 的通用工程知識。
 3. **證據引用**：若文檔中有相關規範，規劃中必須標註引用來源（例如：`Ref: docs/specs/api.md`）。
 
