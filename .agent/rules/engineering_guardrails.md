@@ -120,3 +120,13 @@ Non-negotiable principles for agent-driven development
 - 定義：修改檔案 < 3 且「無語義變更」（typo, docs, non-functional config）。
 - 流程：`classify → one-line scope → do → inline evidence → done`。
 - 豁免：完整 `/bootstrap`, `/handoff`, `/write-plan`, Work Log。
+
+### 10.4 Handoff/Ship Hard Gate
+
+- 非 `tiny-fix` 任務，未完成 `/handoff` 不得宣告完成。
+- `/ship` 前必須檢查 handoff references 最低要求：
+  1) 至少 1 個 `docs/` 文件
+  2) 至少 1 個 code path
+  3) 對應 work log 路徑
+- 若條件不足，必須拒絕 `/ship` 並列出缺失項目。
+
