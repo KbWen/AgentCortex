@@ -1,6 +1,27 @@
-# AI Brain OS v3.4.1（Antigravity Superpowers Edition）
+# AI Brain OS v3.5.0（vNext Architecture Edition）
 >
-> **把 Agent 從「能用」提升到「可編排、可重複、可擴充」的工作流模板。**
+> **從「流程驅動」進化到「自我管理」的 Agent 憲法架構。**
+
+## 🎯 專案定位
+
+此版本導入 vNext 自我管理架構，對齊 Google Antigravity / Codex Web / Codex App：
+
+- **Self-Managed**：AI 自行分類任務並套用對應閘門。
+- **Parallel-Safe State**：全域狀態 (`current_state.md`) 與任務狀態 (`work/`) 分離。
+- **Token optimized**：針對不同風險等級自動調整治理強度。
+- **Context Loss Safety**：強制執行 `/handoff` 以確保長週期任務不因上下文遺失而中斷。
+
+---
+
+> [!CAUTION]
+> **DEPRECATION NOTICE**: `.agent/superpowers/` 目錄已正式棄用，相關邏輯已整合至 `.agent/workflows/` 與 `.agent/rules/`。
+
+---
+
+## 🔗 參考來源
+
+- Superpowers 專案（理念參考）：<https://github.com/obra/superpowers>
+- 專案導入範例：`docs/PROJECT_EXAMPLES.md`
 
 ## 🎯 專案定位
 

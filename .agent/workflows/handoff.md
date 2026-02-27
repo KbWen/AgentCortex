@@ -1,25 +1,22 @@
----
-name: handoff
-description: 跨 Agent / 人類交接流程，降低重工並保留決策脈絡。
-tasks:
-  - handoff
-  - bootstrap
-  - plan
----
+# /handoff
 
-# Handoff Workflow
+## 1. 執行時機
 
-1. `/handoff`：輸出 Done / In Progress / Blockers / Next / Risks。
-2. 接手方執行 `/bootstrap`：重建目標、限制、AC 與上下文假設。
-3. 接著執行 `/plan`：確認續作範圍、驗證方式與回退點，避免重工。
+每一手 Agent 在結束或暫停前必須執行，`tiny-fix` 除外。
 
-## /handoff Prompt
+## 2. 平台特化 (Platform Specialization)
 
-請產出交接摘要，格式包含：
+- **Codex Web**: 必須將摘要完整「印在對話框」中，並提示人類保存。
+- **Antigravity / Codex App**: 直接將摘要更新至 `docs/context/work/<branch-name>.md`。
 
-- Done
-- In Progress
-- Blockers
-- Next
-- Risks
-- **References**: 附上本次任務相關的 `docs/` 連結或 ADR ID。
+## 3. 輸出區塊 (必填)
+
+- **Done**: 已完成的具體變更。
+- **In Progress**: 進行中但未完成的部分。
+- **Blockers**: 阻礙進度的因素。
+- **Next**: 接手 Agent 應執行的下一步。
+- **Risks**: 已知風險與回退方案。
+- **References**: 本次任務相關的 `docs/` 連結、ADR 或 Context 檔案路徑。
+
+> [!TIP]
+> **Token Optimization**: 每區塊建議不超過 5 個 bullet points，禁止複製粘貼完整代碼 diff。

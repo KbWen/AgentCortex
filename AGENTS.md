@@ -39,20 +39,31 @@
 - 若偵測敏感資訊，必須遮蔽後再輸出。
 - 涉及資料操作時使用可追溯、可驗證方式。
 
-## 平台相容路徑
+## 狀態模型 (vNext State Model)
 
-- Antigravity：`.agent/skills`
-- Codex：`.agents/skills`（本專案以符號連結對應）
+1. **全域唯讀狀態**：`docs/context/current_state.md` 為唯一真值來源 (SSoT)，用於讀取專案目標、憲法與系統地圖。
+2. **任務隔離狀態**：每一分支/任務必須擁有獨立 Work Log：`docs/context/work/<branch-name>.md`。
+3. **讀取優先級**：啟動前必須優先讀取 `current_state.md` 與對應的 Work Log，而非盲目搜索 `docs/`。
+
+## 多 Agent 協作規則 (Multi-Agent Rules)
+
+1. **Classification Freeze**：任務分類在 `/bootstrap` 階段凍結並寫入 Work Log 標頭，後續 Agent 不得擅自重分類。
+2. **Write Isolation**：Agent 僅能寫入自有的 Work Log。僅在 `/ship` 或特定「地圖更新」任務中可更新 `current_state.md`。
+3. **Continuation Protocol**：接手任務時，若 Work Log 資訊不足以重建 context，必須先補完 Work Log 才可繼續實作。
 
 ## 交付與驗證
 
-- 每次啟動任務前，必須先執行 `find docs/` 檢索相關規範。
-- 完成前執行 `./.agent/superpowers/validate.sh`。
-- 回覆需包含：變更摘要、驗證命令與結果、已知限制。
+- **Evidence Requirement**：禁止產出不可驗證的完成聲明，必須附帶證據（如測試輸出、diff 摘要）。
+- **Handoff Gate**：非 `tiny-fix` 任務必須執行 `/handoff` 並存檔，確保跨回合安全。
+- 回覆需包含：變更摘要、驗證命令與結果。
+
+## 平台相容路徑 (Platform Compatible Paths)
+
+- Antigravity：`.agent/skills`
+- Codex：`.agents/skills`（本專案以符號連結對應）
 
 ## 整合來源
 
 - `.agent/AGENT.md`
 - `.agent/rules/engineering_guardrails.md`
-- `.agent/superpowers/policies/methodology.md`
-- `.agent/superpowers/policies/state_machine.md`
+- `.agent/rules/rules.md`
