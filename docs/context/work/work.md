@@ -16,6 +16,7 @@
 
 ## Done
 
+- 針對「降低讀取文件 token 消耗」補強治理條款：新增架構精神優先原則與 release 後完整檢查清單。
 - 補充 `docs/CODEX_PLATFORM_GUIDE.md` 的三平台檔案放置規範（`.agent/skills` 與 `.agents/skills` 對齊）與最小檢查。
 - 完成 `current_state.md` 實體化，移除 placeholder。
 - 建立 canonical state machine（含唯讀指令、legacy mapping）。
@@ -24,7 +25,7 @@
 
 ## In Progress
 
-- 執行 validate 與最終檢查，準備 commit 與 PR。
+- 完成 release 後巡檢與證據整理，準備 commit 與 PR。
 
 ## Blockers
 
