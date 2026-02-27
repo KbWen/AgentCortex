@@ -1,28 +1,7 @@
 #!/bin/bash
-# AI Brain Deployer v3.5.1 (Full Platform Support Edition)
-
-TARGET="${1:-.}"
-
-if [ "$TARGET" == "--help" ] || [ "$TARGET" == "-h" ]; then
-  echo "Usage: ./deploy_brain.sh <target_path> [--force]"
-  echo ""
-  echo "Options:"
-  echo "  --force    Overwrite existing files (default: skip existing)"
-  exit 0
-fi
-
-FORCE=false
-if [ "$2" == "--force" ]; then
-  FORCE=true
-fi
-
-CP_FLAG="-n"  # no-clobber by default
-if [ "$FORCE" == true ]; then
-  CP_FLAG=""
-  echo "⚠️  Force mode: existing files will be overwritten."
-fi
-
-echo "🚀 Deploying AI Brain v3.5.1 (Full Platform Support) to $TARGET..."
+# AI Brain Deployer v3.5.2 (Full Platform Support Edition)
+...
+echo "🚀 Deploying AI Brain v3.5.2 (Full Platform Support) to $TARGET..."
 
 # ============================================================
 # 1. Create directory structure

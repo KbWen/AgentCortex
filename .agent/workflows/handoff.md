@@ -33,8 +33,13 @@ tasks:
 ## 4. References 最低要求（硬性）
 
 必須同時包含：
+
 1. ≥1 個 `docs/` 文件路徑。
 2. ≥1 個 code file path。
 3. 對應 Work Log 路徑（`docs/context/work/<branch-name>.md`）。
 
 未達最低要求時，禁止宣告完成與 `/ship`。
+
+## 5. Token & Efficiency Reflection (Self-Reflection)
+
+若本任務顯得異常漫長或 Token 消耗過高，請簡述原因（例如「需求模糊」、「在某 Bug 上循環」）。這有助於持續優化治理效率。

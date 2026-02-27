@@ -28,5 +28,6 @@
 
 ## 平台路徑
 
-- Antigravity：`.agent/skills/`
-- Codex：`.agents/skills/`
+- Antigravity：`.agent/skills/` (Primary skills for Native Agent)
+- Codex：`.agents/skills/` (Dedicated skills for Codex App)
+- 注意：兩者獨立存在以適應不同平台配置。若需共用請手動鏡像。
