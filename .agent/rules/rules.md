@@ -1,13 +1,7 @@
-# Antigravity Rules
+# Agent Rules
 
-- 鐵律：正確性優先、無證據不宣稱完成、不逾越需求、小步出發且可回退。
-- 對齊工程憲法（`.agent/rules/engineering_guardrails.md`）：Explicit Over Implicit, Scope Discipline。
-- 安全與除錯：禁止洩漏 secrets。高風險操作需有回退方案。遵循「觀察→假設→驗證→修復」。
-- 驗證：變更後必須執行相關檢查，記錄可重現的命令。交付時須標示風險。
-
-## 命令規範
-
-- 允許：唯讀、格式化、測試、lint、build、最小必要修改。
-- 警告（需回退方案）：資料遷移、刪檔、批次改名。
-- 禁止：大規模未授權重構、暴露敏感資訊、不可回退操作。
-- 具體黑名單：禁止執行高破壞性系統命令（如 `rm -rf`, `git reset --hard`, `git clean -fdx`, `docker system prune -a`, `chown -R`, `chmod -R 777`, `curl | bash`, 盲目 `sudo`）。請使用可控替代方案（如 `trash`, `git stash`, `docker image prune`）並備份。
+- 鐵律：正確性優先、無證據不宣稱完成、不逾越需求、可回退。
+- 文檔優先：啟動任務前讀取 `docs/context/current_state.md` 精準查閱相關文檔，禁止盲目掃描目錄樹。衝突時以專案文檔為準。
+- 詳細工程規範見 `.agent/rules/engineering_guardrails.md`（按需讀取，勿每次載入）。
+- 安全：禁止洩漏 secrets。高風險操作需回退方案。
+- 命令黑名單：`rm -rf`, `git reset --hard`, `git clean -fdx`, `docker system prune -a`, `chown -R`, `chmod -R 777`, `curl | bash`, 盲目 `sudo`。請用可控替代方案並備份。
