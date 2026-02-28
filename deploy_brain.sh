@@ -93,13 +93,15 @@ if ! grep -q "# AI Brain OS" "$GITIGNORE"; then
     echo "📝 Adding AI Brain OS patterns to .gitignore..."
     cat <<EOT >> "$GITIGNORE"
 
-# AI Brain OS - Local Context & Work Logs
-docs/context/work/
-docs/context/archive/
-docs/context/current_state.md
-.agent/skills/
-.agents/skills/
+# AI Brain OS - Agent System & Local Context
+.agent/
+.agents/
+.antigravity/
 .codex/
+codex/
+AGENTS.md
+MODEL_GUIDE.md
+docs/context/
 EOT
 else
     echo "ℹ️ AI Brain OS patterns already present in .gitignore."
