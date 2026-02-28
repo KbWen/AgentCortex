@@ -22,6 +22,7 @@
   - `/ship`：彙整提交證據與更新/歸檔狀態
 - **References**:
   - `AGENTS.md`
+  - `MODEL_GUIDE.md` (模型能力與切換邊界策略)
   - `.agent/rules/engineering_guardrails.md`
   - `.agent/superpowers/policies/state_machine.md`
   - `docs/CODEX_PLATFORM_GUIDE.md`
