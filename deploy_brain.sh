@@ -79,13 +79,42 @@ done
 touch "$TARGET/.agent/skills/.gitkeep"
 touch "$TARGET/.agents/skills/.gitkeep"
 
+# ============================================================
+# 6. Update .gitignore
+# ============================================================
+GITIGNORE="$TARGET/.gitignore"
 echo ""
-echo "✅ AI Brain v3.5.1 deployed successfully!"
+echo "🔍 Checking .gitignore..."
+if [ ! -f "$GITIGNORE" ]; then
+    touch "$GITIGNORE"
+fi
+
+if ! grep -q "# AI Brain OS" "$GITIGNORE"; then
+    echo "📝 Adding AI Brain OS patterns to .gitignore..."
+    cat <<EOT >> "$GITIGNORE"
+
+# AI Brain OS - Local Context & Work Logs
+docs/context/work/
+docs/context/archive/
+docs/context/current_state.md
+.agent/skills/
+.agents/skills/
+.codex/
+EOT
+else
+    echo "ℹ️ AI Brain OS patterns already present in .gitignore."
+fi
+
+echo ""
+echo "✅ AI Brain v3.5.2 deployed successfully!"
 echo ""
 echo "📦 Platform Entry Points Ready:"
 echo "   .antigravity/rules.md  ← Google Antigravity"
 echo "   codex/rules/           ← Codex Web/App"
 echo "   AGENTS.md              ← Cross-platform entry"
+echo ""
+echo "📝 Git Safety:"
+echo "   AI-specific temporal files have been added to .gitignore."
 echo ""
 echo "💡 Next steps:"
 echo "   1. Tell AI: '請執行 /bootstrap' to start"

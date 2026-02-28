@@ -77,6 +77,9 @@
 ./deploy_brain.sh /path/to/your-project
 ```
 
+> [!TIP]
+> 部署腳本會自動將 Agent 相關暫存檔（如 `work/`, `skills/` 等）加入 `.gitignore`，防止其被上傳到遠端倉庫。
+
 ### 2) Codex / Antigravity 開場
 
 ```text
