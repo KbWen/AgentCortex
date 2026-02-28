@@ -25,7 +25,6 @@
 - 工作流程：`.agent/workflows/*.md`
 - 工程憲法：`.agent/rules/engineering_guardrails.md`
 - 平台指南：`docs/CODEX_PLATFORM_GUIDE.md`
-- 模型策略：`MODEL_GUIDE.md` (人類與 AI 能力邊界參考)
 
 ## 平台路徑
 
