@@ -52,7 +52,7 @@ AI 會自動執行：
 
 ---
 
-## 2. 專案 B：開發中導入 (Mid-task Integration)
+## 2. 專案 B：混亂舊專案 / 開發中導入 (Legacy Project / Mid-task Integration)
 
 重點：**「Catch-up（追趕），AI 做整理，人類不需要預處理」**。
 

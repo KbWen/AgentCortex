@@ -35,6 +35,7 @@
 
 - `/brainstorm`
 - `/write-plan`
+- `/test-skeleton` (TDD 推薦：實作前先出測試藍圖)
 - `/execute-plan`
 - `/review`
 - `/test`
@@ -105,5 +106,5 @@ ruff check .
 
 ## 延伸閱讀
 
-- [開發策略手冊 (TDD / 舊專案接管)](./guides/development-strategies.md)
-- [遷移與整合指南](./guides/migration.md)
+- [遷移與整合指南 (舊專案接管 / 導入教學)](./guides/migration.md)
+- [Token 治理指南](./guides/token-governance.md)
