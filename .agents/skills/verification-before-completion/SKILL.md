@@ -1,42 +1,42 @@
 ---
 name: verification-before-completion
-description: 以「無證據不得宣稱完成」為鐵律，在宣告完成前執行 Gate Function 驗證。
+description: Enforce "no evidence = no completion"; run Gate Function verification before declaring done.
 ---
 
-# Verification Before Completion（完成前驗證）
+# Verification Before Completion
 
-## 概述
+## Overview
 
-任何「已完成」聲明都必須可被證據支持。這個技能提供一個完成前 Gate Function，確保結果可重現、可追溯、可交付。
+Any "completed" statement MUST be supported by evidence. This skill provides a pre-completion Gate Function, ensuring results are reproducible, traceable, and deliverable.
 
-## 鐵律
+## Ironclad Rules
 
-- **無證據不得宣稱完成（No evidence, no completion claim）**。
-- 證據需能被他人重跑，不接受口頭描述取代。
-- 測試/檢查失敗時，狀態必須回到 in-progress。
+- **No evidence = no completion claim.**
+- Evidence MUST be reproducible by others; verbal descriptions are NOT accepted.
+- If tests/checks fail, the status MUST revert to in-progress.
 
-## 使用時機
+## When to Use
 
-- 任務準備進入 `/ship`。
-- 需要提交 PR 或交接前。
-- 高風險改動（資料、權限、核心流程）完成後。
+- Tasks are preparing to enter `/ship`.
+- Before submitting PRs or handing off work.
+- After completing high-risk changes (data, permissions, core flows).
 
-## Gate Function（完成閘門）
+## Gate Function
 
-1. **Scope Gate**：確認變更只涵蓋已同意範圍。
-2. **Quality Gate**：執行必要測試與靜態檢查。
-3. **Evidence Gate**：整理可重現證據（指令、輸出、版本）。
-4. **Risk Gate**：確認回退策略與已知風險。
-5. **Communication Gate**：輸出完成摘要（變更、驗證、限制）。
+1. **Scope Gate**: Confirm changes only cover the agreed scope.
+2. **Quality Gate**: Execute required tests and static checks.
+3. **Evidence Gate**: Compile reproducible evidence (commands, outputs, versions).
+4. **Risk Gate**: Confirm rollback strategies and known risks.
+5. **Communication Gate**: Output a completion summary (changes, validation, constraints).
 
-## 最低證據清單
+## Minimum Evidence Checklist
 
-- 至少一組與本次改動直接相關的測試/檢查。
-- 具體執行命令與結果（成功/失敗/警告）。
-- 如有未完成項，需明確標示與後續處理建議。
+- At least one set of tests/checks directly related to this change.
+- Specific execution commands and results (Success/Failure/Warning).
+- If there are unfinished items, explicitly mark them with follow-up suggestions.
 
-## 常見錯誤
+## Common Mistakes
 
-- 僅說「應該可用」但無任何輸出證據。
-- 測試只跑 happy path，缺回歸或邊界案例。
-- 把舊測試結果當成新變更證據。
+- Claiming "it should work" without any output evidence.
+- Testing only the happy path, missing regressions or edge cases.
+- Treating old test results as evidence for new changes.

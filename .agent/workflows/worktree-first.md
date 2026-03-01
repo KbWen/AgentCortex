@@ -1,6 +1,6 @@
 ---
 name: worktree-first
-description: 以 Git worktree 為優先的分支與工作目錄治理流程。
+description: Git worktree-first branching and workspace governance.
 tasks:
   - using-git-worktrees
   - plan
@@ -11,8 +11,9 @@ tasks:
 
 # Worktree-first Workflow
 
-1. 先套用 `skills/using-git-worktrees` 建立獨立工作目錄。
-2. 在新 worktree 執行 `/plan`，明確變更範圍。
-3. `/implement`：於 worktree 內完成實作與提交。
-4. `/review` + `/test`：確認無副作用。
-5. 以 `skills/finishing-a-development-branch` 收尾：Merge / PR / Keep / Archive。
+1. Apply `skills/using-git-worktrees` to establish an isolated workspace FIRST.
+2. `/plan`: Define scope exclusively within the new worktree.
+3. `/implement`: Complete all modifications and commits inside the worktree.
+4. `/review` + `/test`: Confirm zero side-effects.
+5. Finalize using `skills/finishing-a-development-branch` (Merge / PR / Keep / Archive).
+

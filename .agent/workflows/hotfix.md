@@ -1,6 +1,6 @@
 ---
 name: hotfix
-description: 緊急修復流程，先找根因再做最小修補。
+description: Emergency patch workflow. Root cause analysis followed by minimal fix.
 tasks:
   - research
   - plan
@@ -11,9 +11,10 @@ tasks:
 
 # Hotfix Workflow
 
-1. `/research`：界定 root cause 與 blast radius。
-2. 使用 `skills/systematic-debugging`：依「觀察→假設→驗證→修復」收斂根因。
-3. `/plan`：定義最小改動、風險與回退。
-4. `/implement`：執行最小修補。
-5. `/review`：補齊替代方案與取捨。
-6. `/test`：重現案例 + 回歸案例。
+1. `/research`: Define root cause and blast radius.
+2. Skill `systematic-debugging`: Converge via "Observe -> Hypothesize -> Verify -> Fix".
+3. `/plan`: Define minimal change, risks, and rollback.
+4. `/implement`: Execute minimal patch.
+5. `/review`: Document alternatives and trade-offs.
+6. `/test`: Reproduce issue + run regression cases.
+

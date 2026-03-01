@@ -1,56 +1,56 @@
 ---
 name: systematic-debugging
-description: 使用四階段根因分析（觀察、假設、驗證、修復）處理問題，避免未經驗證的臨時修補。
+description: Use 4-phase root cause analysis (Observe, Hypothesize, Verify, Fix); avoid unverified patches.
 ---
 
-# Systematic Debugging（系統化除錯）
+# Systematic Debugging
 
-## 概述
+## Overview
 
-系統化除錯的核心是：**先理解，再修正**。遇到 bug 時，先釐清症狀、重現條件與影響範圍，再透過假設與實驗逐步逼近根因，最後才提交最小且可驗證的修復。
+The core of systematic debugging is: **understand first, then fix**. When encountering a bug, clarify symptoms, reproduction conditions, and blast radius. Draw hypotheses, verify them with experiments to isolate the root cause, and only then submit a minimal, verifiable fix.
 
-## 鐵律
+## Ironclad Rules
 
-1. **禁止隨意修補（No random patching）**：沒有根因證據，不得提交修復。
-2. **每次只改一個變因**：避免同時更動多處造成結果不可解釋。
-3. **修復必須附證據**：至少包含重現、驗證與回歸結果。
+1. **No random patching**: Do not submit fixes without root cause evidence.
+2. **Change one variable at a time**: Prevent unexplainable results from touching multiple areas at once.
+3. **Fixes MUST include evidence**: Include reproduction steps, verification, and regression results.
 
-## 使用時機
+## When to Use
 
-- Hotfix 事故處理。
-- 測試間歇性失敗（flaky）。
-- 無法直觀看懂的跨模組異常。
-- 任何「修了但不知道為何修好」的風險情境。
+- Hotfix incident response.
+- Flaky tests.
+- Cross-module anomalies that aren't intuitively obvious.
+- Any "fixed but I don't know why" risk scenarios.
 
-## 四階段流程
+## Four-Phase Process
 
-### Phase 1：觀察（Observe）
+### Phase 1: Observe
 
-- 精準記錄錯誤訊息、時間點、輸入條件。
-- 建立最小可重現步驟（MRE）。
-- 標註 blast radius（受影響模組/使用者）。
+- Precisely record error messages, timestamps, and input conditions.
+- Create a Minimal Reproducible Example (MRE).
+- Mark the blast radius (affected modules/users).
 
-### Phase 2：假設（Hypothesize）
+### Phase 2: Hypothesize
 
-- 提出 1–3 個可驗證根因假設。
-- 為每個假設設計「可被推翻」的檢查方式。
-- 先排高機率且低成本驗證項。
+- Propose 1–3 testable root cause hypotheses.
+- Design "falsifiable" checks for each hypothesis.
+- Prioritize high-probability, low-cost verifiable items.
 
-### Phase 3：驗證（Verify）
+### Phase 3: Verify
 
-- 執行實驗並保留輸出紀錄。
-- 僅調整單一變因，確認因果關係。
-- 移除被否證的假設，收斂到最可能根因。
+- Run experiments and retain output logs.
+- Adjust only one variable to confirm causality.
+- Remove falsified hypotheses to converge on the most likely root cause.
 
-### Phase 4：修復（Fix）
+### Phase 4: Fix
 
-- 實作最小修復（Minimal Fix）。
-- 補上防回歸測試（Regression Test）。
-- 驗證：原錯誤消失 + 既有行為未破壞。
+- Implement a Minimal Fix.
+- Add a Regression Test.
+- Verify: The original error disappears AND existing behavior is not broken.
 
-## 常見錯誤
+## Common Mistakes
 
-- 直接改碼不先重現。
-- 一次改太多檔案，無法定位有效修復點。
-- 把「偶然通過」當作根因已解。
-- 缺少回歸測試，導致同類問題再次發生。
+- Modifying code before reproducing the issue.
+- Modifying too many files at once, failing to locate the effective fix point.
+- Treating "accidental passes" as root cause resolved.
+- Lacking regression tests, causing similar issues to happen again.

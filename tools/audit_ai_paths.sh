@@ -86,10 +86,10 @@ fi
 echo
 
 echo "== [Antigravity] Check unrelated folders directly under .agent/ =="
-echo "   Allowed: rules/, workflows/, superpowers/, skills/"
+echo "   Allowed: rules/, workflows/, skills/"
 if [ -d ".agent" ]; then
   unrelated=$(find .agent -mindepth 1 -maxdepth 1 -type d \
-    ! -name "rules" ! -name "workflows" ! -name "superpowers" ! -name "skills" 2>/dev/null || true)
+    ! -name "rules" ! -name "workflows" ! -name "skills" 2>/dev/null || true)
   if [ -n "$unrelated" ]; then
     echo "❌ Unrelated folders under .agent/ (should be reviewed):"
     echo "$unrelated" | sed 's/^/  - /'

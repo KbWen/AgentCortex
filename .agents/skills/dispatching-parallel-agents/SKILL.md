@@ -1,41 +1,41 @@
 ---
 name: dispatching-parallel-agents
-description: 判斷是否值得啟用平行代理，並以四步驟模式拆分、協調與整合成果。
+description: Evaluate when to dispatch parallel agents; use a 4-step pattern to split, coordinate, and integrate results.
 ---
 
-# Dispatching Parallel Agents（平行代理派工）
+# Dispatching Parallel Agents
 
-## 概述
+## Overview
 
-平行代理適合處理可拆分且彼此低耦合的工作。目標是縮短總工期，而不是增加協調成本。
+Parallel agents are suitable for handling splittable tasks with low coupling. The goal is to shorten total lead time, not to increase coordination overhead.
 
-## 何時使用
+## When to Use
 
-- 任務可切成獨立子問題（文件、測試、不同模組）。
-- 子任務間依賴低，能定義清楚介面。
-- 截止時間緊迫，需要壓縮 lead time。
+- Tasks can be decomposed into independent sub-problems (e.g., documentation, testing, separate modules).
+- Dependencies between sub-tasks are low; clear interfaces can be defined.
+- Deadlines are tight, and lead time needs compression.
 
-## 何時不要使用
+## When NOT to Use
 
-- 問題高度耦合、需頻繁同步。
-- 需求仍不清晰，拆分成本高於收益。
-- 無法定義統一驗收標準。
+- Problems are highly coupled and require frequent synchronization.
+- Requirements are still unclear; the cost of decomposition outweighs the benefits.
+- Unable to define unified acceptance criteria.
 
-## 四步驟模式
+## Four-Step Pattern
 
-1. **Decompose（拆解）**：切成互斥且可獨立驗收的子任務。
-2. **Dispatch（派工）**：指定每個代理的範圍、輸入輸出、限制與截止。
-3. **Sync（同步）**：在固定節點做短同步，處理衝突與依賴。
-4. **Merge（整合）**：以同一套驗收標準整併成果並回歸測試。
+1. **Decompose**: Split into mutually exclusive, independently verifiable sub-tasks.
+2. **Dispatch**: Specify each agent's scope, inputs/outputs, constraints, and deadline.
+3. **Sync**: Perform brief synchronizations at fixed checkpoints to handle conflicts and dependencies.
+4. **Merge**: Integrate outputs using a unified set of acceptance criteria and run regression tests.
 
-## 實務守則
+## Best Practices
 
-- 每個子任務必須有明確 Done Definition。
-- 優先以介面契約協作，避免互相改動對方區塊。
-- 最終整合前先執行一次全域檢查。
+- Every sub-task MUST have a clear Definition of Done.
+- Collaborate primarily via interface contracts to avoid modifying each other's blocks.
+- Perform a global check before final integration.
 
-## 常見錯誤
+## Common Mistakes
 
-- 把不可拆任務硬拆，造成返工。
-- 缺少同步節點，最後整合大爆炸。
-- 子任務各自通過但整體驗收失敗。
+- Forcefully splitting non-splittable tasks, leading to rework.
+- Lacking sync checkpoints, resulting in integration explosion at the end.
+- Sub-tasks passing individually but failing global acceptance.

@@ -1,4 +1,4 @@
 # Codex default safety rules
 
-prefix_rule("禁止執行高破壞命令（例如 rm -rf、git reset --hard、git clean -fdx、chmod -R 777、sudo curl ... | bash）。若任務確有必要，先提供風險、回退方案與較安全替代命令，並等待明確授權。")
-prefix_rule("禁止直接執行 docker system prune -a 與 chown -R 等高風險系統命令。請優先使用可控替代方案（如 docker image prune、限定範圍的 chown），並先建立可驗證的 rollback 計畫（備份路徑、還原 commit、復原指令）。")
+prefix_rule("HIGH DESTRUCTIVE COMMANDS PROHIBITED (e.g., rm -rf, git reset --hard, clean -fdx, chmod -R 777, sudo curl | bash). If required, MUST provide risk assessment, rollback plan, and safe alternatives, then await explicit user authorization.")
+prefix_rule("HIGH RISK SYSTEM COMMANDS PROHIBITED (e.g., docker system prune -a, chown -R). MUST use scoped alternatives (e.g., image prune) AND establish a verifiable rollback plan (backup path, revert commit) before execution.")

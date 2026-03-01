@@ -1,12 +1,15 @@
 # /commands
 
-請列出目前可用指令與用途（唯讀，不改變狀態）。
+List available commands and their purposes (Read-only, DOES NOT change state).
 
-輸出格式：
-1. 指令名稱（例如 `/bootstrap`）
-2. 可用狀態
-3. 主要用途
-4. 常見下一步
+Output Format:
 
-備註：
-- 此指令為相容別名，可等同 `/help` 的「全指令一覽」區塊。
+1. Command Name (e.g., `/bootstrap`)
+2. Availability Condition (State)
+3. Primary Purpose
+4. Common Next Steps
+
+Note:
+
+- This is a compatibility alias, functionally equivalent to the "All Commands" section in `/help`.
+

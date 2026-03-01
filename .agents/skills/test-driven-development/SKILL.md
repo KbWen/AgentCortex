@@ -1,30 +1,29 @@
 ---
 name: test-driven-development
-description: 以測試先行（Red→Green→Refactor）方式推進邏輯變更，確保行為可驗證且可回歸。
+description: Drive changes with Red→Green→Refactor; ensure behavior is verifiable and regression-safe.
 ---
 
-# Test-Driven Development（測試驅動開發）
+# Test-Driven Development
 
-## 概述
+## Overview
 
-TDD 透過 **Red → Green → Refactor** 小循環，先定義預期行為，再用最小實作讓測試通過，最後整理程式結構。
+TDD uses the **Red → Green → Refactor** micro-cycle. First, define expected behavior. Next, use a minimal implementation to pass the test. Finally, organize the code structure.
 
-## 使用時機
+## When to Use
 
-- 新增或修改核心邏輯。
-- 修復 bug 並需要防回歸保障。
-- 需求可寫成明確輸入/輸出驗收。
+- Adding or modifying core logic.
+- Fixing bugs and needing regression protection.
+- Requirements can be written as explicit input/output acceptance tests.
 
-## 流程
+## Workflow
 
-1. **Red**：先寫失敗測試，描述期待行為。
-2. **Green**：以最小程式碼讓測試通過。
-3. **Refactor**：整理命名、結構與重複。
-4. 重複循環直到 AC 滿足。
+1. **Red**: Write a failing test describing the expected behavior.
+2. **Green**: Write the minimal code to make the test pass.
+3. **Refactor**: Clean up naming, structure, and duplication.
+4. Repeat the cycle until acceptance criteria are met.
 
-## 鐵律
+## Ironclad Rules
 
-- 不可先寫大量功能再補測試。
-- 每個循環只處理一個小目標。
-- Refactor 後必須全測試通過。
-
+- Do NOT write massive amounts of features before writing tests.
+- Focus on one small goal per cycle.
+- All tests MUST pass after refactoring.

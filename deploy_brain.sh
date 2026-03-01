@@ -10,8 +10,7 @@ echo "🚀 Deploying AI Brain v3.5.2 (Full Platform Support) to $TARGET..."
 mkdir -p "$TARGET/.agent/rules"
 mkdir -p "$TARGET/.agent/workflows"
 mkdir -p "$TARGET/.agent/skills"
-mkdir -p "$TARGET/.agent/superpowers/features"
-mkdir -p "$TARGET/.agent/superpowers/policies"
+mkdir -p "$TARGET/tools"
 
 # Platform Entry Points
 mkdir -p "$TARGET/.antigravity"          # Google Antigravity
@@ -41,7 +40,6 @@ cp $CP_FLAG MODEL_GUIDE.md "$TARGET/"
 
 # .agent core
 cp $CP_FLAG .agent/rules/engineering_guardrails.md "$TARGET/.agent/rules/"
-[ -f .agent/AGENT.md ] && cp $CP_FLAG .agent/AGENT.md "$TARGET/.agent/"
 
 # ============================================================
 # 3. Deploy vNext workflows
@@ -50,16 +48,10 @@ for f in .agent/workflows/*.md; do
   [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/.agent/workflows/"
 done
 
-# Legacy superpowers (backward compat)
-[ -f .agent/superpowers/commands.md ] && cp $CP_FLAG .agent/superpowers/commands.md "$TARGET/.agent/superpowers/"
-[ -f .agent/superpowers/workflows.md ] && cp $CP_FLAG .agent/superpowers/workflows.md "$TARGET/.agent/superpowers/"
-for f in .agent/superpowers/features/*.md; do
-  [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/.agent/superpowers/features/"
-done
-for f in .agent/superpowers/policies/*.md; do
-  [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/.agent/superpowers/policies/"
-done
-[ -f .agent/superpowers/validate.sh ] && cp $CP_FLAG .agent/superpowers/validate.sh "$TARGET/.agent/superpowers/" && chmod +x "$TARGET/.agent/superpowers/validate.sh"
+# Tools & Validation
+mkdir -p "$TARGET/tools"
+[ -f tools/validate.sh ] && cp $CP_FLAG tools/validate.sh "$TARGET/tools/" && chmod +x "$TARGET/tools/validate.sh"
+[ -f tools/audit_ai_paths.sh ] && cp $CP_FLAG tools/audit_ai_paths.sh "$TARGET/tools/" && chmod +x "$TARGET/tools/audit_ai_paths.sh"
 
 # ============================================================
 # 4. Deploy documentation
@@ -119,5 +111,5 @@ echo "📝 Git Safety:"
 echo "   AI-specific temporal files have been added to .gitignore."
 echo ""
 echo "💡 Next steps:"
-echo "   1. Tell AI: '請執行 /bootstrap' to start"
+echo "   1. Tell AI: 'Please run /bootstrap' to start"
 echo "   2. Refer to docs/guides/migration.md for upgrades"

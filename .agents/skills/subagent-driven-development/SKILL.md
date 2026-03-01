@@ -1,23 +1,22 @@
 ---
 name: subagent-driven-development
-description: 透過子代理協作拆解任務，定義介面契約、同步節點與整合驗收。
+description: Decompose tasks via subagent collaboration; define interface contracts and integration checkpoints.
 ---
 
-# Subagent-Driven Development（子代理協作開發）
+# Subagent-Driven Development
 
-## 概述
+## Overview
 
-當任務可拆分時，可使用多個子代理並行處理，加速交付但不犧牲一致性。
+When a task is splittable, use multiple subagents to process in parallel, accelerating delivery without sacrificing consistency.
 
-## 拆解策略
+## Decomposition Strategy
 
-- 以模組邊界或職責切分。
-- 定義每個子任務輸入/輸出契約。
-- 設定同步節點，避免整合爆炸。
+- Split cleanly by module boundaries or responsibilities.
+- Define input/output contracts for each sub-task.
+- Establish sync checkpoints to avoid integration explosion.
 
-## 交付要求
+## Delivery Requirements
 
-1. 子任務需附測試或檢查證據。
-2. 主代理負責整合、衝突解決與最終驗證。
-3. 任何跨模組變更需在整合前公告。
-
+1. Sub-tasks MUST include testing or checking evidence.
+2. The primary agent is responsible for integration, conflict resolution, and final verification.
+3. Any cross-module changes MUST be announced before integration.

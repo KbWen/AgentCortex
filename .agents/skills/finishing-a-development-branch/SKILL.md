@@ -1,35 +1,35 @@
 ---
 name: finishing-a-development-branch
-description: 在開發分支完成後執行最終驗證，並以四種策略決策分支收尾方式。
+description: Perform final verification on development branches; choose from 4 merge strategies.
 ---
 
-# Finishing a Development Branch（完成開發分支）
+# Finishing a Development Branch
 
-## 概述
+## Overview
 
-功能完成不代表流程完成。分支收尾前應完成最終驗證與風險盤點，避免把未確認變更推進到主線。
+Feature completion does not mean process completion. Final verification and risk assessment MUST occur before closing a branch to prevent pushing unverified changes to mainline.
 
-## 完成前驗證
+## Pre-completion Verification
 
-- 重新同步主線後確認無衝突或行為漂移。
-- 執行最小必要 + 關鍵回歸測試。
-- 檢查文件、遷移腳本、設定變更是否齊備。
+- Re-sync with mainline to verify no conflicts or behavioral drift.
+- Execute minimal required tests + critical regression tests.
+- Verify documentation, migration scripts, and configuration changes are ready.
 
-## 四種收尾選項
+## Four Closure Options
 
-1. **Merge now**：驗證完整且風險可接受，直接合併。
-2. **Open PR**：需要 reviewer 或跨團隊同步時，先提 PR。
-3. **Keep branch**：尚有後續拆分工作，保留分支續作。
-4. **Archive / Close**：需求取消或策略變更，封存並關閉。
+1. **Merge now**: Verification is complete, risks are acceptable; merge directly.
+2. **Open PR**: Requires reviewer or cross-team sync; open PR first.
+3. **Keep branch**: Has remaining split work; keep branch active for continuation.
+4. **Archive / Close**: Requirement canceled or strategy changed; archive and close branch.
 
-## 決策準則
+## Decision Criteria
 
-- 以驗收完成度與風險等級決定。
-- 若證據不足，禁止進入 Merge now。
-- 若有重大不確定性，優先 Open PR 取得審查。
+- Determined by acceptance completion level and risk level.
+- Entering "Merge now" is PROHIBITED if evidence is insufficient.
+- For major uncertainties, prioritize "Open PR" for review.
 
-## 常見錯誤
+## Common Mistakes
 
-- 測試未跑完就急著合併。
-- 未說明保留分支原因，造成長尾技術債。
-- 關閉分支卻未留下決策紀錄。
+- Rushing to merge before tests finish running.
+- Closing a branch without logging the decision.
+- Keeping a branch without context, causing a long-tail tech debt.

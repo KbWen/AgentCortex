@@ -1,11 +1,12 @@
 # /implement
 
-> 進入條件：state >= `IMPLEMENTABLE`（plan quality gate 已通過）。
+> Hard Gate: state >= `IMPLEMENTABLE` (Plan quality gate MUST be passed).
 
-依照已確認計畫實作，限制只改列出的檔案。
+Execute the approved plan. STRICTLY restricted to modifying ONLY the listed target files.
 
-完成後回報：
+Post-Execution Report:
 
-- 實際改動摘要
-- 潛在副作用
-- 建議執行的驗證命令
+- Summary of actual changes
+- Potential side-effects
+- Suggested verification/test commands
+

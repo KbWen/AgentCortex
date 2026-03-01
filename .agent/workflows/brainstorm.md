@@ -1,12 +1,15 @@
 # /brainstorm
 
-請先進行頭腦風暴，不寫正式實作。
+Conduct brainstorming ONLY. No formal implementation.
 
-輸出格式：
-1. 方案 A / B / C
-2. 每案：優點、風險、成本（S/M/L）
-3. 建議採用方案與理由
+Output Format:
 
-檢查點：
-- 至少 3 案。
-- 至少 1 案為低風險保守方案。
+1. Option A / B / C
+2. For each: Pros, Risks, Cost (S/M/L)
+3. Recommended option with justification
+
+Checkpoints:
+
+- MUST provide ?? options.
+- ?? option MUST be low-risk/conservative.
+

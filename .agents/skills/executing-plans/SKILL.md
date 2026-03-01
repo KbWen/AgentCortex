@@ -1,24 +1,23 @@
 ---
 name: executing-plans
-description: 依既定計畫逐步執行與回報，確保每一步都有證據並維持可回退。
+description: Execute plans step-by-step with evidence at each stage; maintain rollback capability.
 ---
 
-# Executing Plans（執行計畫）
+# Executing Plans
 
-## 概述
+## Overview
 
-執行階段的重點是 **按步驟、留證據、即時同步偏差**。
+Execution phase focuses on: **following steps, preserving evidence, and syncing deviations immediately.**
 
-## 執行節奏
+## Execution Rhythm
 
-1. 讀取最新計畫與限制。
-2. 一次執行一個步驟。
-3. 每步結束立即驗證並記錄結果。
-4. 若偏離計畫，先更新計畫再繼續。
+1. Read the latest plan and constraints.
+2. Execute exactly one step at a time.
+3. Validate immediately and record results after each step.
+4. If deviating from the plan, update the plan before proceeding.
 
-## 完成定義
+## Definition of Done
 
-- 所有步驟狀態清楚（completed / pending）。
-- 驗證輸出可重現。
-- 已知限制與後續建議已標示。
-
+- All steps have clear status (completed / pending).
+- Validation outputs are reproducible.
+- Known constraints and follow-up suggestions are documented.

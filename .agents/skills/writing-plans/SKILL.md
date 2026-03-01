@@ -1,25 +1,24 @@
 ---
 name: writing-plans
-description: 先規劃再實作，輸出可驗收、可回退、可分段執行的任務計畫。
+description: Plan before implementing; produce verifiable, rollback-safe, incrementally executable task plans.
 ---
 
-# Writing Plans（撰寫計畫）
+# Writing Plans
 
-## 概述
+## Overview
 
-高品質計畫要回答三件事：**要做什麼、如何驗證、失敗怎麼回退**。
+High-quality plans must answer three things: **What to do, how to verify, and how to rollback if it fails.**
 
-## 必備欄位
+## Required Fields
 
-- 目標與 Non-goals
-- 影響範圍（檔案/模組）
-- 分段步驟（2–5 分鐘粒度）
-- 驗證命令與預期結果
-- 風險與回退方案
+- Goals and Non-goals
+- Blast Radius (files/modules)
+- Step-by-step breakdown (2–5 minute granularity)
+- Verification commands and expected results
+- Risks and Rollback plans
 
-## 撰寫原則
+## Writing Principles
 
-1. 先小後大，先可回退步驟。
-2. 每一步都要可驗證。
-3. 未確認前不跨越邊界（scope creep）。
-
+1. Small before large; start with reversible steps.
+2. Every step MUST be verifiable.
+3. Do NOT cross boundaries before confirmation (no scope creep).

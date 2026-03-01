@@ -9,7 +9,7 @@
 - **System Map**:
   - 全域唯讀狀態：`docs/context/current_state.md`
   - 任務隔離狀態：`docs/context/work/<branch-name>.md`
-  - 流程與政策：`.agent/workflows/*.md`、`.agent/superpowers/policies/*.md`
+  - 流程與政策：`.agent/workflows/*.md`、`.agent/rules/*.md`
 - **ADR Index**:
   - `docs/adr/ADR-001-vnext-self-managed-architecture.md`
 - **Canonical Commands**:
@@ -23,7 +23,7 @@
 - **References**:
   - `AGENTS.md`
   - `.agent/rules/engineering_guardrails.md`
-  - `.agent/superpowers/policies/state_machine.md`
+  - `.agent/rules/state_machine.md`
   - `docs/CODEX_PLATFORM_GUIDE.md`
   - `docs/guides/token-governance.md`
 

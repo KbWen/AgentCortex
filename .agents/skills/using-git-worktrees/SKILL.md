@@ -1,38 +1,38 @@
 ---
 name: using-git-worktrees
-description: 使用 Git worktree 安全建立平行工作目錄，避免分支切換污染並提升多任務效率。
+description: Use Git worktrees to create parallel working directories safely; avoid branch-switch contamination.
 ---
 
-# Using Git Worktrees（使用 Git Worktree）
+# Using Git Worktrees
 
-## 概述
+## Overview
 
-Git worktree 允許同一個 repository 同時掛載多個工作目錄，各自對應不同分支，適合並行開發與 hotfix。
+Git worktree allows mounting multiple working directories onto the same repository simultaneously, each mapped to a different branch. This is ideal for parallel development and hotfixes.
 
-## 目錄選擇原則
+## Workspace Selection Principles
 
-- 以 repo 外層或專用資料夾集中管理（例如 `../wt-<task>`）。
-- 命名包含任務語意（feature/hotfix + 短名稱）。
-- 避免與既有工作區混淆或覆蓋。
+- Manage them centrally outside the repo or in a dedicated folder (e.g., `../wt-<task>`).
+- Name them with task semantics (feature/hotfix + short name).
+- Avoid confusing or overwriting existing workspaces.
 
-## 安全性檢查
+## Safety Checks
 
-1. 確認主工作區乾淨（避免未提交變更被誤帶走）。
-2. 先列出既有 worktree：`git worktree list`。
-3. 檢查目標目錄不存在或為空。
-4. 確認分支命名與追蹤策略。
+1. Ensure the primary workspace is clean (prevent taking uncommitted changes).
+2. List existing worktrees first: `git worktree list`.
+3. Check that the target directory does not exist or is empty.
+4. Confirm branch naming and tracking strategies.
 
-## 建立流程
+## Setup Workflow
 
-1. 建立分支並新增 worktree：
+1. Create a branch and add a worktree:
    - `git worktree add ../wt-<task> -b <branch-name>`
-2. 切入新目錄後執行 baseline 測試。
-3. 在該目錄獨立開發、提交、驗證。
-4. 完工後移除 worktree（若不再需要）：
+2. Switch to the new directory and run a baseline test.
+3. Develop, commit, and verify independently in that directory.
+4. Remove the worktree when finished (if no longer needed):
    - `git worktree remove ../wt-<task>`
 
-## 常見錯誤
+## Common Mistakes
 
-- 在錯誤 worktree 提交。
-- 刪除 worktree 但分支仍需保留卻未確認。
-- 目錄命名混亂，導致任務對應不清。
+- Committing in the wrong worktree.
+- Deleting a worktree without confirming if the branch should be preserved.
+- Chaotic directory naming, leading to unclear task mapping.

@@ -1,23 +1,22 @@
 ---
 name: receiving-code-review
-description: 有效接收 reviewer 意見，分類處理阻斷與建議項，避免來回失焦。
+description: Effectively process reviewer feedback; categorize blocking vs. advisory items.
 ---
 
-# Receiving Code Review（接收程式碼審查）
+# Receiving Code Review
 
-## 概述
+## Overview
 
-Review 回饋需要結構化處理，才能快速收斂到可合併狀態。
+Review feedback requires structured handling to quickly converge into a mergeable state.
 
-## 回饋分類
+## Feedback Categorization
 
-- **Blocking**：必修，影響正確性/安全/穩定性。
-- **Non-blocking**：可後續處理的可讀性或優化建議。
-- **Question**：需補上下文或設計說明。
+- **Blocking**: Mandatory; affects correctness, security, or stability.
+- **Non-blocking**: Advisory; readability or optimizations to handle later.
+- **Question**: Requires added context or design explanation.
 
-## 回應流程
+## Response Workflow
 
-1. 逐條回覆，避免遺漏。
-2. 變更後重新執行相關測試。
-3. 回報「修正內容 + 驗證證據 + 未採納理由（若有）」。
-
+1. Reply iteratively to avoid omissions.
+2. Re-run related tests after changes.
+3. Report "Fixes + Verification Evidence + Reason for non-adoption (if any)".
