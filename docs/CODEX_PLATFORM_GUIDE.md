@@ -3,6 +3,7 @@
 ## 適用範圍
 
 本模板同時適用：
+
 - Codex Web 版
 - Codex App（桌面版）
 
@@ -10,18 +11,19 @@
 
 為避免流程複雜化，三平台統一使用同一套技能來源與鏡像路徑：
 
-1. Canonical skills source：`.agent/skills/<skill>/SKILL.md`（Antigravity 主要讀取路徑）。
-2. Codex 相容路徑：`.agents/skills/<skill>/SKILL.md`（需與 `.agent/skills` 維持一對一對齊）。
+1. Canonical skills source：`.agent/skills/<skill>/SKILL.md`（Antigravity 主要讀取路徑，兩者必須保持一對一同步，修改時以此為主）。
+2. Codex 相容路徑：`.agents/skills/<skill>/SKILL.md`（Codex 平台 mirror）。
 3. 平台流程文件：`.agent/workflows/*.md` 與 `.agent/rules/*.md`，避免在多處維護重複版本。
 
 最小檢查建議：
-- 執行 `./.agent/superpowers/validate.sh`。
+
+- 執行 `./tools/validate.sh`。
 - 確認 `AGENTS.md` 仍同時宣告 `.agent/skills` 與 `.agents/skills`。
 
 ## 統一狀態機（兩平台共用）
 
 請以 canonical state machine 為準：
-`Ref: .agent/superpowers/policies/state_machine.md`
+`Ref: .agent/rules/state_machine.md`
 
 - `/help`、`/commands`、`/test-skeleton`、`/handoff` 為唯讀狀態指令。
 - `/ship` 僅允許在 `TESTED` 後執行。
@@ -31,11 +33,12 @@
 1. 任務開場先提供：目標、目標檔案、限制、驗收標準。
 2. 先跑 `/bootstrap`、再 `/plan`，通過 quality gate 才 `/implement`。
 3. 每次實作後跑 `/review` 與 `/test`。
-4. 提交前跑 `./.agent/superpowers/validate.sh`。
+4. 提交前跑 `./tools/validate.sh`。
 
 ## Handoff Hard Gate（非 tiny-fix）
 
 在 `/ship` 之前，必須先有 `/handoff`，且 References 最低要求：
+
 1. 至少 1 個 `docs/` 文件。
 2. 至少 1 個 code file path。
 3. 對應 work log：`docs/context/work/<branch-name>.md`。
