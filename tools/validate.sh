@@ -39,17 +39,18 @@ done
 [[ -d "$ROOT/.agents/skills" ]] || { echo "missing codex skills dir: $ROOT/.agents/skills"; exit 1; }
 [[ -d "$ROOT/.agent/skills" ]] || { echo "missing agent skills canonical dir: $ROOT/.agent/skills"; exit 1; }
 
-for skill_dir in "$ROOT"/.agent/skills/*; do
-  skill_name="$(basename "$skill_dir")"
+for skill_file in "$ROOT"/.agent/skills/*; do
+  [[ -f "$skill_file" ]] || continue
+  skill_name="$(basename "$skill_file")"
+  [[ "$skill_name" == ".gitkeep" ]] && continue
   codex_skill_path="$ROOT/.agents/skills/$skill_name"
-  
-  if [[ ! -d "$codex_skill_path" ]]; then
-    echo "missing codex skill mirror: $codex_skill_path"
-    exit 1
-  fi
-  
-  [[ -f "$skill_dir/SKILL.md" ]] || { echo "missing skill definition: $skill_dir/SKILL.md"; exit 1; }
-  [[ -f "$codex_skill_path/SKILL.md" ]] || { echo "missing mirror skill file: $codex_skill_path/SKILL.md"; exit 1; }
+
+  # Verify .agent/skills/<name> is a non-empty metadata file
+  [[ -s "$skill_file" ]] || { echo "empty skill metadata: $skill_file"; exit 1; }
+
+  # Verify corresponding .agents/skills/<name>/ directory exists with SKILL.md
+  [[ -d "$codex_skill_path" ]] || { echo "missing codex skill dir: $codex_skill_path"; exit 1; }
+  [[ -f "$codex_skill_path/SKILL.md" ]] || { echo "missing skill definition: $codex_skill_path/SKILL.md"; exit 1; }
 done
 
 [[ -f "$ROOT/.antigravity/rules.md" ]] || { echo "missing antigravity rules: $ROOT/.antigravity/rules.md"; exit 1; }
