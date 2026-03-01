@@ -90,6 +90,9 @@ if ! grep -q "# AI Brain OS" "$GITIGNORE"; then
 .antigravity/
 .codex/
 codex/
+AGENTS.md
+MODEL_GUIDE.md
+docs/context/
 docs/context/private/
 EOT
 else
