@@ -79,6 +79,19 @@ Non-negotiable principles for agent-driven development.
 - **Default**: Conservative, Explainable, Stable.
 - **When Uncertain**: State ambiguity, provide 2-3 options, DEFER high-impact decisions to user.
 
+### 8.1 Bug Fix Protocol
+
+**MFR (Minimal Reproducible Failure)**: BEFORE any fix, MUST provide:
+
+- Repro steps (≤3 steps), Expected vs. Actual behavior.
+
+**2-Strike ESC**: If the SAME issue fails after 2 patches:
+
+1. STOP patching immediately.
+2. Output diagnostic: modified code blocks, call relationships, behavior diffs ONLY. ❌ No narrative claims.
+3. Record failure in Work Log and DEFER to user for escalation.
+
+**Async/Data-Flow Safety**: When modifying async or data-flow code, MUST verify: error handling, race condition guards, and loading state management.
 ## 9. Intent Safety Rules
 
 Natural language input has EQUAL authority to slash commands, but MUST pass the same gates and prerequisites.
