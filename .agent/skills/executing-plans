@@ -1,1 +1,4 @@
-../../.agents/skills/executing-plans
+version: 1
+display_name: executing-plans
+short_description: 依既定計畫逐步執行與回報，確保每一步都有證據並維持可回退。
+icon_small: wrench

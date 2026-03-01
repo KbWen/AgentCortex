@@ -21,9 +21,9 @@ NO CODING YET. Planning phase ONLY.
 
 ## Quality Gates (ALL MUST PASS)
 
-- Every AC MUST map to ?? step.
+- Every AC MUST map to at least 1 step.
 - Step granularity: Module/File/Function level.
-- MUST identify ?? Risk + viable Rollback.
+- MUST identify at least 1 Risk + viable Rollback.
 - List ONLY files being modified (Prevent scope creep).
 - MUST explicitly cite documentation (e.g., `Ref: docs/specs/auth.md`).
 
@@ -37,4 +37,3 @@ NO CODING YET. Planning phase ONLY.
 
 - Upon passing gates, state transitions from `PLANNED` to `IMPLEMENTABLE`.
 - Automatically offer `/test-skeleton` in the same turn.
-

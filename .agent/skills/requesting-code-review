@@ -1,1 +1,4 @@
-../../.agents/skills/requesting-code-review
+version: 1
+display_name: requesting-code-review
+short_description: Skill for requesting code review workflows.
+icon_small: wrench

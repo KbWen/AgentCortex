@@ -1,1 +1,4 @@
-../../.agents/skills/test-driven-development
+version: 1
+display_name: test-driven-development
+short_description: 以測試先行（Red→Green→Refactor）方式推進邏輯變更，確保行為可驗證且可回歸。
+icon_small: wrench
