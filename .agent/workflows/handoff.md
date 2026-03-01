@@ -34,8 +34,8 @@ Read-only logic. DOES NOT change state. Hard completion gate for non-`tiny-fix` 
 
 MUST include ALL of the following:
 
-1. ?? `docs/` file path
-2. ?? code file path
+1. At least 1 docs/ file path
+2. At least 1 code file path
 3. Corresponding Work Log path (`docs/context/work/<branch-name>.md`)
 
 If requirements unsatisfied, COMPLETION AND `/ship` ARE STRICTLY PROHIBITED.
@@ -43,4 +43,3 @@ If requirements unsatisfied, COMPLETION AND `/ship` ARE STRICTLY PROHIBITED.
 ## 5. Token & Efficiency Reflection
 
 If task was abnormally long or consumed high tokens, briefly explain why (e.g., "ambiguous specs", "bug loop"). Aids in continuous governance optimization.
-

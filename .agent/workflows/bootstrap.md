@@ -52,3 +52,7 @@ Write to `docs/context/work/<branch-name>.md`:
 - Classification is FROZEN once written to Work Log.
 - `tiny-fix` bypasses full bootstrap/handoff overhead, but MUST provide evidence.
 
+## 5. Hard Gate
+
+- MUST CREATE `docs/context/work/<branch-name>.md` before proceeding.
+- If file already exists, READ and RESUME from existing state.

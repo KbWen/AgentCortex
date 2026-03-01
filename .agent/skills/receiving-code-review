@@ -1,1 +1,4 @@
-../../.agents/skills/receiving-code-review
+version: 1
+display_name: receiving-code-review
+short_description: Effectively receive reviewer feedback, categorize blocking and suggestive items, and avoid losing focus due to back-and-forth.
+icon_small: wrench
