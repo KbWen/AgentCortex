@@ -1,4 +1,4 @@
-﻿# Project Current State (vNext)
+# Project Current State (vNext)
 
 - **Project Intent**: 建立可跨 Codex Web／Codex App／Google Antigravity 使用的自管理 Agent OS，降低人類流程記憶負擔並持續降低 Token 成本。
 - **Core Guardrails**:
@@ -9,7 +9,7 @@
 - **System Map**:
   - 全域唯讀狀態：`docs/context/current_state.md`
   - 任務隔離狀態：`docs/context/work/<branch-name>.md`
-  - Rules & Policies: `.agent/workflows/*.md`, `.agent/rules/*.md`
+  - 流程與政策：`.agent/workflows/*.md`、`.agent/rules/*.md`
 - **ADR Index**:
   - `docs/adr/ADR-001-vnext-self-managed-architecture.md`
 - **Canonical Commands**:
@@ -30,4 +30,3 @@
 > [!NOTE]
 > This file is the Single Source of Truth for global project context only.
 > Do not store per-task progress here; write progress to `docs/context/work/<branch-name>.md`.
-

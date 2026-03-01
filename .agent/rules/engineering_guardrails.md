@@ -1,4 +1,4 @@
-﻿# Engineering Guardrails (Constitution)
+# Engineering Guardrails (Constitution)
 
 ## Scope
 
@@ -58,7 +58,7 @@ Non-negotiable principles for agent-driven development.
   - ADRs: `docs/adr/ADR-[ID]-[kebab-case].md`
   - Specs: `docs/specs/[feature-name].md`
   - Guides: `docs/guides/[topic].md`
-  - Agent Scratch: `.agent/scratch/`
+  - Agent Work Logs: `docs/context/work/`
 
 ## 6. Explainability & Traceability
 
@@ -107,9 +107,7 @@ Non-negotiable principles for agent-driven development.
 
 - Non-`tiny-fix` tasks MUST NOT claim complete without `/handoff`.
 - `/ship` MUST verify handoff references:
-  1. ?? `docs/` file path
-  2. ?? code path
+  1. ✅ `docs/` file path
+  2. ✅ code path
   3. Work log path
 - If missing, AI MUST reject `/ship` and list missing artifacts.
-
-
