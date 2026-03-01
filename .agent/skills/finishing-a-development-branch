@@ -1,1 +1,4 @@
-../../.agents/skills/finishing-a-development-branch
+version: 1
+display_name: finishing-a-development-branch
+short_description: Skill for finishing a development branch workflows.
+icon_small: wrench

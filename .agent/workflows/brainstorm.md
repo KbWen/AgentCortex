@@ -10,6 +10,5 @@ Output Format:
 
 Checkpoints:
 
-- MUST provide ?? options.
-- ?? option MUST be low-risk/conservative.
-
+- MUST provide at least 3 options.
+- At least 1 option MUST be low-risk/conservative.
