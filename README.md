@@ -1,157 +1,100 @@
-# AI Brain OS v3.5.2（vNext Architecture Edition）
+# AI Brain Template v3.5.3
 
-> **從「流程驅動」進化到「自我管理」的 Agent 憲法架構。**
+> **The Professional Standard for AI-Agentic Development.**
+> Build faster, scale safely, and optimize token efficiency with a battle-tested agentic architecture.
 
-## 🎯 專案定位
+[繁體中文模式 (Traditional Chinese)](README_zh-TW.md)
 
-此版本導入 vNext 自我管理架構，對齊 Google Antigravity / Codex Web / Codex App：
+---
 
-- **Self-Managed**：AI 自行分類任務並套用對應閘門。
-- **Parallel-Safe State**：全域狀態 (`current_state.md`) 與任務狀態 (`work/`) 分離。
-- **Token Optimized**：針對不同風險等級自動調整治理強度，`tiny-fix` 走 fast-path。
-- **Context Loss Safety**：強制執行 `/handoff` 以確保長週期任務不因上下文遺失而中斷。
-- **Command-first**：用固定指令觸發能力，而不是每次重寫 Prompt。
+## 🧠 What is AI Brain?
 
-> [!CAUTION]
-> **MIGRATION NOTICE**: 流程定義已遷移至 `.agent/workflows/` 與 `.agent/rules/`；
-> **清理說明**：`.agent/superpowers/` 目錄已正式移除。核心工具已遷移至 `tools/`，政策定義已遷移至 `.agent/rules/`。
+**AI Brain** is a high-performance template designed for elite developers working with agentic AI models (like Gemini Pro/Flash, Claude 3.5 Sonnet, or GPT-4o).
 
-## 🔗 參考來源
+Unlike generic boilerplates, AI Brain provides a **structured cognitive framework** that helps AI agents understand your codebase deeply, follow engineering guardrails strictly, and execute complex tasks with minimal human intervention—all while maintaining maximum token efficiency.
 
-- Superpowers 專案（理念參考）：<https://github.com/obra/superpowers>
-- 專案導入範例：`docs/PROJECT_EXAMPLES.md`
-- 遷移與整合指南：`docs/guides/migration.md`
-- Token 治理指南：`docs/guides/token-governance.md`
+## ✨ Key Features
 
-## 📦 目錄總覽
+### ⚡ Flash-First Philosophy
 
-- `.agent/rules/engineering_guardrails.md`：工程憲法（含分類規則與 Gate 標準）
-- `.agent/workflows/*.md`：單檔工作流程（bootstrap, plan, implement, handoff, ship 等）
-- `.agent/skills/<skill>/SKILL.md`：技能檔（Codex 相容路徑：`.agents/skills`）
-- `docs/context/current_state.md`：全域唯讀狀態（SSoT）
-- `docs/context/work/`：任務隔離 Work Log
-- `docs/adr/`：架構決策記錄
-- `docs/CODEX_PLATFORM_GUIDE.md`：Codex 平台指南
-- `AGENTS.md`：跨平台長期指令入口
+Optimized for high-speed, cost-effective models. The template separates "heavy" reasoning from "light" execution, making it perfect for Gemini 1.5 Flash workflows.
 
-## 🧩 系列功能對照 (Superpowers Based)
+### 🛡️ Engineering Guardrails
 
-| 功能 | 指令 | 對應檔案 | 目的 |
-| :--- | :--- | :--- | :--- |
-| 任務啟動 | `/bootstrap` | `.agent/workflows/bootstrap.md` | 固定目標、限制與 AC，凍結分類 |
-| 頭腦風暴 | `/brainstorm` | `.agent/workflows/brainstorm.md` | 快速發散方案並收斂 |
-| 探索研究 | `/research` | `.agent/workflows/research.md` | 補齊未知與限制 |
-| 規格定義 | `/spec` | `.agent/workflows/spec.md` | 產出可驗收規格 |
-| 任務規劃 | `/plan` | `.agent/workflows/plan.md` | 先規劃再動手 |
-| 實作執行 | `/implement` | `.agent/workflows/implement.md` | 安全實作、可回退 |
-| 代碼審查 | `/review` | `.agent/workflows/review.md` | 風險與品質檢查 |
-| 回顧精進 | `/retro` | `.agent/workflows/retro.md` | 形成可複用經驗 |
-| 交接摘要 | `/handoff` | `.agent/workflows/handoff.md` | 跨回合核心：保留決策脈絡 |
-| 最終交付 | `/ship` | `.agent/workflows/ship.md` | 彙整提交證據與歸檔狀態 |
+Built-in safety rules preventing destructive commands (e.g., recursive deletes, hard resets) and enforcing best practices like **"No Evidence, No Completion"**.
 
-## 🔀 Antigravity / Codex 路徑差異
+### 🛠️ Professional Multi-Agent Skills
 
-- Antigravity 主要讀取：`.agent/skills` (Native Agent 核心能力)
-- Codex 主要掃描：`.agents/skills` (Codex App 專屬能力)
-- **注意**：兩者目錄獨立存在以適應不同平台配置。若需共用，請根據需求手動鏡像或建立軟連結。
+A library of 11+ professional agentic skills including:
 
-## 🛡️ 規則檔與安全邊界
+- **Systematic Debugging**: 4-phase root cause analysis.
+- **Test-Driven Development (TDD)**: Verified Red-Green-Refactor cycles.
+- **Parallel Dispatching**: Coordinated subagent execution.
 
-- `.antigravity/rules.md`：Antigravity 優先讀取的規則總表。
-- `.agent/rules/rules.md`：舊版相容副本，內容同步。
-- `codex/rules/default.rules`：Codex 規則擴充入口。
-- `AGENTS.md`：跨平台長期指令，引用 `engineering_guardrails.md`。
+### 📉 Token Governance
 
-### 高風險指令安全設定
+Aggressive token optimization via **Context State Management**. Only the most relevant files are loaded, drastically reducing "Cold Start" costs and latency.
 
-以下命令預設禁止直接執行，需先提出風險與回退方案：
+---
 
-- `rm -rf`、`git reset --hard`、`git clean -fdx`
-- `docker system prune -a`、`chown -R`、`curl ... | bash`、`chmod -R 777`
+## 🏗️ Architecture Overview
 
-## 🚀 快速開始
+The system is organized into three core layers:
 
-### 1) 部署到專案
+1. **`.antigravity/` / `.agent/`**: The "Cortex" containing rules, logic state-machines, and agentic workflows.
+2. **`codex/`**: Platform-specific adapters for Codex Web/App and Google Antigravity.
+3. **`docs/context/`**: The "Memory" layer providing a Single Source of Truth (SSoT) for the project's global state.
+
+```text
+.
+├── .agent/                 # Agent Intelligence (Rules & Workflows)
+│   ├── rules/              # Guardrails & Methodologies
+│   └── workflows/          # Slash Commands (/plan, /ship, /hotfix)
+├── .agents/skills/         # Professional Skill Modules
+├── .github/                # Issues & PR Templates
+├── docs/                   # Multilingual Guides & Context
+└── tools/                  # Validation & Audit Scripts
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1. Installation
+
+Clone this template into your project root:
 
 ```bash
-./deploy_brain.sh /path/to/your-project
+git clone https://github.com/your-repo/ai-brain-template .
 ```
 
-> [!TIP]
-> 部署腳本會自動將 Agent 相關暫存檔（如 `work/`, `skills/` 等）加入 `.gitignore`，防止其被上傳到遠端倉庫。
+### 2. Synchronization
 
-### 2) Codex / Antigravity 開場
+Tell your AI Agent to read the state first:
+> "Read `docs/context/current_state.md` and initialize the environment."
 
-```text
-Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
-```
+### 3. Execution
 
-> 若遇到 403 錯誤，請直接貼上 `.codex/INSTALL.md` 全文。
+Use the built-in slash commands to drive the AI:
 
-### 3) 任務開場提示（從零開始）
-
-```text
-請先執行 /bootstrap。
-需求：[一句話]
-目標檔案：[path1, path2]
-限制：[不可改 API / 不可改 schema]
-驗收：[列 2-3 點可驗收條件]
-```
-
-### 4) 帶入前期討論素材（已與其他 AI 討論過）
-
-若已與其他 AI 模型完成規格討論、白皮書、技術文件等，不需要先自行整理——直接貼入即可，AI 會自行提取與歸檔。
-
-```text
-請先執行 /bootstrap。
-需求：[一句話總結]
-以下是前期討論的完整內容，請先消化後再開始規劃：
----
-[直接貼上所有素材：對話記錄、規格書、技術文件等]
----
-```
-
-> AI 會在 bootstrap 過程中自動：提取需求與限制 → 整理存入 `docs/specs/` → 分類任務 → 輸出標準 bootstrap 結果。
-
-### 5) 跨回合交接提示（續做任務時使用）
-
-```text
-以下是前一個模型留下的 handoff，請以此為「唯一真實狀態」繼續工作。
-你不得重新設計、不得調整 scope，只能依此 handoff 完成你的任務。
-[貼上 handoff 內容]
-```
-
-### 6) 用指令驅動開發
-
-1. `/bootstrap`：初始化任務並凍結分類
-2. `/plan`（或 `/write-plan`）：列檔案、步驟、風險、回退
-3. `/implement`（或 `/execute-plan`）：只改已同意範圍
-4. `/review`：做嚴格自審
-5. `/test`：列並執行最小必要驗證
-6. `/handoff`：跨回合交接（非 tiny-fix 必須）
-7. `/ship`：整理 commit / 變更摘要 / 測試結果
-
-## ⚙️ 建議節奏
-
-- **小修補（tiny-fix）**：`classify → do → inline evidence → done`
-- **一般修補**：`/plan → /implement → /review → /test`
-- **新功能**：`/brainstorm → /spec → /plan → /implement → /review → /test`
-- **緊急修復**：`/research → /plan → /implement → /review → /test`
-
-## 🧠 Token Hygiene（避免小任務放大成本）
-
-- 任務啟動只讀：`docs/context/current_state.md` 與 `docs/context/work/<branch>.md`。
-- 優先精準檢索（`rg <keyword> <path>`），避免全樹掃描。
-- 先用 `/plan` 收斂檔案範圍，再進入 `/implement`，降低來回修正。
-- 小型任務沿用 Fast Lane；若變更開始影響狀態/策略，立即升級流程，避免返工。
-
-## ✅ 自我驗證
-
-```bash
-./tools/validate.sh
-```
-
-完整平台建議請見 `docs/CODEX_PLATFORM_GUIDE.md`。
+- `/plan`: Create a detailed implementation plan.
+- `/ship`: Verify changes and sync to mainline.
+- `/hotfix`: Systematically debug and fix critical issues.
 
 ---
-詳細變更請見 [CHANGELOG.md](./CHANGELOG.md)
+
+## 🏆 Goals of This Project
+
+- **Scale**: Empower a single developer to manage large, complex codebases.
+- **Quality**: Enforce strict engineering standards via AI automation.
+- **Portability**: Maintain a consistent AI context across local IDEs and cloud-based platforms.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+*Built with ❤️ for the next generation of Agentic Developers.*
