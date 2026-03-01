@@ -37,6 +37,9 @@ Optimized for high-speed, cost-effective models. The template separates "heavy" 
 
 ### 🛡️ Engineering Guardrails
 
+- [Multi-Remote Workflow Guide (Private/Local)](docs/context/private/multi-remote-workflow.md)
+- [AgentCortex Governance](docs/guides/audit-guardrails.md)
+
 Built-in safety rules preventing destructive commands (e.g., recursive deletes, hard resets) and enforcing best practices like **"No Evidence, No Completion"**.
 
 ### 🛠️ Professional Multi-Agent Skills

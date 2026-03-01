@@ -1,0 +1,20 @@
+# AgentCortex Local Ignore Template
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Private AI Context (Local Only)
+docs/context/private/
+docs/context/work/*.md
+.agent/private/
+
+# Local Dev Artifacts
+tmp/
+*.log
+.cursor/
+.antigravity/scratch/
+
+# Environments
+.env*
+!.env.example
