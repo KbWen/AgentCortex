@@ -1,17 +1,19 @@
-# AI Brain Template v3.5.3
+# AgentCortex: The Professional Agentic OS for Google Antigravity & Codex
 
-> **The Professional Standard for AI-Agentic Development.**
-> Build faster, scale safely, and optimize token efficiency with a battle-tested agentic architecture.
+> **The Ultimate Multi-Agent Framework for Professional Development.**
+> Optimized for Antigravity Workflows, Codex Platforms, and Token-Efficient AI Reasoning.
+
+[![Antigravity Compatible](https://img.shields.io/badge/Antigravity-Compatible-blueviolet)](https://github.com/KbWen/ai-brain-template)
+[![Codex Ready](https://img.shields.io/badge/Codex-Ready-blue)](https://github.com/KbWen/ai-brain-template)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [繁體中文模式 (Traditional Chinese)](README_zh-TW.md)
 
 ---
 
-## 🧠 What is AI Brain?
+## 🧠 Why AgentCortex?
 
-**AI Brain** is a high-performance template designed for elite developers working with agentic AI models (like Gemini Pro/Flash, Claude 3.5 Sonnet, or GPT-4o).
-
-Unlike generic boilerplates, AI Brain provides a **structured cognitive framework** that helps AI agents understand your codebase deeply, follow engineering guardrails strictly, and execute complex tasks with minimal human intervention—all while maintaining maximum token efficiency.
+**AgentCortex** (formerly AI Brain Template) is a high-performance, **structured AI environment** designed for elite developers. It bridges the gap between human intent and AI execution by providing a robust ecosystem of **Skills**, **Rules**, and **Workflows** specifically tuned for **Google Antigravity** and **Codex** (Web/App).
 
 ## ✨ Key Features
 
