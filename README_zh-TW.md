@@ -1,20 +1,21 @@
-# AI Brain OS v3.5.2（vNext Architecture Edition）
+# AgentCortex v3.5.3 (vNext Architecture Edition)
 
-> **從「流程驅動」進化到「自我管理」的 Agent 憲法架構。**
+> **從「流程驅動」進化到「自我管理」的專業級 AI Agent 核心架構。**
 
 ## 🎯 專案定位
 
-此版本導入 vNext 自我管理架構，對齊 Google Antigravity / Codex Web / Codex App：
+**AgentCortex** (前身為 AI Brain Template) 是一個專為頂尖開發者（使用 Gemini 3.1 Pro/3 Flash, Claude Opus 4.6, 或 GPT-4o）設計的高效能**結構化認知框架**。它能幫助 AI Agent 深度理解代碼庫、嚴格遵守工程護欄，並以極高的 Token 效率執行複雜任務。
 
-- **Self-Managed**：AI 自行分類任務並套用對應閘門。
-- **Parallel-Safe State**：全域狀態 (`current_state.md`) 與任務狀態 (`work/`) 分離。
-- **Token Optimized**：針對不同風險等級自動調整治理強度，`tiny-fix` 走 fast-path。
-- **Context Loss Safety**：強制執行 `/handoff` 以確保長週期任務不因上下文遺失而中斷。
-- **Command-first**：用固定指令觸發能力，而不是每次重寫 Prompt。
+我們對齊並優化了 Google Antigravity / Codex Web / Codex App 的使用情境：
 
-> [!CAUTION]
+- **Self-Managed**：AI 自行分類任務並套用對應的治理閘門。
+- **Parallel-Safe State**：全域狀態 (`current_state.md`) 與任務狀態 (`work/`) 嚴格分離。
+- **Token Optimized**：針對不同風險等級自動調整治理強度，`tiny-fix` 走 fast-path 以節省成本。
+- **Context Loss Safety**：強制執行 `/handoff` 以確保長週期任務不因內容遺失而中斷。
+- **Command-first**：用標準化指令觸發 Agent 能力，確保行為一致性。
+
 > **MIGRATION NOTICE**: 流程定義已遷移至 `.agent/workflows/` 與 `.agent/rules/`；
-> **清理說明**：`.agent/superpowers/` 目錄已正式移除。核心工具已遷移至 `tools/`，政策定義已遷移至 `.agent/rules/`。
+> **更名說明**：本專案已正式更名為 **AgentCortex**。原本的 `.agent/superpowers/` 指令集已完整遷移至新結構。
 
 ## 🔗 參考來源
 
