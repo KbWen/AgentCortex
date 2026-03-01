@@ -7,7 +7,7 @@ tasks:
 
 # /bootstrap
 
-> Canonical state & transitions: `Ref: .agent/superpowers/policies/state_machine.md`
+> Canonical state & transitions: `Ref: .agent/rules/state_machine.md`
 
 ## 1. Initialization & Required Reading
 
@@ -51,3 +51,4 @@ Write to `docs/context/work/<branch-name>.md`:
 
 - Classification is FROZEN once written to Work Log.
 - `tiny-fix` bypasses full bootstrap/handoff overhead, but MUST provide evidence.
+

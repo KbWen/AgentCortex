@@ -9,7 +9,7 @@ tasks:
 
 Read-only command. DOES NOT change state.
 
-> Canonical state list: `Ref: .agent/superpowers/policies/state_machine.md`
+> Canonical state list: `Ref: .agent/rules/state_machine.md`
 
 Output Content:
 
@@ -18,3 +18,4 @@ Output Content:
 3. Currently Available Commands (Filtered by State)
 4. All Commands & Purposes
 5. Suggested Next Steps (DO NOT Auto-Execute)
+

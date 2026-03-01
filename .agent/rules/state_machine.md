@@ -23,8 +23,8 @@
 ## Hard Gates
 
 - Non-`tiny-fix` tasks MUST execute `/handoff` before `SHIPPED`. Required references:
-  1. ≥1 `docs/` artifact path
-  2. ≥1 modified code path
+  1. ?? `docs/` artifact path
+  2. ?? modified code path
   3. Active work log path
 - `tiny-fix` allows fast-path but MUST provide minimal evidence (diff + one-line verification).
 
@@ -35,3 +35,4 @@
 - `IN_PROGRESS` -> `IMPLEMENTING`
 - `UNDER_REVIEW` -> `REVIEWED`
 - `DONE` -> `SHIPPED` (Requires test & ship gates)
+

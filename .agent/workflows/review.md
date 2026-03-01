@@ -14,3 +14,4 @@ Output Format:
 - Issues found (with severity)
 - Fix suggestions
 - Ready to commit? (Yes/No)
+

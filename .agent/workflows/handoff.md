@@ -9,7 +9,7 @@ tasks:
 
 Read-only logic. DOES NOT change state. Hard completion gate for non-`tiny-fix` tasks.
 
-> Canonical gate: `Ref: .agent/superpowers/policies/state_machine.md`
+> Canonical gate: `Ref: .agent/rules/state_machine.md`
 
 ## 1. Trigger Conditions
 
@@ -34,8 +34,8 @@ Read-only logic. DOES NOT change state. Hard completion gate for non-`tiny-fix` 
 
 MUST include ALL of the following:
 
-1. ≥1 `docs/` file path
-2. ≥1 code file path
+1. ?? `docs/` file path
+2. ?? code file path
 3. Corresponding Work Log path (`docs/context/work/<branch-name>.md`)
 
 If requirements unsatisfied, COMPLETION AND `/ship` ARE STRICTLY PROHIBITED.
@@ -43,3 +43,4 @@ If requirements unsatisfied, COMPLETION AND `/ship` ARE STRICTLY PROHIBITED.
 ## 5. Token & Efficiency Reflection
 
 If task was abnormally long or consumed high tokens, briefly explain why (e.g., "ambiguous specs", "bug loop"). Aids in continuous governance optimization.
+

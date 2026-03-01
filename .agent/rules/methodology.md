@@ -12,3 +12,4 @@
 
 - **Google Antigravity**: Strictly command-driven (`/bootstrap` -> `/plan` -> `/implement`).
 - **Codex Web/App**: Supports alias flows (`/write-plan` -> `/plan`, `/execute-plan` -> `/implement`).
+

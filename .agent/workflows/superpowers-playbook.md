@@ -35,6 +35,4 @@ tasks:
 
 ## Reference Paths
 
-- Command templates: `.agent/superpowers/commands.md`
-- Detailed workflow guides: `.agent/superpowers/workflows.md`
 - Task workflow cards: `.agent/workflows/*.md`

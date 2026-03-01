@@ -12,3 +12,4 @@ Guides AI to create standardized architectural decision records.
     - **Decision**: What exactly are we doing?
     - **Consequences**: Pros and cons of this decision.
 4. **Relational Linking**: Cite this ADR in affected code or Specs.
+

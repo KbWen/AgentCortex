@@ -11,3 +11,4 @@ Execute before task completion to ensure docs match code.
     - Arch changes -> Create/Update `docs/adr/`.
     - Usage changes -> Update `docs/guides/` or `README.md`.
 4. **Verification**: Guarantee all paths and links in docs remain valid.
+

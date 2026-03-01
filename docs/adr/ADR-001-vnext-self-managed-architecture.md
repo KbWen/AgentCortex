@@ -33,3 +33,4 @@ We implement the "vNext" architecture, characterized by:
 - AI handles governance overhead autonomously.
 - Token consumption is optimized based on task risk.
 - Cross-agent collaboration is safer due to explicit task logs.
+

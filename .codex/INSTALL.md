@@ -1,8 +1,8 @@
 # AI Brain Superpowers Installer (Codex)
 
-目標：讓 Codex（Web / App）快速載入本模板的 workflow-first 行為。
+Goal: Enable Codex (Web / App) to quickly load the workflow-first behavior of this template.
 
-## 1) 安裝（在目標 repo 執行）
+## 1) Installation (Run in target repo)
 
 ```bash
 curl -fsSL <REPLACE_WITH_YOUR_TEMPLATE_RAW_DEPLOY_SCRIPT_URL> -o deploy_brain.sh
@@ -10,18 +10,19 @@ chmod +x deploy_brain.sh
 ./deploy_brain.sh .
 ```
 
-> 若已經有本 repo，可直接執行：`./deploy_brain.sh .`
+> If you already have this repo, run directly: `./deploy_brain.sh .`
 
-## 2) 驗證
+## 2) Verification
 
 ```bash
-./.agent/superpowers/validate.sh
+./tools/validate.sh
 ```
 
-## 3) Codex 開場指令（建議貼上）
+## 3) Codex Opening Commands (Recommended paste)
 
 ```text
-請先執行 /bootstrap。
-接著用 /brainstorm 釐清方案，再用 /write-plan 產出可執行計畫。
-未通過 /review 與 /test 前，不可宣告完成。
+Please run /bootstrap first.
+Then use /brainstorm to clarify solutions, and /plan to generate an actionable plan.
+DO NOT claim completion until /review and /test have passed.
 ```
+

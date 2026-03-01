@@ -7,7 +7,7 @@ tasks:
 
 # /plan
 
-> Canonical state & transitions: `Ref: .agent/superpowers/policies/state_machine.md`
+> Canonical state & transitions: `Ref: .agent/rules/state_machine.md`
 
 NO CODING YET. Planning phase ONLY.
 
@@ -21,9 +21,9 @@ NO CODING YET. Planning phase ONLY.
 
 ## Quality Gates (ALL MUST PASS)
 
-- Every AC MUST map to ≥1 step.
+- Every AC MUST map to ?? step.
 - Step granularity: Module/File/Function level.
-- MUST identify ≥1 Risk + viable Rollback.
+- MUST identify ?? Risk + viable Rollback.
 - List ONLY files being modified (Prevent scope creep).
 - MUST explicitly cite documentation (e.g., `Ref: docs/specs/auth.md`).
 
@@ -37,3 +37,4 @@ NO CODING YET. Planning phase ONLY.
 
 - Upon passing gates, state transitions from `PLANNED` to `IMPLEMENTABLE`.
 - Automatically offer `/test-skeleton` in the same turn.
+

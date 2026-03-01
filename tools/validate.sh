@@ -95,7 +95,7 @@ done
 for rules_file in "$ROOT/.agent/rules/rules.md" "$ROOT/.antigravity/rules.md"; do
   rg -q "docker system prune -a" "$rules_file" || { echo "rules missing dangerous command: docker system prune -a in $rules_file"; exit 1; }
   rg -q "chown -R" "$rules_file" || { echo "rules missing dangerous command: chown -R in $rules_file"; exit 1; }
-  rg -q "å›žé€€æ–¹æ¡ˆ" "$rules_file" || { echo "rules missing rollback reminder in $rules_file"; exit 1; }
+  rg -q "?žé€€?¹æ?" "$rules_file" || { echo "rules missing rollback reminder in $rules_file"; exit 1; }
 done
 
 # Codex prefix_rule syntax and required high-risk command coverage
@@ -129,3 +129,4 @@ if [[ -f "$ROOT/README.md" ]]; then
 fi
 
 echo "superpowers validation passed"
+

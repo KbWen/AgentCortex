@@ -107,7 +107,8 @@ Non-negotiable principles for agent-driven development.
 
 - Non-`tiny-fix` tasks MUST NOT claim complete without `/handoff`.
 - `/ship` MUST verify handoff references:
-  1. ≥1 `docs/` file path
-  2. ≥1 code path
+  1. ?? `docs/` file path
+  2. ?? code path
   3. Work log path
 - If missing, AI MUST reject `/ship` and list missing artifacts.
+

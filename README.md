@@ -14,7 +14,7 @@
 
 > [!CAUTION]
 > **MIGRATION NOTICE**: 流程定義已遷移至 `.agent/workflows/` 與 `.agent/rules/`；
-> `.agent/superpowers/` 仍保留相容工具（如 `validate.sh`）與政策定義（如 `policies/state_machine.md`），請勿誤刪。
+> **清理說明**：`.agent/superpowers/` 目錄已正式移除。核心工具已遷移至 `tools/`，政策定義已遷移至 `.agent/rules/`。
 
 ## 🔗 參考來源
 
@@ -34,7 +34,7 @@
 - `docs/CODEX_PLATFORM_GUIDE.md`：Codex 平台指南
 - `AGENTS.md`：跨平台長期指令入口
 
-## 🧩 Superpowers 功能對照
+## 🧩 系列功能對照 (Superpowers Based)
 
 | 功能 | 指令 | 對應檔案 | 目的 |
 | :--- | :--- | :--- | :--- |
@@ -148,7 +148,7 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 ## ✅ 自我驗證
 
 ```bash
-./.agent/superpowers/validate.sh
+./tools/validate.sh
 ```
 
 完整平台建議請見 `docs/CODEX_PLATFORM_GUIDE.md`。

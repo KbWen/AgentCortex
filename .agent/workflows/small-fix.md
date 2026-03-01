@@ -14,3 +14,4 @@ tasks:
 2. `/implement`: Execute minimal change. Incidental refactoring PROHIBITED.
 3. `/review`: Focus on side-effects, compatibility, and fast rollback readiness.
 4. `/test`: Execute single-file or minimal test suite, log results.
+

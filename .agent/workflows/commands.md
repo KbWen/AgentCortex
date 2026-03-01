@@ -12,3 +12,4 @@ Output Format:
 Note:
 
 - This is a compatibility alias, functionally equivalent to the "All Commands" section in `/help`.
+

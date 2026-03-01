@@ -17,3 +17,4 @@ tasks:
 4. `/implement`: Execute incrementally. Maintain small, reversible commits.
 5. `/review` + `/test`: Verify strict regression and side-effects. Retain reproducible commands.
 6. `/retro`: Evaluate if this custom flow should be abstracted into a new workflow card.
+
