@@ -1,4 +1,4 @@
-# Engineering Guardrails (Constitution)
+﻿# Engineering Guardrails (Constitution)
 
 ## Scope
 
@@ -111,4 +111,5 @@ Non-negotiable principles for agent-driven development.
   2. ?? code path
   3. Work log path
 - If missing, AI MUST reject `/ship` and list missing artifacts.
+
 
