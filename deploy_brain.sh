@@ -1,6 +1,5 @@
 #!/bin/bash
 # AI Brain Deployer v3.5.2 (Full Platform Support Edition)
-...
 echo "🚀 Deploying AI Brain v3.5.2 (Full Platform Support) to $TARGET..."
 
 # ============================================================
@@ -91,9 +90,7 @@ if ! grep -q "# AI Brain OS" "$GITIGNORE"; then
 .antigravity/
 .codex/
 codex/
-AGENTS.md
-MODEL_GUIDE.md
-docs/context/
+docs/context/private/
 EOT
 else
     echo "ℹ️ AI Brain OS patterns already present in .gitignore."

@@ -59,6 +59,10 @@ Non-negotiable principles for agent-driven development.
   - Specs: `docs/specs/[feature-name].md`
   - Guides: `docs/guides/[topic].md`
   - Agent Work Logs: `docs/context/work/`
+  - Private Context: `docs/context/private/` (local-only, gitignored)
+    - USE FOR: personal dev environment configs, private remote URLs, internal credentials references, team-specific workflows not intended for public repos.
+    - DO NOT USE FOR: project architecture docs, contribution guides, public development standards.
+    - WHEN UNCERTAIN: Agent MUST present options to user in `/plan` phase. Autonomous path decisions on ambiguous content are PROHIBITED.
 
 ## 6. Explainability & Traceability
 
