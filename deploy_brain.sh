@@ -94,6 +94,7 @@ codex/
 AGENTS.md
 MODEL_GUIDE.md
 docs/context/
+docs/context/private/
 EOT
 else
     echo "ℹ️ AI Brain OS patterns already present in .gitignore."
