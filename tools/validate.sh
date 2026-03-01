@@ -15,7 +15,7 @@ required_files=(
   "$WORKFLOWS_DIR/new-feature.md"
   "$WORKFLOWS_DIR/medium-feature.md"
   "$WORKFLOWS_DIR/small-fix.md"
-  "$WORKFLOWS_DIR/docs-update.md"
+  "$WORKFLOWS_DIR/govern-docs.md"
   "$WORKFLOWS_DIR/handoff.md"
   "$WORKFLOWS_DIR/bootstrap.md"
   "$WORKFLOWS_DIR/plan.md"
