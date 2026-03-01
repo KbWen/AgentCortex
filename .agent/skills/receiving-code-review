@@ -1,4 +1,4 @@
 version: 1
 display_name: receiving-code-review
-short_description: 有效接收 reviewer 意見，分類處理阻斷與建議項，避免來回失焦。
+short_description: Effectively receive reviewer feedback, categorize blocking and suggestive items, and avoid losing focus due to back-and-forth.
 icon_small: wrench
