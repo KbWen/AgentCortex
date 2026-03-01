@@ -1,24 +1,22 @@
 ---
 name: receiving-code-review
-description: ?‰æ??¥æ”¶ reviewer ?è?ï¼Œå?é¡è??†é˜»?·è?å»ºè­°?…ï??¿å?ä¾†å?å¤±ç„¦??
+description: Effectively process reviewer feedback; categorize blocking vs. advisory items.
 ---
 
-# Receiving Code Reviewï¼ˆæ¥?¶ç?å¼ç¢¼å¯©æŸ¥ï¼?
+# Receiving Code Review
 
-## æ¦‚è¿°
+## Overview
 
-Review ?é??€è¦ç?æ§‹å??•ç?ï¼Œæ??½å¿«?Ÿæ”¶?‚åˆ°?¯å?ä½µç??‹ã€?
+Review feedback requires structured handling to quickly converge into a mergeable state.
 
-## ?é??†é?
+## Feedback Categorization
 
-- **Blocking**ï¼šå?ä¿®ï?å½±éŸ¿æ­?¢º??å®‰å…¨/ç©©å??§ã€?
-- **Non-blocking**ï¼šå¯å¾Œç??•ç??„å¯è®€?§æ??ªå?å»ºè­°??
-- **Question**ï¼šé?è£œä?ä¸‹æ??–è¨­è¨ˆèªª?ã€?
+- **Blocking**: Mandatory; affects correctness, security, or stability.
+- **Non-blocking**: Advisory; readability or optimizations to handle later.
+- **Question**: Requires added context or design explanation.
 
-## ?æ?æµç?
+## Response Workflow
 
-1. ?æ??è?ï¼Œé¿?éºæ¼ã€?
-2. è®Šæ›´å¾Œé??°åŸ·è¡Œç›¸?œæ¸¬è©¦ã€?
-3. ?å ±?Œä¿®æ­?…§å®?+ é©—è?è­‰æ? + ?ªæ¡ç´ç??±ï??¥æ?ï¼‰ã€ã€?
-
-
+1. Reply iteratively to avoid omissions.
+2. Re-run related tests after changes.
+3. Report "Fixes + Verification Evidence + Reason for non-adoption (if any)".

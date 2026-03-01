@@ -1,36 +1,35 @@
 ---
 name: finishing-a-development-branch
-description: ?¨é??¼å??¯å??å??·è??€çµ‚é?è­‰ï?ä¸¦ä»¥?›ç¨®ç­–ç•¥æ±ºç??†æ”¯?¶å°¾?¹å???
+description: Perform final verification on development branches; choose from 4 merge strategies.
 ---
 
-# Finishing a Development Branchï¼ˆå??é??¼å??¯ï?
+# Finishing a Development Branch
 
-## æ¦‚è¿°
+## Overview
 
-?Ÿèƒ½å®Œæ?ä¸ä»£è¡¨æ?ç¨‹å??ã€‚å??¯æ”¶å°¾å??‰å??æ?çµ‚é?è­‰è?é¢¨éšª?¤é?ï¼Œé¿?æ??ªç¢ºèªè??´æ¨?²åˆ°ä¸»ç???
+Feature completion does not mean process completion. Final verification and risk assessment MUST occur before closing a branch to prevent pushing unverified changes to mainline.
 
-## å®Œæ??é?è­?
+## Pre-completion Verification
 
-- ?æ–°?Œæ­¥ä¸»ç?å¾Œç¢ºèªç„¡è¡ç??–è??ºæ?ç§»ã€?
-- ?·è??€å°å?è¦?+ ?œéµ?æ­¸æ¸¬è©¦??
-- æª¢æŸ¥?‡ä»¶?é·ç§»è…³?¬ã€è¨­å®šè??´æ˜¯?¦é??™ã€?
+- Re-sync with mainline to verify no conflicts or behavioral drift.
+- Execute minimal required tests + critical regression tests.
+- Verify documentation, migration scripts, and configuration changes are ready.
 
-## ?›ç¨®?¶å°¾?¸é?
+## Four Closure Options
 
-1. **Merge now**ï¼šé?è­‰å??´ä?é¢¨éšª?¯æ¥?—ï??´æ¥?ˆä½µ??
-2. **Open PR**ï¼šé?è¦?reviewer ?–è·¨?˜é??Œæ­¥?‚ï??ˆæ? PR??
-3. **Keep branch**ï¼šå??‰å?çºŒæ??†å·¥ä½œï?ä¿ç??†æ”¯çºŒä???
-4. **Archive / Close**ï¼šé?æ±‚å?æ¶ˆæ?ç­–ç•¥è®Šæ›´ï¼Œå?å­˜ä¸¦?œé???
+1. **Merge now**: Verification is complete, risks are acceptable; merge directly.
+2. **Open PR**: Requires reviewer or cross-team sync; open PR first.
+3. **Keep branch**: Has remaining split work; keep branch active for continuation.
+4. **Archive / Close**: Requirement canceled or strategy changed; archive and close branch.
 
-## æ±ºç?æº–å?
+## Decision Criteria
 
-- ä»¥é??¶å??åº¦?‡é¢¨?ªç?ç´šæ±ºå®šã€?
-- ?¥è??šä?è¶³ï?ç¦æ­¢?²å…¥ Merge now??
-- ?¥æ??å¤§ä¸ç¢ºå®šæ€§ï??ªå? Open PR ?–å?å¯©æŸ¥??
+- Determined by acceptance completion level and risk level.
+- Entering "Merge now" is PROHIBITED if evidence is insufficient.
+- For major uncertainties, prioritize "Open PR" for review.
 
-## å¸¸è??¯èª¤
+## Common Mistakes
 
-- æ¸¬è©¦?ªè?å®Œå°±?¥è??ˆä½µ??
-- ?ªèªª?ä??™å??¯å?? ï?? æ??·å°¾?€è¡“å‚µ??
-- ?œé??†æ”¯?»æœª?™ä?æ±ºç?ç´€?„ã€?
-
+- Rushing to merge before tests finish running.
+- Closing a branch without logging the decision.
+- Keeping a branch without context, causing a long-tail tech debt.

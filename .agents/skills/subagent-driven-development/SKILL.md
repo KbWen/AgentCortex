@@ -1,24 +1,22 @@
 ---
 name: subagent-driven-development
-description: ?é?å­ä»£?†å?ä½œæ?è§?»»?™ï?å®šç¾©ä»‹é¢å¥‘ç??å?æ­¥ç?é»è??´å?é©—æ”¶??
+description: Decompose tasks via subagent collaboration; define interface contracts and integration checkpoints.
 ---
 
-# Subagent-Driven Developmentï¼ˆå?ä»???”ä??‹ç™¼ï¼?
+# Subagent-Driven Development
 
-## æ¦‚è¿°
+## Overview
 
-?¶ä»»?™å¯?†å??‚ï??¯ä½¿?¨å??‹å?ä»??ä¸¦è??•ç?ï¼Œå??Ÿäº¤ä»˜ä?ä¸çŠ§?²ä??´æ€§ã€?
+When a task is splittable, use multiple subagents to process in parallel, accelerating delivery without sacrificing consistency.
 
-## ?†è§£ç­–ç•¥
+## Decomposition Strategy
 
-- ä»¥æ¨¡çµ„é??Œæ??·è²¬?‡å???
-- å®šç¾©æ¯å€‹å?ä»»å?è¼¸å…¥/è¼¸å‡ºå¥‘ç???
-- è¨­å??Œæ­¥ç¯€é»ï??¿å??´å??†ç‚¸??
+- Split cleanly by module boundaries or responsibilities.
+- Define input/output contracts for each sub-task.
+- Establish sync checkpoints to avoid integration explosion.
 
-## äº¤ä?è¦æ?
+## Delivery Requirements
 
-1. å­ä»»?™é??„æ¸¬è©¦æ?æª¢æŸ¥è­‰æ???
-2. ä¸»ä»£?†è?è²¬æ•´?ˆã€è?çªè§£æ±ºè??€çµ‚é?è­‰ã€?
-3. ä»»ä?è·¨æ¨¡çµ„è??´é??¨æ•´?ˆå??¬å???
-
-
+1. Sub-tasks MUST include testing or checking evidence.
+2. The primary agent is responsible for integration, conflict resolution, and final verification.
+3. Any cross-module changes MUST be announced before integration.

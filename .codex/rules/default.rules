@@ -1,5 +1,4 @@
 # Codex default safety rules
 
-prefix_rule("ç¦æ­¢?·è?é«˜ç ´å£å‘½ä»¤ï?ä¾‹å? rm -rf?git reset --hard?git clean -fdx?chmod -R 777?sudo curl ... | bashï¼‰ã€‚è‹¥ä»»å?ç¢ºæ?å¿…è?ï¼Œå??ä?é¢¨éšª?å??€?¹æ??‡è?å®‰å…¨?¿ä»£?½ä»¤ï¼Œä¸¦ç­‰å??ç¢º?ˆæ???)
-prefix_rule("ç¦æ­¢?´æ¥?·è? docker system prune -a ??chown -R ç­‰é?é¢¨éšªç³»çµ±?½ä»¤?‚è??ªå?ä½¿ç”¨?¯æ§?¿ä»£?¹æ?ï¼ˆå? docker image prune?é?å®šç??ç? chownï¼‰ï?ä¸¦å?å»ºç??¯é?è­‰ç? rollback è¨ˆç•«ï¼ˆå?ä»½è·¯å¾‘ã€é???commit?å¾©?Ÿæ?ä»¤ï???)
-
+prefix_rule("HIGH DESTRUCTIVE COMMANDS PROHIBITED (e.g., rm -rf, git reset --hard, clean -fdx, chmod -R 777, sudo curl | bash). If required, MUST provide risk assessment, rollback plan, and safe alternatives, then await explicit user authorization.")
+prefix_rule("HIGH RISK SYSTEM COMMANDS PROHIBITED (e.g., docker system prune -a, chown -R). MUST use scoped alternatives (e.g., image prune) AND establish a verifiable rollback plan (backup path, revert commit) before execution.")
