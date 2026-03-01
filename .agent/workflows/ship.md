@@ -1,6 +1,6 @@
 ---
 name: ship
-description: 最終交付與歸檔，需滿足 tested 與 handoff gate。
+description: Final delivery and archival. Requires TESTED state and handoff gate.
 tasks:
   - ship
 ---
@@ -9,23 +9,23 @@ tasks:
 
 > Canonical gate: `Ref: .agent/superpowers/policies/state_machine.md`
 
-## 進入條件（硬性）
+## Entry Conditions (HARD)
 
-1. 當前狀態為 `TESTED`。
-2. 非 `tiny-fix` 任務必須已有 `/handoff`。
-3. `/handoff` 的 References 必須滿足最小要求（doc + code + work log）。
+1. Current state is `TESTED`.
+2. Non-`tiny-fix` tasks MUST have completed `/handoff`.
+3. `/handoff` References MUST meet minimums (doc + code + work log).
 
-若任一條件不滿足，必須拒絕 `/ship` 並回覆缺失清單。
+If ANY condition fails, MUST reject `/ship` and output missing list.
 
-## 輸出格式
+## Output Format
 
-- Commit message（Conventional Commits）
-- 變更摘要（條列）
-- 測試結果（Evidence）
-- 文檔同步狀態（含是否更新 `current_state.md`）
-- 已知風險與回退方式
+- Commit message (Conventional Commits)
+- Change summary (bullet points)
+- Test results (Evidence)
+- Doc sync status (Did `current_state.md` update?)
+- Known risks and rollback strategy
 
-## 狀態更新與歸檔
+## State Update & Archival
 
-1. 依分類決策更新 `docs/context/current_state.md`（僅 `/ship` 階段）。
-2. 歸檔 `docs/context/work/<branch-name>.md` 至 `docs/context/archive/`（若任務已完成）。
+1. Update `docs/context/current_state.md` based on classification (ONLY during `/ship`).
+2. Archive `docs/context/work/<branch-name>.md` to `docs/context/archive/` (if task complete).

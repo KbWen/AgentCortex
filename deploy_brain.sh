@@ -41,7 +41,6 @@ cp $CP_FLAG MODEL_GUIDE.md "$TARGET/"
 
 # .agent core
 cp $CP_FLAG .agent/rules/engineering_guardrails.md "$TARGET/.agent/rules/"
-[ -f .agent/AGENT.md ] && cp $CP_FLAG .agent/AGENT.md "$TARGET/.agent/"
 
 # ============================================================
 # 3. Deploy vNext workflows

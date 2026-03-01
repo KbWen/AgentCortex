@@ -1,8 +1,9 @@
 # /write-plan
 
-等同 `/plan`。
+Alias for `/plan`.
 
-請輸出任務拆解（每個 task 2–5 分鐘）：
-- 檔案路徑
-- 變更內容
-- 驗證方式
+Output task breakdown (2-5 minutes per task):
+
+- File path
+- Modification payload
+- Verification method

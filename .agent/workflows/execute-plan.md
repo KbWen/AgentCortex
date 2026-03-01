@@ -1,9 +1,9 @@
 # /execute-plan
 
-> 進入條件：state >= `IMPLEMENTABLE`（plan quality gate 已通過）。
+> Hard Gate: state >= `IMPLEMENTABLE` (Plan quality gate MUST be passed).
 
-等同 `/implement`，按已確認計畫逐項執行並回報：
+Alias for `/implement`. Execute the approved plan step-by-step and report:
 
-- 完成項目
-- 未完成項目
-- 阻塞與建議
+- Completed items
+- Incomplete items
+- Blockers & Recommendations

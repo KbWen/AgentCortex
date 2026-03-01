@@ -1,19 +1,20 @@
 ---
 name: help
-description: 唯讀顯示目前狀態、可用指令與下一步建議。
+description: Read-only display of current state, available commands, and recommendations.
 tasks:
   - help
 ---
 
 # /help
 
-唯讀指令，不改變狀態。
+Read-only command. DOES NOT change state.
 
 > Canonical state list: `Ref: .agent/superpowers/policies/state_machine.md`
 
-輸出內容：
+Output Content:
+
 1. Current State
-2. 任務類型（若已判定）
-3. 目前可用指令（依 State 過濾）
-4. 全指令一覽與用途
-5. 下一步建議（不自動執行）
+2. Task Type (If classified)
+3. Currently Available Commands (Filtered by State)
+4. All Commands & Purposes
+5. Suggested Next Steps (DO NOT Auto-Execute)

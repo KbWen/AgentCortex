@@ -1,132 +1,113 @@
-# Engineering Guardrails (工程憲法)
+# Engineering Guardrails (Constitution)
 
 ## Scope
 
-Global (applies to all projects using this template)
+Global (applies to all projects using template).
 
 ## Role
 
-Non-negotiable principles for agent-driven development
+Non-negotiable principles for agent-driven development.
 
 ## 1. Core Philosophy
 
 ### 1.1 Correctness First
 
-- 正確性優先於效能、複雜度與功能數量。
-- 無法驗證的行為視為不安全。
+- Correctness > Performance/Complexity/Features.
+- Unverifiable behavior is classified as UNSAFE.
 
 ### 1.2 Explicit Over Implicit
 
-- 假設、前提、限制必須明確表達。
-- 反對隱性 magic behavior。
+- Assumptions, preconditions, limitations MUST be explicitly stated.
+- Implicit magic behavior is PROHIBITED.
 
 ### 1.3 Reproducibility by Default
 
-- 相同輸入應產生相同行為。
-- 隨機性必須可控制、可關閉、可追蹤。
-
----
+- Same input MUST yield same output.
+- Randomness MUST be controllable, toggleable, and traceable.
 
 ## 2. Change Safety Principles
 
 ### 2.1 Small & Reversible Changes
 
-- 優先小 patch。
-- 可回退 (rollback) 是設計的一部分。
+- Micro-patches preferred.
+- Rollback MUST be designed upfront.
 
-### 2.2 Preserve Existing Behavior Unless Stated
+### 2.2 Preserve Existing Behavior
 
-- 若非需求明確要求，預設不改變既有語意。
-- 新行為應透過 config / flag 啟用。
-
----
+- DO NOT alter existing semantics unless explicitly requested.
+- New behavior MUST be feature-flagged or config-driven.
 
 ## 3. Data & Time Integrity
 
-- 不允許使用未來資訊 (Look-ahead bias)。
-- 時序關係必須明確說明。
-- 輸入 → 輸出因果關係必須清楚。
-
----
+- Look-ahead bias PROHIBITED.
+- Exact temporal ordering MUST be stated.
+- Input -> Output causality MUST be clear.
 
 ## 4. Design Before Implementation
 
-- 在寫程式前，先給出：問題理解、設計方案、取捨與風險。
-- 若設計不清楚，優先提出澄清問題。
-
----
+- BEFORE coding, MUST provide: Problem understanding, Design, Trade-offs, Risks.
+- If ambiguous, priority is CLARIFICATION.
 
 ## 5. Testing & Verification
 
-- 改邏輯 → 加測試。
-- 改介面 → 驗證相容性。
-- **Mandatory Sanity Check**: 輸出是否在合理範圍？是否引入 Side effects？
-- **Document-First Pilar**: 任何涉及架構設計或核心邏輯的變更，必須先在 `docs/` 下產出對應的 Spec 或 ADR。
-- **Naming & Location Standards**:
-  - **ADR**: `docs/adr/ADR-[ID]-[kebab-case-description].md`
-  - **Specs**: `docs/specs/[kebab-case-feature-name].md`
-  - **Guides**: `docs/guides/[kebab-case-topic].md`
-  - **AI Workspace**: 所有 AI 產出的臨時文件應放在 `.agent/scratch/`。
-
----
+- Logic Change -> Add Test.
+- Interface Change -> Verify Compatibility.
+- **Sanity Check**: Is output bounding safe? Side-effects?
+- **Doc-First Pillar**: Architecture/Core logic changes MUST precede with Spec/ADR in `docs/`.
+- **Naming/Locations**:
+  - ADRs: `docs/adr/ADR-[ID]-[kebab-case].md`
+  - Specs: `docs/specs/[feature-name].md`
+  - Guides: `docs/guides/[topic].md`
+  - Agent Scratch: `.agent/scratch/`
 
 ## 6. Explainability & Traceability
 
-- 重要決策應可追溯。系統需能回答：「為什麼這樣做？」
-- 優先提供中間結果與決策軌跡 (Decision Trace)。
-
----
+- Big decisions MUST be traceable ("Why was this done?").
+- Intermediate results and Decision Traces prioritized.
 
 ## 7. Scope Discipline
 
-- 僅解決 Issue 所描述的問題。不進行未要求的重構。
-- 若發現更大問題，應提出「Follow-up Issue」。
-
----
+- ONLY solve requested issue. UNAUTHORIZED REFACTORING IS PROHIBITED.
+- If larger issue discovered, output a "Follow-up Issue" recommendation.
 
 ## 8. Agent Operating Mode
 
-- **Default**: 保守、可解釋、穩定。
-- **When Uncertain**: 明確說明不確定性，提供 2-3 個方案，不擅自做高影響決策。
-
----
-
----
+- **Default**: Conservative, Explainable, Stable.
+- **When Uncertain**: State ambiguity, provide 2-3 options, DEFER high-impact decisions to user.
 
 ## 10. vNext Governance & Classification
 
-### 10.1 Classification Escalation Rules
+### 10.1 Escalation Rules
 
-| 觸發條件 | 最低分類 |
-|---|---|
-| 觸及 `exports` / public API / function signature | `behavior-change` |
-| 觸及 >1 module 的 import graph | `feature` |
-| 新增目錄 | `feature` |
-| 改變資料流 / 系統邊界 | `architecture-change` |
-| 改變 config 預設值影響使用者行為 | `behavior-change` |
+| Trigger Condition | Minimum Classification |
+| --- | --- |
+| Touches `exports` / public API / signature | `behavior-change` |
+| Touches >1 module import graph | `feature` |
+| Adds new directories | `feature` |
+| Alters data-flow / system boundaries | `architecture-change` |
+| Alters default configs impacting users | `behavior-change` |
 
 ### 10.2 Gate Type & Evidence Standards
 
-| Category | Mandatory Gates | 最低 Evidence 標準 |
-|---|---|---|
-| **tiny-fix** | classify + inline plan + inline evidence | diff summary + one-line verification |
-| behavior-change | bootstrap + spec + plan + review + regression evidence + handoff | before/after behavior + test output |
-| feature | bootstrap + spec + plan + review + test + handoff | test output + 可驗證 demo 步驟 |
-| architecture-change | bootstrap + ADR + spec + plan + migration/rollback + handoff | migration plan + rollback verification |
-| hotfix | systematic debugging + evidence + retro + handoff | root cause + fix verification + retro |
+| Category | Mandatory Gates | Min Evidence Required |
+| --- | --- | --- |
+| **tiny-fix** | classify -> plan (inline) -> execute | diff summary + 1-line verification |
+| **behavior-change** | bootstrap -> spec -> plan -> review -> regression test -> handoff | before/after behavior + test output |
+| **feature** | bootstrap -> spec -> plan -> review -> test -> handoff | test output + verifiable demo steps |
+| **architecture-change** | bootstrap -> ADR -> spec -> plan -> migration/rollback -> handoff | migration plan + rollback verification |
+| **hotfix** | systematic debug -> evidence -> fix -> retro -> handoff | root cause + fix verification + retro |
 
 ### 10.3 Tiny-Fix Fast-Path
 
-- 定義：修改檔案 < 3 且「無語義變更」（typo, docs, non-functional config）。
-- 流程：`classify → one-line scope → do → inline evidence → done`。
-- 豁免：完整 `/bootstrap`, `/handoff`, `/write-plan`, Work Log。
+- **Definition**: Modifies < 3 files WITHOUT semantic change (typo, docs, non-functional config).
+- **Flow**: `classify -> one-line scope -> execute -> inline evidence -> done`.
+- **Exclusion**: Bypasses full `/bootstrap`, `/handoff`, and Work Log overhead.
 
 ### 10.4 Handoff/Ship Hard Gate
 
-- 非 `tiny-fix` 任務，未完成 `/handoff` 不得宣告完成。
-- `/ship` 前必須檢查 handoff references 最低要求：
-  1) 至少 1 個 `docs/` 文件
-  2) 至少 1 個 code path
-  3) 對應 work log 路徑
-- 若條件不足，必須拒絕 `/ship` 並列出缺失項目。
-
+- Non-`tiny-fix` tasks MUST NOT claim complete without `/handoff`.
+- `/ship` MUST verify handoff references:
+  1. ≥1 `docs/` file path
+  2. ≥1 code path
+  3. Work log path
+- If missing, AI MUST reject `/ship` and list missing artifacts.

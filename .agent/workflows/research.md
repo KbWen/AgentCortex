@@ -1,10 +1,11 @@
 # /research
 
-請先做探索研究，不寫正式實作。
+Conduct exploratory research ONLY. No formal implementation.
 
-輸出格式：
-1. Facts（已知事實）
-2. Unknowns（未知項）
-3. Assumptions（假設）
-4. Risks（風險，含高/中/低）
-5. Next actions（建議下一步）
+Output Format:
+
+1. Facts (Knowns)
+2. Unknowns
+3. Assumptions
+4. Risks (High/Medium/Low)
+5. Next Actions (Recommendations)

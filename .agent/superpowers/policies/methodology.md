@@ -1,14 +1,14 @@
-# Superpowers Methodology Policy（Antigravity / Codex）
+# Superpowers Methodology (Antigravity & Codex)
 
-## 核心原則（Mandatory）
+## Core Principles (Mandatory)
 
-1. **Spec before code**：先 Brainstorm/Spec，再 Plan，再 Implement。
-2. **Evidence over claims**：未提供測試與檢查證據，不得宣告完成；執行細節參照 `skills/verification-before-completion.md`。
-3. **TDD preferred / enforced on logic changes**：邏輯變更優先 RED→GREEN→REFACTOR。
-4. **Review as gate**：Critical 問題存在時，流程退回實作階段；送審準備參照 `skills/requesting-code-review.md`。
-5. **Small reversible tasks**：任務拆為 2–5 分鐘可完成單位。
+1. **Spec before code**: Brainstorm/Spec -> Plan -> Implement.
+2. **Evidence over claims**: NO completion without verifiable test/check evidence. See `skills/verification-before-completion.md`.
+3. **TDD Preferred**: RED -> GREEN -> REFACTOR enforced on logic changes.
+4. **Review as Gate**: Critical issues rollback to Implementation. See `skills/requesting-code-review.md`.
+5. **Micro-Tasks**: Break work into 2-5 minute verifiable units.
 
-## 平台適配
+## Platform Adapters
 
-- Google Antigravity：偏向指令卡驅動（/bootstrap → /plan → /implement）。
-- Codex Web/App：支援別名流程（/write-plan = /plan，/execute-plan = /implement）。
+- **Google Antigravity**: Strictly command-driven (`/bootstrap` -> `/plan` -> `/implement`).
+- **Codex Web/App**: Supports alias flows (`/write-plan` -> `/plan`, `/execute-plan` -> `/implement`).

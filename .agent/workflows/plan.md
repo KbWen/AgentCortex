@@ -1,6 +1,6 @@
 ---
 name: plan
-description: 輸出可執行規劃與 quality gate，通過後進入 implementable。
+description: Outputs actionable plan & enforces quality gates. Transitions state to IMPLEMENTABLE.
 tasks:
   - plan
 ---
@@ -9,31 +9,31 @@ tasks:
 
 > Canonical state & transitions: `Ref: .agent/superpowers/policies/state_machine.md`
 
-先規劃，不寫程式。
+NO CODING YET. Planning phase ONLY.
 
-## 輸出格式
+## Expected Output Format
 
-1. 目標檔案
-2. 修改步驟（2–10 分鐘單位）
-3. 風險與回退策略
-4. 驗收標準（AC coverage）
-5. 非目標
+1. Target Files
+2. Execution Steps (2-10 min granularity)
+3. Risks & Rollback Strategy
+4. Acceptance Criteria Coverage
+5. Non-goals
 
-## Quality Gate（全部必須通過）
+## Quality Gates (ALL MUST PASS)
 
-- 每條 AC 至少對應一個步驟。
-- 步驟粒度為模組/檔案/完整函式。
-- 至少一個風險點與對應 rollback。
-- 僅列會變更的檔案，避免 scope creep。
-- 必須明確引用文件（例如 `Ref: docs/specs/auth.md`）。
+- Every AC MUST map to ≥1 step.
+- Step granularity: Module/File/Function level.
+- MUST identify ≥1 Risk + viable Rollback.
+- List ONLY files being modified (Prevent scope creep).
+- MUST explicitly cite documentation (e.g., `Ref: docs/specs/auth.md`).
 
 ## Token Budget Checkpoint
 
-- 規劃需附 `Mode: Normal` 或 `Mode: Fast Lane`。
-- 若是小任務但輸出過長，下一輪需切 `Fast Lane` 並改用摘要化模板。
-- 詳細規則：`Ref: docs/guides/token-governance.md`。
+- Plan MUST include `Mode: Normal` or `Mode: Fast Lane`.
+- If task is small but output balloons, MUST switch to `Fast Lane` using summarization next turn.
+- Detailed rules: `Ref: docs/guides/token-governance.md`.
 
-## 通過後
+## State Transition
 
-- 狀態可從 `PLANNED` 進入 `IMPLEMENTABLE`。
-- 同回合自動提供 `/test-skeleton`。
+- Upon passing gates, state transitions from `PLANNED` to `IMPLEMENTABLE`.
+- Automatically offer `/test-skeleton` in the same turn.
