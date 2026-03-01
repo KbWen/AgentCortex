@@ -92,6 +92,39 @@ Non-negotiable principles for agent-driven development.
 3. Record failure in Work Log and DEFER to user for escalation.
 
 **Async/Data-Flow Safety**: When modifying async or data-flow code, MUST verify: error handling, race condition guards, and loading state management.
+## 9. Intent Safety Rules
+
+Natural language input has EQUAL authority to slash commands, but MUST pass the same gates and prerequisites.
+
+### 9.1 Acknowledgment-only Inputs (No Action)
+
+The following inputs MUST NOT trigger any state transition or execution:
+
+- EN: "OK", "Sure", "Got it", "Alright", "Fine"
+- ZH: "好", "收到", "嗯", "了解", "沒問題"
+
+Correct behavior: Confirm receipt, optionally ask what the next step should be.
+
+### 9.2 Vague Inputs (Must Clarify)
+
+Inputs without a clear action verb or direction MUST prompt a clarification question:
+
+- EN: "fix it", "tweak something", "make it better", "adjust this"
+- ZH: "弄一下", "調整一下", "改改看", "處理一下"
+
+NEVER guess intent. NEVER proceed on vague input.
+
+### 9.3 Search Policy (Lexical-first)
+
+When locating code, files, or definitions:
+
+1. ALWAYS use lexical search first (ripgrep, path lookup, directory listing).
+2. Semantic search is allowed ONLY after lexical search yields no results.
+3. If still unresolved, ask a targeted question.
+
+### 9.4 Core Principle
+>
+> When intent is unclear, ASK. Never guess. Never proceed.
 
 ## 10. vNext Governance & Classification
 
