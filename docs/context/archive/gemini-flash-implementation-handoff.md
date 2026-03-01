@@ -3,7 +3,7 @@
 ## Task Meta
 
 - **Target Model**: Gemini 3 Flash (實作者)
-- **Objective**: 根據先前的設計審計與平台對齊計畫，實作 AI Brain Template vNext 的架構調整。
+- **Objective**: 根據先前的設計審計與平台對齊計畫，實作 AgentCortex vNext 的架構調整。
 - **Context**: 此專案模板將供 Codex Web / Codex App / Google Antigravity 運行。
 - **Status**: 準備實作
 

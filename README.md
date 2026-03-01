@@ -3,8 +3,8 @@
 > **The Ultimate Multi-Agent Framework for Professional Development.**
 > Optimized for Antigravity Workflows, Codex Platforms, and Token-Efficient AI Reasoning.
 
-[![Antigravity Compatible](https://img.shields.io/badge/Antigravity-Compatible-blueviolet)](https://github.com/KbWen/ai-brain-template)
-[![Codex Ready](https://img.shields.io/badge/Codex-Ready-blue)](https://github.com/KbWen/ai-brain-template)
+[![Antigravity Compatible](https://img.shields.io/badge/Antigravity-Compatible-blueviolet)](https://github.com/KbWen/AgentCortex)
+[![Codex Ready](https://img.shields.io/badge/Codex-Ready-blue)](https://github.com/KbWen/AgentCortex)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [繁體中文模式 (Traditional Chinese)](README_zh-TW.md)
@@ -67,7 +67,7 @@ The system is organized into three core layers:
 Clone this template into your project root:
 
 ```bash
-git clone https://github.com/your-repo/ai-brain-template .
+git clone https://github.com/KbWen/AgentCortex .
 ```
 
 ### 2. Synchronization

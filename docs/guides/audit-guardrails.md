@@ -1,6 +1,6 @@
-# AI Brain Guardrails 審計與測試指南 (Audit Playbook)
+# AgentCortex Guardrails Audit & Testing Guide (Audit Playbook)
 
-這份指南允許使用者（或指派另一個 AI，如 Gemini Flash）透過具體的互動情境，驗證 AI Brain Template 是否成功植入了「護欄（Guardrails）」。
+This guide allows users (or assigned agents like Gemini Flash) to verify if **AgentCortex** successfully implements guardrails through specific interaction scenarios.
 
 > **為什麼不寫成自動化 Shell Script？**
 > 「隱形助手 (.gitignore)」可以透過腳本驗證，但「越級執行防禦」與「模型升級建議」依賴於大型語言模型（LLM）對 Prompt 的上下文理解與拒絕回覆（Refusal）機制。這屬於 **Prompt/Behavioral Testing**，目前最可靠的驗證方式是透過聊天的「互動式腳本 (Interactive Playbook)」手動或讓 AI 代理執行。
