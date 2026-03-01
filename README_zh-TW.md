@@ -4,7 +4,7 @@
 
 ## 🎯 專案定位
 
-**AgentCortex** (前身為 AI Brain Template) 是一個專為頂尖開發者（使用 Gemini Pro/Flash, Claude 3.5 Sonnet, 或 GPT-4o）設計的高效能**結構化認知框架**。它能幫助 AI Agent 深度理解代碼庫、嚴格遵守工程護欄，並以極高的 Token 效率執行複雜任務。
+**AgentCortex** (前身為 AI Brain Template) 是一個專為頂尖開發者（使用 Gemini 3.1 Pro/3 Flash, Claude Opus 4.6, 或 GPT-4o）設計的高效能**結構化認知框架**。它能幫助 AI Agent 深度理解代碼庫、嚴格遵守工程護欄，並以極高的 Token 效率執行複雜任務。
 
 我們對齊並優化了 Google Antigravity / Codex Web / Codex App 的使用情境：
 

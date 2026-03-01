@@ -1,6 +1,6 @@
 # AgentCortex v3.5.3: High-Tier Model Review Handoff
 
-Welcome, High-Tier Model. You are reviewing **AgentCortex v3.5.3** (formerly AI Brain Template). This project is a self-managed Agent OS designed for cross-platform compatibility (Google Antigravity, Codex Web, Codex App).
+Welcome, High-Tier Model (e.g., Claude Opus 4.6). You are reviewing **AgentCortex v3.5.3** (formerly AI Brain Template). This project is a self-managed Agent OS designed for cross-platform compatibility (Google Antigravity, Codex Web, Codex App).
 
 ## 🎯 Architecture Philosophy
 
