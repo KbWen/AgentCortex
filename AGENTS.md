@@ -4,7 +4,7 @@ Global directives for all AI agents. Loaded automatically every turn.
 
 ## Chat Language Policy
 
-- **Default Output**: Traditional Chinese (繁�?中�?).
+- **Default Output**: Traditional Chinese (繁體中文).
 - *English Users*: To switch chat language, append "Please reply in English" to your first prompt.
 
 ## Core Directives
@@ -22,7 +22,7 @@ Global directives for all AI agents. Loaded automatically every turn.
 
 ## Delivery Gates
 
-- Non-`tiny-fix` tasks MUST execute `/handoff` with ?? doc path + ?? code path + work log path.
+- Non-`tiny-fix` tasks MUST execute `/handoff` with ✅ doc path + ✅ code path + work log path.
 - NO EVIDENCE = NO COMPLETION.
 
 ## References
@@ -36,4 +36,3 @@ Global directives for all AI agents. Loaded automatically every turn.
 - Antigravity: `.agent/skills/`
 - Codex: `.agents/skills/`
 - Note: Distinct paths for platform compatibility.
-
