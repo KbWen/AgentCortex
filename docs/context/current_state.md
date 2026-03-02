@@ -1,25 +1,25 @@
 # Project Current State (vNext)
 
-- **Project Intent**: 建立可跨 Codex Web／Codex App／Google Antigravity 使用的自管理 Agent OS，降低人類流程記憶負擔並持續降低 Token 成本。
+- **Project Intent**: Build a self-managed Agent OS for Codex Web / Codex App / Google Antigravity to reduce human procedural burden and continuously lower token costs.
 - **Core Guardrails**:
-  - Correctness first：無證據不得宣稱完成。
-  - Small & reversible：優先小步可回退變更，避免未授權重構。
-  - Document-first：核心邏輯或架構變更須先有 Spec/ADR。
-  - Handoff gate：非 `tiny-fix` 任務必須產生可追溯交接摘要。
+  - Correctness first: No claim of completion without evidence.
+  - Small & reversible: Prioritize small, reversible changes; avoid unauthorized refactoring.
+  - Document-first: Core logic or structural changes require a Spec/ADR first.
+  - Handoff gate: Non-`tiny-fix` tasks must produce a traceable handoff summary.
 - **System Map**:
-  - 全域唯讀狀態：`docs/context/current_state.md`
-  - 任務隔離狀態：`docs/context/work/<branch-name>.md`
-  - 流程與政策：`.agent/workflows/*.md`、`.agent/rules/*.md`
+  - Global SSoT: `docs/context/current_state.md`
+  - Task Isolation: `docs/context/work/<branch-name>.md`
+  - Workflows & Policies: `.agent/workflows/*.md`, `.agent/rules/*.md`
 - **ADR Index**:
   - `docs/adr/ADR-001-vnext-self-managed-architecture.md`
 - **Canonical Commands**:
-  - `/bootstrap`：初始化任務並凍結分類
-  - `/plan`：規劃目標檔案、步驟、風險與回退
-  - `/implement`：僅在 `IMPLEMENTABLE` 執行實作
-  - `/review`：檢查 AC 對齊與 scope creep
-  - `/test`：以 Test Skeleton 匯報測試覆蓋
-  - `/handoff`：輸出可續跑狀態摘要（非 tiny-fix 必須）
-  - `/ship`：彙整提交證據與更新/歸檔狀態
+  - `/bootstrap`: Task initialization & classification freeze.
+  - `/plan`: Define target files, steps, risks, and rollback.
+  - `/implement`: Execute implementation only when `IMPLEMENTABLE`.
+  - `/review`: Check AC alignment & scope creep.
+  - `/test`: Report test coverage via Test Skeleton.
+  - `/handoff`: Output resumable state summary (mandatory for non-tiny-fix).
+  - `/ship`: Consolidate evidence and update/archive state.
 - **References**:
   - `AGENTS.md`
   - `.agent/rules/engineering_guardrails.md`

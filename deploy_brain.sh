@@ -1,6 +1,6 @@
 #!/bin/bash
-# AI Brain Deployer v3.5.2 (Full Platform Support Edition)
-echo "🚀 Deploying AI Brain v3.5.2 (Full Platform Support) to $TARGET..."
+# AI Brain Deployer v3.5.3 (Full Platform Support Edition)
+echo "🚀 Deploying AI Brain v3.5.3 (Full Platform Support) to $TARGET..."
 
 # ============================================================
 # 1. Create directory structure
@@ -31,7 +31,9 @@ mkdir -p "$TARGET/.codex"
 # Entry points (plural AGENTS.md preferred for multi-platform)
 cp $CP_FLAG AGENTS.md "$TARGET/"
 cp $CP_FLAG README.md "$TARGET/"
+[ -f README_zh-TW.md ] && cp $CP_FLAG README_zh-TW.md "$TARGET/"
 cp $CP_FLAG MODEL_GUIDE.md "$TARGET/"
+[ -f MODEL_GUIDE_zh-TW.md ] && cp $CP_FLAG MODEL_GUIDE_zh-TW.md "$TARGET/"
 
 # Platform Rules
 [ -d .antigravity ] && cp $CP_FLAG .antigravity/rules.md "$TARGET/.antigravity/"
@@ -58,7 +60,7 @@ mkdir -p "$TARGET/tools"
 cp $CP_FLAG docs/context/current_state.md "$TARGET/docs/context/"
 for f in docs/guides/*.md; do [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/guides/"; done
 for f in docs/adr/*.md; do [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/adr/"; done
-for f in docs/AGENT_PHILOSOPHY.md docs/TESTING_PROTOCOL.md docs/CODEX_PLATFORM_GUIDE.md docs/PROJECT_EXAMPLES.md; do
+for f in docs/AGENT_PHILOSOPHY*.md docs/TESTING_PROTOCOL*.md docs/CODEX_PLATFORM_GUIDE*.md docs/PROJECT_EXAMPLES*.md; do
   [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/"
 done
 
@@ -91,7 +93,10 @@ if ! grep -q "# AI Brain OS" "$GITIGNORE"; then
 .codex/
 codex/
 AGENTS.md
+README.md
+README_zh-TW.md
 MODEL_GUIDE.md
+MODEL_GUIDE_zh-TW.md
 docs/context/
 docs/context/private/
 EOT
@@ -100,7 +105,7 @@ else
 fi
 
 echo ""
-echo "✅ AI Brain v3.5.2 deployed successfully!"
+echo "✅ AI Brain v3.5.3 deployed successfully!"
 echo ""
 echo "📦 Platform Entry Points Ready:"
 echo "   .antigravity/rules.md  ← Google Antigravity"

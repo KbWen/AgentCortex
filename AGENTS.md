@@ -4,8 +4,9 @@ Global directives for all AI agents. Loaded automatically every turn.
 
 ## Chat Language Policy
 
-- **Default Output**: Traditional Chinese (繁體中文).
-- *English Users*: To switch chat language, append "Please reply in English" to your first prompt.
+- **Default Output**: Match the user's input language.
+- If the user writes in English, respond in English.
+- If the user writes in 繁體中文, respond in 繁體中文.
 
 ## Core Directives
 

@@ -1,65 +1,65 @@
-# Codex 平台使用指南（Web / App）
+# Codex Platform Guide (Web / App)
 
-## 適用範圍
+## Scope
 
-本模板同時適用：
+This template applies to both:
 
-- Codex Web 版
-- Codex App（桌面版）
+- Codex Web
+- Codex App (Desktop)
 
-## 檔案放置規範（Codex Web／Codex App／Google Antigravity）
+## File Placement Standards (Codex Web / App / Google Antigravity)
 
-為避免流程複雜化，三平台統一使用同一套技能來源與鏡像路徑：
+To avoid procedural complexity, all three platforms share the same skill source and mirrored paths:
 
-1. Canonical skills source：`.agent/skills/<skill>/SKILL.md`（Antigravity 主要讀取路徑，兩者必須保持一對一同步，修改時以此為主）。
-2. Codex 相容路徑：`.agents/skills/<skill>/SKILL.md`（Codex 平台 mirror）。
-3. 平台流程文件：`.agent/workflows/*.md` 與 `.agent/rules/*.md`，避免在多處維護重複版本。
+1. Canonical skill source: `.agent/skills/<skill>/SKILL.md` (Primary path for Antigravity; maintain 1:1 sync).
+2. Codex Compatibility Path: `.agents/skills/<skill>/SKILL.md` (Codex mirror).
+3. Platform Workflow Files: `.agent/workflows/*.md` and `.agent/rules/*.md` (No duplication).
 
-最小檢查建議：
+Minimum Check Recommendations:
 
-- 執行 `./tools/validate.sh`。
-- 確認 `AGENTS.md` 仍同時宣告 `.agent/skills` 與 `.agents/skills`。
+- Run `./tools/validate.sh`.
+- Confirm `AGENTS.md` still declares both `.agent/skills` and `.agents/skills`.
 
-## 統一狀態機（兩平台共用）
+## Unified State Machine
 
-請以 canonical state machine 為準：
+Use the canonical state machine:
 `Ref: .agent/rules/state_machine.md`
 
-- `/help`、`/commands`、`/test-skeleton`、`/handoff` 為唯讀狀態指令。
-- `/ship` 僅允許在 `TESTED` 後執行。
+- `/help`, `/commands`, `/test-skeleton`, and `/handoff` are Read-Only commands.
+- `/ship` is allowed only after `TESTED` state.
 
-## 共用建議
+## Shared Recommendations
 
-1. 任務開場先提供：目標、目標檔案、限制、驗收標準。
-2. 先跑 `/bootstrap`、再 `/plan`，通過 quality gate 才 `/implement`。
-3. 每次實作後跑 `/review` 與 `/test`。
-4. 提交前跑 `./tools/validate.sh`。
+1. Provide target, target files, constraints, and acceptance criteria (AC) at the start of a task.
+2. Run `/bootstrap` first, then `/plan`; only run `/implement` once the quality gate has passed.
+3. Run `/review` and `/test` after every implementation.
+4. Run `./tools/validate.sh` before submission.
 
-## Handoff Hard Gate（非 tiny-fix）
+## Handoff Hard Gate (Non-tiny-fix)
 
-在 `/ship` 之前，必須先有 `/handoff`，且 References 最低要求：
+Before `/ship`, you must have a `/handoff`. Minimum reference requirements:
 
-1. 至少 1 個 `docs/` 文件。
-2. 至少 1 個 code file path。
-3. 對應 work log：`docs/context/work/<branch-name>.md`。
+1. At least 1 `docs/` artifact.
+2. At least 1 code file path.
+3. Corresponding work log: `docs/context/work/<branch-name>.md`.
 
-若不滿足，必須拒絕 `/ship` 並列出缺失。
+If unsatisfied, you must reject `/ship` and list the missing items.
 
-## Web 版建議
+## Web Edition Recommendations
 
-- 一個需求一個 thread，避免上下文污染。
-- 長任務中斷前務必輸出 `/handoff`，並提醒人類保存。
+- Use one thread per requirement to avoid context pollution.
+- Before pausing a long task, output `/handoff` and remind the human to save it.
 
-## App 版建議
+## App Edition Recommendations
 
-- 使用本地 repo 執行 `deploy_brain.sh` 與驗證腳本。
-- 每次子目標完成即更新 work log，降低跨天重建成本。
+- Run `deploy_brain.sh` and validation scripts locally.
+- Update the work log after every submodule completion to reduce context reconstruction costs.
 
-## 快速檢查清單
+## Quick Checklist
 
-- [ ] `/bootstrap` 已完成
-- [ ] `/plan` 已通過 quality gate
-- [ ] `/implement` 在 `IMPLEMENTABLE` 才執行
-- [ ] `/review` 與 `/test` 已完成
-- [ ] 非 `tiny-fix` 已完成 `/handoff`
-- [ ] `validate.sh` 已通過
+- [ ] `/bootstrap` completed
+- [ ] `/plan` passed quality gate
+- [ ] `/implement` executed in `IMPLEMENTABLE` state
+- [ ] `/review` and `/test` completed
+- [ ] `/handoff` completed for non-tiny-fix tasks
+- [ ] `validate.sh` passed
