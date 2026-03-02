@@ -1,38 +1,38 @@
-# AI Brain v3.0 模型選擇與決策指南 (人類專用)
+# AI Brain v3.0 Model Selection & Decision Guide (Human-Only)
 
-這份指南是給「您 (人類)」參考的，不會被 AI 載入 Prompt，旨在節省 Token 並極大化開發效率。
+This guide is for **You (Human)**. It will not be loaded into the AI prompt. Its purpose is to save tokens and maximize development efficiency.
 
-## 🧠 核心原則：Flash-First
+## 🧠 Core Principle: Flash-First
 
-**預設請使用 Gemini 1.5 Flash。** 只有在 Flash 無法解決問題時，才主動切換至 Pro。
-
----
-
-## ✅ 使用 Gemini 1.5 Flash (日常 80%)
-
-**特點：極速、低成本、超長 Context (1M)。**
-
-- **代碼搬運**：將舊專案功能遷移至新檔案。
-- **格式調整**：CSS 潤飾、Markdown 整理、JSON/CSV 轉換。
-- **撰寫測試**：生成單元測試案例 (Unit Tests)。
-- **簡單 Bug**：修復 TypeScript 預檢錯誤或語法語病。
-- **文案翻譯**：繁簡轉換、多語系 i18n 填寫。
-- **文件摘要**：讀取長篇文章後提取重點。
-
-## 🔴 手動切換至 Pro (關鍵 20%)
-
-**特點：深度推理、架構設計、疑難雜症。**
-
-- **系統設計**：從零規劃新模組的資料關係與通訊協議。
-- **核心重構**：變動超過 3 個具有高度耦合依賴的核心檔案。
-- **邏輯 Debug**：涉及非同步競態 (Race Conditions) 或底層記憶體洩漏的調查。
-- **安全審核**：對核心加解密或權限驗證邏輯進行全面 Scan。
-- **效能分析**：針對資料庫查詢優化與瓶頸診斷。
+**Default to Gemini 1.5 Flash.** Only switch to Pro if Flash fails to solve the problem.
 
 ---
 
-## 💡 省錢小撇步
+## ✅ Use Gemini 1.5 Flash (Daily 80%)
 
-1. **先讓 Flash 嘗試**：即便任務稍長，Flash 也能讀完。如果 Flash 給出的代碼邏輯有誤，此時再複製對話並切換 Pro。
-2. **精簡背景**：只提供必要的檔案路徑，避免 `ls -R` 導致過大的 Input Token。
-3. **分階段執行**：讓 Flash 先提取「修改清單」，確認無誤後再讓它分段實作。
+**Features: Fast, low cost, 1M context.**
+
+- **Code Migration**: Moving features from legacy projects to new files.
+- **Formatting**: CSS touch-ups, Markdown cleanup, JSON/CSV conversion.
+- **Writing Tests**: Generating Unit Test cases.
+- **Simple Bugs**: Fixing TypeScript lint errors or syntax issues.
+- **Localization**: Traditional/Simplified Chinese conversion, i18n entries.
+- **Doc Summarization**: Extracting key points from long articles.
+
+## 🔴 Manual Switch to Pro (Critical 20%)
+
+**Features: Deep reasoning, architectural design, complex debugging.**
+
+- **System Design**: Planning data relationships and protocols for new modules from scratch.
+- **Core Refactoring**: Modifying 3+ highly coupled core files.
+- **Logic Debugging**: Investigating race conditions or low-level memory leaks.
+- **Security Audit**: Comprehensive scanning of encryption or authorization logic.
+- **Performance Analysis**: Database query optimization and bottleneck diagnosis.
+
+---
+
+## 💡 Cost-Saving Tips
+
+1. **Let Flash Try First**: Even for longer tasks, Flash can read it all. If the logic is wrong, copy the conversation and switch to Pro.
+2. **Lean Context**: Provide only necessary file paths; avoid `ls -R` which pads input tokens.
+3. **Phase Execution**: Let Flash extract a "change list" first. Once verified, let it implement in segments.

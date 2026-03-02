@@ -1,10 +1,12 @@
 # AgentCortex v3.5.3 (vNext Architecture Edition)
 
+[English Version](README.md)
+
 > **從「流程驅動」進化到「自我管理」的專業級 AI Agent 核心架構。**
 
 ## 🎯 專案定位
 
-**AgentCortex** (前身為 AI Brain Template) 是一個專為頂尖開發者（使用 Gemini 3.1 Pro/3 Flash, Claude Opus 4.6, 或 GPT-4o）設計的高效能**結構化認知框架**。它能幫助 AI Agent 深度理解代碼庫、嚴格遵守工程護欄，並以極高的 Token 效率執行複雜任務。
+**AgentCortex** 是一個專為頂尖開發者（使用 Gemini 3.1 Pro/3 Flash, Claude Opus 4.6, 或 GPT-4o）設計的高效能**結構化認知框架**。它能幫助 AI Agent 深度理解代碼庫、嚴格遵守工程護欄，並以極高的 Token 效率執行複雜任務。
 
 我們對齊並優化了 Google Antigravity / Codex Web / Codex App 的使用情境：
 
@@ -14,15 +16,12 @@
 - **Context Loss Safety**：強制執行 `/handoff` 以確保長週期任務不因內容遺失而中斷。
 - **Command-first**：用標準化指令觸發 Agent 能力，確保行為一致性。
 
-> **MIGRATION NOTICE**: 流程定義已遷移至 `.agent/workflows/` 與 `.agent/rules/`；
-> **更名說明**：本專案已正式更名為 **AgentCortex**。原本的 `.agent/superpowers/` 指令集已完整遷移至新結構。
-
 ## 🔗 參考來源
 
 - Superpowers 專案（理念參考）：<https://github.com/obra/superpowers>
-- 專案導入範例：`docs/PROJECT_EXAMPLES.md`
-- 遷移與整合指南：`docs/guides/migration.md`
-- Token 治理指南：`docs/guides/token-governance.md`
+- 專案導入範例：`docs/PROJECT_EXAMPLES_zh-TW.md`
+- 遷移與整合指南：`docs/guides/migration_zh-TW.md`
+- Token 治理指南：`docs/guides/token-governance_zh-TW.md`
 
 ## 📦 目錄總覽
 
@@ -32,7 +31,7 @@
 - `docs/context/current_state.md`：全域唯讀狀態（SSoT）
 - `docs/context/work/`：任務隔離 Work Log
 - `docs/adr/`：架構決策記錄
-- `docs/CODEX_PLATFORM_GUIDE.md`：Codex 平台指南
+- `docs/CODEX_PLATFORM_GUIDE_zh-TW.md`：Codex 平台指南
 - `AGENTS.md`：跨平台長期指令入口
 
 ## 🧩 系列功能對照 (Superpowers Based)
@@ -152,7 +151,7 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 ./tools/validate.sh
 ```
 
-完整平台建議請見 `docs/CODEX_PLATFORM_GUIDE.md`。
+完整平台建議請見 `docs/CODEX_PLATFORM_GUIDE_zh-TW.md`。
 
 ---
 詳細變更請見 [CHANGELOG.md](./CHANGELOG.md)
