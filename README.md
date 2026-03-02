@@ -13,7 +13,7 @@
 
 ## 🧠 Why AgentCortex?
 
-**AgentCortex** (formerly AI Brain Template) is a high-performance, **structured AI environment** designed for elite developers working with agentic AI models (like Gemini 3.1 Pro/3 Flash, Claude Opus 4.6, or GPT-4o). It bridges the gap between human intent and AI execution by providing a robust ecosystem of **Skills**, **Rules**, and **Workflows** specifically tuned for **Google Antigravity** and **Codex** (Web/App).
+**AgentCortex** is a high-performance, **structured AI environment** designed for elite developers working with agentic AI models (like Gemini 3.1 Pro/3 Flash, Claude Opus 4.6, or GPT-4o). It bridges the gap between human intent and AI execution by providing a robust ecosystem of **Skills**, **Rules**, and **Workflows** specifically tuned for **Google Antigravity** and **Codex** (Web/App).
 
 ---
 
