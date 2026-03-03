@@ -29,6 +29,15 @@ Read-only logic. DOES NOT change state. Hard completion gate for non-`tiny-fix` 
 - **Next**
 - **Risks**
 - **References**
+- **Resume Block**: MUST also write the following to the Work Log file:
+
+```markdown
+## Resume
+- State: [current state machine state]
+- Completed: [list of done steps]
+- Next: [immediate next action]
+- Context: [1-2 sentence summary of what was decided and why]
+```
 
 ## 4. Minimum References (HARD GATE)
 

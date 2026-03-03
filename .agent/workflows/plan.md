@@ -29,6 +29,19 @@ NO CODING YET. Planning phase ONLY.
 - List ONLY files being modified (Prevent scope creep).
 - MUST explicitly cite documentation (e.g., `Ref: docs/specs/auth.md`).
 
+## Work Log Update (Mandatory)
+
+After plan is approved, AI MUST append to the current Work Log:
+
+```markdown
+## Risks (from /plan)
+- [Risk 1]: [brief description + mitigation]
+- [Risk 2]: ...
+- [Risk 3]: ...
+```
+
+This block persists across sessions. On resume, /bootstrap reads it immediately.
+
 ## Token Budget Checkpoint
 
 - Plan MUST include `Mode: Normal` or `Mode: Fast Lane`.
