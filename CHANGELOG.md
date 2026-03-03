@@ -87,7 +87,7 @@
 
 - **Radical Simplification**: 將 40+ 個檔案整理為 1 個核心 Prompt (`AGENT.md`)，系統提示開銷降低 94%。
 - **Antigravity-Native**: 專位 Google Antigravity 打造，利用 IDE 自動讀取 `.agent/` 目錄的特點，減少手動配置。
-- **Human-Centric Guidance**: 移除無效的自動路由，改由 `MODEL_GUIDE.md` 指引用戶手動切換模型，確保正確使用 Flash/Pro。
+- **Human-Centric Guidance**: 移除無效的自動路由，改由 `AGENT_MODEL_GUIDE.md` 指引用戶手動切換模型，確保正確使用 Flash/Pro/Advanced 模型。
 - **Audit Implementation**: 合併精華版 PII 掩碼、Secrets 偵測與編碼規範。
 
 ## [2.6.5] - 2026-02-13

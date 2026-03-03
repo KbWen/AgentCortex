@@ -1,3 +1,6 @@
+---
+description: Workflow for research
+---
 # /research
 
 Conduct exploratory research ONLY. No formal implementation.
@@ -9,4 +12,5 @@ Output Format:
 3. Assumptions
 4. Risks (High/Medium/Low)
 5. Next Actions (Recommendations)
+
 

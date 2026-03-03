@@ -1,3 +1,6 @@
+---
+description: Workflow for spec
+---
 # /spec
 
 Convert requirements into verifiable specs and verify consistency with existing `docs/specs/`.
@@ -15,4 +18,5 @@ Checkpoints:
 - AC MUST be objectively verifiable.
 - MUST check for conflicting legacy specs.
 - Non-goals MUST prevent scope creep.
+
 

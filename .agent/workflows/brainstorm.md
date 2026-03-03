@@ -1,3 +1,6 @@
+---
+description: Workflow for brainstorm
+---
 # /brainstorm
 
 Conduct brainstorming ONLY. No formal implementation.
@@ -12,3 +15,4 @@ Checkpoints:
 
 - MUST provide at least 3 options.
 - At least 1 option MUST be low-risk/conservative.
+

@@ -136,15 +136,15 @@ Use the built-in slash commands to drive the AI:
 
 AgentCortex supports both **English** (default) and **Traditional Chinese**.
 
-- **Documentation**: English guides are the default. For Traditional Chinese versions, look for files with the `_zh-TW.md` suffix (e.g., `MODEL_GUIDE_zh-TW.md`).
+- **Documentation**: English guides are the default. For Traditional Chinese versions, look for files with the `_zh-TW.md` suffix (e.g., `AGENT_MODEL_GUIDE_zh-TW.md`).
 - **AI Response**: The AI automatically follows your input language (Language Mirroring).
-- **Switching Context**: To switch a Chinese-heavy project to English, simply tell the AI: *"Translate all Chinese documentation files in docs/ and MODEL_GUIDE_zh-TW.md to English, preserving structure."*
+- **Switching Context**: To switch a Chinese-heavy project to English, simply tell the AI: *"Translate all Chinese documentation files in docs/ and AGENT_MODEL_GUIDE_zh-TW.md to English, preserving structure."*
 
 ---
 
 ## 📚 References
 
-- [Model Selection Guide](MODEL_GUIDE.md)
+- [Model Selection Guide](AGENT_MODEL_GUIDE.md)
 - [Agent Philosophy](docs/AGENT_PHILOSOPHY.md)
 - [Testing Protocol](docs/TESTING_PROTOCOL.md)
 - [Project Examples](docs/PROJECT_EXAMPLES.md)
