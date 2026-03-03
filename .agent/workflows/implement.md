@@ -17,8 +17,13 @@ Before ANY code change, AI MUST:
 
 Execute the approved plan. STRICTLY restricted to modifying ONLY the listed target files.
 
+## Mid-Execution Guard
+
+- **Classification Escalation**: If actual changes exceed the classification threshold (e.g., `quick-win` touching >2 modules or adding new directories), AI MUST pause and remind: "⚠️ Scope has grown beyond `[current-tier]`. Recommend escalating to `[higher-tier]` to activate Spec/Handoff gates. Escalate? (yes/no)"
+
 Post-Execution Report:
 
 - Summary of actual changes
 - Potential side-effects
 - Suggested verification/test commands
+- **Scope Divergence Check**: Compare actual modified files against planned target files. If extra files were touched, flag: "⚠️ Scope divergence: planned [N] files, touched [M] files. Extra: [list]. Confirm these are intentional? (yes/revert)"

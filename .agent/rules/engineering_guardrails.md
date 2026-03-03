@@ -111,6 +111,8 @@ Non-negotiable principles for agent-driven development.
 2. Output diagnostic: modified code blocks, call relationships, behavior diffs ONLY. ❌ No narrative claims.
 3. Record failure in Work Log and DEFER to user for escalation.
 
+**Active Tracking**: After each failed patch attempt, AI MUST append to Work Log: `Patch Attempt [N]: [1-line result]`. When N ≥ 2, the 2-Strike ESC is automatically triggered.
+
 **Async/Data-Flow Safety**: When modifying async or data-flow code, MUST verify: error handling, race condition guards, and loading state management.
 
 ## 9. Intent Safety Rules

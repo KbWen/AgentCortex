@@ -28,6 +28,7 @@ NO CODING YET. Planning phase ONLY.
 - MUST identify at least 1 Risk + viable Rollback.
 - List ONLY files being modified (Prevent scope creep).
 - MUST explicitly cite documentation (e.g., `Ref: docs/specs/auth.md`).
+- **Frozen Spec Pre-Check**: Cross-reference target files against Spec Index entries tagged `[Frozen]`. If any target file falls under a Frozen Spec, warn immediately: "⚠️ [file] is governed by Frozen Spec [spec-name]. Unfreeze required before proceeding. Approve? (yes/no)"
 
 ## Work Log Update (Mandatory)
 
