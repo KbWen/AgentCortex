@@ -12,7 +12,8 @@ Output Format:
 3. Try (Action items for next time)
 4. Doc Health: Did this task create or reference more than 1 spec file for the same feature?
    - If YES: Append `[MERGE-PROPOSED: <other-spec-file>]` to the relevant entry in `current_state.md` Spec Index.
-5. Lessons Append: If Problems exist, append to the current Work Log (max 3 bullets):
+5. Lessons Append: If Problems exist, append to the current Work Log (max 3 bullets).
+   - **Global Candidate?**: If a lesson is a recurring pattern with a system-wide fix, tag it as `[GLOBAL-CANDIDATE]` for promotion during `/ship`.
 
 ```markdown
 ## Lessons

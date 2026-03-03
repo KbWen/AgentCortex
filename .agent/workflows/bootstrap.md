@@ -12,14 +12,16 @@ tasks:
 ## 1. Initialization & Required Reading
 
 1. READ `docs/context/current_state.md` (SSoT).
+   - **Cross-Branch Awareness**: Check "Branch List" for recently closed branches.
+   - If current task overlaps with a recently merged branch's module, AI MUST scan `docs/context/archive/` of that branch to check for spec changes or relevant Lessons.
 2. READ/CREATE `docs/context/work/<branch-name>.md` (Work Log).
    - If Work Log exists and has `## Resume` block: treat as RESUME. Read `## Resume` first, then output "Resuming from: [State]".
    - If Work Log has `## Lessons` block (from prior retro): acknowledge relevant patterns in your bootstrap output.
    - If Work Log has `## Risks` block: include in your bootstrap context summary.
 2a. SPEC SCOPE: From the **Spec Index** in `current_state.md`, identify which specs are relevant to this task.
-    - Read ONLY those specs. Do NOT open specs not listed in the Spec Index entry for this task.
-    - Also check `current_state.md` Spec Index for any `[MERGE-PROPOSED]` tags on relevant specs. If found, surface to user BEFORE starting work: "⚠️ Spec consolidation was recommended for [files]. Proceed as-is or consolidate first?"
-    - If uncertain, ask ONE clarifying question before reading any spec.
+   - Read ONLY those specs. Do NOT open specs not listed in the Spec Index entry for this task.
+   - Also check `current_state.md` Spec Index for any `[MERGE-PROPOSED]` tags on relevant specs. If found, surface to user BEFORE starting work: "⚠️ Spec consolidation was recommended for [files]. Proceed as-is or consolidate first?"
+   - If uncertain, ask ONE clarifying question before reading any spec.
 3. IF `docs/context/private/` exists, SCAN for local-only instructions (e.g., private Git workflows, environment-specific configs). These files are gitignored and contain context that should NOT be committed.
 4. **Migration/Integration Scenario**:
    - Follow `docs/guides/migration.md`. Actively scan and suggest file reorganization.

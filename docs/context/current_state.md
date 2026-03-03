@@ -36,3 +36,9 @@
 > [!NOTE]
 > This file is the Single Source of Truth for global project context only.
 > Do not store per-task progress here; write progress to `docs/context/work/<branch-name>.md`.
+
+## Global Lessons (AI Error Pattern Registry)
+>
+> 3-5 high-value patterns max. Reviewed during /bootstrap.
+
+- [Pattern]: [Instruction to avoid]

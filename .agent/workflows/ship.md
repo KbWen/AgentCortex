@@ -29,4 +29,7 @@ If ANY condition fails, MUST reject `/ship` and output missing list.
 
 1. Update `docs/context/current_state.md` based on classification (ONLY during `/ship`).
 2. Archive `docs/context/work/<branch-name>.md` to `docs/context/archive/` (if task complete).
+    - Before archiving: Extract ALL bullets from the Work Log's `## Lessons` block (max 3 total).
+    - Append these bullets to the `## Global Lessons` section in `current_state.md`.
+    - If there is no `## Global Lessons` section in `current_state.md`, create one at the bottom.
 3. Freeze Artifacts: Ensure all produced Specs/ADRs have YAML frontmatter `status: frozen`. If missing, add it before commit.
