@@ -4,6 +4,16 @@
 
 Global (applies to all projects using template).
 
+## Reading Mode
+
+- **Full Mode** (default for `behavior-change`, `feature`, `architecture-change`, `hotfix`): Read this entire document.
+- **Lite Mode** (for `tiny-fix` ONLY): Read ONLY the following sections:
+  - §7 Scope Discipline (mandatory)
+  - §8.1 Bug Fix Protocol (if fixing a bug)
+  - §9.1 Acknowledgment-only Inputs (always)
+  - §10.3 Tiny-Fix Fast-Path (for verification)
+  - Skip sections 1-4, 6, 10.1-10.2. These do not apply to tiny-fix tasks.
+
 ## Role
 
 Non-negotiable principles for agent-driven development.
@@ -47,6 +57,15 @@ Non-negotiable principles for agent-driven development.
 
 - BEFORE coding, MUST provide: Problem understanding, Design, Trade-offs, Risks.
 - If ambiguous, priority is CLARIFICATION.
+
+### 4.1 Spec Freezing (SSoT Protection)
+
+- Whenever a Spec is approved or the task transitions to implementation, the Spec MUST be marked as **FROZEN** (e.g., via YAML frontmatter `status: frozen`).
+- AI agents MUST NOT modify, review, or suggest refactoring for any document marked as `FROZEN` or `Finalized` during normal tasks.
+- **Exception (AI-Initiated Unfreeze)**: If the AI discovers that a FROZEN spec must be changed (due to a bug or requirement change), the AI MUST:
+  1. **STOP** and surface the issue explicitly: "⚠️ [Filename] is FROZEN but requires update: [Reason]. Approve to unfreeze and continue? (yes/no)"
+  2. Only proceed after user responds **YES**.
+  3. Set status to `draft`, make changes, then re-freeze during `/ship`.
 
 ## 5. Testing & Verification
 
@@ -92,6 +111,7 @@ Non-negotiable principles for agent-driven development.
 3. Record failure in Work Log and DEFER to user for escalation.
 
 **Async/Data-Flow Safety**: When modifying async or data-flow code, MUST verify: error handling, race condition guards, and loading state management.
+
 ## 9. Intent Safety Rules
 
 Natural language input has EQUAL authority to slash commands, but MUST pass the same gates and prerequisites.

@@ -12,6 +12,12 @@
   - Workflows & Policies: `.agent/workflows/*.md`, `.agent/rules/*.md`
 - **ADR Index**:
   - `docs/adr/ADR-001-vnext-self-managed-architecture.md`
+- **Spec Index**:
+  - *(No specs yet — use format below)*
+  - Example:
+    - `[auth] docs/specs/auth/login_flow.md [Frozen]`
+    - `[payment] docs/specs/payment/checkout.md [Draft]`
+  - When reading specs: only open files tagged with the current task's module.
 - **Canonical Commands**:
   - `/bootstrap`: Task initialization & classification freeze.
   - `/plan`: Define target files, steps, risks, and rollback.

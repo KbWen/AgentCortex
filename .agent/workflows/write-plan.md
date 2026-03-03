@@ -1,14 +1,9 @@
 ---
 description: Workflow for write-plan
 ---
-# /write-plan
+# /write-plan → Redirect
 
-Alias for `/plan`.
+> ⚠️ This is an alias. Follow `/plan` instead.
+> Canonical source: `.agent/workflows/plan.md`
 
-Output task breakdown (2-5 minutes per task):
-
-- File path
-- Modification payload
-- Verification method
-
-
+Do NOT re-implement plan logic here. Jump directly to `/plan` and execute that workflow entirely.

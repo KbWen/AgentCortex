@@ -29,4 +29,4 @@ If ANY condition fails, MUST reject `/ship` and output missing list.
 
 1. Update `docs/context/current_state.md` based on classification (ONLY during `/ship`).
 2. Archive `docs/context/work/<branch-name>.md` to `docs/context/archive/` (if task complete).
-
+3. Freeze Artifacts: Ensure all produced Specs/ADRs have YAML frontmatter `status: frozen`. If missing, add it before commit.
