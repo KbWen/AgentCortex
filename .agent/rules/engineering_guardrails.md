@@ -182,6 +182,7 @@ When locating code, files, or definitions:
 - **Definition**: Clear, contained change to 1-2 modules with a well-defined outcome. Semantic change IS present, but cross-module impact is LOW.
 - **Flow**: `classify → plan (brief) → execute → inline evidence → done`.
 - **Exclusion**: No formal Spec required. No `/handoff` required. Work Log entry optional but recommended.
+- **Doc Integrity (MANDATORY)**: While No *new* Spec is required, if an **existing** Spec already covers the target area, the AI MUST update that Spec to prevent "Documentation Decay." If the change is too complex for a stealth update, use the "Spec Seed" mechanism in `/retro` to flag it for formalization.
 - **Examples**: Changing an API response format, adding a config flag, fixing a single-module bug with known root cause.
 
 ### 10.5 Handoff/Ship Hard Gate

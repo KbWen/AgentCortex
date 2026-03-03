@@ -12,6 +12,7 @@ tasks:
 ## 1. Initialization & Required Reading
 
 1. READ `docs/context/current_state.md` (SSoT).
+   - **Legacy Detection**: If `docs/context/current_state.md` is missing but `docs/context.md` or an `agent/` directory exists, AI MUST notify the user: "⚠️ Legacy AgentCortex structure detected. Recommend running the Migration Path from `docs/guides/migration.md`."
    - **Cross-Branch Awareness**: Check "Branch List" for recently closed branches.
    - If current task overlaps with a recently merged branch's module, AI MUST scan `docs/context/archive/` of that branch to check for spec changes or relevant Lessons.
 2. READ/CREATE `docs/context/work/<branch-name>.md` (Work Log).
