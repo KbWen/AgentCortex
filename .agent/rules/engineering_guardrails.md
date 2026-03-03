@@ -168,7 +168,7 @@ When locating code, files, or definitions:
 | Category | Mandatory Gates | Min Evidence Required |
 | --- | --- | --- |
 | **tiny-fix** | classify → plan (inline) → execute | diff summary + 1-line verification |
-| **quick-win** | classify → plan → execute → evidence | diff + before/after behavior statement |
+| **quick-win** | classify → check Spec Index → plan → execute → evidence | diff + before/after behavior statement |
 | **feature** | bootstrap → spec → plan → review → test → handoff | test output + verifiable demo steps |
 | **architecture-change** | bootstrap → ADR → spec → plan → migration/rollback → handoff | migration plan + rollback verification |
 | **hotfix** | systematic debug → evidence → fix → retro → handoff | root cause + fix verification + retro |
