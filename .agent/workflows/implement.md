@@ -12,6 +12,8 @@ Before ANY code change, AI MUST:
 1. Read the `## Non-goals` section of the Spec referenced in this task's Work Log.
 2. Confirm the current implementation step does NOT touch any Non-goal item.
 3. If a step would require touching a Non-goal, STOP and surface: "⚠️ Step [N] conflicts with Non-goal: [item]. Proceed? (yes/no)"
+4. IF Work Log contains a `Recommended Skills` entry: READ those SKILL.md files now before writing any code.
+   - Explicitly state: "Applying [skill-name] strategy for this implementation."
 
 Execute the approved plan. STRICTLY restricted to modifying ONLY the listed target files.
 

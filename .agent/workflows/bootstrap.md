@@ -48,6 +48,7 @@ Write to `docs/context/work/<branch-name>.md`:
 - `Classified by`: [AI Name]
 - `Frozen`: true
 - `Created Date`: [Date]
+- `Recommended Skills`: [skill-name (reason)] | none — *(determined from available skill summaries, no file read required. Skip for `tiny-fix`.)*
 
 ## 3. Expected Output Format
 
@@ -56,7 +57,8 @@ Write to `docs/context/work/<branch-name>.md`:
 3. Paths
 4. Constraints & AC
 5. Non-goals
-6. Context Read Receipt: MUST output:
+6. Recommended Skills: Based on task type, select 0-2 skills from the available skill summaries already in context. Write chosen skills (with one-line reason) to Work Log. **Skip for `tiny-fix`.** No file reads required at this stage.
+7. Context Read Receipt: MUST output:
    - `current_state.md` → [last modified date or key field you read]
    - Work Log → [status: existing|created|resumed]
    - Spec Scope → [list of determined-relevant spec files, or "none"]
