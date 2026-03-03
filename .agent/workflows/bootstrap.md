@@ -72,5 +72,5 @@ Write to `docs/context/work/<branch-name>.md`:
 
 ## 5. Hard Gate
 
-- MUST CREATE `docs/context/work/<branch-name>.md` before proceeding.
+- MUST CREATE `docs/context/work/<branch-name>.md` before proceeding. *(Skip for `tiny-fix`.)*
 - If file already exists, READ and RESUME from existing state.
