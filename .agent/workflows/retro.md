@@ -14,9 +14,14 @@ Output Format:
    - If YES: Append `[MERGE-PROPOSED: <other-spec-file>]` to the relevant entry in `current_state.md` Spec Index.
 5. Lessons Append: If Problems exist, append to the current Work Log (max 3 bullets).
    - **Global Candidate?**: If a lesson is a recurring pattern with a system-wide fix, tag it as `[GLOBAL-CANDIDATE]` for promotion during `/ship`.
+6. Spec Seeds: Did the AI make any architectural decisions or discover new feature requirements during development that are NOT currently written in any formal Spec?
+   - If YES: Append these to the current Work Log under a `## Spec Seeds` heading, and proactively ask the user: "I recorded [N] undocumented design decisions. Would you like me to formally add them to the Specs now?"
 
 ```markdown
 ## Lessons
 - [Pattern]: [What went wrong + why]
 - [Pattern]: ...
+
+## Spec Seeds
+- [Decision/Requirement]: [Context]
 ```
