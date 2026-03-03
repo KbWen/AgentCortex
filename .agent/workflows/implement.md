@@ -1,3 +1,6 @@
+---
+description: Workflow for implement
+---
 # /implement
 
 > Hard Gate: state >= `IMPLEMENTABLE` (Plan quality gate MUST be passed).
@@ -9,4 +12,5 @@ Post-Execution Report:
 - Summary of actual changes
 - Potential side-effects
 - Suggested verification/test commands
+
 

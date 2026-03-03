@@ -1,3 +1,6 @@
+---
+description: Workflow for commands
+---
 # /commands
 
 List available commands and their purposes (Read-only, DOES NOT change state).
@@ -12,4 +15,5 @@ Output Format:
 Note:
 
 - This is a compatibility alias, functionally equivalent to the "All Commands" section in `/help`.
+
 

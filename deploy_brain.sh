@@ -1,5 +1,6 @@
 #!/bin/bash
 # AI Brain Deployer v3.5.3 (Full Platform Support Edition)
+TARGET="${TARGET:-.}"
 echo "🚀 Deploying AI Brain v3.5.3 (Full Platform Support) to $TARGET..."
 
 # ============================================================
@@ -32,8 +33,8 @@ mkdir -p "$TARGET/.codex"
 cp $CP_FLAG AGENTS.md "$TARGET/"
 cp $CP_FLAG README.md "$TARGET/"
 [ -f README_zh-TW.md ] && cp $CP_FLAG README_zh-TW.md "$TARGET/"
-cp $CP_FLAG MODEL_GUIDE.md "$TARGET/"
-[ -f MODEL_GUIDE_zh-TW.md ] && cp $CP_FLAG MODEL_GUIDE_zh-TW.md "$TARGET/"
+cp $CP_FLAG AGENT_MODEL_GUIDE.md "$TARGET/"
+[ -f AGENT_MODEL_GUIDE_zh-TW.md ] && cp $CP_FLAG AGENT_MODEL_GUIDE_zh-TW.md "$TARGET/"
 
 # Platform Rules
 [ -d .antigravity ] && cp $CP_FLAG .antigravity/rules.md "$TARGET/.antigravity/"
@@ -43,11 +44,16 @@ cp $CP_FLAG MODEL_GUIDE.md "$TARGET/"
 cp $CP_FLAG .agent/rules/engineering_guardrails.md "$TARGET/.agent/rules/"
 
 # ============================================================
-# 3. Deploy vNext workflows
+# 3. Deploy vNext workflows & skills
 # ============================================================
 for f in .agent/workflows/*.md; do
   [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/.agent/workflows/"
 done
+
+# Copy skills directories
+if [ -d .agent/skills ]; then
+  cp -r .agent/skills/* "$TARGET/.agent/skills/" 2>/dev/null || true
+fi
 
 # Tools & Validation
 mkdir -p "$TARGET/tools"
@@ -71,6 +77,9 @@ done
 # In many environments (Windows/Codex), we just ensure both exist
 touch "$TARGET/.agent/skills/.gitkeep"
 touch "$TARGET/.agents/skills/.gitkeep"
+if [ -d "$TARGET/.agent/skills" ]; then
+  cp -r "$TARGET/.agent/skills/"* "$TARGET/.agents/skills/" 2>/dev/null || true
+fi
 
 # ============================================================
 # 6. Update .gitignore
@@ -95,8 +104,8 @@ codex/
 AGENTS.md
 README.md
 README_zh-TW.md
-MODEL_GUIDE.md
-MODEL_GUIDE_zh-TW.md
+AGENT_MODEL_GUIDE.md
+AGENT_MODEL_GUIDE_zh-TW.md
 docs/context/
 docs/context/private/
 EOT

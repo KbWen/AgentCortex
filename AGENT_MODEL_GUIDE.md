@@ -1,16 +1,17 @@
-# AI Brain v3.0 Model Selection & Decision Guide (Human-Only)
+# AgentCortex v3.5.3 Model Selection & Decision Guide (Human-Only)
 
 This guide is for **You (Human)**. It will not be loaded into the AI prompt. Its purpose is to save tokens and maximize development efficiency.
 
-## 🧠 Core Principle: Flash-First
+## 🧠 Core Principle: Fast-First
 
-**Default to Gemini 1.5 Flash.** Only switch to Pro if Flash fails to solve the problem.
+**Default to Gemini 1.5 Flash (or equivalent fast models like Claude 3.5 Haiku).** Only switch to Pro/Advanced models if the fast model fails to solve the problem.
 
 ---
 
-## ✅ Use Gemini 1.5 Flash (Daily 80%)
+## ✅ Use Fast Models (Daily 80%)
 
-**Features: Fast, low cost, 1M context.**
+**Features: Fast, low cost, large context.**
+*(Examples: Gemini 1.5 Flash, Claude 3.5 Haiku, GPT-4o-mini)*
 
 - **Code Migration**: Moving features from legacy projects to new files.
 - **Formatting**: CSS touch-ups, Markdown cleanup, JSON/CSV conversion.
@@ -19,9 +20,10 @@ This guide is for **You (Human)**. It will not be loaded into the AI prompt. Its
 - **Localization**: Traditional/Simplified Chinese conversion, i18n entries.
 - **Doc Summarization**: Extracting key points from long articles.
 
-## 🔴 Manual Switch to Pro (Critical 20%)
+## 🔴 Manual Switch to Pro/Advanced (Critical 20%)
 
 **Features: Deep reasoning, architectural design, complex debugging.**
+*(Examples: Claude 3.5 Sonnet / Opus, GPT-4o, Gemini 1.5 Pro)*
 
 - **System Design**: Planning data relationships and protocols for new modules from scratch.
 - **Core Refactoring**: Modifying 3+ highly coupled core files.

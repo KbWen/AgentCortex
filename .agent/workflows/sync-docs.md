@@ -1,3 +1,6 @@
+---
+description: Workflow for sync-docs - Documentation Sync Workflow
+---
 # /sync-docs - Documentation Sync Workflow
 
 Execute before task completion to ensure docs match code.
@@ -11,4 +14,5 @@ Execute before task completion to ensure docs match code.
     - Arch changes -> Create/Update `docs/adr/`.
     - Usage changes -> Update `docs/guides/` or `README.md`.
 4. **Verification**: Guarantee all paths and links in docs remain valid.
+
 
