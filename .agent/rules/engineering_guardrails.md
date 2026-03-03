@@ -193,3 +193,17 @@ When locating code, files, or definitions:
   2. ✅ code path
   3. Work log path
 - If missing, AI MUST reject `/ship` and list missing artifacts.
+
+### 10.6 Completion Guard (Anti-Silent-Exit)
+
+When AI detects a task is nearing completion (e.g., user says "done", "完成了", "差不多了", or AI has finished all planned steps), AI MUST self-check BEFORE responding:
+
+1. Is the task classified as `quick-win` or higher?
+2. Has `/handoff` been executed? (Check: does Work Log have a `## Resume` block?)
+3. Has `/retro` been executed? (Check: does Work Log have a `## Lessons` block?)
+
+**For `feature` / `architecture-change`**: If handoff or retro is missing, AI MUST remind: "📋 Before closing: `/handoff` and `/retro` haven't run yet. Want me to proceed with them now?"
+
+**For `quick-win`**: AI SHOULD ask: "Quick task done. Run a brief `/retro` to capture lessons? (yes/skip)"
+
+**For `tiny-fix`**: Skip entirely.
