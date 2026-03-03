@@ -1,14 +1,9 @@
 ---
 description: Workflow for execute-plan
 ---
-# /execute-plan
+# /execute-plan → Redirect
 
-> Hard Gate: state >= `IMPLEMENTABLE` (Plan quality gate MUST be passed).
+> ⚠️ This is an alias. Follow `/implement` instead.
+> Canonical source: `.agent/workflows/implement.md`
 
-Alias for `/implement`. Execute the approved plan step-by-step and report:
-
-- Completed items
-- Incomplete items
-- Blockers & Recommendations
-
-
+Do NOT re-implement execution logic here. Jump directly to `/implement` and execute that workflow entirely.

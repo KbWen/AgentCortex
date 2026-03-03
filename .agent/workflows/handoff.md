@@ -13,7 +13,8 @@ Read-only logic. DOES NOT change state. Hard completion gate for non-`tiny-fix` 
 
 ## 1. Trigger Conditions
 
-- Non-`tiny-fix`: MUST execute before pause, end, or handoff.
+- Non-`tiny-fix`, Non-`quick-win`: MUST execute before pause, end, or handoff. AI should remind the user if this step is missing (see §10.6 Completion Guard).
+- `quick-win`: Exempt from formal handoff, but AI SHOULD offer a brief `/retro`.
 - `tiny-fix`: Exempt, but MUST retain minimal evidence.
 
 ## 2. Platform Specialization
@@ -29,6 +30,15 @@ Read-only logic. DOES NOT change state. Hard completion gate for non-`tiny-fix` 
 - **Next**
 - **Risks**
 - **References**
+- **Resume Block**: MUST also write the following to the Work Log file:
+
+```markdown
+## Resume
+- State: [current state machine state]
+- Completed: [list of done steps]
+- Next: [immediate next action]
+- Context: [1-2 sentence summary of what was decided and why]
+```
 
 ## 4. Minimum References (HARD GATE)
 

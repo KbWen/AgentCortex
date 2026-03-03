@@ -15,6 +15,8 @@ NO CODING YET. Planning phase ONLY.
 
 1. Target Files
 2. Execution Steps (2-10 min granularity)
+   - Steps MUST be **Functionally Atomic** (a single logical unit of change, e.g., "Implement Data Schema").
+   - Each step MUST have a 1-line verification method (e.g., test command, logic check, or grep).
 3. Risks & Rollback Strategy
 4. Acceptance Criteria Coverage
 5. Non-goals
@@ -26,6 +28,20 @@ NO CODING YET. Planning phase ONLY.
 - MUST identify at least 1 Risk + viable Rollback.
 - List ONLY files being modified (Prevent scope creep).
 - MUST explicitly cite documentation (e.g., `Ref: docs/specs/auth.md`).
+- **Frozen Spec Pre-Check**: Cross-reference target files against Spec Index entries tagged `[Frozen]`. If any target file falls under a Frozen Spec, warn immediately: "⚠️ [file] is governed by Frozen Spec [spec-name]. Unfreeze required before proceeding. Approve? (yes/no)"
+
+## Work Log Update (Mandatory)
+
+After plan is approved, AI MUST append to the current Work Log:
+
+```markdown
+## Risks (from /plan)
+- [Risk 1]: [brief description + mitigation]
+- [Risk 2]: ...
+- [Risk 3]: ...
+```
+
+This block persists across sessions. On resume, /bootstrap reads it immediately.
 
 ## Token Budget Checkpoint
 

@@ -12,6 +12,12 @@
   - Workflows & Policies: `.agent/workflows/*.md`, `.agent/rules/*.md`
 - **ADR Index**:
   - `docs/adr/ADR-001-vnext-self-managed-architecture.md`
+- **Spec Index**:
+  - *(No specs yet — use format below)*
+  - Example:
+    - `[auth] docs/specs/auth/login_flow.md [Frozen]`
+    - `[payment] docs/specs/payment/checkout.md [Draft]`
+  - When reading specs: only open files tagged with the current task's module.
 - **Canonical Commands**:
   - `/bootstrap`: Task initialization & classification freeze.
   - `/plan`: Define target files, steps, risks, and rollback.
@@ -30,3 +36,10 @@
 > [!NOTE]
 > This file is the Single Source of Truth for global project context only.
 > Do not store per-task progress here; write progress to `docs/context/work/<branch-name>.md`.
+
+## Global Lessons (AI Error Pattern Registry)
+>
+> 3-5 high-value patterns max. Reviewed during /bootstrap.
+
+- [Global Memory]: Branch-local lessons are lost after archival. Use Global Lessons Registry for persistence.
+- [Format Safety]: Do not copy line numbers from view tools; they break file edits.

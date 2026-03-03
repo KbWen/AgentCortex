@@ -4,6 +4,17 @@
 
 Global (applies to all projects using template).
 
+## Reading Mode
+
+- **Full Mode** (default for `feature`, `architecture-change`, `hotfix`): Read this entire document.
+- **Quick Mode** (for `quick-win`): Read ONLY: §4 (Design Before Implementation), §7 (Scope Discipline), §8.1 (Bug Fix Protocol if applicable), §9.1 (Acknowledgment-only Inputs). Skip §1-3, §5-6, §10.1-10.2.
+- **Lite Mode** (for `tiny-fix` ONLY): Read ONLY the following sections:
+  - §7 Scope Discipline (mandatory)
+  - §8.1 Bug Fix Protocol (if fixing a bug)
+  - §9.1 Acknowledgment-only Inputs (always)
+  - §10.3 Tiny-Fix Fast-Path (for verification)
+  - Skip sections 1-4, 6, 10.1-10.2. These do not apply to tiny-fix tasks.
+
 ## Role
 
 Non-negotiable principles for agent-driven development.
@@ -48,6 +59,15 @@ Non-negotiable principles for agent-driven development.
 - BEFORE coding, MUST provide: Problem understanding, Design, Trade-offs, Risks.
 - If ambiguous, priority is CLARIFICATION.
 
+### 4.1 Spec Freezing (SSoT Protection)
+
+- Whenever a Spec is approved or the task transitions to implementation, the Spec MUST be marked as **FROZEN** (e.g., via YAML frontmatter `status: frozen`).
+- AI agents MUST NOT modify, review, or suggest refactoring for any document marked as `FROZEN` or `Finalized` during normal tasks.
+- **Exception (AI-Initiated Unfreeze)**: If the AI discovers that a FROZEN spec must be changed (due to a bug or requirement change), the AI MUST:
+  1. **STOP** and surface the issue explicitly: "⚠️ [Filename] is FROZEN but requires update: [Reason]. Approve to unfreeze and continue? (yes/no)"
+  2. Only proceed after user responds **YES**.
+  3. Set status to `draft`, make changes, then re-freeze during `/ship`.
+
 ## 5. Testing & Verification
 
 - Logic Change -> Add Test.
@@ -91,7 +111,10 @@ Non-negotiable principles for agent-driven development.
 2. Output diagnostic: modified code blocks, call relationships, behavior diffs ONLY. ❌ No narrative claims.
 3. Record failure in Work Log and DEFER to user for escalation.
 
+**Active Tracking**: After each failed patch attempt, AI MUST append to Work Log: `Patch Attempt [N]: [1-line result]`. When N ≥ 2, the 2-Strike ESC is automatically triggered.
+
 **Async/Data-Flow Safety**: When modifying async or data-flow code, MUST verify: error handling, race condition guards, and loading state management.
+
 ## 9. Intent Safety Rules
 
 Natural language input has EQUAL authority to slash commands, but MUST pass the same gates and prerequisites.
@@ -132,29 +155,39 @@ When locating code, files, or definitions:
 
 | Trigger Condition | Minimum Classification |
 | --- | --- |
-| Touches `exports` / public API / signature | `behavior-change` |
+| < 3 files, no semantic change | `tiny-fix` |
+| 1-2 modules, clear scope, no cross-module impact | `quick-win` |
+| Touches `exports` / public API / signature | `feature` |
 | Touches >1 module import graph | `feature` |
 | Adds new directories | `feature` |
 | Alters data-flow / system boundaries | `architecture-change` |
-| Alters default configs impacting users | `behavior-change` |
+| Alters default configs impacting users | `feature` |
 
 ### 10.2 Gate Type & Evidence Standards
 
 | Category | Mandatory Gates | Min Evidence Required |
 | --- | --- | --- |
-| **tiny-fix** | classify -> plan (inline) -> execute | diff summary + 1-line verification |
-| **behavior-change** | bootstrap -> spec -> plan -> review -> regression test -> handoff | before/after behavior + test output |
-| **feature** | bootstrap -> spec -> plan -> review -> test -> handoff | test output + verifiable demo steps |
-| **architecture-change** | bootstrap -> ADR -> spec -> plan -> migration/rollback -> handoff | migration plan + rollback verification |
-| **hotfix** | systematic debug -> evidence -> fix -> retro -> handoff | root cause + fix verification + retro |
+| **tiny-fix** | classify → plan (inline) → execute | diff summary + 1-line verification |
+| **quick-win** | classify → check Spec Index → plan → execute → evidence | diff + before/after behavior statement |
+| **feature** | bootstrap → spec → plan → review → test → handoff | test output + verifiable demo steps |
+| **architecture-change** | bootstrap → ADR → spec → plan → migration/rollback → handoff | migration plan + rollback verification |
+| **hotfix** | systematic debug → evidence → fix → retro → handoff | root cause + fix verification + retro |
 
 ### 10.3 Tiny-Fix Fast-Path
 
 - **Definition**: Modifies < 3 files WITHOUT semantic change (typo, docs, non-functional config).
-- **Flow**: `classify -> one-line scope -> execute -> inline evidence -> done`.
+- **Flow**: `classify → one-line scope → execute → inline evidence → done`.
 - **Exclusion**: Bypasses full `/bootstrap`, `/handoff`, and Work Log overhead.
 
-### 10.4 Handoff/Ship Hard Gate
+### 10.4 Quick-Win Fast-Path
+
+- **Definition**: Clear, contained change to 1-2 modules with a well-defined outcome. Semantic change IS present, but cross-module impact is LOW.
+- **Flow**: `classify → check Spec Index for existing coverage → plan (brief) → execute → update existing Spec if found → inline evidence → done`.
+- **Exclusion**: No formal Spec required. No `/handoff` required. Work Log entry optional but recommended.
+- **Doc Integrity (MANDATORY)**: While No *new* Spec is required, if an **existing** Spec already covers the target area, the AI MUST update that Spec to prevent "Documentation Decay." If the change is too complex for a stealth update, use the "Spec Seed" mechanism in `/retro` to flag it for formalization.
+- **Examples**: Changing an API response format, adding a config flag, fixing a single-module bug with known root cause.
+
+### 10.5 Handoff/Ship Hard Gate
 
 - Non-`tiny-fix` tasks MUST NOT claim complete without `/handoff`.
 - `/ship` MUST verify handoff references:
@@ -162,3 +195,17 @@ When locating code, files, or definitions:
   2. ✅ code path
   3. Work log path
 - If missing, AI MUST reject `/ship` and list missing artifacts.
+
+### 10.6 Completion Guard (Anti-Silent-Exit)
+
+When AI detects a task is nearing completion (e.g., user says "done", "完成了", "差不多了", or AI has finished all planned steps), AI MUST self-check BEFORE responding:
+
+1. Is the task classified as `quick-win` or higher?
+2. Has `/handoff` been executed? (Check: does Work Log have a `## Resume` block?)
+3. Has `/retro` been executed? (Check: does Work Log have a `## Lessons` block?)
+
+**For `feature` / `architecture-change`**: If handoff or retro is missing, AI MUST remind: "📋 Before closing: `/handoff` and `/retro` haven't run yet. Want me to proceed with them now?"
+
+**For `quick-win`**: AI SHOULD ask: "Quick task done. Run a brief `/retro` to capture lessons? (yes/skip)"
+
+**For `tiny-fix`**: Skip entirely.
