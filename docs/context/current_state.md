@@ -41,4 +41,5 @@
 >
 > 3-5 high-value patterns max. Reviewed during /bootstrap.
 
-- [Pattern]: [Instruction to avoid]
+- [Global Memory]: Branch-local lessons are lost after archival. Use Global Lessons Registry for persistence.
+- [Format Safety]: Do not copy line numbers from view tools; they break file edits.
