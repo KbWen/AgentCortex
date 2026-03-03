@@ -34,11 +34,11 @@ tasks:
 
 Classification Tiers:
 
-- `tiny-fix`
-- `behavior-change`
-- `feature`
-- `architecture-change`
-- `hotfix`
+- `tiny-fix` — No overhead. Directly execute.
+- `quick-win` — Light overhead. Plan → Execute → Evidence. No Spec/Handoff.
+- `feature` — Standard flow. Full bootstrap gates required.
+- `architecture-change` — Heavy flow. ADR + migration plan required.
+- `hotfix` — Urgent path. Systematic debug → fix → retro.
 
 ## 2. Work Log Header Setup
 
@@ -67,6 +67,7 @@ Write to `docs/context/work/<branch-name>.md`:
 
 - Classification is FROZEN once written to Work Log.
 - `tiny-fix` bypasses full bootstrap/handoff overhead, but MUST provide evidence.
+- `quick-win` bypasses Spec and Handoff, but MUST provide a brief plan and diff evidence.
 
 ## 5. Hard Gate
 

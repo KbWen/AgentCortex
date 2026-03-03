@@ -6,7 +6,8 @@ Global (applies to all projects using template).
 
 ## Reading Mode
 
-- **Full Mode** (default for `behavior-change`, `feature`, `architecture-change`, `hotfix`): Read this entire document.
+- **Full Mode** (default for `feature`, `architecture-change`, `hotfix`): Read this entire document.
+- **Quick Mode** (for `quick-win`): Read ONLY: §4 (Design Before Implementation), §7 (Scope Discipline), §8.1 (Bug Fix Protocol if applicable), §9.1 (Acknowledgment-only Inputs). Skip §1-3, §5-6, §10.1-10.2.
 - **Lite Mode** (for `tiny-fix` ONLY): Read ONLY the following sections:
   - §7 Scope Discipline (mandatory)
   - §8.1 Bug Fix Protocol (if fixing a bug)
@@ -152,29 +153,38 @@ When locating code, files, or definitions:
 
 | Trigger Condition | Minimum Classification |
 | --- | --- |
-| Touches `exports` / public API / signature | `behavior-change` |
+| < 3 files, no semantic change | `tiny-fix` |
+| 1-2 modules, clear scope, no cross-module impact | `quick-win` |
+| Touches `exports` / public API / signature | `feature` |
 | Touches >1 module import graph | `feature` |
 | Adds new directories | `feature` |
 | Alters data-flow / system boundaries | `architecture-change` |
-| Alters default configs impacting users | `behavior-change` |
+| Alters default configs impacting users | `feature` |
 
 ### 10.2 Gate Type & Evidence Standards
 
 | Category | Mandatory Gates | Min Evidence Required |
 | --- | --- | --- |
-| **tiny-fix** | classify -> plan (inline) -> execute | diff summary + 1-line verification |
-| **behavior-change** | bootstrap -> spec -> plan -> review -> regression test -> handoff | before/after behavior + test output |
-| **feature** | bootstrap -> spec -> plan -> review -> test -> handoff | test output + verifiable demo steps |
-| **architecture-change** | bootstrap -> ADR -> spec -> plan -> migration/rollback -> handoff | migration plan + rollback verification |
-| **hotfix** | systematic debug -> evidence -> fix -> retro -> handoff | root cause + fix verification + retro |
+| **tiny-fix** | classify → plan (inline) → execute | diff summary + 1-line verification |
+| **quick-win** | classify → plan → execute → evidence | diff + before/after behavior statement |
+| **feature** | bootstrap → spec → plan → review → test → handoff | test output + verifiable demo steps |
+| **architecture-change** | bootstrap → ADR → spec → plan → migration/rollback → handoff | migration plan + rollback verification |
+| **hotfix** | systematic debug → evidence → fix → retro → handoff | root cause + fix verification + retro |
 
 ### 10.3 Tiny-Fix Fast-Path
 
 - **Definition**: Modifies < 3 files WITHOUT semantic change (typo, docs, non-functional config).
-- **Flow**: `classify -> one-line scope -> execute -> inline evidence -> done`.
+- **Flow**: `classify → one-line scope → execute → inline evidence → done`.
 - **Exclusion**: Bypasses full `/bootstrap`, `/handoff`, and Work Log overhead.
 
-### 10.4 Handoff/Ship Hard Gate
+### 10.4 Quick-Win Fast-Path
+
+- **Definition**: Clear, contained change to 1-2 modules with a well-defined outcome. Semantic change IS present, but cross-module impact is LOW.
+- **Flow**: `classify → plan (brief) → execute → inline evidence → done`.
+- **Exclusion**: No formal Spec required. No `/handoff` required. Work Log entry optional but recommended.
+- **Examples**: Changing an API response format, adding a config flag, fixing a single-module bug with known root cause.
+
+### 10.5 Handoff/Ship Hard Gate
 
 - Non-`tiny-fix` tasks MUST NOT claim complete without `/handoff`.
 - `/ship` MUST verify handoff references:
