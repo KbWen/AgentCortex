@@ -11,6 +11,13 @@ tasks:
 
 NO CODING YET. Planning phase ONLY.
 
+## Pre-Conditions (Hard Gate)
+
+- **Spec Gate**: If task classification is `feature` or `architecture-change`:
+  - MUST have a corresponding `docs/specs/<feature>.md` with `status: draft` or `status: frozen`.
+  - If no spec exists: STOP. Output: "⚠️ No specification found. Run `/spec` first to define acceptance criteria and boundaries."
+  - `tiny-fix`, `quick-win`, and `hotfix` are EXEMPT from this gate.
+
 ## Expected Output Format
 
 1. Target Files
@@ -29,6 +36,15 @@ NO CODING YET. Planning phase ONLY.
 - List ONLY files being modified (Prevent scope creep).
 - MUST explicitly cite documentation (e.g., `Ref: docs/specs/auth.md`).
 - **Frozen Spec Pre-Check**: Cross-reference target files against Spec Index entries tagged `[Frozen]`. If any target file falls under a Frozen Spec, warn immediately: "⚠️ [file] is governed by Frozen Spec [spec-name]. Unfreeze required before proceeding. Approve? (yes/no)"
+
+## Spec Feedback Loop
+
+- If planning reveals that the Spec's AC, constraints, or boundaries need adjustment:
+  1. STOP planning.
+  2. Surface: "⚠️ Spec adjustment needed: [reason]. Returning to `/spec`."
+  3. Apply §4.1 Unfreeze protocol if spec is frozen.
+  4. Update `docs/specs/<feature>.md`, then resume `/plan`.
+- The Plan MUST NOT contradict the Spec. If there's a conflict, Spec wins.
 
 ## Work Log Update (Mandatory)
 

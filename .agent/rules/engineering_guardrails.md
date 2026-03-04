@@ -119,20 +119,12 @@ Non-negotiable principles for agent-driven development.
 
 External CLI tools (e.g., `ask-openrouter`, `codex`) are **OPTIONAL accelerators**. Projects MAY operate without any of them.
 
-**Availability Check (Silent)**:
-
-- On first delegation attempt per session, run the tool's health check command (e.g., `python -m ask_openrouter --help`, `codex --version`).
-- If unavailable: **silently fall back** to AI-native execution. DO NOT warn user. DO NOT suggest installation.
-- Cache the result for the entire session. Do not re-check.
-
-**Cost-Tier Confirmation**:
-
-- Low-cost operations (fast/default profile): auto-execute without confirmation.
-- High-cost operations (quality/max profile): confirm with user before executing.
-
 **Pre/Post-Flight (Mandatory for all external tool invocations)**:
 
-- **Pre-Flight**: Classify task per §10.1, update Work Log with `Executor: <tool-name>`.
+- **Pre-Flight** (in order — fail fast):
+  1. **Cost-Tier Confirmation** (memory-only): low-cost → auto-execute; high-cost (quality/max profile) → confirm with user first.
+  2. Update Work Log with `Executor: <tool-name>` (only if cost-tier passes).
+  3. **Availability Check (Silent)**: run health check (e.g., `python -m ask_openrouter --help`, `codex --version`). If unavailable: **silently fall back** to AI-native execution. DO NOT warn user. DO NOT suggest installation. Cache per session.
 - **Post-Flight**: Read tool output, verify scope alignment, update Work Log, apply Gate Check per §10.2.
 - External tool output is treated as **Junior Tool output** — AI MUST review before accepting.
 
@@ -211,11 +203,8 @@ When locating code, files, or definitions:
 ### 10.5 Handoff/Ship Hard Gate
 
 - Non-`tiny-fix` tasks MUST NOT claim complete without `/handoff`.
-- `/ship` MUST verify handoff references:
-  1. ✅ `docs/` file path
-  2. ✅ code path
-  3. Work log path
-- If missing, AI MUST reject `/ship` and list missing artifacts.
+- `/ship` MUST verify handoff references in single-line format: `ship:[doc=<path>][code=<path>][log=<path>]`
+- If any field is missing, AI MUST reject `/ship` and list the missing field(s).
 
 ### 10.6 Completion Guard (Anti-Silent-Exit)
 
@@ -242,13 +231,11 @@ When AI detects a task is nearing completion (e.g., user says "done", "完成了
 
 ### 11.2 Agent Identity
 
-Every Work Log entry MUST include an identity line to enable cross-session debugging:
+Every Work Log entry MUST include a compact identity line to enable cross-session debugging:
 
 ```markdown
 ## Session Info
-- Agent: [model name, e.g., Gemini Flash / Claude Sonnet]
-- Session: [timestamp or conversation ID if available]
-- Platform: [Antigravity / Codex Web / Codex App]
+@[model]:[platform]:[timestamp-or-conversation-id]
 ```
 
 This enables answering: "Which AI wrote this? When? On which platform?"

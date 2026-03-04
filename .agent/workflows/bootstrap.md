@@ -73,6 +73,12 @@ Write `## Session Info` block immediately after header:
    - `current_state.md` → [last modified date or key field you read]
    - Work Log → [status: existing|created|resumed]
    - Spec Scope → [list of determined-relevant spec files, or "none"]
+8. Next Step Recommendation (based on classification):
+   - `tiny-fix`: → Proceed directly with inline plan.
+   - `quick-win`: → `/plan`
+   - `feature`: → `/brainstorm` or `/spec` (spec required before `/plan`)
+   - `architecture-change`: → `/brainstorm` → `/spec` (ADR + spec required before `/plan`)
+   - `hotfix`: → `/research` (systematic debugging)
 
 ## 4. Hard Checkpoints
 
