@@ -14,7 +14,7 @@ Dispatch a task to OpenAI Codex CLI while ensuring AgentCortex governance compli
 ## Prerequisites
 
 - Codex CLI installed: `npm install -g @openai/codex`
-- API key configured: `OPENAI_API_KEY` set in environment
+- API key configured: `OPENAI_API_KEY` set in environment (or run `codex login`)
 
 ## 1. Usage
 
@@ -37,10 +37,23 @@ AI MUST perform these steps **before** invoking `codex`:
 2. **Create/Update Work Log** at `docs/context/work/<branch-name>.md` with:
    - Classification, goal, target files, constraints.
    - `Executor: Codex CLI` (to distinguish from AI-direct execution).
-3. **Generate the Codex prompt** by injecting governance context:
+3. **Generate the Codex command** by injecting governance context:
+
+### Interactive Mode (default — user can see and approve changes)
+
+```bash
+codex -a untrusted -s workspace-write -C <project-root> "<governance-wrapped prompt>"
+```
+
+### Non-Interactive Mode (for scripted / batch execution)
+
+```bash
+codex exec -a never -s workspace-write -C <project-root> "<governance-wrapped prompt>"
+```
+
+### Governance-Wrapped Prompt Template
 
 ```text
-codex --approval-mode suggest "
 You are working in a project governed by AgentCortex.
 RULES:
 - Do NOT modify files outside the target list: [target files].
@@ -51,18 +64,23 @@ RULES:
 TASK: [user's task description]
 TARGET FILES: [from classification]
 CONSTRAINTS: [from Work Log]
-"
 ```
 
-1. **Approval Mode**: Default to `suggest` (Codex proposes, human approves). Use `auto-edit` only if classification is `tiny-fix`.
+### Approval & Sandbox Policy
 
-| Classification | Codex `--approval-mode` |
-| --- | --- |
-| `tiny-fix` | `auto-edit` |
-| `quick-win` | `suggest` |
-| `feature` | `suggest` |
-| `architecture-change` | ❌ Do NOT use Codex CLI. Too complex. |
-| `hotfix` | `suggest` |
+| Classification | Approval (`-a`) | Sandbox (`-s`) | Shorthand |
+| --- | --- | --- | --- |
+| `tiny-fix` | `on-request` | `workspace-write` | `--full-auto` |
+| `quick-win` | `untrusted` | `workspace-write` | — |
+| `feature` | `untrusted` | `workspace-write` | — |
+| `architecture-change` | ❌ Do NOT use Codex CLI. Too complex. | — | — |
+| `hotfix` | `untrusted` | `read-only` | — |
+
+> **Key reference for `-a` (ask-for-approval) values:**
+>
+> - `untrusted`: Auto-runs safe commands (ls, cat, sed); escalates others to user.
+> - `on-request`: Model decides when to ask (lowest friction).
+> - `never`: Never asks — use ONLY with `codex exec` in scripted mode.
 
 ## 3. AI Post-Flight (After Codex Completes)
 
@@ -86,9 +104,8 @@ User: /codex-cli Fix the typo in README.md line 42, "recieve" → "receive"
 AI:
   Classification: tiny-fix
   Work Log: skipped (tiny-fix)
-  Codex approval mode: auto-edit
 
-  Running: codex --approval-mode auto-edit "Fix typo in README.md line 42: recieve → receive. Do NOT modify anything else."
+  Running: codex --full-auto "Fix typo in README.md line 42: recieve → receive. Do NOT modify anything else."
 
   Result: ✅ README.md modified. 1 line changed.
   Evidence: diff shows only the typo fix. No other files touched.
@@ -101,35 +118,48 @@ User: 用 Codex CLI 幫我把 utils/format.ts 的 formatDate 函數加上 locale
 AI:
   Classification: quick-win (1 file, clear scope)
   Work Log: docs/context/work/main.md (Executor: Codex CLI)
-  Codex approval mode: suggest
 
-  Running: codex --approval-mode suggest "
+  Running: codex -a untrusted -s workspace-write "
   AgentCortex rules: only modify utils/format.ts. No refactoring.
   Task: Add locale parameter to formatDate function.
   Constraint: Preserve existing behavior when locale is not provided (default to current behavior).
   "
 
   Codex proposes:
-    [shows diff]
-  
-  User: approve
+    [shows diff — user approves in-terminal]
   
   Result: ✅ utils/format.ts modified.
   Test: npm test → all pass.
   Evidence appended to Work Log.
 ```
 
-## 5. Error Handling
+## 5. Advanced: Non-Interactive Batch Execution
+
+For tasks where the AI dispatches Codex without human interaction:
+
+```bash
+codex exec -a never -s workspace-write -C /path/to/project "Task prompt here"
+```
+
+Use `codex exec` when:
+
+- The classification is `tiny-fix` AND the scope is unambiguous.
+- The AI orchestrator (e.g., Flash) is managing the task end-to-end.
+- Post-flight verification is guaranteed.
+
+> ⚠️ `codex exec -a never` skips ALL human confirmation. AI MUST verify every change via `git diff` in Post-Flight.
+
+## 6. Error Handling
 
 | Error | AI Action |
 | --- | --- |
 | Codex not installed | Output: `npm install -g @openai/codex` and stop |
-| API key missing | Output: set `OPENAI_API_KEY` and stop |
-| Codex modified wrong files | Auto-revert, log violation, warn user |
+| API key missing | Output: run `codex login` or set `OPENAI_API_KEY` and stop |
+| Codex modified wrong files | Auto-revert via `git checkout -- <file>`, log violation, warn user |
 | Codex output unclear | AI reviews diff manually, applies standard review |
 | Task too complex for Codex | Reject and suggest direct AI implementation |
 
-## 6. Guardrails Integration
+## 7. Guardrails Integration
 
 - All AgentCortex rules in `engineering_guardrails.md` apply to Codex-generated code.
 - Codex is treated as a **Junior Tool** — its output ALWAYS gets AI review before being accepted.
