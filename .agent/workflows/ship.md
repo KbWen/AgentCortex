@@ -34,3 +34,4 @@ If ANY condition fails, MUST reject `/ship` and output missing list.
     - Append these bullets to the `## Global Lessons` section in `current_state.md`.
     - If there is no `## Global Lessons` section in `current_state.md`, create one at the bottom.
 4. Freeze Artifacts: Ensure all produced Specs/ADRs have YAML frontmatter `status: frozen`. If missing, add it before commit.
+   - **Spec Freshness**: If implementation DIFFERS from any referenced spec's AC, MUST update the spec to match actual behavior before freezing. Append `[Updated: <date>]` to the corresponding Spec Index entry in `current_state.md`.
