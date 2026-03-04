@@ -1,7 +1,7 @@
 #!/bin/bash
-# AI Brain Deployer v3.5.3 (Full Platform Support Edition)
+# AI Brain Deployer v3.5.4 (External Tool Integration Edition)
 TARGET="${TARGET:-.}"
-echo "🚀 Deploying AI Brain v3.5.3 (Full Platform Support) to $TARGET..."
+echo "🚀 Deploying AI Brain v3.5.4 (External Tool Integration) to $TARGET..."
 
 # ============================================================
 # 1. Create directory structure
@@ -108,13 +108,14 @@ AGENT_MODEL_GUIDE.md
 AGENT_MODEL_GUIDE_zh-TW.md
 docs/context/
 docs/context/private/
+.openrouter/
 EOT
 else
     echo "ℹ️ AI Brain OS patterns already present in .gitignore."
 fi
 
 echo ""
-echo "✅ AI Brain v3.5.3 deployed successfully!"
+echo "✅ AI Brain v3.5.4 deployed successfully!"
 echo ""
 echo "📦 Platform Entry Points Ready:"
 echo "   .antigravity/rules.md  ← Google Antigravity"

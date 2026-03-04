@@ -1,4 +1,4 @@
-# AgentCortex v3.5.3 (vNext Architecture Edition)
+# AgentCortex v3.5.4 (vNext Architecture Edition)
 
 [English Version](README.md)
 
@@ -48,6 +48,8 @@
 | 回顧精進 | `/retro` | `.agent/workflows/retro.md` | 形成可複用經驗 |
 | 交接摘要 | `/handoff` | `.agent/workflows/handoff.md` | 跨回合核心：保留決策脈絡 |
 | 最終交付 | `/ship` | `.agent/workflows/ship.md` | 彙整提交證據與歸檔狀態 |
+| 外部委派 (自然語言) | `ask-openrouter` | `.agent/workflows/ask-openrouter.md` | [可選] 將任務委派給 OpenRouter 模型 |
+| Codex CLI 執行 | `codex-cli` | `.agent/workflows/codex-cli.md` | [可選] 透過 Codex CLI 安全執行任務 |
 
 ## 🔀 Antigravity / Codex 路徑差異
 

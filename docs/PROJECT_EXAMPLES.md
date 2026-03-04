@@ -106,5 +106,6 @@ ruff check .
 
 ## Further Reading
 
+- [Non-Linear Scenarios (Model Switching, Session Crashes, Chaotic Workflows)](./NONLINEAR_SCENARIOS.md)
 - [Migration & Integration Guide (Legacy Project Takeover)](./guides/migration.md)
 - [Token Governance Guide](./guides/token-governance.md)

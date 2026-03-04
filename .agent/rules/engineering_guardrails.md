@@ -115,6 +115,27 @@ Non-negotiable principles for agent-driven development.
 
 **Async/Data-Flow Safety**: When modifying async or data-flow code, MUST verify: error handling, race condition guards, and loading state management.
 
+### 8.2 External Tool Delegation Protocol
+
+External CLI tools (e.g., `ask-openrouter`, `codex`) are **OPTIONAL accelerators**. Projects MAY operate without any of them.
+
+**Availability Check (Silent)**:
+
+- On first delegation attempt per session, run the tool's health check command (e.g., `python -m ask_openrouter --help`, `codex --version`).
+- If unavailable: **silently fall back** to AI-native execution. DO NOT warn user. DO NOT suggest installation.
+- Cache the result for the entire session. Do not re-check.
+
+**Cost-Tier Confirmation**:
+
+- Low-cost operations (fast/default profile): auto-execute without confirmation.
+- High-cost operations (quality/max profile): confirm with user before executing.
+
+**Pre/Post-Flight (Mandatory for all external tool invocations)**:
+
+- **Pre-Flight**: Classify task per §10.1, update Work Log with `Executor: <tool-name>`.
+- **Post-Flight**: Read tool output, verify scope alignment, update Work Log, apply Gate Check per §10.2.
+- External tool output is treated as **Junior Tool output** — AI MUST review before accepting.
+
 ## 9. Intent Safety Rules
 
 Natural language input has EQUAL authority to slash commands, but MUST pass the same gates and prerequisites.
@@ -209,3 +230,33 @@ When AI detects a task is nearing completion (e.g., user says "done", "完成了
 **For `quick-win`**: AI SHOULD ask: "Quick task done. Run a brief `/retro` to capture lessons? (yes/skip)"
 
 **For `tiny-fix`**: Skip entirely.
+
+## 11. Multi-Person Collaboration Rules
+
+### 11.1 Work Log Ownership
+
+- **One Branch = One Owner**: Each `docs/context/work/<branch>.md` Work Log MUST have exactly ONE active writer at a time.
+- AI MUST write `Owner: <user-name or session-id>` in the Work Log header during `/bootstrap`.
+- If a Work Log already exists with a different Owner, AI MUST warn: "⚠️ This Work Log is owned by [Owner]. Concurrent writes will cause data loss. Create a separate Work Log? (yes/no)"
+- Naming convention for multi-person: `docs/context/work/<owner>-<branch>.md` (e.g., `alice-feature-x.md`).
+
+### 11.2 Agent Identity
+
+Every Work Log entry MUST include an identity line to enable cross-session debugging:
+
+```markdown
+## Session Info
+- Agent: [model name, e.g., Gemini Flash / Claude Sonnet]
+- Session: [timestamp or conversation ID if available]
+- Platform: [Antigravity / Codex Web / Codex App]
+```
+
+This enables answering: "Which AI wrote this? When? On which platform?"
+
+### 11.3 Ship Guard (SSoT Merge Protection)
+
+Before `/ship` writes to `current_state.md`:
+
+1. AI MUST check if `current_state.md` has been modified since the task started (compare timestamps or last-known content hash).
+2. If modified by another person/session: AI MUST warn: "⚠️ `current_state.md` was updated by another session since your task started. Please review the changes before I merge. Proceed? (yes/abort)"
+3. If the user says proceed, AI MUST perform an **additive merge** (append new entries without removing existing ones), NOT a full overwrite.

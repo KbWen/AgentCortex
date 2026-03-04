@@ -1,4 +1,46 @@
-# Codex default safety rules
+# Codex default safety rules (Starlark format)
+# Reference: https://openai.com/codex/rules
 
-prefix_rule("HIGH DESTRUCTIVE COMMANDS PROHIBITED (e.g., rm -rf, git reset --hard, clean -fdx, chmod -R 777, sudo curl | bash). If required, MUST provide risk assessment, rollback plan, and safe alternatives, then await explicit user authorization.")
-prefix_rule("HIGH RISK SYSTEM COMMANDS PROHIBITED (e.g., docker system prune -a, chown -R). MUST use scoped alternatives (e.g., image prune) AND establish a verifiable rollback plan (backup path, revert commit) before execution.")
+# Block destructive commands
+prefix_rule(
+    pattern=["rm", "-rf"],
+    decision="forbidden",
+    justification="HIGH DESTRUCTIVE: rm -rf can cause irreversible data loss. Must use scoped alternatives.",
+)
+
+prefix_rule(
+    pattern=["git", "reset", "--hard"],
+    decision="forbidden",
+    justification="HIGH DESTRUCTIVE: git reset --hard discards uncommitted changes permanently.",
+)
+
+prefix_rule(
+    pattern=["git", "clean", "-fdx"],
+    decision="forbidden",
+    justification="HIGH DESTRUCTIVE: git clean -fdx removes all untracked files and directories.",
+)
+
+prefix_rule(
+    pattern=["chmod", "-R", "777"],
+    decision="forbidden",
+    justification="SECURITY: chmod -R 777 opens all permissions recursively.",
+)
+
+prefix_rule(
+    pattern=["docker", "system", "prune", "-a"],
+    decision="forbidden",
+    justification="HIGH RISK: docker system prune -a removes all unused images, networks, and build cache.",
+)
+
+# Prompt for risky but sometimes necessary commands
+prefix_rule(
+    pattern=["git", "push", "--force"],
+    decision="prompt",
+    justification="RISKY: Force push can overwrite remote history. Requires user confirmation.",
+)
+
+prefix_rule(
+    pattern=["npm", "publish"],
+    decision="prompt",
+    justification="RISKY: Publishing package to npm registry. Requires user confirmation.",
+)

@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.5.4] - 2026-03-04
+
+### 🔌 External Tool Integration (Natural Language Driven)
+
+- **ask-openrouter workflow**: New `[OPTIONAL MODULE]` workflow (`.agent/workflows/ask-openrouter.md`) enabling natural language delegation to OpenRouter models. Features 3-layer architecture: Intent Router, Pre/Post-Flight, and Dynamic Parameter Assembly.
+- **codex-cli alignment**: Updated `codex-cli.md` with `[OPTIONAL MODULE]` tag, silent availability check, and `§8.2` reference for consistency.
+- **§8.2 External Tool Delegation Protocol**: New section in `engineering_guardrails.md` defining shared rules for all external CLI tools — silent availability check, cost-tier confirmation, and mandatory Pre/Post-Flight.
+- **Graceful degradation**: Users without external tools experience zero disruption — AI silently falls back to native execution.
+- **Deploy script**: Bumped to v3.5.4. Added `.openrouter/` to gitignore template.
+- **SSoT update**: Registered both tools as `[OPTIONAL]` in `current_state.md` Canonical Commands.
+
 ## [3.5.2] - 2026-02-27
 
 ### ⚖️ Governance Refinement & Directory Polish

@@ -23,6 +23,12 @@ Global directives for all AI agents. Loaded automatically every turn.
 - **Write Isolation**: Agents ONLY write to own Work Log. `current_state.md` updated ONLY via `/ship`.
 - **Classification Freeze**: Task category frozen during `/bootstrap`, MUST NOT reclassify later.
 
+## Multi-Person Collaboration
+
+- **One Branch = One Owner**: Never have two AI sessions writing to the same Work Log simultaneously. See `engineering_guardrails.md` §11.
+- **Agent Identity**: Every session MUST write `## Session Info` (model name, timestamp, platform) to Work Log during `/bootstrap`.
+- **Ship Guard**: Before `/ship`, check if `current_state.md` was modified by another session. If so, warn user before merge.
+
 ## Delivery Gates
 
 - Non-`tiny-fix` tasks MUST execute `/handoff` with ✅ doc path + ✅ code path + work log path.
@@ -32,6 +38,7 @@ Global directives for all AI agents. Loaded automatically every turn.
 
 - Workflows: `.agent/workflows/*.md`
 - Constitution: `.agent/rules/engineering_guardrails.md`
+- Non-Linear Resilience: `docs/NONLINEAR_SCENARIOS.md` (auto-checkpoint, crash recovery, model switch handling)
 - Platform Guide: `docs/CODEX_PLATFORM_GUIDE.md`
 
 ## Platform Paths
