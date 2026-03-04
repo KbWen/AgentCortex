@@ -48,8 +48,10 @@ codex -a untrusted -s workspace-write -C <project-root> "<governance-wrapped pro
 ### Non-Interactive Mode (for scripted / batch execution)
 
 ```bash
-codex exec -a never -s workspace-write -C <project-root> "<governance-wrapped prompt>"
+codex exec --full-auto -C <project-root> "<governance-wrapped prompt>"
 ```
+
+> `codex exec` is inherently non-interactive (no user approval). `--full-auto` adds sandboxed write access.
 
 ### Governance-Wrapped Prompt Template
 
@@ -144,7 +146,7 @@ AI → User: 已加好 locale 參數，預設行為不變。測試通過。
 For tasks where the AI dispatches Codex without human interaction:
 
 ```bash
-codex exec -a never -s workspace-write -C /path/to/project "Task prompt here"
+codex exec --full-auto -C /path/to/project "Task prompt here"
 ```
 
 Use `codex exec` when:
@@ -153,7 +155,7 @@ Use `codex exec` when:
 - The AI orchestrator (e.g., Flash) is managing the task end-to-end.
 - Post-flight verification is guaranteed.
 
-> ⚠️ `codex exec -a never` skips ALL human confirmation. AI MUST verify every change via `git diff` in Post-Flight.
+> ⚠️ `codex exec` skips ALL human confirmation by design. AI MUST verify every change via `git diff` in Post-Flight.
 
 ## 6. Error Handling
 
