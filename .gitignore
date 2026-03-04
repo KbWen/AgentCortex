@@ -14,6 +14,7 @@ tmp/
 *.log
 .cursor/
 .antigravity/scratch/
+.openrouter/
 
 # Environments
 .env*

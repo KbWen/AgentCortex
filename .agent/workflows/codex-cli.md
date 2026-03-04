@@ -1,11 +1,13 @@
 ---
 name: codex-cli
-description: Run a task via Codex CLI while enforcing AgentCortex governance rules automatically.
+description: "[OPTIONAL MODULE] Run a task via Codex CLI while enforcing AgentCortex governance rules automatically."
 tasks:
   - codex-cli
 ---
 
 # /codex-cli
+
+> `[OPTIONAL MODULE]` — This workflow requires the globally installed `codex` CLI (`npm install -g @openai/codex`). If unavailable, AI silently falls back to native execution per `engineering_guardrails.md` §8.2.
 
 Dispatch a task to OpenAI Codex CLI while ensuring AgentCortex governance compliance.
 
@@ -25,19 +27,22 @@ Dispatch a task to OpenAI Codex CLI while ensuring AgentCortex governance compli
 Or in natural language:
 
 ```text
-用 Codex CLI 幫我 [task description]
 Run this via Codex CLI: [task description]
+(ZH: 用 Codex CLI 幫我 [task description])
 ```
 
 ## 2. AI Pre-Flight (Before Dispatching to Codex)
 
+> Ref: `engineering_guardrails.md` §8.2 (External Tool Delegation Protocol)
+
 AI MUST perform these steps **before** invoking `codex`:
 
-1. **Classify** the task per `engineering_guardrails.md` §10.1.
-2. **Create/Update Work Log** at `docs/context/work/<branch-name>.md` with:
+1. **Availability Check**: On first use per session, run `codex --version`. If fails → silently fall back to AI-native execution. Cache result.
+2. **Classify** the task per `engineering_guardrails.md` §10.1.
+3. **Create/Update Work Log** at `docs/context/work/<branch-name>.md` with:
    - Classification, goal, target files, constraints.
    - `Executor: Codex CLI` (to distinguish from AI-direct execution).
-3. **Generate the Codex command** by injecting governance context:
+4. **Generate the Codex command** by injecting governance context:
 
 ### Interactive Mode (default — user can see and approve changes)
 
@@ -100,10 +105,10 @@ AI MUST perform these steps **after** Codex returns:
 
 ## 4. Example Session
 
-> The user speaks naturally. The AI handles all details (file discovery, classification, constraints, prompt construction).
+> The user speaks naturally in any language. The AI handles all details (file discovery, classification, constraints, prompt construction).
 
 ```text
-User: README 有個錯字，幫我用 codex 修一下
+User: There's a typo in README, fix it via codex.
 
 AI (internal):
   → Scans README.md, finds "recieve" on line 42.
@@ -115,11 +120,11 @@ AI (internal):
   Result: ✅ README.md modified. 1 line changed.
   Evidence: diff shows only the typo fix. No other files touched.
 
-AI → User: 已修好 README.md 的錯字（recieve → receive），沒有動其他東西。
+AI → User: Fixed the typo in README.md (recieve → receive). Nothing else was touched.
 ```
 
 ```text
-User: formatDate 能不能支援多語系？用 codex 幫我加
+User: Can formatDate support i18n? Add it via codex.
 
 AI (internal):
   → Searches codebase: formatDate is in utils/format.ts.
@@ -138,7 +143,7 @@ AI (internal):
   
   Post-flight: git diff verified (only format.ts). npm test → all pass.
 
-AI → User: 已加好 locale 參數，預設行為不變。測試通過。
+AI → User: Added locale parameter. Default behavior unchanged. Tests pass.
 ```
 
 ## 5. Advanced: Non-Interactive Batch Execution
@@ -172,3 +177,4 @@ Use `codex exec` when:
 - All AgentCortex rules in `engineering_guardrails.md` apply to Codex-generated code.
 - Codex is treated as a **Junior Tool** — its output ALWAYS gets AI review before being accepted.
 - The AI is the governance layer; Codex is the execution layer.
+- Ref: `engineering_guardrails.md` §8.2 (External Tool Delegation Protocol).

@@ -26,6 +26,8 @@
   - `/test`: Report test coverage via Test Skeleton.
   - `/handoff`: Output resumable state summary (mandatory for non-tiny-fix).
   - `/ship`: Consolidate evidence and update/archive state.
+  - `ask-openrouter`: [OPTIONAL] External model delegation (natural language or `/or-*` commands). See `.agent/workflows/ask-openrouter.md`.
+  - `codex-cli`: [OPTIONAL] Codex CLI delegation. See `.agent/workflows/codex-cli.md`.
 - **References**:
   - `AGENTS.md`
   - `.agent/rules/engineering_guardrails.md`

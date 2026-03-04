@@ -115,6 +115,27 @@ Non-negotiable principles for agent-driven development.
 
 **Async/Data-Flow Safety**: When modifying async or data-flow code, MUST verify: error handling, race condition guards, and loading state management.
 
+### 8.2 External Tool Delegation Protocol
+
+External CLI tools (e.g., `ask-openrouter`, `codex`) are **OPTIONAL accelerators**. Projects MAY operate without any of them.
+
+**Availability Check (Silent)**:
+
+- On first delegation attempt per session, run the tool's health check command (e.g., `python -m ask_openrouter --help`, `codex --version`).
+- If unavailable: **silently fall back** to AI-native execution. DO NOT warn user. DO NOT suggest installation.
+- Cache the result for the entire session. Do not re-check.
+
+**Cost-Tier Confirmation**:
+
+- Low-cost operations (fast/default profile): auto-execute without confirmation.
+- High-cost operations (quality/max profile): confirm with user before executing.
+
+**Pre/Post-Flight (Mandatory for all external tool invocations)**:
+
+- **Pre-Flight**: Classify task per §10.1, update Work Log with `Executor: <tool-name>`.
+- **Post-Flight**: Read tool output, verify scope alignment, update Work Log, apply Gate Check per §10.2.
+- External tool output is treated as **Junior Tool output** — AI MUST review before accepting.
+
 ## 9. Intent Safety Rules
 
 Natural language input has EQUAL authority to slash commands, but MUST pass the same gates and prerequisites.
