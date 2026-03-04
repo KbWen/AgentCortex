@@ -1,4 +1,4 @@
-# AgentCortex v3.5.3: The Professional Agentic OS for Google Antigravity & Codex
+# AgentCortex v3.5.4: The Professional Agentic OS for Google Antigravity & Codex
 
 > **The Ultimate Multi-Agent Framework for Professional Development.**
 > Optimized for Antigravity Workflows, Codex Platforms, and Token-Efficient AI Reasoning.
@@ -112,6 +112,8 @@ Use the built-in slash commands to drive the AI:
 | `/test` | `test.md` | Verify logic via minimal necessary tests. |
 | `/handoff` | `handoff.md` | Summarize state for cross-turn continuity. |
 | `/ship` | `ship.md` | Finalize, consolidate evidence, and sync to mainline. |
+| `ask-openrouter` | `ask-openrouter.md` | [OPTIONAL] Natural language delegation to OpenRouter. |
+| `codex-cli` | `codex-cli.md` | [OPTIONAL] Execute tasks via Codex CLI with safety wrappers. |
 
 ---
 
