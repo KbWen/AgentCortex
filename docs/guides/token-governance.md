@@ -60,3 +60,28 @@ When a new version claims to "reduce token consumption for document reading," at
 5. **Cross-Platform Consistency**: Whether Web/App/Antigravity specifications remain consistent.
 
 If any check fails, it is considered "breaking governance for efficiency" and must be corrected before success is declared.
+
+## 7. Context Caching (Provider-Level Optimization)
+
+Modern LLM providers support **context caching** — reusing attention computation for stable parts of the prompt (system instructions, AGENTS.md, guardrails) across calls. This can reduce token costs by 40–70% for repeated reads.
+
+### AI Behavior
+
+- AI SHOULD structure its context reads to maximize cache hits:
+  - Read stable documents (guardrails, state machine, AGENTS.md) **first** in every session — these rarely change and benefit most from caching.
+  - Read volatile documents (Work Logs, git diffs, user code) **after** stable ones.
+- AI SHOULD NOT re-paste large stable documents mid-conversation. They are already in context from the initial read.
+
+### Human Action
+
+- **Nothing required.** Context caching is provider-side (Gemini, Claude, etc.) and activated automatically when the prompt structure is consistent.
+- When Gemini's explicit cache API (`cachedContent`) or Claude's prompt caching becomes available in your platform, consider pinning `engineering_guardrails.md` + `AGENTS.md` as cached content.
+
+### Cost Impact Estimate
+
+| Scenario | Without Caching | With Caching |
+| --- | --- | --- |
+| 10-turn session, reading guardrails each turn | 10× full read cost | 1× full + 9× cache hit |
+| `/bootstrap` re-read on resume | full cost | cache hit if same session window |
+
+> This optimization requires ZERO framework changes. It only requires awareness of read ordering.

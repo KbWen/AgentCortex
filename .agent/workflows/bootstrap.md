@@ -49,7 +49,17 @@ Write to `docs/context/work/<branch-name>.md`:
 - `Classified by`: [AI Name]
 - `Frozen`: true
 - `Created Date`: [Date]
+- `Owner`: [user-name or session-id] — *(required for multi-person; see §11.1)*
 - `Recommended Skills`: [skill-name (reason)] | none — *(determined from available skill summaries, no file read required. Skip for `tiny-fix`.)*
+
+Write `## Session Info` block immediately after header:
+
+```markdown
+## Session Info
+- Agent: [model name]
+- Session: [timestamp]
+- Platform: [Antigravity / Codex Web / Codex App]
+```
 
 ## 3. Expected Output Format
 

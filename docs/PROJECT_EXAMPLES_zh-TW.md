@@ -106,5 +106,6 @@ ruff check .
 
 ## 延伸閱讀
 
+- [非線性情境（模型切換、Session 崩潰、混亂流程）](./NONLINEAR_SCENARIOS_zh-TW.md)
 - [遷移與整合指南 (舊專案接管 / 導入教學)](./guides/migration.md)
 - [Token 治理指南](./guides/token-governance.md)
