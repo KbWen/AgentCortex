@@ -98,39 +98,45 @@ AI MUST perform these steps **after** Codex returns:
 
 ## 4. Example Session
 
+> The user speaks naturally. The AI handles all details (file discovery, classification, constraints, prompt construction).
+
 ```text
-User: /codex-cli Fix the typo in README.md line 42, "recieve" → "receive"
+User: README 有個錯字，幫我用 codex 修一下
 
-AI:
-  Classification: tiny-fix
-  Work Log: skipped (tiny-fix)
+AI (internal):
+  → Scans README.md, finds "recieve" on line 42.
+  → Classification: tiny-fix
+  → Work Log: skipped (tiny-fix)
 
-  Running: codex --full-auto "Fix typo in README.md line 42: recieve → receive. Do NOT modify anything else."
+  Running: codex --full-auto "Fix typo in README.md line 42: 'recieve' → 'receive'. Do NOT modify anything else."
 
   Result: ✅ README.md modified. 1 line changed.
   Evidence: diff shows only the typo fix. No other files touched.
-  Done.
+
+AI → User: 已修好 README.md 的錯字（recieve → receive），沒有動其他東西。
 ```
 
 ```text
-User: 用 Codex CLI 幫我把 utils/format.ts 的 formatDate 函數加上 locale 參數
+User: formatDate 能不能支援多語系？用 codex 幫我加
 
-AI:
-  Classification: quick-win (1 file, clear scope)
-  Work Log: docs/context/work/main.md (Executor: Codex CLI)
+AI (internal):
+  → Searches codebase: formatDate is in utils/format.ts.
+  → Classification: quick-win (1 file, clear scope)
+  → Work Log: docs/context/work/main.md (Executor: Codex CLI)
+  → AI determines constraints: must be backward-compatible (no locale = current behavior).
 
   Running: codex -a untrusted -s workspace-write "
   AgentCortex rules: only modify utils/format.ts. No refactoring.
-  Task: Add locale parameter to formatDate function.
-  Constraint: Preserve existing behavior when locale is not provided (default to current behavior).
+  Task: Add optional locale parameter to formatDate function.
+  Constraint: Default behavior unchanged when locale is not provided.
   "
 
   Codex proposes:
     [shows diff — user approves in-terminal]
   
-  Result: ✅ utils/format.ts modified.
-  Test: npm test → all pass.
-  Evidence appended to Work Log.
+  Post-flight: git diff verified (only format.ts). npm test → all pass.
+
+AI → User: 已加好 locale 參數，預設行為不變。測試通過。
 ```
 
 ## 5. Advanced: Non-Interactive Batch Execution
