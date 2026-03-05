@@ -11,11 +11,34 @@ tasks:
 
 NO CODING YET. Planning phase ONLY.
 
-## Pre-Conditions (Hard Gate)
+## Gate Engine (Turn 1 — Antigravity Hard Path)
+
+Before producing ANY plan content, output the Minimal Gate Block:
+
+```yaml
+gate: plan
+classification: <from Work Log>
+branch: <current branch>
+checks:
+  worklog_exists: yes|no
+  spec_exists: yes|no|na
+  state_ok: yes|no
+verdict: pass|fail
+missing: []
+```
+
+- If `verdict: fail` → output ONLY the gate block with populated `missing` list. STOP.
+- If classification is `feature` or `architecture-change`:
+  - Output: "Gate passed. Reply **PROCEED-PLAN:<branch-name>** to continue."
+  - STOP. Do not produce any plan content until user replies.
+- If classification is `quick-win` or `hotfix`:
+  - Proceed directly to plan output (no handshake needed).
+
+## Pre-Conditions (Existing)
 
 - **Spec Gate**: If task classification is `feature` or `architecture-change`:
   - MUST have a corresponding `docs/specs/<feature>.md` with `status: draft` or `status: frozen`.
-  - If no spec exists: STOP. Output: "⚠️ No specification found. Run `/spec` first to define acceptance criteria and boundaries."
+  - If no spec exists: STOP. Output: "⚠️ No specification found. Run `/spec` first."
   - `tiny-fix`, `quick-win`, and `hotfix` are EXEMPT from this gate.
 
 ## Expected Output Format
