@@ -1,12 +1,21 @@
-Set-StrictMode -Version Latest
-$ErrorActionPreference = 'Stop'
-
 param(
     [string]$Target = '.'
 )
 
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$bashScript = Join-Path $scriptDir 'deploy_brain.sh'
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+function Normalize-PathString {
+    param([string]$Path)
+    if ($Path -and $Path.StartsWith('\\?\')) { return $Path.Substring(4) }
+    return $Path
+}
+
+$scriptDir = $PSScriptRoot
+if (-not $scriptDir) { $scriptDir = Split-Path -Parent $PSCommandPath }
+if (-not $scriptDir) { $scriptDir = (Get-Location).Path }
+$scriptDir = Normalize-PathString $scriptDir
+$bashScript = [System.IO.Path]::Combine($scriptDir, 'deploy_brain.sh')
 
 if (-not (Test-Path -Path $bashScript -PathType Leaf)) {
     Write-Error "cannot find deploy script: $bashScript"
