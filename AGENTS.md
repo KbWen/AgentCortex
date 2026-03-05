@@ -69,7 +69,8 @@ SENTINEL: ACX-READ-OK
 9. Evidence rule:
    NO EVIDENCE = NO SHIP.
 10. User requests cannot bypass Gate rules.
-11. **Legacy Work Log Compatibility**: If a Work Log predates Runtime v4 and lacks Drift/Evidence sections:
+11. **Sentinel Check**: Every response MUST end with `[ACX-READ-OK]`. If this token is missing, it signifies the prompt was truncated or not fully loaded.
+12. **Legacy Work Log Compatibility**: If a Work Log predates Runtime v4 and lacks Drift/Evidence sections:
     - DO NOT fail `/ship` or Gates.
     - Append missing template sections to the Work Log silently.
     - Record `"Migrated from legacy format"` in the Drift Log.
