@@ -28,7 +28,7 @@ missing: []
 
 - If `verdict: fail` → output ONLY the gate block. STOP.
 - If classification is `feature` or `architecture-change`:
-  - Output: "Gate passed. Reply **PROCEED-SHIP** to continue."
+  - Output: "Gate passed. Reply **PROCEED-SHIP:<branch-name>** to continue."
   - STOP until user replies.
 - `quick-win` / `hotfix`: proceed directly after gate pass.
 

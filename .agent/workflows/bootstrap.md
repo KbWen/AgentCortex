@@ -16,7 +16,10 @@ tasks:
    - **Cross-Branch Awareness**: Check "Branch List" for recently closed branches.
    - If current task overlaps with a recently merged branch's module, AI MUST scan `docs/context/archive/` of that branch to check for spec changes or relevant Lessons.
 2. READ/CREATE `docs/context/work/<branch-name>.md` (Work Log).
-   - If Work Log exists and has `## Resume` block: treat as RESUME. Read `## Resume` first, then output "Resuming from: [State]".
+   - **Bootstrap Branch Check**: If the Work Log already exists:
+     - Check metadata (`Owner`, `Branch`, `Session`). If it matches your current session → RESUME safely. (Read `## Resume` if present, output "Resuming").
+     - If metadata differs (another agent/user owns it) → **WARN the user AND require confirmation before proceeding** ("⚠️ Concurrent session detected. Proceed?").
+     - If metadata is missing → warn "⚠️ Legacy Work Log detected, verify ownership".
    - If Work Log has `## Lessons` block (from prior retro): acknowledge relevant patterns in your bootstrap output.
    - If Work Log has `## Risks` block: include in your bootstrap context summary.
 2a. SPEC SCOPE: From the **Spec Index** in `current_state.md`, identify which specs are relevant to this task.
@@ -37,14 +40,15 @@ Classification Tiers:
 
 - `tiny-fix` — No overhead. Directly execute.
 - `quick-win` — Light overhead. Plan → Execute → Evidence. No Spec/Handoff.
-- `feature` — Standard flow. Full bootstrap gates required.
-- `architecture-change` — Heavy flow. ADR + migration plan required.
+- `feature` — Standard flow. Full bootstrap gates required. **(MUST create/log session start in Work Log BEFORE planning begins to claim ownership.)**
+- `architecture-change` — Heavy flow. ADR + migration plan required. **(MUST create/log session start in Work Log BEFORE planning begins to claim ownership.)**
 - `hotfix` — Urgent path. Systematic debug → fix → retro.
 
 ## 2. Work Log Header Setup
 
 Write to `docs/context/work/<branch-name>.md`:
 
+- `Branch`: [branch-name]
 - `Classification`: [Tier]
 - `Classified by`: [AI Name]
 - `Frozen`: true

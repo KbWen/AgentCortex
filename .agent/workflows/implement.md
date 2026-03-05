@@ -9,9 +9,9 @@ description: Workflow for implement
 
 For `feature` or `architecture-change` classification:
 
-- Output: "Gate passed. Reply **PROCEED-IMPLEMENT** to continue."
+- Output: "Gate passed. Reply **PROCEED-IMPLEMENT:<branch-name>** to continue."
 - STOP until user replies.
-- When user replies `PROCEED-IMPLEMENT`, cite Work Log plan section (path + heading) before writing any code.
+- When user replies `PROCEED-IMPLEMENT:<branch-name>`, cite Work Log plan section (path + heading) before writing any code.
 
 `quick-win` / `hotfix`: proceed directly (no handshake).
 

@@ -97,6 +97,14 @@ SENTINEL: ACX-READ-OK
 2. **Workflow Precedence Rule**: If conflict arises, workflows take precedence. Order: `AGENTS.md` > `.agent/workflows/` > `.agent/skills/`.
 3. Skill steps MUST execute exclusively **within the active workflow phase**.
 
+## Multi-Session Concurrency (Antigravity)
+
+1. **Context-Bound Handshake**: The agent MUST reject PROCEED tokens if the context does not match the current branch/task. Valid tokens: `PROCEED-PLAN:<branch>`, `PROCEED-IMPLEMENT:<branch>`, `PROCEED-SHIP:<branch>`.
+2. **Work Log Ownership**: A Work Log MUST begin with a metadata block containing `Owner` and `Branch`. Missing fields = Gate FAIL. For multi-person collaboration on the same issue, prefer naming: `docs/context/work/<issue>-<branch>.md`.
+3. **Multi-Agent Rules**: If multiple agents operate on the same branch:
+   - Each session MUST use a distinct Session ID in the Work Log metadata (`## Session Info`).
+   - Agents MUST NOT overwrite other sessions' Evidence or Drift sections.
+
 ## References
 
 - Workflows: `.agent/workflows/*.md`

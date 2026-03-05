@@ -29,7 +29,7 @@ missing: []
 
 - If `verdict: fail` → output ONLY the gate block with populated `missing` list. STOP.
 - If classification is `feature` or `architecture-change`:
-  - Output: "Gate passed. Reply **PROCEED-PLAN** to continue."
+  - Output: "Gate passed. Reply **PROCEED-PLAN:<branch-name>** to continue."
   - STOP. Do not produce any plan content until user replies.
 - If classification is `quick-win` or `hotfix`:
   - Proceed directly to plan output (no handshake needed).
