@@ -51,16 +51,22 @@ AgentCortex uses a strict **Gate Engine** and **Two-Turn Handshake** protocol to
 
 ```mermaid
 flowchart LR
-    Req[User Request] --> Gate{Gate Engine}
-    Gate -->|Fail| Stop[Stop & Report]
-    Gate -->|Pass| Auth[Handshake]
-    Auth --> WF[Workflow]
-    WF --> Skill[Skills]
-    Skill --> Ship[Update SSoT]
+    A[User Request] --> B[Natural Language]
+    B --> C[Intent Router]
+    C --> D[Gate Engine]
+
+    D -->|pass| E[Handshake PROCEED-*]
+    D -->|fail| X[Stop & Report]
+
+    E --> F[Workflow]
+    F --> G[Execution Skills]
+    G --> H[Evidence / Logs]
+    H --> I[/ship]
+    I --> J[Update SSoT]
     
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
     classDef highlight fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-    class Gate,Auth highlight;
+    class C,D,E highlight;
 ```
 
 ### 🛠️ Professional Multi-Agent Skills

@@ -70,16 +70,22 @@
 
 ```mermaid
 flowchart LR
-    Req[需求輸入] --> Gate{Gate Engine}
-    Gate -->|Fail| Stop[報錯並停止]
-    Gate -->|Pass| Auth[交握授權]
-    Auth --> WF[工作流程]
-    WF --> Skill[技能擴充]
-    Skill --> Ship[更新 SSoT]
+    A[需求輸入] --> B[自然語言]
+    B --> C[Intent Router]
+    C --> D[Gate Engine]
+
+    D -->|pass| E[交握授權 PROCEED-*]
+    D -->|fail| X[停止並報錯]
+
+    E --> F[工作流程]
+    F --> G[技能擴充]
+    G --> H[測試證據]
+    H --> I[/ship]
+    I --> J[更新 SSoT]
     
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
     classDef highlight fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-    class Gate,Auth highlight;
+    class C,D,E highlight;
 ```
 
 ### 高風險指令安全設定
