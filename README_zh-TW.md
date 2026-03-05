@@ -74,13 +74,13 @@ flowchart LR
     B --> C[Intent Router]
     C --> D[Gate Engine]
 
-    D -->|pass| E[交握授權 PROCEED-*]
-    D -->|fail| X[停止並報錯]
+    D -->|pass| E["交握授權 PROCEED-*"]
+    D -->|fail| X["停止並報錯"]
 
     E --> F[工作流程]
     F --> G[技能擴充]
     G --> H[測試證據]
-    H --> I[/ship]
+    H --> I["/ship"]
     I --> J[更新 SSoT]
     
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
@@ -161,11 +161,11 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 
 ```mermaid
 flowchart LR
-    Idea[需求] --> Plan[/plan]
-    Plan --> Impl[/implement]
-    Impl --> Rev[/review]
-    Rev --> Test[/test]
-    Test --> Ship[/ship]
+    Idea[需求] --> Plan["/plan"]
+    Plan --> Impl["/implement"]
+    Impl --> Rev["/review"]
+    Rev --> Test["/test"]
+    Test --> Ship["/ship"]
     Ship --> SSoT[狀態更新]
 ```
 

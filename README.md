@@ -55,13 +55,13 @@ flowchart LR
     B --> C[Intent Router]
     C --> D[Gate Engine]
 
-    D -->|pass| E[Handshake PROCEED-*]
-    D -->|fail| X[Stop & Report]
+    D -->|pass| E["Handshake PROCEED-*"]
+    D -->|fail| X["Stop & Report"]
 
     E --> F[Workflow]
     F --> G[Execution Skills]
-    G --> H[Evidence / Logs]
-    H --> I[/ship]
+    G --> H["Evidence / Logs"]
+    H --> I["/ship"]
     I --> J[Update SSoT]
     
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
@@ -145,11 +145,11 @@ Use the built-in slash commands to drive the AI:
 
 ```mermaid
 flowchart LR
-    Idea[Idea] --> Plan[/plan]
-    Plan --> Impl[/implement]
-    Impl --> Rev[/review]
-    Rev --> Test[/test]
-    Test --> Ship[/ship]
+    Idea[Idea] --> Plan["/plan"]
+    Plan --> Impl["/implement"]
+    Impl --> Rev["/review"]
+    Rev --> Test["/test"]
+    Test --> Ship["/ship"]
     Ship --> SSoT[Update SSoT]
 ```
 
