@@ -1,7 +1,7 @@
 #!/bin/bash
-# AI Brain Deployer v3.5.4 (External Tool Integration Edition)
+# AI Brain Deployer v3.5.5 (Claude Compatibility Edition)
 TARGET="${TARGET:-.}"
-echo "🚀 Deploying AI Brain v3.5.4 (External Tool Integration) to $TARGET..."
+echo "🚀 Deploying AI Brain v3.5.5 (Claude Compatibility) to $TARGET..."
 
 # ============================================================
 # 1. Create directory structure
@@ -16,6 +16,7 @@ mkdir -p "$TARGET/tools"
 mkdir -p "$TARGET/.antigravity"          # Google Antigravity
 mkdir -p "$TARGET/codex/rules"           # Codex Web
 mkdir -p "$TARGET/.agents/skills"        # Codex App (usually matches .agent)
+mkdir -p "$TARGET/.claude/commands"      # Claude adapter templates
 
 # Git & Task Context
 mkdir -p "$TARGET/.github/ISSUE_TEMPLATE"
@@ -31,6 +32,7 @@ mkdir -p "$TARGET/.codex"
 # ============================================================
 # Entry points (plural AGENTS.md preferred for multi-platform)
 cp $CP_FLAG AGENTS.md "$TARGET/"
+cp $CP_FLAG CLAUDE.md "$TARGET/"
 cp $CP_FLAG README.md "$TARGET/"
 [ -f README_zh-TW.md ] && cp $CP_FLAG README_zh-TW.md "$TARGET/"
 cp $CP_FLAG AGENT_MODEL_GUIDE.md "$TARGET/"
@@ -58,6 +60,8 @@ fi
 # Tools & Validation
 mkdir -p "$TARGET/tools"
 [ -f tools/validate.sh ] && cp $CP_FLAG tools/validate.sh "$TARGET/tools/" && chmod +x "$TARGET/tools/validate.sh"
+[ -f tools/validate.ps1 ] && cp $CP_FLAG tools/validate.ps1 "$TARGET/tools/"
+[ -f tools/validate.cmd ] && cp $CP_FLAG tools/validate.cmd "$TARGET/tools/"
 [ -f tools/audit_ai_paths.sh ] && cp $CP_FLAG tools/audit_ai_paths.sh "$TARGET/tools/" && chmod +x "$TARGET/tools/audit_ai_paths.sh"
 
 # ============================================================
@@ -69,6 +73,12 @@ for f in docs/adr/*.md; do [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/adr/"; 
 for f in docs/AGENT_PHILOSOPHY*.md docs/TESTING_PROTOCOL*.md docs/CODEX_PLATFORM_GUIDE*.md docs/PROJECT_EXAMPLES*.md; do
   [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/docs/"
 done
+[ -f docs/CLAUDE_PLATFORM_GUIDE.md ] && cp $CP_FLAG docs/CLAUDE_PLATFORM_GUIDE.md "$TARGET/docs/"
+
+# Claude command templates
+if [ -d .claude/commands ]; then
+  cp -r .claude/commands/* "$TARGET/.claude/commands/" 2>/dev/null || true
+fi
 
 # ============================================================
 # 5. Symbolic links / Cross-Platform Skills
@@ -99,9 +109,11 @@ if ! grep -q "# AI Brain OS" "$GITIGNORE"; then
 .agent/
 .agents/
 .antigravity/
+.claude/
 .codex/
 codex/
 AGENTS.md
+CLAUDE.md
 README.md
 README_zh-TW.md
 AGENT_MODEL_GUIDE.md
@@ -109,17 +121,19 @@ AGENT_MODEL_GUIDE_zh-TW.md
 docs/context/
 docs/context/private/
 .openrouter/
+.claude-chat/
 EOT
 else
     echo "ℹ️ AI Brain OS patterns already present in .gitignore."
 fi
 
 echo ""
-echo "✅ AI Brain v3.5.4 deployed successfully!"
+echo "✅ AI Brain v3.5.5 deployed successfully!"
 echo ""
 echo "📦 Platform Entry Points Ready:"
 echo "   .antigravity/rules.md  ← Google Antigravity"
 echo "   codex/rules/           ← Codex Web/App"
+echo "   CLAUDE.md              ← Claude (manual entry)"
 echo "   AGENTS.md              ← Cross-platform entry"
 echo ""
 echo "📝 Git Safety:"
