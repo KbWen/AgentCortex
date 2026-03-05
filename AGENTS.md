@@ -1,5 +1,3 @@
-SENTINEL: ACX-READ-OK
-
 # AGENTS.mdGlobal directives for all AI agents. Loaded automatically every turn
 
 ## Chat Language Policy
