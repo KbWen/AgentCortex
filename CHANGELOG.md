@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0] - 2026-03-05
+
+### 🛡️ Runtime v5 Anti-Drift & Concurrency Release
+
+- **Gate Engine & Handshake**: Implemented a hard-path enforcement overlay for `plan`, `ship`, and `implement` workflows. High-risk tasks now require explicit `PROCEED-<STAGE>:<branch>` contextual handshakes to continue.
+- **Skill Safety Guardrails**: Established strict precedence (`AGENTS.md` > `workflows` > `skills`) to prevent Antigravity semantic skills from hijacking execution loops.
+- **Multi-Session Concurrency**: Added `Owner` and `Session` metadata requirements to Work Logs. `/bootstrap` now checks for concurrent edits to prevent collisions.
+- **Legacy Migration Safety**: Introduced the `/audit` workflow for read-only system mapping of non-AgentCortex repos.
+- **SSoT Append-only History**: Changed `current_state.md` to use an append-only `## Ship History` for safer archival.
+- **Sentinel Token**: Injected `SENTINEL: ACX-READ-OK` to combat context truncation.
+
 ## [3.5.4] - 2026-03-04
 
 ### 🔌 External Tool Integration (Natural Language Driven)
