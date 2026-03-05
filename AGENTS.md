@@ -1,4 +1,6 @@
-# AGENTS.mdGlobal directives for all AI agents. Loaded automatically every turn
+# AGENTS.md
+
+Global directives for all AI agents. Loaded automatically every turn
 
 ## Chat Language Policy
 
