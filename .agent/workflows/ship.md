@@ -63,6 +63,7 @@ If ANY condition fails, MUST reject `/ship` and output missing list.
      ```
 
    - NEVER edit, reorder, or delete previous entries in the `## Ship History`.
+   - If Ship History exceeds 10 entries, archive older entries to `docs/context/archive/ship-history-YYYY.md` and keep only the latest 10 in `current_state.md`.
 3. Archive `docs/context/work/<branch-name>.md` to `docs/context/archive/` (if task complete).
     - Before archiving: Extract ALL bullets from the Work Log's `## Lessons` block (max 3 total).
     - Append these bullets to the `## Global Lessons` section in `current_state.md`.
