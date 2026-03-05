@@ -37,6 +37,8 @@ cp $CP_FLAG README.md "$TARGET/"
 [ -f README_zh-TW.md ] && cp $CP_FLAG README_zh-TW.md "$TARGET/"
 cp $CP_FLAG AGENT_MODEL_GUIDE.md "$TARGET/"
 [ -f AGENT_MODEL_GUIDE_zh-TW.md ] && cp $CP_FLAG AGENT_MODEL_GUIDE_zh-TW.md "$TARGET/"
+[ -f deploy_brain.ps1 ] && cp $CP_FLAG deploy_brain.ps1 "$TARGET/"
+[ -f deploy_brain.cmd ] && cp $CP_FLAG deploy_brain.cmd "$TARGET/"
 
 # Platform Rules
 [ -d .antigravity ] && cp $CP_FLAG .antigravity/rules.md "$TARGET/.antigravity/"
@@ -52,11 +54,14 @@ for f in .agent/workflows/*.md; do
   [ -f "$f" ] && cp $CP_FLAG "$f" "$TARGET/.agent/workflows/"
 done
 
-# Copy skills directories
-if [ -d .agent/skills ]; then
+# Copy skills directories (prefer full skill bundles from .agents/skills)
+if [ -d .agents/skills ]; then
+  cp -r .agents/skills/* "$TARGET/.agents/skills/" 2>/dev/null || true
+  cp -r .agents/skills/* "$TARGET/.agent/skills/" 2>/dev/null || true
+elif [ -d .agent/skills ]; then
   cp -r .agent/skills/* "$TARGET/.agent/skills/" 2>/dev/null || true
+  cp -r .agent/skills/* "$TARGET/.agents/skills/" 2>/dev/null || true
 fi
-
 # Tools & Validation
 mkdir -p "$TARGET/tools"
 [ -f tools/validate.sh ] && cp $CP_FLAG tools/validate.sh "$TARGET/tools/" && chmod +x "$TARGET/tools/validate.sh"
