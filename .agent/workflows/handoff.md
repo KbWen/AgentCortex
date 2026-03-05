@@ -24,12 +24,20 @@ Read-only logic. DOES NOT change state. Hard completion gate for non-`tiny-fix` 
 
 ## 3. Required Output Blocks
 
-- **Done**
-- **In Progress**
-- **Blockers**
-- **Next**
-- **Risks**
-- **References**
+- **Layer 1 (Handoff TL;DR, <= 10 lines)**:
+  - Goal
+  - Current State
+  - Next Action
+  - Blocker (or `none`)
+  - Owner
+  - Last Verified Command
+- **Layer 2 (Traceability)**:
+  - Done
+  - In Progress
+  - Blockers
+  - Next
+  - Risks
+  - References
 - **Resume Block**: MUST also write the following to the Work Log file:
 
 ```markdown
@@ -50,6 +58,25 @@ MUST include ALL of the following:
 
 If requirements unsatisfied, COMPLETION AND `/ship` ARE STRICTLY PROHIBITED.
 
-## 5. Token & Efficiency Reflection
+## 5. Work Log Writing Rule (Delta-Only)
+
+- Append only what changed in this turn (delta log).
+- DO NOT restate old background unless it is required for a decision or rollback.
+- If context repeats, link to the previous section instead of re-writing full paragraphs.
+
+## 6. Work Log Compaction Trigger (Portable Defaults)
+
+If either threshold is hit:
+
+- `WORKLOG_MAX_LINES` (default: `300`), or
+- `WORKLOG_MAX_KB` (default: `12`)
+
+MUST compact the Work Log:
+
+1. Keep `## Session Info`, latest `## Resume`, latest `## Risks`, and the latest `N` delta entries (`WORKLOG_KEEP_RECENT_ENTRIES`, default: `5`).
+2. Move older details to `docs/context/archive/work/<branch>-<YYYYMMDD>.md`.
+3. Add one line in current log: `Compacted: [date], archive: [path]`.
+
+## 7. Token & Efficiency Reflection
 
 If task was abnormally long or consumed high tokens, briefly explain why (e.g., "ambiguous specs", "bug loop"). Aids in continuous governance optimization.
