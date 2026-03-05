@@ -1,7 +1,7 @@
 #!/bin/bash
 # AI Brain Deployer v3.5.5 (Claude Compatibility Edition)
 TARGET="${TARGET:-.}"
-echo "?? Deploying AI Brain v3.5.5 (Claude Compatibility) to $TARGET..."
+echo "🚀 Deploying AI Brain v3.5.5 (Claude Compatibility) to $TARGET..."
 
 # ============================================================
 # 1. Create directory structure
@@ -16,7 +16,7 @@ mkdir -p "$TARGET/tools"
 mkdir -p "$TARGET/.antigravity"          # Google Antigravity
 mkdir -p "$TARGET/codex/rules"           # Codex Web
 mkdir -p "$TARGET/.agents/skills"        # Codex App (usually matches .agent)
-mkdir -p "$TARGET/.claude/commands"      # Claude entry (manual prompt templates)
+mkdir -p "$TARGET/.claude/commands"      # Claude adapter templates
 
 # Git & Task Context
 mkdir -p "$TARGET/.github/ISSUE_TEMPLATE"
@@ -101,13 +101,13 @@ fi
 # ============================================================
 GITIGNORE="$TARGET/.gitignore"
 echo ""
-echo "?? Checking .gitignore..."
+echo "🔍 Checking .gitignore..."
 if [ ! -f "$GITIGNORE" ]; then
     touch "$GITIGNORE"
 fi
 
 if ! grep -q "# AI Brain OS" "$GITIGNORE"; then
-    echo "?? Adding AI Brain OS patterns to .gitignore..."
+    echo "📝 Adding AI Brain OS patterns to .gitignore..."
     cat <<EOT >> "$GITIGNORE"
 
 # AI Brain OS - Agent System & Local Context
@@ -129,22 +129,21 @@ docs/context/private/
 .claude-chat/
 EOT
 else
-    echo "?對? AI Brain OS patterns already present in .gitignore."
+    echo "ℹ️ AI Brain OS patterns already present in .gitignore."
 fi
 
 echo ""
-echo "??AI Brain v3.5.5 deployed successfully!"
+echo "✅ AI Brain v3.5.5 deployed successfully!"
 echo ""
-echo "? Platform Entry Points Ready:"
-echo "   .antigravity/rules.md  ??Google Antigravity"
-echo "   codex/rules/           ??Codex Web/App"
-echo "   CLAUDE.md              ??Claude (manual entry)"
-echo "   AGENTS.md              ??Cross-platform entry"
+echo "📦 Platform Entry Points Ready:"
+echo "   .antigravity/rules.md  ← Google Antigravity"
+echo "   codex/rules/           ← Codex Web/App"
+echo "   CLAUDE.md              ← Claude (manual entry)"
+echo "   AGENTS.md              ← Cross-platform entry"
 echo ""
-echo "?? Git Safety:"
+echo "📝 Git Safety:"
 echo "   AI-specific temporal files have been added to .gitignore."
 echo ""
-echo "? Next steps:"
+echo "💡 Next steps:"
 echo "   1. Tell AI: 'Please run /bootstrap' to start"
 echo "   2. Refer to docs/guides/migration.md for upgrades"
-
