@@ -49,6 +49,20 @@ The following commands are prohibited from direct execution without a pre-approv
 
 AgentCortex uses a strict **Gate Engine** and **Two-Turn Handshake** protocol to ensure AI agents cannot "skip steps" or hallucinate code blindly. Safe multi-session concurrency and legacy migration are built-in.
 
+```mermaid
+flowchart LR
+    Req[User Request] --> Gate{Gate Engine}
+    Gate -->|Fail| Stop[Stop & Report]
+    Gate -->|Pass| Auth[Handshake]
+    Auth --> WF[Workflow]
+    WF --> Skill[Skills]
+    Skill --> Ship[Update SSoT]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
+    classDef highlight fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    class Gate,Auth highlight;
+```
+
 ### 🛠️ Professional Multi-Agent Skills
 
 A library of 11+ professional agentic skills including:
@@ -122,6 +136,16 @@ Use the built-in slash commands to drive the AI:
 ---
 
 ## ⚙️ Suggested Workflow Cadence
+
+```mermaid
+flowchart LR
+    Idea[Idea] --> Plan[/plan]
+    Plan --> Impl[/implement]
+    Impl --> Rev[/review]
+    Rev --> Test[/test]
+    Test --> Ship[/ship]
+    Ship --> SSoT[Update SSoT]
+```
 
 - **Tiny Fixes**: `classify → execute → inline evidence → ship`
 - **Standard Tasks**: `/plan → /implement → /review → /test → /ship`

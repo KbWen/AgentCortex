@@ -64,6 +64,24 @@
 - `codex/rules/default.rules`：Codex 規則擴充入口。
 - `AGENTS.md`：跨平台長期指令，引用 `engineering_guardrails.md`。
 
+### Runtime v5 執行守門員 (Anti-Drift Engine)
+
+這套機制防止 AI 繞過授權與工作流程，確保每一次操作都具備證據與手動確認。
+
+```mermaid
+flowchart LR
+    Req[需求輸入] --> Gate{Gate Engine}
+    Gate -->|Fail| Stop[報錯並停止]
+    Gate -->|Pass| Auth[交握授權]
+    Auth --> WF[工作流程]
+    WF --> Skill[技能擴充]
+    Skill --> Ship[更新 SSoT]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
+    classDef highlight fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    class Gate,Auth highlight;
+```
+
 ### 高風險指令安全設定
 
 以下命令預設禁止直接執行，需先提出風險與回退方案：
@@ -134,6 +152,16 @@ Fetch and follow instructions from <your-raw-url>/.codex/INSTALL.md
 7. `/ship`：整理 commit / 變更摘要 / 測試結果
 
 ## ⚙️ 建議節奏
+
+```mermaid
+flowchart LR
+    Idea[需求] --> Plan[/plan]
+    Plan --> Impl[/implement]
+    Impl --> Rev[/review]
+    Rev --> Test[/test]
+    Test --> Ship[/ship]
+    Ship --> SSoT[狀態更新]
+```
 
 - **小修補（tiny-fix）**：`classify → do → inline evidence → done`
 - **一般修補**：`/plan → /implement → /review → /test`
