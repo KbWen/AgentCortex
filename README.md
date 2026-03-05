@@ -114,6 +114,15 @@ Clone this template into your project root:
 git clone https://github.com/KbWen/AgentCortex .
 ```
 
+### Windows (No Bash)
+
+If your Windows environment has no `bash`, use the wrappers in the project root:
+
+- PowerShell: `powershell -ExecutionPolicy Bypass -File .\deploy_brain.ps1 .`
+- CMD: `deploy_brain.cmd .`
+
+Both wrappers still call `deploy_brain.sh` under the hood, so you need Git Bash or WSL installed.
+
 ### 2. Synchronization
 
 Tell your AI Agent to read the state first:
