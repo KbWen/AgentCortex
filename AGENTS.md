@@ -13,6 +13,7 @@ SENTINEL: ACX-READ-OK
 - **MUST OBEY**: `.agent/rules/engineering_guardrails.md`.
 - Correctness first. MUST NOT claim completion without verifiable evidence.
 - Small, reversible changes. UNAUTHORIZED REFACTORING STRICTLY PROHIBITED.
+- **No Bypass Rule**: Agent MUST NOT skip Gate/Handshake/Evidence checks. If check status is unknown, treat as FAIL and STOP.
 - **Context Pruning**: If user interaction has exceeded 8+ turns on the same task, MUST proactively suggest: "We're at [N] turns. To save tokens, I recommend running `/handoff` and continuing in a new conversation. Proceed? (yes/no)". Do NOT wait for the user to notice. Self-initiate this suggestion.
 
 ## vNext State Model
