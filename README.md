@@ -1,4 +1,4 @@
-# AgentCortex v3.5.4: The Professional Agentic OS for Google Antigravity & Codex
+# AgentCortex v5: The Professional Agentic OS for Google Antigravity & Codex
 
 > **The Ultimate Multi-Agent Framework for Professional Development.**
 > Optimized for Antigravity Workflows, Codex Platforms, and Token-Efficient AI Reasoning.
@@ -44,6 +44,10 @@ The following commands are prohibited from direct execution without a pre-approv
 - `rm -rf`, `git reset --hard`, `git clean -fdx`
 - `docker system prune -a`, `chown -R`, `chmod -R 777`
 - Pipes to bash (`curl ... | bash`)
+
+### 🛡️ Runtime v5 Anti-Drift Engine
+
+AgentCortex uses a strict **Gate Engine** and **Two-Turn Handshake** protocol to ensure AI agents cannot "skip steps" or hallucinate code blindly. Safe multi-session concurrency and legacy migration are built-in.
 
 ### 🛠️ Professional Multi-Agent Skills
 
@@ -150,6 +154,7 @@ AgentCortex supports both **English** (default) and **Traditional Chinese**.
 - [Agent Philosophy](docs/AGENT_PHILOSOPHY.md)
 - [Testing Protocol](docs/TESTING_PROTOCOL.md)
 - [Project Examples](docs/PROJECT_EXAMPLES.md)
+- [Antigravity v5 Runtime Spec](docs/guides/antigravity-v5-runtime.md)
 - [Migration Guide](docs/guides/migration.md)
 - [Token Governance](docs/guides/token-governance.md)
 - [Audit Playbook](docs/guides/audit-guardrails.md)

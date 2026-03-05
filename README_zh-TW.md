@@ -1,4 +1,4 @@
-# AgentCortex v3.5.4 (vNext Architecture Edition)
+# AgentCortex v5 (Runtime v5 Anti-Drift Edition)
 
 [English Version](README.md)
 
@@ -11,9 +11,9 @@
 我們對齊並優化了 Google Antigravity / Codex Web / Codex App 的使用情境：
 
 - **Self-Managed**：AI 自行分類任務並套用對應的治理閘門。
-- **Parallel-Safe State**：全域狀態 (`current_state.md`) 與任務狀態 (`work/`) 嚴格分離。
+- **Runtime v5 Anti-Drift**：具備強制防跳步驟的 `Gate Engine` 與 `Handshake` 交握機制，封鎖幻覺越權。
+- **Concurrency & Migration Safe**：內建多人協作 Metadata 防撞車與舊專案無痛導入的 `/audit` 工作流。
 - **Token Optimized**：針對不同風險等級自動調整治理強度，`tiny-fix` 走 fast-path 以節省成本。
-- **Context Loss Safety**：強制執行 `/handoff` 以確保長週期任務不因內容遺失而中斷。
 - **Command-first**：用標準化指令觸發 Agent 能力，確保行為一致性。
 
 ## 🔗 參考來源
