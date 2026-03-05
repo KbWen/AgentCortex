@@ -52,13 +52,18 @@ Write to `docs/context/work/<branch-name>.md`:
 - `Owner`: [user-name or session-id] — *(required for multi-person; see §11.1)*
 - `Recommended Skills`: [skill-name (reason)] | none — *(determined from available skill summaries, no file read required. Skip for `tiny-fix`.)*
 
-Write `## Session Info` block immediately after header:
+Write `## Session Info` and `## Drift Log` blocks immediately after header:
 
 ```markdown
 ## Session Info
 - Agent: [model name]
 - Session: [timestamp]
 - Platform: [Antigravity / Codex Web / Codex App]
+
+## Drift Log
+- Skip Attempt: NO
+- Gate Fail Reason: N/A
+- Token Leak: NO
 ```
 
 ## 3. Expected Output Format
@@ -90,3 +95,10 @@ Write `## Session Info` block immediately after header:
 
 - MUST CREATE `docs/context/work/<branch-name>.md` before proceeding. *(Skip for `tiny-fix`.)*
 - If file already exists, READ and RESUME from existing state.
+
+## 6. Antigravity Hard Stop (Runtime v5)
+
+- After outputting the bootstrap report, STOP IMMEDIATELY.
+- Do NOT proceed to `/plan`, `/implement`, or any code changes in the same turn.
+- Next step MUST be `/plan` (or `tiny-fix` if applicable).
+- Output: "Bootstrap complete. Reply with your next command (e.g., `/plan`)."

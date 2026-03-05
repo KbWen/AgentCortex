@@ -5,6 +5,16 @@ description: Workflow for implement
 
 > Hard Gate: state >= `IMPLEMENTABLE` (Plan quality gate MUST be passed).
 
+## Handshake (Turn 1 — feature / architecture-change only)
+
+For `feature` or `architecture-change` classification:
+
+- Output: "Gate passed. Reply **PROCEED-IMPLEMENT** to continue."
+- STOP until user replies.
+- When user replies `PROCEED-IMPLEMENT`, cite Work Log plan section (path + heading) before writing any code.
+
+`quick-win` / `hotfix`: proceed directly (no handshake).
+
 ## Pre-Execution Check (Mandatory)
 
 Before ANY code change, AI MUST:
