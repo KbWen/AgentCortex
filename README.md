@@ -1,4 +1,4 @@
-﻿# AgentCortex v5: The Professional Agentic OS for Google Antigravity & Codex
+# AgentCortex v5: The Professional Agentic OS for Google Antigravity & Codex
 
 > **The Ultimate Multi-Agent Framework for Professional Development.**
 > Optimized for Antigravity Workflows, Codex Platforms, and Token-Efficient AI Reasoning.
@@ -114,6 +114,15 @@ Clone this template into your project root:
 ```bash
 git clone https://github.com/KbWen/AgentCortex .
 ```
+
+### Windows (No Bash)
+
+If your Windows environment has no `bash`, use the wrappers in the project root:
+
+- PowerShell: `powershell -ExecutionPolicy Bypass -File .\deploy_brain.ps1 .`
+- CMD: `deploy_brain.cmd .`
+
+Both wrappers still call `deploy_brain.sh` under the hood, so you need Git Bash or WSL installed.
 
 ### 2. Synchronization
 
