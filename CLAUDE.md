@@ -1,4 +1,4 @@
-﻿# Claude Integration Entry
+# Claude Integration Entry
 
 This repository can be used with Claude via a documentation-first adapter layer.
 
