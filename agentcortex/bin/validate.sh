@@ -202,6 +202,14 @@ grep -F -q -- '測試教戰守則' "$ROOT/agentcortex/docs/TESTING_PROTOCOL_zh-T
   echo "localized doc appears mojibaked or re-encoded: $ROOT/agentcortex/docs/TESTING_PROTOCOL_zh-TW.md"
   exit 1
 }
+grep -F -q -- 'Why AgentCortex?' "$ROOT/README.md" || {
+  echo "english doc appears mojibaked or re-encoded: $ROOT/README.md"
+  exit 1
+}
+grep -F -q -- 'Test 1: Invisible Assistant Check (.gitignore Automation)' "$ROOT/agentcortex/docs/guides/audit-guardrails.md" || {
+  echo "english doc appears mojibaked or re-encoded: $ROOT/agentcortex/docs/guides/audit-guardrails.md"
+  exit 1
+}
 grep -F -q -- '為什麼不寫成自動化 Shell Script？' "$ROOT/agentcortex/docs/guides/audit-guardrails_zh-TW.md" || {
   echo "localized doc appears mojibaked or re-encoded: $ROOT/agentcortex/docs/guides/audit-guardrails_zh-TW.md"
   exit 1

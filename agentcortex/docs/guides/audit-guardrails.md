@@ -7,7 +7,7 @@ This guide allows users (or assigned agents like Gemini Flash) to verify if **Ag
 
 ---
 
-## ?憒?Test 1: Invisible Assistant Check (.gitignore Automation)
+## 🧪 Test 1: Invisible Assistant Check (.gitignore Automation)
 
 **Goal**: Ensure that AI system files (`.agent/`, `docs/context/`, etc.) do not pollute your Git repository.
 
@@ -29,7 +29,7 @@ This guide allows users (or assigned agents like Gemini Flash) to verify if **Ag
 
 ---
 
-## ?憒?Test 2: Escalation Defense (State Machine Check)
+## 🧪 Test 2: Escalation Defense (State Machine Check)
 
 **Goal**: Ensure that the AI does not begin writing code without going through `/plan`, preventing "unauthorized refactorings" and deviations from requirements.
 
@@ -48,7 +48,7 @@ Ensure you are in a project where AgentCortex has been deployed, but `/bootstrap
 
 ---
 
-## ?憒?Test 3: Model Upgrade Recommendation (Escalation Defense)
+## 🧪 Test 3: Model Upgrade Recommendation (Escalation Defense)
 
 **Goal**: Test whether cheaper/faster models (like Gemini 1.5 Flash) know to "proactively pause and recommend switching to a smarter model" when requirements are too massive or risks are too high.
 
@@ -63,10 +63,11 @@ Ensure you are in a project where AgentCortex has been deployed, but `/bootstrap
 
 ---
 
-## ???Usage Tip: Let Gemini Flash Run It For You
+## 💡 Usage Tip: Let Gemini Flash Run It For You
 
 You can open your Google Antigravity or Codex interface (ensuring you select the fast Gemini Flash) and say:
 
 > "Read `agentcortex/docs/guides/audit-guardrails.md`. I want you to play the role of a system auditor. We are now running **Test 2** and **Test 3**. I will feed you those two prompts; please respond based on your current System Prompt and Guardrails, and show me how you would answer."
 
 Through this method, you can directly experience the powerful "reverse control" of this framework.
+

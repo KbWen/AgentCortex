@@ -161,6 +161,10 @@ foreach ($localizedFile in @(
 }
 Assert-FileContains -Path (Join-NormalPath $root 'README_zh-TW.md') -Pattern ([regex]::Escape('從「流程驅動」進化到「自我管理」的專業級 AI Agent 核心架構。')) -Message 'localized doc appears mojibaked or re-encoded: README_zh-TW.md'
 Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/TESTING_PROTOCOL_zh-TW.md') -Pattern ([regex]::Escape('測試教戰守則')) -Message 'localized doc appears mojibaked or re-encoded: agentcortex/docs/TESTING_PROTOCOL_zh-TW.md'
+Assert-FileContains -Path (Join-NormalPath $root 'README.md') -Pattern ([regex]::Escape('Why AgentCortex?')) -Message 'english doc appears mojibaked or re-encoded: README.md'
+Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/guides/audit-guardrails.md') -Pattern ([regex]::Escape('Test 1: Invisible Assistant Check (.gitignore Automation)')) -Message 'english doc appears mojibaked or re-encoded: agentcortex/docs/guides/audit-guardrails.md'
 Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/guides/audit-guardrails_zh-TW.md') -Pattern ([regex]::Escape('為什麼不寫成自動化 Shell Script？')) -Message 'localized doc appears mojibaked or re-encoded: agentcortex/docs/guides/audit-guardrails_zh-TW.md'
 Write-Output 'AgentCortex integrity check passed'
+
+
 
