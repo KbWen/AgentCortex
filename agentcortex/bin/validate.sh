@@ -123,6 +123,42 @@ grep -F -q -- 'agentcortex\bin\deploy.ps1' "$ROOT_DEPLOY_CMD" || { echo "deploy 
 grep -F -q -- 'agentcortex/bin/validate.sh' "$ROOT_VALIDATE_SH" || { echo "validate wrapper missing canonical reference: $ROOT_VALIDATE_SH"; exit 1; }
 grep -F -q -- "'agentcortex', 'bin', 'validate.ps1'" "$ROOT_VALIDATE_PS1" || { echo "validate wrapper missing canonical reference: $ROOT_VALIDATE_PS1"; exit 1; }
 grep -F -q -- 'agentcortex\bin\validate.ps1' "$ROOT_VALIDATE_CMD" || { echo "validate wrapper missing canonical reference: $ROOT_VALIDATE_CMD"; exit 1; }
+worklog_contract_files=(
+  "$ROOT/AGENTS.md"
+  "$ROOT/.agent/rules/engineering_guardrails.md"
+  "$ROOT/.agent/rules/state_machine.md"
+  "$ROOT/.agent/workflows/bootstrap.md"
+  "$ROOT/.agent/workflows/plan.md"
+  "$ROOT/.agent/workflows/handoff.md"
+  "$ROOT/.agent/workflows/ship.md"
+  "$PLATFORM_DOC"
+  "$ROOT/agentcortex/docs/NONLINEAR_SCENARIOS.md"
+  "$ROOT/agentcortex/docs/guides/antigravity-v5-runtime.md"
+)
+for f in "${worklog_contract_files[@]}"; do
+  grep -F -q -- '<worklog-key>' "$f" || { echo "worklog contract missing normalized key reference: $f"; exit 1; }
+  if grep -F -q -- 'docs/context/work/<branch-name>.md' "$f"; then
+    echo "stale branch-name worklog path contract: $f"
+    exit 1
+  fi
+  if grep -F -q -- 'docs/context/work/<branch>.md' "$f"; then
+    echo "stale raw branch worklog path contract: $f"
+    exit 1
+  fi
+done
+
+archive_contract_files=(
+  "$ROOT/.agent/workflows/handoff.md"
+  "$ROOT/agentcortex/docs/guides/token-governance.md"
+  "$ROOT/agentcortex/docs/guides/portable-minimal-kit.md"
+)
+for f in "${archive_contract_files[@]}"; do
+  grep -F -q -- '<worklog-key>-<YYYYMMDD>' "$f" || { echo "archive worklog contract missing normalized key reference: $f"; exit 1; }
+  if grep -F -q -- 'docs/context/archive/work/<branch>-<YYYYMMDD>.md' "$f"; then
+    echo "stale archive branch worklog path contract: $f"
+    exit 1
+  fi
+done
 
 grep -F -q -- 'LEGACY_IGNORE_START="# AI Brain OS - Agent System & Local Context"' "$CANONICAL_DEPLOY_SH" || {
   echo "deploy script missing legacy ignore marker support"

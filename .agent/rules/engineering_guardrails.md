@@ -224,10 +224,11 @@ When AI detects a task is nearing completion (e.g., user says "done", "完成了
 
 ### 11.1 Work Log Ownership
 
-- **One Branch = One Owner**: Each `docs/context/work/<branch>.md` Work Log MUST have exactly ONE active writer at a time.
+- **One Branch = One Owner**: Each `docs/context/work/<worklog-key>.md` Work Log MUST have exactly ONE active writer at a time.
 - AI MUST write `Owner: <user-name or session-id>` in the Work Log header during `/bootstrap`.
 - If a Work Log already exists with a different Owner, AI MUST warn: "⚠️ This Work Log is owned by [Owner]. Concurrent writes will cause data loss. Create a separate Work Log? (yes/no)"
-- Naming convention for multi-person: `docs/context/work/<owner>-<branch>.md` (e.g., `alice-feature-x.md`).
+- Naming convention for multi-person: `docs/context/work/<owner>-<worklog-key>.md` (e.g., `alice-feature-x.md`).
+- Missing active Work Logs are recoverable during `/bootstrap`, `/plan`, and `/handoff`: resolve `<worklog-key>`, create or recover the active log, and warn the user. `/ship` may recover a follow-up log from archive context, but missing handoff references remain a hard failure.
 
 ### 11.2 Agent Identity
 

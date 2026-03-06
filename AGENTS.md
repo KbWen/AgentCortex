@@ -19,11 +19,12 @@ Global directives for all AI agents. Loaded automatically every turn
 
 ## vNext State Model
 
-- **Init Read**: MUST read `docs/context/current_state.md` (SSoT) + `docs/context/work/<branch>.md` (Work Log).
+- **Init Read**: MUST read `docs/context/current_state.md` (SSoT) + `docs/context/work/<worklog-key>.md` (Work Log).
 - **Prohibited**: Blind directory scanning (`ls -R docs/`). Read files precisely guided by SSoT.
 - **SSoT Recovery Exception**: If `current_state.md` Spec Index is explicitly marked `[STALE]` or is empty AND no specs exist in the Work Log context, the AI MAY perform ONE targeted scan: `list_dir docs/specs/` ONLY. After rebuilding the index, MUST update `current_state.md` immediately and document the recovery action in the Work Log.
 - **Write Isolation**: Agents ONLY write to own Work Log. `current_state.md` updated ONLY via `/ship`.
 - **Classification Freeze**: Task category frozen during `/bootstrap`, MUST NOT reclassify later.
+- **Work Log Resolution**: Derive `<worklog-key>` from the current branch using filesystem-safe normalization (for example, replace `/` with `-`). Keep the raw branch value in the Work Log header. Missing active Work Logs during `/bootstrap`, `/plan`, or `/handoff` are recoverable: create or recover the active log before failing the gate.
 
 ## Multi-Person Collaboration
 
@@ -86,7 +87,7 @@ Global directives for all AI agents. Loaded automatically every turn
 ## Multi-Session Concurrency (Antigravity)
 
 1. **Context-Bound Handshake**: The agent MUST reject PROCEED tokens if the context does not match the current branch/task. Valid tokens: `PROCEED-PLAN:<branch>`, `PROCEED-IMPLEMENT:<branch>`, `PROCEED-SHIP:<branch>`.
-2. **Work Log Ownership**: A Work Log MUST begin with a metadata block containing `Owner` and `Branch`. Missing fields = Gate FAIL. For multi-person collaboration on the same issue, prefer naming: `docs/context/work/<issue>-<branch>.md`.
+2. **Work Log Ownership**: A Work Log MUST begin with a metadata block containing `Owner` and `Branch`. Missing fields = Gate FAIL. For multi-person collaboration on the same issue, prefer naming: `docs/context/work/<owner>-<worklog-key>.md`.
 3. **Multi-Agent Rules**: If multiple agents operate on the same branch:
    - Each session MUST use a distinct Session ID in the Work Log metadata (`## Session Info`).
    - Agents MUST NOT overwrite other sessions' Evidence or Drift sections.

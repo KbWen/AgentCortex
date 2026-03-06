@@ -20,7 +20,8 @@ Read-only logic. DOES NOT change state. Hard completion gate for non-`tiny-fix` 
 ## 2. Platform Specialization
 
 - **Codex Web**: MUST output full summary directly in chat.
-- **Antigravity / Codex App**: Auto-write to `docs/context/work/<branch-name>.md`.
+- **Antigravity / Codex App**: Auto-write to `docs/context/work/<worklog-key>.md`.
+- If the active Work Log is missing, resolve or create the current `<worklog-key>` log first. If the previous log was archived after a prior ship, create a follow-up active log and note that recovery in the delta.
 
 ## 3. Required Output Blocks
 
@@ -54,7 +55,7 @@ MUST include ALL of the following:
 
 1. At least 1 docs/ file path
 2. At least 1 code file path
-3. Corresponding Work Log path (`docs/context/work/<branch-name>.md`)
+3. Corresponding Work Log path (`docs/context/work/<worklog-key>.md`)
 
 If requirements unsatisfied, COMPLETION AND `/ship` ARE STRICTLY PROHIBITED.
 
@@ -74,7 +75,7 @@ If either threshold is hit:
 MUST compact the Work Log:
 
 1. Keep `## Session Info`, latest `## Resume`, latest `## Risks`, and the latest `N` delta entries (`WORKLOG_KEEP_RECENT_ENTRIES`, default: `5`).
-2. Move older details to `docs/context/archive/work/<branch>-<YYYYMMDD>.md`.
+2. Move older details to `docs/context/archive/work/<worklog-key>-<YYYYMMDD>.md`.
 3. Add one line in current log: `Compacted: [date], archive: [path]`.
 
 ## 7. Token & Efficiency Reflection

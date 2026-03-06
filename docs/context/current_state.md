@@ -8,7 +8,8 @@
   - Handoff gate: Non-`tiny-fix` tasks must produce a traceable handoff summary.
 - **System Map**:
   - Global SSoT: `docs/context/current_state.md`
-  - Task Isolation: `docs/context/work/<branch-name>.md`
+  - Task Isolation: `docs/context/work/<worklog-key>.md`
+  - Active Work Log Path: derive <worklog-key> from the raw branch name using filesystem-safe normalization before any gate checks.
   - Workflows & Policies: `.agent/workflows/*.md`, `.agent/rules/*.md`
 - **ADR Index**:
   - `docs/adr/ADR-001-vnext-self-managed-architecture.md`
@@ -34,7 +35,7 @@
 
 > [!NOTE]
 > This file is the Single Source of Truth for global project context only.
-> Do not store per-task progress here; write progress to `docs/context/work/<branch-name>.md`.
+> Do not store per-task progress here; write progress to `docs/context/work/<worklog-key>.md`.
 
 ## Global Lessons (AI Error Pattern Registry)
 >
@@ -45,8 +46,12 @@
 - [Path Rewrite Guard]: Namespace migrations should validate for accidental double-prefix replacements like `agentcortex/agentcortex/...` immediately after bulk path rewrites.
 - [Wrapper Validation]: Validation checks for wrapper files should assert behaviorally equivalent path construction patterns, not only one literal path string representation.
 - [Bash Portability]: Shell validation entrypoints should prefer portable `grep`-based checks over environment-specific `rg` assumptions when they are part of cross-platform integrity gates.
+- [Work Log Key]: Resolve filesystem-safe worklog keys from raw branch names before gate checks; missing active logs are recoverable, while missing handoff references or evidence remain hard failures.
 
 ## Ship History
 ### Ship-master-2026-03-06
 - Feature shipped: namespaced AgentCortex-owned executable, tooling, and reference assets under `agentcortex/`, while preserving fixed anchors and legacy wrappers for downstream compatibility.
+- Tests: Pass
+### Ship-codex-template-import-cleanup-namespacing-2026-03-06
+- Feature shipped: normalized Work Log naming to filesystem-safe <worklog-key> paths, documented recoverable missing-log behavior for /bootstrap, /plan, and /handoff, and added regression validation for the contract.
 - Tests: Pass

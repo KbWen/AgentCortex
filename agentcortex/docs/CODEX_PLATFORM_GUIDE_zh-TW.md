@@ -41,7 +41,7 @@
 
 1. 至少 1 個 `docs/` 文件。
 2. 至少 1 個 code file path。
-3. 對應 work log：`docs/context/work/<branch-name>.md`。
+3. 對應 work log：`docs/context/work/<worklog-key>.md`。
 
 若不滿足，必須拒絕 `/ship` 並列出缺失。
 

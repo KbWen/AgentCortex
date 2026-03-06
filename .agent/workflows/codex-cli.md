@@ -39,7 +39,7 @@ AI MUST perform these steps **before** invoking `codex`:
 
 1. **Availability Check**: On first use per session, run `codex --version`. If fails → silently fall back to AI-native execution. Cache result.
 2. **Classify** the task per `engineering_guardrails.md` §10.1.
-3. **Create/Update Work Log** at `docs/context/work/<branch-name>.md` with:
+3. **Create/Update Work Log** at `docs/context/work/<worklog-key>.md` with:
    - Classification, goal, target files, constraints.
    - `Executor: Codex CLI` (to distinguish from AI-direct execution).
 4. **Generate the Codex command** by injecting governance context:

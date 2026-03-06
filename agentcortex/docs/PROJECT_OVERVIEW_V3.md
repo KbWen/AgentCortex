@@ -39,7 +39,7 @@
 
 ## 3. The Standard Workflow Lifecycle
 
-1. **`/bootstrap`**: AI reads `current_state.md`, classifies task (tiny, quick, feature, etc.), and initializes a `work/<branch>.md` log.
+1. **`/bootstrap`**: AI reads `current_state.md`, classifies task (tiny, quick, feature, etc.), and initializes a `work/<worklog-key>.md` log.
 2. **`/plan`**: Proposes a change list, risks, and verification plan. AI must wait for approval.
 3. **`/implement`**: Executes code changes safely based on the plan.
 4. **`/test`**: Verifies logic with clear evidence (test logs or behavior diffs).

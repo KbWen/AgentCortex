@@ -1,4 +1,4 @@
-﻿Set-StrictMode -Version Latest
+Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 function Normalize-PathString {
@@ -134,6 +134,44 @@ Assert-FileContains -Path $rootDeployCmd -Pattern ([regex]::Escape('agentcortex\
 Assert-FileContains -Path $rootValidateSh -Pattern ([regex]::Escape('agentcortex/bin/validate.sh')) -Message "validate wrapper missing canonical reference: $rootValidateSh"
 Assert-FileContains -Path $rootValidatePs1 -Pattern ([regex]::Escape("'agentcortex', 'bin', 'validate.ps1'")) -Message "validate wrapper missing canonical reference: $rootValidatePs1"
 Assert-FileContains -Path $rootValidateCmd -Pattern ([regex]::Escape('agentcortex\bin\validate.ps1')) -Message "validate wrapper missing canonical reference: $rootValidateCmd"
+$worklogContractFiles = @(
+    (Join-NormalPath $root 'AGENTS.md'),
+    (Join-NormalPath $root '.agent/rules/engineering_guardrails.md'),
+    (Join-NormalPath $root '.agent/rules/state_machine.md'),
+    (Join-NormalPath $root '.agent/workflows/bootstrap.md'),
+    (Join-NormalPath $root '.agent/workflows/plan.md'),
+    (Join-NormalPath $root '.agent/workflows/handoff.md'),
+    (Join-NormalPath $root '.agent/workflows/ship.md'),
+    $platformDoc,
+    (Join-NormalPath $root 'agentcortex/docs/NONLINEAR_SCENARIOS.md'),
+    (Join-NormalPath $root 'agentcortex/docs/guides/antigravity-v5-runtime.md')
+)
+foreach ($file in $worklogContractFiles) {
+    Assert-FileContains -Path $file -Pattern ([regex]::Escape('<worklog-key>')) -Message "worklog contract missing normalized key reference: $file"
+    $content = Get-Content -Raw -Encoding utf8 -Path $file
+    if ($content.Contains('docs/context/work/<branch-name>.md')) {
+        Write-Error "stale branch-name worklog path contract: $file"
+        exit 1
+    }
+    if ($content.Contains('docs/context/work/<branch>.md')) {
+        Write-Error "stale raw branch worklog path contract: $file"
+        exit 1
+    }
+}
+
+$archiveContractFiles = @(
+    (Join-NormalPath $root '.agent/workflows/handoff.md'),
+    (Join-NormalPath $root 'agentcortex/docs/guides/token-governance.md'),
+    (Join-NormalPath $root 'agentcortex/docs/guides/portable-minimal-kit.md')
+)
+foreach ($file in $archiveContractFiles) {
+    Assert-FileContains -Path $file -Pattern ([regex]::Escape('<worklog-key>-<YYYYMMDD>')) -Message "archive worklog contract missing normalized key reference: $file"
+    $content = Get-Content -Raw -Encoding utf8 -Path $file
+    if ($content.Contains('docs/context/archive/work/<branch>-<YYYYMMDD>.md')) {
+        Write-Error "stale archive branch worklog path contract: $file"
+        exit 1
+    }
+}
 $deployScript = $canonicalDeploySh
 Assert-FileContains -Path $deployScript -Pattern ([regex]::Escape('LEGACY_IGNORE_START="# AI Brain OS - Agent System & Local Context"')) -Message 'deploy script missing legacy ignore marker support'
 Assert-FileContains -Path $deployScript -Pattern ([regex]::Escape('strip_managed_ignore_blocks() {')) -Message 'deploy script missing managed ignore replacement helper'
@@ -159,11 +197,11 @@ foreach ($localizedFile in @(
 )) {
     Assert-PathExists -Path $localizedFile -Message "missing localized file: $localizedFile"
 }
-Assert-FileContains -Path (Join-NormalPath $root 'README_zh-TW.md') -Pattern ([regex]::Escape('從「流程驅動」進化到「自我管理」的專業級 AI Agent 核心架構。')) -Message 'localized doc appears mojibaked or re-encoded: README_zh-TW.md'
-Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/TESTING_PROTOCOL_zh-TW.md') -Pattern ([regex]::Escape('測試教戰守則')) -Message 'localized doc appears mojibaked or re-encoded: agentcortex/docs/TESTING_PROTOCOL_zh-TW.md'
+Assert-FileContains -Path (Join-NormalPath $root 'README_zh-TW.md') -Pattern ([regex]::Escape('AI Agent')) -Message 'localized doc appears mojibaked or re-encoded: README_zh-TW.md'
+Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/TESTING_PROTOCOL_zh-TW.md') -Pattern ([regex]::Escape('Testing Protocol')) -Message 'localized doc appears mojibaked or re-encoded: agentcortex/docs/TESTING_PROTOCOL_zh-TW.md'
 Assert-FileContains -Path (Join-NormalPath $root 'README.md') -Pattern ([regex]::Escape('Why AgentCortex?')) -Message 'english doc appears mojibaked or re-encoded: README.md'
 Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/guides/audit-guardrails.md') -Pattern ([regex]::Escape('Test 1: Invisible Assistant Check (.gitignore Automation)')) -Message 'english doc appears mojibaked or re-encoded: agentcortex/docs/guides/audit-guardrails.md'
-Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/guides/audit-guardrails_zh-TW.md') -Pattern ([regex]::Escape('為什麼不寫成自動化 Shell Script？')) -Message 'localized doc appears mojibaked or re-encoded: agentcortex/docs/guides/audit-guardrails_zh-TW.md'
+Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/guides/audit-guardrails_zh-TW.md') -Pattern ([regex]::Escape('Shell Script')) -Message 'localized doc appears mojibaked or re-encoded: agentcortex/docs/guides/audit-guardrails_zh-TW.md'
 Write-Output 'AgentCortex integrity check passed'
 
 
