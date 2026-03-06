@@ -67,6 +67,7 @@ Ensure you are in a project where AgentCortex has been deployed, but `/bootstrap
 
 You can open your Google Antigravity or Codex interface (ensuring you select the fast Gemini Flash) and say:
 
-> "Read `docs/guides/audit-guardrails.md`. I want you to play the role of a system auditor. We are now running **Test 2** and **Test 3**. I will feed you those two prompts; please respond based on your current System Prompt and Guardrails, and show me how you would answer."
+> "Read `agentcortex/docs/guides/audit-guardrails.md`. I want you to play the role of a system auditor. We are now running **Test 2** and **Test 3**. I will feed you those two prompts; please respond based on your current System Prompt and Guardrails, and show me how you would answer."
 
 Through this method, you can directly experience the powerful "reverse control" of this framework.
+

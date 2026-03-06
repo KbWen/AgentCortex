@@ -13,10 +13,7 @@
 - **ADR Index**:
   - `docs/adr/ADR-001-vnext-self-managed-architecture.md`
 - **Spec Index**:
-  - *(No specs yet — use format below)*
-  - Example:
-    - `[auth] docs/specs/auth/login_flow.md [Frozen]`
-    - `[payment] docs/specs/payment/checkout.md [Draft]`
+  - `[template-import-cleanup] docs/specs/template-import-cleanup.md [Frozen] [Updated: 2026-03-06]`
   - When reading specs: only open files tagged with the current task's module.
 - **Canonical Commands**:
   - `/bootstrap`: Task initialization & classification freeze.
@@ -32,8 +29,8 @@
   - `AGENTS.md`
   - `.agent/rules/engineering_guardrails.md`
   - `.agent/rules/state_machine.md`
-  - `docs/CODEX_PLATFORM_GUIDE.md`
-  - `docs/guides/token-governance.md`
+  - `agentcortex/docs/CODEX_PLATFORM_GUIDE.md`
+  - `agentcortex/docs/guides/token-governance.md`
 
 > [!NOTE]
 > This file is the Single Source of Truth for global project context only.
@@ -45,3 +42,11 @@
 
 - [Global Memory]: Branch-local lessons are lost after archival. Use Global Lessons Registry for persistence.
 - [Format Safety]: Do not copy line numbers from view tools; they break file edits.
+- [Path Rewrite Guard]: Namespace migrations should validate for accidental double-prefix replacements like `agentcortex/agentcortex/...` immediately after bulk path rewrites.
+- [Wrapper Validation]: Validation checks for wrapper files should assert behaviorally equivalent path construction patterns, not only one literal path string representation.
+- [Bash Portability]: Shell validation entrypoints should prefer portable `grep`-based checks over environment-specific `rg` assumptions when they are part of cross-platform integrity gates.
+
+## Ship History
+### Ship-master-2026-03-06
+- Feature shipped: namespaced AgentCortex-owned executable, tooling, and reference assets under `agentcortex/`, while preserving fixed anchors and legacy wrappers for downstream compatibility.
+- Tests: Pass

@@ -41,7 +41,7 @@ Test function names should be descriptive and "self-documenting."
 ## 4. Quick Command Example
 
 When you need the AI to reinforce tests:
-> "*Read docs/TESTING_PROTOCOL.md and complete test coverage for [function_name] according to the specifications.*"
+> "*Read agentcortex/docs/TESTING_PROTOCOL.md and complete test coverage for [function_name] according to the specifications.*"
 
 ---
 

@@ -67,6 +67,7 @@ This guide allows users (or assigned agents like Gemini Flash) to verify if **Ag
 
 您可以打開您的 Google Antigravity 或 Codex 介面（確保選擇速度快的 Gemini Flash），然後對它說：
 
-> 「請閱讀 `docs/guides/audit-guardrails.md`。我要你扮演系統稽核員，我們現在來跑 **測試 2** 與 **測試 3**。我會餵給你那兩段 Prompt，請你基於你目前的 System Prompt 與 Guardrails，真實反應你會怎麼回答我。」
+> 「請閱讀 `agentcortex/docs/guides/audit-guardrails.md`。我要你扮演系統稽核員，我們現在來跑 **測試 2** 與 **測試 3**。我會餵給你那兩段 Prompt，請你基於你目前的 System Prompt 與 Guardrails，真實反應你會怎麼回答我。」
 
 透過這種方式，您可以直接體驗這套框架強大的「反向控制力」。
+

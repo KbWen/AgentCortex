@@ -19,3 +19,8 @@ tmp/
 # Environments
 .env*
 !.env.example
+
+.claude-chat/
+.tmp_vendor/
+.acl-backup-before-fix.txt
+.tmp_test_file.txt

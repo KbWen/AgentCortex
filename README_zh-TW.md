@@ -19,9 +19,9 @@
 ## 🔗 參考來源
 
 - Superpowers 專案（理念參考）：<https://github.com/obra/superpowers>
-- 專案導入範例：`docs/PROJECT_EXAMPLES_zh-TW.md`
-- 遷移與整合指南：`docs/guides/migration_zh-TW.md`
-- Token 治理指南：`docs/guides/token-governance_zh-TW.md`
+- 專案導入範例：`agentcortex/docs/PROJECT_EXAMPLES_zh-TW.md`
+- 遷移與整合指南：`agentcortex/docs/guides/migration_zh-TW.md`
+- Token 治理指南：`agentcortex/docs/guides/token-governance_zh-TW.md`
 
 ## 📦 目錄總覽
 
@@ -31,7 +31,7 @@
 - `docs/context/current_state.md`：全域唯讀狀態（SSoT）
 - `docs/context/work/`：任務隔離 Work Log
 - `docs/adr/`：架構決策記錄
-- `docs/CODEX_PLATFORM_GUIDE_zh-TW.md`：Codex 平台指南
+- `agentcortex/docs/CODEX_PLATFORM_GUIDE_zh-TW.md`：Codex 平台指南
 - `AGENTS.md`：跨平台長期指令入口
 
 ## 🧩 系列功能對照 (Superpowers Based)
@@ -187,7 +187,7 @@ flowchart LR
 ./tools/validate.sh
 ```
 
-完整平台建議請見 `docs/CODEX_PLATFORM_GUIDE_zh-TW.md`。
+完整平台建議請見 `agentcortex/docs/CODEX_PLATFORM_GUIDE_zh-TW.md`。
 
 ---
 詳細變更請見 [CHANGELOG.md](./CHANGELOG.md)
@@ -200,3 +200,4 @@ flowchart LR
 - CMD：`deploy_brain.cmd .`
 
 這兩個 wrapper 會轉呼叫 `deploy_brain.sh`，因此仍需要安裝 Git Bash 或 WSL。
+

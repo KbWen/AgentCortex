@@ -6,7 +6,7 @@ Global directives for all AI agents. Loaded automatically every turn
 
 - **Default Output**: Match the user's input language.
 - If the user writes in English, respond in English.
-- If the user writes in 繁體中文, respond in 繁體中文.
+- If the user writes in ?謚單???豲??, respond in ?謚單???豲??.
 
 ## Core Directives
 
@@ -27,25 +27,25 @@ Global directives for all AI agents. Loaded automatically every turn
 
 ## Multi-Person Collaboration
 
-- **One Branch = One Owner**: Never have two AI sessions writing to the same Work Log simultaneously. See `engineering_guardrails.md` §11.
+- **One Branch = One Owner**: Never have two AI sessions writing to the same Work Log simultaneously. See `engineering_guardrails.md` ??1.
 - **Agent Identity**: Every session MUST write `## Session Info` (model name, timestamp, platform) to Work Log during `/bootstrap`.
 - **Ship Guard**: Before `/ship`, check if `current_state.md` was modified by another session. If so, warn user before merge.
 
 ## Delivery Gates
 
-- Non-`tiny-fix` tasks MUST execute `/handoff` with ✅ doc path + ✅ code path + work log path.
+- Non-`tiny-fix` tasks MUST execute `/handoff` with ??doc path + ??code path + work log path.
 - NO EVIDENCE = NO COMPLETION.
 
 ## AgentCortex Runtime v5 (Antigravity Contract)
 
 1. NL == Slash: Natural language must map to workflows BEFORE any action.
    Examples:
-   "help me design", "幫我規劃" → /plan
-   "ship this", "完成了" → /ship
-   "typo", "rename variable" → tiny-fix
+   "help me design", "?賹??蝘??" ??/plan
+   "ship this", "??ㄞ??? ??/ship
+   "typo", "rename variable" ??tiny-fix
 2. tiny-fix fast path:
-   <5 lines change, no logic change → execute directly.
-   If logic change or multi-file → escalate to hotfix.
+   <5 lines change, no logic change ??execute directly.
+   If logic change or multi-file ??escalate to hotfix.
 3. /bootstrap rule:
    /bootstrap outputs bootstrap-report ONLY, then STOP.
    Next step must be /plan or tiny-fix. NO code allowed.
@@ -55,7 +55,7 @@ Global directives for all AI agents. Loaded automatically every turn
    classification: tiny-fix|quick-win|hotfix|feature|architecture-change
    verdict: pass|fail
    missing: []
-5. If verdict=fail → print gate + missing items ONLY and STOP.
+5. If verdict=fail ??print gate + missing items ONLY and STOP.
 6. Handshake (feature / architecture-change only):
    Gate passed.
    Reply PROCEED-PLAN to continue.
@@ -95,8 +95,8 @@ Global directives for all AI agents. Loaded automatically every turn
 
 - Workflows: `.agent/workflows/*.md`
 - Constitution: `.agent/rules/engineering_guardrails.md`
-- Non-Linear Resilience: `docs/NONLINEAR_SCENARIOS.md` (auto-checkpoint, crash recovery, model switch handling)
-- Platform Guide: `docs/CODEX_PLATFORM_GUIDE.md`
+- Non-Linear Resilience: `agentcortex/docs/NONLINEAR_SCENARIOS.md` (auto-checkpoint, crash recovery, model switch handling)
+- Platform Guide: `agentcortex/docs/CODEX_PLATFORM_GUIDE.md`
 
 ## Platform Paths
 

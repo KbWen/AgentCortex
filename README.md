@@ -183,22 +183,22 @@ AgentCortex supports both **English** (default) and **Traditional Chinese**.
 
 - **Documentation**: English guides are the default. For Traditional Chinese versions, look for files with the `_zh-TW.md` suffix (e.g., `AGENT_MODEL_GUIDE_zh-TW.md`).
 - **AI Response**: The AI automatically follows your input language (Language Mirroring).
-- **Switching Context**: To switch a Chinese-heavy project to English, simply tell the AI: *"Translate all Chinese documentation files in docs/ and AGENT_MODEL_GUIDE_zh-TW.md to English, preserving structure."*
+- **Switching Context**: To switch a Chinese-heavy project to English, simply tell the AI: *"Translate all Chinese documentation files in agentcortex/docs/ and AGENT_MODEL_GUIDE_zh-TW.md to English, preserving structure."*
 
 ---
 
 ## 📚 References
 
 - [Model Selection Guide](AGENT_MODEL_GUIDE.md)
-- [Agent Philosophy](docs/AGENT_PHILOSOPHY.md)
-- [Testing Protocol](docs/TESTING_PROTOCOL.md)
-- [Project Examples](docs/PROJECT_EXAMPLES.md)
-- [Antigravity v5 Runtime Spec](docs/guides/antigravity-v5-runtime.md)
-- [Migration Guide](docs/guides/migration.md)
-- [Token Governance](docs/guides/token-governance.md)
-- [Audit Playbook](docs/guides/audit-guardrails.md)
-- [Codex Platform Guide](docs/CODEX_PLATFORM_GUIDE.md)
-- [Multi-Remote Workflow](docs/guides/multi-remote-workflow.md)
+- [Agent Philosophy](agentcortex/docs/AGENT_PHILOSOPHY.md)
+- [Testing Protocol](agentcortex/docs/TESTING_PROTOCOL.md)
+- [Project Examples](agentcortex/docs/PROJECT_EXAMPLES.md)
+- [Antigravity v5 Runtime Spec](agentcortex/docs/guides/antigravity-v5-runtime.md)
+- [Migration Guide](agentcortex/docs/guides/migration.md)
+- [Token Governance](agentcortex/docs/guides/token-governance.md)
+- [Audit Playbook](agentcortex/docs/guides/audit-guardrails.md)
+- [Codex Platform Guide](agentcortex/docs/CODEX_PLATFORM_GUIDE.md)
+- [Multi-Remote Workflow](agentcortex/docs/guides/multi-remote-workflow.md)
 
 ---
 
@@ -217,3 +217,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 *Built with ❤️ for the next generation of Agentic Developers.*
+

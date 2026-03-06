@@ -15,18 +15,13 @@ $scriptDir = $PSScriptRoot
 if (-not $scriptDir) { $scriptDir = Split-Path -Parent $PSCommandPath }
 if (-not $scriptDir) { $scriptDir = (Get-Location).Path }
 $scriptDir = Normalize-PathString $scriptDir
-$bashScript = [System.IO.Path]::Combine($scriptDir, 'deploy_brain.sh')
+$canonical = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($scriptDir, 'agentcortex', 'bin', 'deploy.ps1'))
 
-if (-not (Test-Path -Path $bashScript -PathType Leaf)) {
-    Write-Error "cannot find deploy script: $bashScript"
+if (-not (Test-Path -Path $canonical -PathType Leaf)) {
+    Write-Error "cannot find canonical deploy script: $canonical"
     exit 1
 }
 
-$bashCmd = Get-Command bash -ErrorAction SilentlyContinue
-if (-not $bashCmd) {
-    Write-Error 'bash is not installed. Install Git Bash or WSL, then rerun deploy_brain.ps1.'
-    exit 1
-}
-
-& $bashCmd.Source $bashScript $Target
-exit $LASTEXITCODE
+& $canonical -Target $Target
+$exitCode = if (Get-Variable LASTEXITCODE -ErrorAction SilentlyContinue) { $LASTEXITCODE } else { 0 }
+exit $exitCode
