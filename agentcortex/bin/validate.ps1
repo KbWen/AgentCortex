@@ -1,4 +1,4 @@
-Set-StrictMode -Version Latest
+﻿Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 function Normalize-PathString {
@@ -34,7 +34,7 @@ function Assert-FileContains {
         [Parameter(Mandatory = $true)][string]$Pattern,
         [Parameter(Mandatory = $true)][string]$Message
     )
-    $content = Get-Content -Raw -Path $Path
+    $content = Get-Content -Raw -Encoding utf8 -Path $Path
     if ($content -notmatch $Pattern) {
         Write-Error $Message
         exit 1
@@ -152,4 +152,15 @@ foreach ($pattern in @('# AgentCortex Template - Downstream Ignore Defaults','do
 foreach ($pattern in @('.agent/', '.agents/', '.antigravity/', '.claude/', '.codex/', 'codex/', 'AGENTS.md', 'CLAUDE.md', 'README.md', 'docs/context/', 'tools/audit_ai_paths.sh')) {
     if ($deployBlock -contains $pattern) { Write-Error "deploy ignore block too broad for downstream repos: $pattern"; exit 1 }
 }
+foreach ($localizedFile in @(
+    (Join-NormalPath $root 'README_zh-TW.md'),
+    (Join-NormalPath $root 'agentcortex/docs/TESTING_PROTOCOL_zh-TW.md'),
+    (Join-NormalPath $root 'agentcortex/docs/guides/audit-guardrails_zh-TW.md')
+)) {
+    Assert-PathExists -Path $localizedFile -Message "missing localized file: $localizedFile"
+}
+Assert-FileContains -Path (Join-NormalPath $root 'README_zh-TW.md') -Pattern ([regex]::Escape('從「流程驅動」進化到「自我管理」的專業級 AI Agent 核心架構。')) -Message 'localized doc appears mojibaked or re-encoded: README_zh-TW.md'
+Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/TESTING_PROTOCOL_zh-TW.md') -Pattern ([regex]::Escape('測試教戰守則')) -Message 'localized doc appears mojibaked or re-encoded: agentcortex/docs/TESTING_PROTOCOL_zh-TW.md'
+Assert-FileContains -Path (Join-NormalPath $root 'agentcortex/docs/guides/audit-guardrails_zh-TW.md') -Pattern ([regex]::Escape('為什麼不寫成自動化 Shell Script？')) -Message 'localized doc appears mojibaked or re-encoded: agentcortex/docs/guides/audit-guardrails_zh-TW.md'
 Write-Output 'AgentCortex integrity check passed'
+

@@ -187,4 +187,24 @@ for forbidden_pattern in \
   fi
 done
 
+for localized_file in \
+  "$ROOT/README_zh-TW.md" \
+  "$ROOT/agentcortex/docs/TESTING_PROTOCOL_zh-TW.md" \
+  "$ROOT/agentcortex/docs/guides/audit-guardrails_zh-TW.md"; do
+  [[ -f "$localized_file" ]] || { echo "missing localized file: $localized_file"; exit 1; }
+done
+
+grep -F -q -- '從「流程驅動」進化到「自我管理」的專業級 AI Agent 核心架構。' "$ROOT/README_zh-TW.md" || {
+  echo "localized doc appears mojibaked or re-encoded: $ROOT/README_zh-TW.md"
+  exit 1
+}
+grep -F -q -- '測試教戰守則' "$ROOT/agentcortex/docs/TESTING_PROTOCOL_zh-TW.md" || {
+  echo "localized doc appears mojibaked or re-encoded: $ROOT/agentcortex/docs/TESTING_PROTOCOL_zh-TW.md"
+  exit 1
+}
+grep -F -q -- '為什麼不寫成自動化 Shell Script？' "$ROOT/agentcortex/docs/guides/audit-guardrails_zh-TW.md" || {
+  echo "localized doc appears mojibaked or re-encoded: $ROOT/agentcortex/docs/guides/audit-guardrails_zh-TW.md"
+  exit 1
+}
+
 echo "AgentCortex integrity check passed"
