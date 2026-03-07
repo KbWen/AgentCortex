@@ -1,4 +1,4 @@
-﻿---
+---
 Owner: codex-session
 Branch: codex/template-import-cleanup-namespacing
 Classification: quick-win
