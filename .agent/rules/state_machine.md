@@ -33,7 +33,7 @@
 - Non-`tiny-fix` tasks MUST execute `/handoff` before `SHIPPED`. Required references:
   1. ✅ `docs/` artifact path
   2. ✅ modified code path
-  3. Active work log path
+  3. Resolved active work log path (`docs/context/work/<worklog-key>.md`)
 - `tiny-fix` allows fast-path but MUST provide minimal evidence (diff + one-line verification).
 
 ## Legacy State Mapping (Migration)

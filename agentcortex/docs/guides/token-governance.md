@@ -98,6 +98,6 @@ Use these defaults to keep handoff/state docs short across repositories:
 Compaction procedure:
 
 1. Keep only: `## Session Info`, latest `## Resume`, latest `## Risks`, latest 5 delta entries.
-2. Move older entries to `docs/context/archive/work/<branch>-<YYYYMMDD>.md`.
+2. Move older entries to `docs/context/archive/work/<worklog-key>-<YYYYMMDD>.md`.
 3. Add a pointer line in the active log: `Compacted: <date>, archive: <path>`.
 4. Never compact away the evidence required by `/ship` gate.

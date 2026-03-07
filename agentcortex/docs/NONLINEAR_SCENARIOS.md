@@ -40,11 +40,11 @@
 4. If orphaned changes exist, report: "Found uncommitted changes from a previous session: [files]. These may be from a crash. Review before continuing? (yes/continue as-is)"
 5. Resume from the recorded state — do NOT restart from `INIT`.
 
-**If NO Work Log exists but `git log` shows recent commits on the branch**:
+**If NO active Work Log exists but `git log` shows recent commits on the branch**:
 
 - Reconstruct minimal context from recent commits.
 - Create a new Work Log with inferred state.
-- Announce: "No Work Log found, but detected recent work on this branch. Created recovery Work Log."
+- Announce: "No Work Log found, but detected recent work on this branch. Created recovery Work Log at the resolved `<worklog-key>` path."
 
 **Rationale**: When a human switches models or a session crashes, the new AI instance has zero memory. The Work Log + git state is the bridge. The AI does the detective work, not the human.
 
@@ -64,7 +64,7 @@
 3. Output a **single copyable line** for the human to paste into the next model:
 
 ```
-請執行 /bootstrap。Work Log: docs/context/work/<branch-name>.md
+請執行 /bootstrap。Resolved Work Log: docs/context/work/<worklog-key>.md
 ```
 
 1. Announce: "State saved. Paste the line above into the new model to continue."
