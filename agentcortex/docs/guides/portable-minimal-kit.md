@@ -2,6 +2,8 @@
 
 This guide defines a minimal, portable set that other projects can adopt without changing core state-machine workflows.
 
+For text encoding and EOL hardening specifically, see `minimal-text-hardening-kit.md`.
+
 ## Goal
 
 Reduce handoff and state-document verbosity while preserving evidence and auditability.

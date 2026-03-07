@@ -66,6 +66,8 @@ $canonicalDeployPs1 = Join-NormalPath $root 'agentcortex/bin/deploy.ps1'
 $canonicalValidateSh = Join-NormalPath $root 'agentcortex/bin/validate.sh'
 $canonicalValidatePs1 = Join-NormalPath $root 'agentcortex/bin/validate.ps1'
 $canonicalAuditSh = Join-NormalPath $root 'agentcortex/tools/audit_ai_paths.sh'
+$textIntegrityCheckPs1 = Join-NormalPath $root 'tools/check_text_integrity.ps1'
+$textIntegrityBaseline = Join-NormalPath $root 'tools/text_integrity_baseline.txt'
 
 $requiredFiles = @(
     (Join-NormalPath $workflowsDir 'hotfix.md'),
@@ -94,11 +96,14 @@ $claudeRequiredFiles = @(
 )
 foreach ($file in $requiredFiles) { Assert-PathExists -Path $file -Message "missing required file: $file" }
 foreach ($file in $claudeRequiredFiles) { Assert-PathExists -Path $file -Message "missing claude adapter file: $file" }
-foreach ($file in @($platformDoc, $claudePlatformDoc, $examplesDoc, $projectAgentsFile, $projectClaudeFile, $rootDeploySh, $rootDeployPs1, $rootDeployCmd, $rootValidateSh, $rootValidatePs1, $rootValidateCmd, $canonicalDeploySh, $canonicalDeployPs1, $canonicalValidateSh, $canonicalValidatePs1, $canonicalAuditSh)) { Assert-PathExists -Path $file -Message "missing required file: $file" }
+foreach ($file in @($platformDoc, $claudePlatformDoc, $examplesDoc, $projectAgentsFile, $projectClaudeFile, $rootDeploySh, $rootDeployPs1, $rootDeployCmd, $rootValidateSh, $rootValidatePs1, $rootValidateCmd, $canonicalDeploySh, $canonicalDeployPs1, $canonicalValidateSh, $canonicalValidatePs1, $canonicalAuditSh, $textIntegrityCheckPs1, $textIntegrityBaseline)) { Assert-PathExists -Path $file -Message "missing required file: $file" }
 Assert-PathExists -Path $workflowsDir -Message "missing workflows dir: $workflowsDir" -Directory
 Assert-PathExists -Path $claudeCommandsDir -Message "missing claude commands dir: $claudeCommandsDir" -Directory
 Assert-PathExists -Path (Join-NormalPath $root '.agents/skills') -Message "missing codex skills dir: $(Join-NormalPath $root '.agents/skills')" -Directory
 Assert-PathExists -Path (Join-NormalPath $root '.agent/skills') -Message "missing agent skills canonical dir: $(Join-NormalPath $root '.agent/skills')" -Directory
+& $textIntegrityCheckPs1 -Root $root -BaselinePath $textIntegrityBaseline
+$exitCode = if (Get-Variable LASTEXITCODE -ErrorAction SilentlyContinue) { $LASTEXITCODE } else { 0 }
+if ($exitCode -ne 0) { exit $exitCode }
 if (Test-Path -Path (Join-NormalPath $root 'tools/audit_ai_paths.sh') -PathType Leaf) {
     Write-Error "legacy audit helper should move under agentcortex/tools/: $(Join-NormalPath $root 'tools/audit_ai_paths.sh')"
     exit 1

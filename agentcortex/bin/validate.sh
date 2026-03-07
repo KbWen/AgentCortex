@@ -22,6 +22,8 @@ CANONICAL_DEPLOY_PS1="$ROOT/agentcortex/bin/deploy.ps1"
 CANONICAL_VALIDATE_SH="$ROOT/agentcortex/bin/validate.sh"
 CANONICAL_VALIDATE_PS1="$ROOT/agentcortex/bin/validate.ps1"
 CANONICAL_AUDIT_SH="$ROOT/agentcortex/tools/audit_ai_paths.sh"
+TEXT_INTEGRITY_CHECK_PY="$ROOT/tools/check_text_integrity.py"
+TEXT_INTEGRITY_BASELINE="$ROOT/tools/text_integrity_baseline.txt"
 
 required_files=(
   "$WORKFLOWS_DIR/hotfix.md"
@@ -72,7 +74,9 @@ for f in \
   "$CANONICAL_DEPLOY_PS1" \
   "$CANONICAL_VALIDATE_SH" \
   "$CANONICAL_VALIDATE_PS1" \
-  "$CANONICAL_AUDIT_SH"; do
+  "$CANONICAL_AUDIT_SH" \
+  "$TEXT_INTEGRITY_CHECK_PY" \
+  "$TEXT_INTEGRITY_BASELINE"; do
   [[ -f "$f" ]] || { echo "missing required file: $f"; exit 1; }
 done
 
@@ -80,6 +84,19 @@ done
 [[ -d "$CLAUDE_COMMANDS_DIR" ]] || { echo "missing claude commands dir: $CLAUDE_COMMANDS_DIR"; exit 1; }
 [[ -d "$ROOT/.agents/skills" ]] || { echo "missing codex skills dir: $ROOT/.agents/skills"; exit 1; }
 [[ -d "$ROOT/.agent/skills" ]] || { echo "missing agent skills canonical dir: $ROOT/.agent/skills"; exit 1; }
+
+if command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN=python3
+elif command -v python >/dev/null 2>&1; then
+  PYTHON_BIN=python
+else
+  PYTHON_BIN=
+fi
+if [[ -n "$PYTHON_BIN" ]]; then
+  "$PYTHON_BIN" "$TEXT_INTEGRITY_CHECK_PY" --root "$ROOT" --baseline "$TEXT_INTEGRITY_BASELINE"
+else
+  echo "warning: skipping text integrity check because python3/python is unavailable" >&2
+fi
 [[ ! -f "$ROOT/tools/audit_ai_paths.sh" ]] || { echo "legacy audit helper should move under agentcortex/tools/: $ROOT/tools/audit_ai_paths.sh"; exit 1; }
 
 for skill_file in "$ROOT"/.agent/skills/*; do

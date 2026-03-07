@@ -48,10 +48,17 @@
 - [Bash Portability]: Shell validation entrypoints should prefer portable `grep`-based checks over environment-specific `rg` assumptions when they are part of cross-platform integrity gates.
 - [Work Log Key]: Resolve filesystem-safe worklog keys from raw branch names before gate checks; missing active logs are recoverable, while missing handoff references or evidence remain hard failures.
 
+- [GLOBAL-CANDIDATE][Patch Path Fallback]: When `apply_patch` is unstable on this Windows workspace, prefer repo-local safe whole-file rewrites only for newly added files or tightly scoped text-only files, then immediately re-verify with `git diff --check`.
+- [Detector Validation]: New integrity checks must be validated against real repo bytes before baselining, otherwise pure-LF files can be falsely classified as mixed EOL and pollute the baseline.
+- [Shell Dependency Guard]: Cross-platform validation entrypoints must not add new hard runtime dependencies unless the template explicitly requires them and the migration path is documented.
+
 ## Ship History
 ### Ship-master-2026-03-06
 - Feature shipped: namespaced AgentCortex-owned executable, tooling, and reference assets under `agentcortex/`, while preserving fixed anchors and legacy wrappers for downstream compatibility.
 - Tests: Pass
 ### Ship-codex-template-import-cleanup-namespacing-2026-03-06
 - Feature shipped: normalized Work Log naming to filesystem-safe <worklog-key> paths, documented recoverable missing-log behavior for /bootstrap, /plan, and /handoff, and added regression validation for the contract.
+- Tests: Pass
+### Ship-codex-template-import-cleanup-namespacing-2026-03-07
+- Feature shipped: added a minimal text hardening kit with repo-level text defaults, baseline-backed integrity checks, validation integration, and rollout guidance for older projects.
 - Tests: Pass
