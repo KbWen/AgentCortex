@@ -15,15 +15,30 @@ UTF8_BOM = b'\xef\xbb\xbf'
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description='Check tracked text files for encoding regressions.')
+    parser = argparse.ArgumentParser(description='Check tracked and untracked text files for encoding regressions.')
     parser.add_argument('--root', type=pathlib.Path, default=pathlib.Path(__file__).resolve().parents[1])
     parser.add_argument('--baseline', type=pathlib.Path, default=None)
     return parser.parse_args()
 
 
-def tracked_files(root: pathlib.Path) -> list[pathlib.Path]:
-    output = subprocess.check_output(['git', 'ls-files', '-z'], cwd=root)
-    return [root / item.decode('utf-8') for item in output.split(b'\0') if item]
+def candidate_files(root: pathlib.Path) -> list[pathlib.Path]:
+    commands = (
+        ['git', 'ls-files', '-z'],
+        ['git', 'ls-files', '-z', '--others', '--exclude-standard'],
+    )
+    seen: set[str] = set()
+    paths: list[pathlib.Path] = []
+    for command in commands:
+        output = subprocess.check_output(command, cwd=root)
+        for item in output.split(b'\0'):
+            if not item:
+                continue
+            rel = item.decode('utf-8')
+            if rel in seen:
+                continue
+            seen.add(rel)
+            paths.append(root / rel)
+    return paths
 
 
 def is_text_candidate(path: pathlib.Path) -> bool:
@@ -75,7 +90,7 @@ def main() -> int:
     baseline_hits: list[tuple[str, list[str]]] = []
     regressions: list[tuple[str, list[str]]] = []
 
-    for path in tracked_files(root):
+    for path in candidate_files(root):
         if not path.is_file() or not is_text_candidate(path):
             continue
         rel = path.relative_to(root).as_posix()

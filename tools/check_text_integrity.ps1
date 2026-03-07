@@ -28,14 +28,27 @@ function Get-BaselinePath {
     return [System.IO.Path]::Combine($RepoRoot, 'tools', 'text_integrity_baseline.txt')
 }
 
-function Get-TrackedFiles {
+function Get-CandidateFiles {
     param([string]$RepoRoot)
-    $output = & git -C $RepoRoot ls-files
-    $exitCode = if (Get-Variable LASTEXITCODE -ErrorAction SilentlyContinue) { $LASTEXITCODE } else { 0 }
-    if ($exitCode -ne 0) {
-        throw 'git ls-files failed while building text integrity file list.'
+    $commands = @(
+        @('ls-files'),
+        @('ls-files', '--others', '--exclude-standard')
+    )
+    $seen = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
+    $results = [System.Collections.Generic.List[string]]::new()
+    foreach ($commandArgs in $commands) {
+        $output = & git -C $RepoRoot @commandArgs
+        $exitCode = if (Get-Variable LASTEXITCODE -ErrorAction SilentlyContinue) { $LASTEXITCODE } else { 0 }
+        if ($exitCode -ne 0) {
+            throw 'git ls-files failed while building text integrity file list.'
+        }
+        foreach ($line in ($output | ForEach-Object { $_.Trim() } | Where-Object { $_ })) {
+            if ($seen.Add($line)) {
+                $results.Add($line)
+            }
+        }
     }
-    return $output | ForEach-Object { $_.Trim() } | Where-Object { $_ }
+    return $results
 }
 
 function Test-TextCandidate {
@@ -107,7 +120,7 @@ $baseline = Get-BaselineSet (Get-BaselinePath $repoRoot)
 $baselineHits = [System.Collections.Generic.List[string]]::new()
 $regressions = [System.Collections.Generic.List[string]]::new()
 
-foreach ($relativePath in Get-TrackedFiles $repoRoot) {
+foreach ($relativePath in Get-CandidateFiles $repoRoot) {
     if (-not (Test-TextCandidate $relativePath)) { continue }
     $normalizedRelativePath = $relativePath.Replace('\', '/')
     $fullPath = [System.IO.Path]::Combine($repoRoot, $relativePath)
@@ -115,7 +128,7 @@ foreach ($relativePath in Get-TrackedFiles $repoRoot) {
     try {
         $bytes = [System.IO.File]::ReadAllBytes($fullPath)
     } catch {
-        Write-Error "unable to read tracked file: ${normalizedRelativePath} ($fullPath)"
+        Write-Error "unable to read text integrity candidate: ${normalizedRelativePath} ($fullPath)"
         exit 1
     }
     $issues = @(Get-FileIssues $bytes)
