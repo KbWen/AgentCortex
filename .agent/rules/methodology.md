@@ -10,5 +10,5 @@
 
 ## Platform Adapters
 
-- **Google Antigravity**: Strictly command-driven (`/bootstrap` -> `/plan` -> `/implement`).
-- **Codex Web/App**: Supports alias flows (`/write-plan` -> `/plan`, `/execute-plan` -> `/implement`).
+- **Google Antigravity**: Follows a structured phase flow (bootstrap → plan → implement). AI self-enforces phase order regardless of user wording; slash commands remain as optional shortcuts.
+- **Codex Web/App**: Supports alias flows (`/write-plan` → plan phase, `/execute-plan` → implement phase).

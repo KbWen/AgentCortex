@@ -15,7 +15,9 @@ tasks:
    - **Legacy Detection**: If `docs/context/current_state.md` is missing but `docs/context.md` or an `agent/` directory exists, AI MUST notify the user: "⚠️ Legacy AgentCortex structure detected. Recommend running the Migration Path from `docs/guides/migration.md`."
    - **Cross-Branch Awareness**: Check "Branch List" for recently closed branches.
    - If current task overlaps with a recently merged branch's module, AI MUST scan `docs/context/archive/` of that branch to check for spec changes or relevant Lessons.
-2. READ/CREATE `docs/context/work/<branch-name>.md` (Work Log).
+2. READ/CREATE `docs/context/work/<worklog-key>.md` (Work Log).
+   - **Work Log Resolution**: Resolve a filesystem-safe `<worklog-key>` from the current branch before any path check. Store the raw git branch string in `Branch:`.
+   - **Recoverable Missing Log**: If the active Work Log is missing, create it. If only archived logs exist for this branch, create a new follow-up Work Log and report the recovery instead of failing `/bootstrap`.
    - **Bootstrap Branch Check**: If the Work Log already exists:
      - Check metadata (`Owner`, `Branch`, `Session`). If it matches your current session → RESUME safely. (Read `## Resume` if present, output "Resuming").
      - If metadata differs (another agent/user owns it) → **WARN the user AND require confirmation before proceeding** ("⚠️ Concurrent session detected. Proceed?").
@@ -46,7 +48,7 @@ Classification Tiers:
 
 ## 2. Work Log Header Setup
 
-Write to `docs/context/work/<branch-name>.md`:
+Write to `docs/context/work/<worklog-key>.md`:
 
 - `Branch`: [branch-name]
 - `Classification`: [Tier]
@@ -97,12 +99,12 @@ Write `## Session Info` and `## Drift Log` blocks immediately after header:
 
 ## 5. Hard Gate
 
-- MUST CREATE `docs/context/work/<branch-name>.md` before proceeding. *(Skip for `tiny-fix`.)*
+- MUST CREATE `docs/context/work/<worklog-key>.md` before proceeding. *(Skip for `tiny-fix`.)*
 - If file already exists, READ and RESUME from existing state.
 
 ## 6. Antigravity Hard Stop (Runtime v5)
 
 - After outputting the bootstrap report, STOP IMMEDIATELY.
 - Do NOT proceed to `/plan`, `/implement`, or any code changes in the same turn.
-- Next step MUST be `/plan` (or `tiny-fix` if applicable).
-- Output: "Bootstrap complete. Reply with your next command (e.g., `/plan`)."
+- Next step MUST be planning (or `tiny-fix` if applicable).
+- Output: "Bootstrap complete. What would you like to do next? (e.g., proceed to plan)"

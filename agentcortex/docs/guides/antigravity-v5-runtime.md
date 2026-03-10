@@ -192,7 +192,8 @@ missing: []
 
 ### 2.1 Detection rules
 
-* **Branch**: use git branch if available; else infer from `docs/context/work/<branch>.md` naming convention.
+* **Branch**: use git branch if available; else infer from `docs/context/work/<worklog-key>.md` naming convention.
+* **Work Log resolution**: normalize the branch into a filesystem-safe `<worklog-key>` before checking `worklog_exists`. If the active log is recoverable, create or recover it before returning `verdict: fail`.
 * **Spec**: for `feature` / `architecture-change`, spec must exist per `/plan` “Spec Gate” behavior.
 * **State**:
   * `/implement` hard gate requires `state >= IMPLEMENTABLE`

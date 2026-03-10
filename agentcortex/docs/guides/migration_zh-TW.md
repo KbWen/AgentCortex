@@ -88,7 +88,7 @@ AI 收到素材後，會依照 vNext 邏輯自動執行：
 2. **掃描現有檔案**：識別專案中的散亂文件，根據內容自動判斷分類與命名。
 3. **輸出遷移計畫**：列出所有建議的搬移與重命名，等待使用者確認。
 4. **建立地圖**：產出 `docs/context/current_state.md` 描述專案全貌。
-5. **建立任務**：將進行中的工作建立 Work Log (`docs/context/work/<task>.md`)。
+5. **建立任務**：將進行中的工作建立 Work Log (`docs/context/work/<worklog-key>.md`)。
 
 ### 關於目錄衝突
 

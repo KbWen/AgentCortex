@@ -28,9 +28,11 @@ missing: []
 ```
 
 - If `verdict: fail` → output ONLY the gate block with populated `missing` list. STOP.
+- Evaluate `worklog_exists` only after resolving the active Work Log path for the current `<worklog-key>`.
+- If the active Work Log is missing but recoverable, create or recover it, warn the user, and continue. Only unresolved Work Log lookup failures should set `verdict: fail`.
 - If classification is `feature` or `architecture-change`:
-  - Output: "Gate passed. Reply **PROCEED-PLAN:<branch-name>** to continue."
-  - STOP. Do not produce any plan content until user replies.
+  - Output: "Gate passed. Awaiting your confirmation to proceed with planning."
+  - STOP. Do not produce any plan content until user replies affirmatively.
 - If classification is `quick-win` or `hotfix`:
   - Proceed directly to plan output (no handshake needed).
 

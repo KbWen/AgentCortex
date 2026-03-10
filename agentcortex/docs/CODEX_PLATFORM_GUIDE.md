@@ -41,7 +41,8 @@ Before `/ship`, you must have a `/handoff`. Minimum reference requirements:
 
 1. At least 1 `docs/` artifact.
 2. At least 1 code file path.
-3. Corresponding work log: `docs/context/work/<branch-name>.md`.
+3. Corresponding work log: `docs/context/work/<worklog-key>.md`.
+   Resolve `<worklog-key>` from the branch using a filesystem-safe name; if the active log is missing but recoverable, recreate it before rejecting `/ship`.
 
 If unsatisfied, you must reject `/ship` and list the missing items.
 

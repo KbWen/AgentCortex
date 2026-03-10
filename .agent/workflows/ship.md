@@ -27,9 +27,11 @@ missing: []
 ```
 
 - If `verdict: fail` → output ONLY the gate block. STOP.
+- Resolve the active Work Log path for the current `<worklog-key>` before evaluating `worklog_exists`.
+- If no active Work Log exists but archive context for the branch exists, create a follow-up active log, warn the user, and continue gate evaluation. Missing handoff references or missing evidence still require `verdict: fail`.
 - If classification is `feature` or `architecture-change`:
-  - Output: "Gate passed. Reply **PROCEED-SHIP:<branch-name>** to continue."
-  - STOP until user replies.
+  - Output: "Gate passed. Awaiting your confirmation to proceed with shipping."
+  - STOP until user replies affirmatively.
 - `quick-win` / `hotfix`: proceed directly after gate pass.
 
 ## Entry Conditions (HARD)
@@ -64,7 +66,7 @@ If ANY condition fails, MUST reject `/ship` and output missing list.
 
    - NEVER edit, reorder, or delete previous entries in the `## Ship History`.
    - If Ship History exceeds 10 entries, archive older entries to `docs/context/archive/ship-history-YYYY.md` and keep only the latest 10 in `current_state.md`.
-3. Archive `docs/context/work/<branch-name>.md` to `docs/context/archive/` (if task complete).
+3. Archive `docs/context/work/<worklog-key>.md` to `docs/context/archive/` (if task complete).
     - Before archiving: Extract ALL bullets from the Work Log's `## Lessons` block (max 3 total).
     - Append these bullets to the `## Global Lessons` section in `current_state.md`.
     - If there is no `## Global Lessons` section in `current_state.md`, create one at the bottom.

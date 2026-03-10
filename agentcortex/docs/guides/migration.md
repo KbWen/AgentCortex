@@ -88,7 +88,7 @@ The AI will follow the vNext logic:
 2. **Scan Existing Files**: Identify scattered docs and determine classification/naming.
 3. **Output Migration Plan**: List all proposed moves/renames for user confirmation.
 4. **Establish Map**: Produce `docs/context/current_state.md` to describe the project overview.
-5. **Establish Tasks**: Create Work Logs (`docs/context/work/<task>.md`) for active work.
+5. **Establish Tasks**: Create Work Logs (`docs/context/work/<worklog-key>.md`) for active work.
 
 ### Regarding Directory Conflicts
 

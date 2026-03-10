@@ -64,7 +64,7 @@
 3. 輸出一行可複製文字給人類貼到下一個模型：
 
 ```
-請執行 /bootstrap。Work Log: docs/context/work/<branch-name>.md
+請執行 /bootstrap。Resolved Work Log: docs/context/work/<worklog-key>.md
 ```
 
 1. 宣布：「狀態已存檔。將上面那行貼到新模型即可繼續。」

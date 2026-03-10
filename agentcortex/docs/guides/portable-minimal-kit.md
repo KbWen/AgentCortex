@@ -2,6 +2,8 @@
 
 This guide defines a minimal, portable set that other projects can adopt without changing core state-machine workflows.
 
+For text encoding and EOL hardening specifically, see `minimal-text-hardening-kit.md`.
+
 ## Goal
 
 Reduce handoff and state-document verbosity while preserving evidence and auditability.
@@ -25,7 +27,7 @@ Reduce handoff and state-document verbosity while preserving evidence and audita
 - `WORKLOG_MAX_LINES=300`
 - `WORKLOG_MAX_KB=12`
 - `WORKLOG_KEEP_RECENT_ENTRIES=5`
-- Archive path: `docs/context/archive/work/<branch>-<YYYYMMDD>.md`
+- Archive path: `docs/context/archive/work/<worklog-key>-<YYYYMMDD>.md`
 
 ## Integration Steps (Any Repo)
 
