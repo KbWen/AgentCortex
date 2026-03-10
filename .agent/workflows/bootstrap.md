@@ -106,5 +106,5 @@ Write `## Session Info` and `## Drift Log` blocks immediately after header:
 
 - After outputting the bootstrap report, STOP IMMEDIATELY.
 - Do NOT proceed to `/plan`, `/implement`, or any code changes in the same turn.
-- Next step MUST be `/plan` (or `tiny-fix` if applicable).
-- Output: "Bootstrap complete. Reply with your next command (e.g., `/plan`)."
+- Next step MUST be planning (or `tiny-fix` if applicable).
+- Output: "Bootstrap complete. What would you like to do next? (e.g., proceed to plan)"

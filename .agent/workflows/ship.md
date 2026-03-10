@@ -30,8 +30,8 @@ missing: []
 - Resolve the active Work Log path for the current `<worklog-key>` before evaluating `worklog_exists`.
 - If no active Work Log exists but archive context for the branch exists, create a follow-up active log, warn the user, and continue gate evaluation. Missing handoff references or missing evidence still require `verdict: fail`.
 - If classification is `feature` or `architecture-change`:
-  - Output: "Gate passed. Reply **PROCEED-SHIP:<branch-name>** to continue."
-  - STOP until user replies.
+  - Output: "Gate passed. Awaiting your confirmation to proceed with shipping."
+  - STOP until user replies affirmatively.
 - `quick-win` / `hotfix`: proceed directly after gate pass.
 
 ## Entry Conditions (HARD)

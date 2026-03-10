@@ -6,31 +6,33 @@
 
 ## Allowed Transitions
 
-- `INIT` --(`/bootstrap`)--> `BOOTSTRAPPED`
-- `BOOTSTRAPPED` --(`/classify` or via bootstrap)--> `CLASSIFIED`
-- `CLASSIFIED` --(`/research` | `/brainstorm`)--> `CLASSIFIED`
-- `CLASSIFIED` --(`/spec` with `docs/specs/` artifact)--> `SPECIFIED`
-- `SPECIFIED` --(`/plan`)--> `PLANNED`
-- `CLASSIFIED` --(`/plan`)--> `PLANNED`  [ONLY for: `tiny-fix`, `quick-win`, `hotfix`]
+AI MUST self-enforce this phase order. Users may trigger transitions via slash commands (as shortcuts) OR via natural language — AI determines the appropriate phase regardless of wording.
+
+- `INIT` --(context loaded)--> `BOOTSTRAPPED`
+- `BOOTSTRAPPED` --(task classified)--> `CLASSIFIED`
+- `CLASSIFIED` --(research / brainstorm iteration)--> `CLASSIFIED`
+- `CLASSIFIED` --(spec artifact created in `docs/specs/`)--> `SPECIFIED`
+- `SPECIFIED` --(plan produced)--> `PLANNED`
+- `CLASSIFIED` --(plan produced)--> `PLANNED`  [ONLY for: `tiny-fix`, `quick-win`, `hotfix`]
 - `PLANNED` --(gate pass)--> `IMPLEMENTABLE`
-- `IMPLEMENTABLE` --(`/implement` | `/execute-plan`)--> `IMPLEMENTING`
-- `IMPLEMENTING` --(`/review` pass)--> `REVIEWED`
-- `REVIEWED` --(`/test` pass)--> `TESTED`
-- `TESTED` --(`/ship`)--> `SHIPPED`
+- `IMPLEMENTABLE` --(begin implementation)--> `IMPLEMENTING`
+- `IMPLEMENTING` --(review pass)--> `REVIEWED`
+- `REVIEWED` --(test pass)--> `TESTED`
+- `TESTED` --(ship executed)--> `SHIPPED`
 
 ## Spec Gate (Hard)
 
-- Classifications `feature` and `architecture-change` MUST reach `SPECIFIED` before `/plan`.
+- Classifications `feature` and `architecture-change` MUST reach `SPECIFIED` before planning.
 - `SPECIFIED` requires a corresponding `docs/specs/<feature>.md` artifact with `status: draft` or `status: frozen`.
 - `tiny-fix`, `quick-win`, and `hotfix` may transition directly from `CLASSIFIED` to `PLANNED`.
 
-## Read-Only Commands (No State Change)
+## Read-Only Actions (No State Change)
 
-- `/help`, `/commands`, `/test-skeleton`, `/handoff`
+- Listing help, available commands, generating test skeletons, producing handoff summaries
 
 ## Hard Gates
 
-- Non-`tiny-fix` tasks MUST execute `/handoff` before `SHIPPED`. Required references:
+- Non-`tiny-fix` tasks MUST complete a handoff phase before `SHIPPED`. Required references:
   1. ✅ `docs/` artifact path
   2. ✅ modified code path
   3. Resolved active work log path (`docs/context/work/<worklog-key>.md`)

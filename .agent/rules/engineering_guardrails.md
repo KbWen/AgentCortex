@@ -130,7 +130,7 @@ External CLI tools (e.g., `ask-openrouter`, `codex`) are **OPTIONAL accelerators
 
 ## 9. Intent Safety Rules
 
-Natural language input has EQUAL authority to slash commands, but MUST pass the same gates and prerequisites.
+User input in any form (natural language, keywords, or slash commands) triggers the same workflow gates. AI determines the current phase and enforces prerequisites automatically. Slash commands are optional shortcuts, not required triggers.
 
 ### 9.1 Acknowledgment-only Inputs (No Action)
 
@@ -186,11 +186,13 @@ When locating code, files, or definitions:
 | **architecture-change** | bootstrap → ADR → spec → plan → migration/rollback → handoff | migration plan + rollback verification |
 | **hotfix** | systematic debug → evidence → fix → retro → handoff | root cause + fix verification + retro |
 
+AI self-enforces the phase order above. Users may invoke phases via slash commands (as shortcuts) or natural language.
+
 ### 10.3 Tiny-Fix Fast-Path
 
 - **Definition**: Modifies < 3 files WITHOUT semantic change (typo, docs, non-functional config).
 - **Flow**: `classify → one-line scope → execute → inline evidence → done`.
-- **Exclusion**: Bypasses full `/bootstrap`, `/handoff`, and Work Log overhead.
+- **Exclusion**: Bypasses full bootstrap, handoff, and Work Log overhead.
 
 ### 10.4 Quick-Win Fast-Path
 
@@ -202,21 +204,21 @@ When locating code, files, or definitions:
 
 ### 10.5 Handoff/Ship Hard Gate
 
-- Non-`tiny-fix` tasks MUST NOT claim complete without `/handoff`.
-- `/ship` MUST verify handoff references in single-line format: `ship:[doc=<path>][code=<path>][log=<path>]`
-- If any field is missing, AI MUST reject `/ship` and list the missing field(s).
+- Non-`tiny-fix` tasks MUST NOT claim complete without a handoff phase.
+- The ship phase MUST verify handoff references in single-line format: `ship:[doc=<path>][code=<path>][log=<path>]`
+- If any field is missing, AI MUST reject shipping and list the missing field(s).
 
 ### 10.6 Completion Guard (Anti-Silent-Exit)
 
 When AI detects a task is nearing completion (e.g., user says "done", "完成了", "差不多了", or AI has finished all planned steps), AI MUST self-check BEFORE responding:
 
 1. Is the task classified as `quick-win` or higher?
-2. Has `/handoff` been executed? (Check: does Work Log have a `## Resume` block?)
-3. Has `/retro` been executed? (Check: does Work Log have a `## Lessons` block?)
+2. Has the handoff phase been executed? (Check: does Work Log have a `## Resume` block?)
+3. Has the retro phase been executed? (Check: does Work Log have a `## Lessons` block?)
 
-**For `feature` / `architecture-change`**: If handoff or retro is missing, AI MUST remind: "📋 Before closing: `/handoff` and `/retro` haven't run yet. Want me to proceed with them now?"
+**For `feature` / `architecture-change`**: If handoff or retro is missing, AI MUST remind: "📋 Before closing: handoff and retro haven't run yet. Want me to proceed with them now?"
 
-**For `quick-win`**: AI SHOULD ask: "Quick task done. Run a brief `/retro` to capture lessons? (yes/skip)"
+**For `quick-win`**: AI SHOULD ask: "Quick task done. Run a brief retro to capture lessons? (yes/skip)"
 
 **For `tiny-fix`**: Skip entirely.
 
