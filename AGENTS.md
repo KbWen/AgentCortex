@@ -70,8 +70,8 @@ Global directives for all AI agents. Loaded automatically every turn
    Requirement: Work Log must contain plan reference.
 9. **Evidence rule**:
    NO EVIDENCE = NO SHIP.
-10. User requests cannot bypass Gate rules.
-11. **Sentinel Check**: Every response MUST end with `[ACX-READ-OK]`. If this token is missing, it signifies the prompt was truncated or not fully loaded.
+10. User requests cannot bypass Gate rules. The AI MUST strictly follow phase order (e.g., Bootstrap -> Plan -> Ship). EVEN IF the human explicitly asks to skip a step, the AI MUST refuse to skip those required workflow gates.
+11. **Sentinel Check**: Every response MUST end with `⚡ ACX`. If this token is missing, it signifies the prompt was truncated or not fully loaded.
 12. **Legacy Work Log Compatibility**: If a Work Log predates Runtime v4 and lacks Drift/Evidence sections:
     - DO NOT fail ship or Gates.
     - Append missing template sections to the Work Log silently.
